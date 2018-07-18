@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_margin_layout">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/yj_save_btn">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_margin_layout">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_name_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/name"
+                    android:inputType="textCapWords" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_number_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/mobile_no"
+                    android:inputType="number"
+                    android:maxLength="10" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_email_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_address_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/address"
+                    android:inputType="textCapSentences" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_education_qulification_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/education_qulification"
+                    android:inputType="textCapSentences" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_adhar_card_no_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/aadhar_card_no"
+                    android:inputType="number"
+                    android:maxLength="12" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_other_skill_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/other_skill"
+                    android:inputType="textCapSentences" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_intrest_job_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/interested_field_in_job"
+                    android:inputType="textCapSentences" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/yj_about_yourself_et"
+                    style="@style/MyEditTextStyle"
+                    android:hint="@string/about_yourself"
+                    android:inputType="textCapSentences" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_margin_layout"
+                android:text="@string/captur_photo_of_resume"
+                android:textSize="@dimen/primery_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:layout_weight="5"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardCornerRadius="@dimen/cardview_radius">
+
+                    <ImageView
+                        android:id="@+id/yj_cature_img1"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:src="@drawable/ic_camera" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:layout_weight="5"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardCornerRadius="@dimen/cardview_radius">
+
+                    <ImageView
+                        android:id="@+id/yj_cature_img2"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:src="@drawable/ic_camera" />
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:layout_weight="5"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardCornerRadius="@dimen/cardview_radius">
+
+                    <ImageView
+                        android:id="@+id/yj_cature_img3"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:src="@drawable/ic_camera" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:layout_weight="5"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardCornerRadius="@dimen/cardview_radius">
+
+                    <ImageView
+                        android:id="@+id/yj_cature_img4"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:src="@drawable/ic_camera" />
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/padding_margin_layout"
+                android:text="@string/or"
+                android:textSize="@dimen/primery_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/yj_resume_file_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="asdsad.pdf"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/yj_upload_resume_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_margin_layout"
+                android:layout_marginTop="@dimen/padding_margin_layout"
+                android:background="@color/colorPrimary"
+                android:text="@string/upload_resume"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_text_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/yj_save_btn"
+        style="@style/MyButtonStyle"
+        android:text="@string/submit" />
+
+</RelativeLayout>

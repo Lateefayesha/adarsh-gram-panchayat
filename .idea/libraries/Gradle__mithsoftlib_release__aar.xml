@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: mithsoftlib-release:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mithsoftlib-release.aar/db7347bb7e71c74924c9ca5ada16d75a/jars/libs/jsoup-1.7.3.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mithsoftlib-release.aar/db7347bb7e71c74924c9ca5ada16d75a/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mithsoftlib-release.aar/db7347bb7e71c74924c9ca5ada16d75a/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

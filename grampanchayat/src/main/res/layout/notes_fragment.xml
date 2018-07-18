@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layout_background_color"
+    android:padding="@dimen/padding_margin_layout">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/notes_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/notes_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/layout_background_color" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.appynitty.yoccagent.utils.NoDataView
+        android:id="@+id/no_data_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/notes_new_note_fab"
+        style="@style/MyFABStyle" />
+</RelativeLayout>
