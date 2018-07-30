@@ -23,18 +23,18 @@ import retrofit2.http.Part;
 
 public interface YoungBusinessWebservice {
 
-    @POST("APIBusniess/Application")
+    @POST("api/APIBusniess/Application")
     Call<ResultPojo> saveYoungBusinessApplication(@Header("appId") String appId,
                                                   @Body ApplyBusinessPojo applyBusinessPojo);
 
-    @GET("APIBusniess/GetDetailList")
+    @GET("api/APIBusniess/GetDetailList")
     Call<List<YoungBusinessPojo>> pullYoungBusinessList(@Header("appId") String appId,
                                                         @Header("languageId") String languageId,
                                                         @Header("fdate") String fdate);
 
 
     @Multipart
-    @POST("APIBusniess/Save")
+    @POST("api/APIBusniess/Save")
     Call<ResultPojo> saveBusinessApplication(@Header("appId") String key,
                                              @Part("yBId") RequestBody yBId,
                                              @Part("name") RequestBody name,

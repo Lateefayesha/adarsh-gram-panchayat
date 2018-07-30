@@ -1,6 +1,12 @@
 package com.appynitty.gp.pojo;
 
+import android.util.Log;
+
+import com.appynitty.gp.utils.AUtils;
+
 import java.io.Serializable;
+
+import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 5/7/18.
@@ -8,7 +14,8 @@ import java.io.Serializable;
 public class DistrictPojo implements Serializable {
 
     private String id;
-    private String district_name;
+    private String districtName;
+    private String districtNameMar;
 
     public String getId() {
         return id;
@@ -18,16 +25,32 @@ public class DistrictPojo implements Serializable {
         this.id = id;
     }
 
-    public String getDistrict_name() {
-        return district_name;
+    public String getDistrictName() {
+        return districtName;
     }
 
-    public void setDistrict_name(String district_name) {
-        this.district_name = district_name;
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public String getDistrictNameMar() {
+        return districtNameMar;
+    }
+
+    public void setDistrictNameMar(String districtNameMar) {
+        this.districtNameMar = districtNameMar;
     }
 
     @Override
     public String toString() {
-        return district_name;
+
+//        Log.e("mithun", "lAnguage id = " + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            return districtName;
+        } else {
+
+//            Log.e("mithun", "Inside else = " + districtNameMar);
+            return districtNameMar;
+        }
     }
 }

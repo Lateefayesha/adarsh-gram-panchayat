@@ -1,7 +1,9 @@
 package com.appynitty.gp.activity;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -56,6 +58,13 @@ public class SelectGramPanchayatActivity extends BaseActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        initToolbar();
+        initListData();
+    }
+
+    @Override
     protected void registerEvents() {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,8 +82,9 @@ public class SelectGramPanchayatActivity extends BaseActivity {
 
         if (!AUtils.isNullString(gramPanchayatPojo.getAppId())) {
 
-            QuickUtils.prefs.save(AUtils.GP_ID, gramPanchayatPojo.getAppId());
+            QuickUtils.prefs.save(AUtils.APP_ID, gramPanchayatPojo.getAppId());
             QuickUtils.prefs.save(AUtils.GP_NAME, gramPanchayatPojo.getAppName());
+            QuickUtils.prefs.save(AUtils.GP_NAME_MAR, gramPanchayatPojo.getAppNamemar());
             startActivity(new Intent(SelectGramPanchayatActivity.this, HomeActivity.class));
 
         } else {
@@ -86,7 +96,7 @@ public class SelectGramPanchayatActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        initListData();
+//        initListData();
     }
 
     private void initListData() {
@@ -174,4 +184,66 @@ public class SelectGramPanchayatActivity extends BaseActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        if (android.R.id.home == item.getItemId()) {
+            if (QuickUtils.prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
+                onBackPressed();
+            }
+            return true;
+        } else if (R.id.action_language == item.getItemId()) {
+
+            changeLanguageOnClick();
+            return true;
+
+        } else if (R.id.action_rate == item.getItemId()) {
+            AUtils.rateApp(SelectGramPanchayatActivity.this);
+            return true;
+
+        } else if (R.id.action_share_app == item.getItemId()) {
+            AUtils.shareThisApp(SelectGramPanchayatActivity.this, "");
+            return true;
+
+        } else if (R.id.action_about_appynitty == item.getItemId()) {
+            startActivity(new Intent(SelectGramPanchayatActivity.this, AboutAppynittyActivity.class));
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeLanguageOnClick() {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Choose Language / भाषा निवडा");
+
+        alert.setPositiveButton("English", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "1");
+                changeLanguage(1);
+            }
+        });
+        alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "2");
+                changeLanguage(2);
+            }
+        });
+        alert.show();
+    }
+
+    public void changeLanguage(int type) {
+
+        AUtils.changeLanguage(this, type);
+        onResume();
+    }
 }

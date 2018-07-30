@@ -18,7 +18,7 @@ import retrofit2.http.Part;
 public interface CleaningCompleantWebservice {
 
     @Multipart
-    @POST("APICompliant/Save")
+    @POST("api/APICompliant/Save")
     Call<ResultPojo> saveCleaningCompleant(@Header("appId") String key,
                                            @Part("name") RequestBody name,
                                            @Part("number") RequestBody number,
@@ -34,7 +34,7 @@ public interface CleaningCompleantWebservice {
                                            @Part MultipartBody.Part imageFile1);
 
     @Multipart
-    @POST("APIWaterCompliant/Save")
+    @POST("api/APIWaterCompliant/Save")
     Call<ResultPojo> saveDrinkingWaterCompleant(@Header("appId") String key,
                                                 @Part("name") RequestBody name,
                                                 @Part("number") RequestBody number,
@@ -50,7 +50,7 @@ public interface CleaningCompleantWebservice {
                                                 @Part MultipartBody.Part imageFile1);
 
     @Multipart
-    @POST("APILightCompliant/Save")
+    @POST("api/APILightCompliant/Save")
     Call<ResultPojo> saveLightCompleant(@Header("appId") String key,
                                         @Part("name") RequestBody name,
                                         @Part("number") RequestBody number,
@@ -66,7 +66,7 @@ public interface CleaningCompleantWebservice {
                                         @Part MultipartBody.Part imageFile1);
 
     @Multipart
-    @POST("APIMaintenanceRepairsCompliant/Save")
+    @POST("api/APIMaintenanceRepairsCompliant/Save")
     Call<ResultPojo> saveMaintenanceCompleant(@Header("appId") String key,
                                               @Part("name") RequestBody name,
                                               @Part("number") RequestBody number,

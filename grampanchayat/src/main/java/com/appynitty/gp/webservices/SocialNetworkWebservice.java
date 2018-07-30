@@ -19,11 +19,8 @@ import retrofit2.http.POST;
 
 public interface SocialNetworkWebservice {
 
-    @POST("Notes/Save")
-    Call<List<OurGramPanchayatPojo>> saveNoteList(@Header("OrgId") String key,
-                                                  @Body List<OurGramPanchayatPojo> notesPojoList);
 
-    @GET("APISocial/GetDetailList")
+    @GET("api/APISocial/GetDetailList")
     Call<List<SocialNetworkPojo>> pullSocialNetworkList(@Header("appId") String appId,
                                                         @Header("languageId") String languageId,
                                                         @Header("fdate") String fdate);

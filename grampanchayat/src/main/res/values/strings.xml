@@ -2,8 +2,8 @@
     <string name="app_name">खिरगव्हाण ग्राम पंचायत</string>
     <string name="smart_gram_panchayat">Smart Gram Panchayat</string>
 
-
-    <string name="app_name_tab">Khirgavhan Gram Panchayat</string>
+    <string name="noInternet">Please check your internet connection and try again</string>
+    <string name="app_name_tab">Gram Panchayat</string>
     <string name="action_settings">Settings</string>
     <string name="noData">No data found</string>
     <string name="work_check_out">Works of the Gram Panchayat</string>
@@ -22,9 +22,7 @@
     <string name="certificate">Important Government Certificates and Documents required for their application</string>
     <string name="social_media">Social Media</string>
     <string name="contact_us">Contact Us</string>
-    <!--<string name="our_gram_panchayat">Khirgavhan Gram Panchayat</string>-->
     <string name="our_gram_panchayat">Our Gram Panchayat</string>
-    <string name="gram_panchayat">Gram Panchayat</string>
     <string name="submit">Submit</string>
     <string name="young_business_apply">Self Employment/Business Registration</string>
     <string name="photo">Photos</string>
@@ -44,6 +42,7 @@
     <string name="state">State</string>
     <string name="district">District</string>
     <string name="tahsil">Tahsil</string>
+    <string name="weather">Weather</string>
 
     <string name="plz_ent_name">Please enter name</string>
     <string name="plz_ent_mobile_no">Please enter mobile number</string>
@@ -59,6 +58,7 @@
     <string name="plz_ent_complent_dtl">Please enter complaint details</string>
     <string name="plz_ent_edu_quli">Please enter educational qualifications</string>
     <string name="plz_capture_img">Please capture image</string>
+    <string name="plz_select_state">Please select state</string>
 
 
     <string name="ward_no">Ward number</string>
@@ -70,7 +70,7 @@
     <string name="action_rate_app">Rate this app</string>
     <string name="action_share_app">Share this app</string>
     <string name="prsonal_conatct_no">Personal contact number :</string>
-    <string name="yocc_no">YOCC Number : 8806750750</string>
+    <string name="yocc_no">YOCC Number : </string>
     <string name="education_qulification">Educational Qualifications</string>
     <string name="aadhar_card_no">Aadhar Card No</string>
     <string name="other_skill">Other Professional Skills if any (Pls Specify)</string>

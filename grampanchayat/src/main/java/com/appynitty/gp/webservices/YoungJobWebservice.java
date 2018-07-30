@@ -18,7 +18,7 @@ import retrofit2.http.Part;
 public interface YoungJobWebservice {
 
     @Multipart
-    @POST("APIJob/Save")
+    @POST("api/APIJob/Save")
     Call<ResultPojo> saveYoungJobApplication(@Header("appId") String key,
                                              @Part("Name") RequestBody name,
                                              @Part("Number") RequestBody number,

@@ -16,7 +16,7 @@ import retrofit2.http.Header;
 
 public interface CertificateWebservice {
 
-    @GET("Document/GetList")
+    @GET("api/Document/GetList")
     Call<List<CertificatePojo>> pullCertificateList(@Header("appId") String appId,
                                                     @Header("languageId") String languageId,
                                                     @Header("fdate") String fdate);

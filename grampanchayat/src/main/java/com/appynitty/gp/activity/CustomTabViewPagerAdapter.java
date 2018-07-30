@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.appynitty.gp.utils.AUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 

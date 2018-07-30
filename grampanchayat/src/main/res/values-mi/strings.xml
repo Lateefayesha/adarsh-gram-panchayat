@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name_tab">खिरगव्हाण ग्राम पंचायत</string>
+    <string name="app_name_tab">ग्राम पंचायत</string>
     <string name="smart_gram_panchayat">स्मार्ट ग्राम पंचायत</string>
 
+    <string name="noInternet">कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा</string>
     <string name="action_settings">सेटिंग</string>
     <string name="noData">माहिती आढळली नाही</string>
     <string name="work_check_out">ग्रामपंचायतीचे कार्य</string>
@@ -22,7 +23,6 @@
     <string name="contact_us">संपर्क साधा</string>
     <!--<string name="our_gram_panchayat">खिरगव्हाण ग्राम पंचायत</string>-->
     <string name="our_gram_panchayat">आमची ग्राम पंचायत</string>
-    <string name="gram_panchayat">ग्राम पंचायत</string>
     <string name="submit">सबमिट करा</string>
     <string name="young_business_apply">स्वयंरोजगार/व्यवसाय नोंदणी</string>
     <string name="photo">फोटो</string>
@@ -45,7 +45,7 @@
     <string name="action_rate_app">अँप रेट करा</string>
     <string name="action_share_app">अँपचा प्रसार करा</string>
     <string name="prsonal_conatct_no">वैयक्तिक संपर्क क्रमांक :</string>
-    <string name="yocc_no">YOCC नंबर : 8806750750</string>
+    <string name="yocc_no">YOCC नंबर : </string>
     <string name="education_qulification">शैक्षणिक पात्रता</string>
     <string name="aadhar_card_no">आधार कार्ड नंबर</string>
     <string name="tip">सुझाव</string>
@@ -82,6 +82,7 @@
     <string name="state">राज्य</string>
     <string name="district">जिल्हा</string>
     <string name="tahsil">तहसील</string>
+    <string name="weather">हवामान</string>
 
 
     <string name="plz_ent_name">कृपया नाव टाइप करा</string>

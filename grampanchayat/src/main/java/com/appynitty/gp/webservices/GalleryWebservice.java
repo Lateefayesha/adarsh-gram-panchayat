@@ -19,11 +19,8 @@ import retrofit2.http.POST;
 
 public interface GalleryWebservice {
 
-    @POST("Notes/Save")
-    Call<List<OurGramPanchayatPojo>> saveNoteList(@Header("OrgId") String key,
-                                                  @Body List<OurGramPanchayatPojo> notesPojoList);
 
-    @GET("Gallary")
+    @GET("api/Gallary")
     Call<GalleryPojo> pullGalleryList(@Header("appId") String appId,
                                       @Header("languageId") String languageId,
                                       @Header("fdate") String fdate);

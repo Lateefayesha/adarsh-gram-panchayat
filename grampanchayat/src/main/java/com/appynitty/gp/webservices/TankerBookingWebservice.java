@@ -20,11 +20,11 @@ import retrofit2.http.POST;
 
 public interface TankerBookingWebservice {
 
-    @POST("TankerBooking/Save")
+    @POST("api/TankerBooking/Save")
     Call<ResultPojo> saveTankerBooking(@Header("appId") String appId,
                                        @Body TankerBookingPojo tankerBookingPojo);
 
-    @GET("APIBusniess/GetDetailList")
+    @GET("api/APIBusniess/GetDetailList")
     Call<List<YoungBusinessPojo>> pullYoungBusinessList(@Header("appId") String appId,
                                                         @Header("languageId") String languageId,
                                                         @Header("fdate") String fdate);

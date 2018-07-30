@@ -1,7 +1,11 @@
 package com.appynitty.gp.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -62,6 +66,18 @@ public class SelectPlaceActivity extends BaseActivity {
         submitButton = findViewById(R.id.sp_save_btn);
 
         initToolbar();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        stateNameSpinnerHintTitleTextView.setText(getString(R.string.state));
+        districtSpinnerHintTitleTextView.setText(getString(R.string.district));
+        tahsilSpinnerHintTitleTextView.setText(getString(R.string.tahsil));
+
+        initToolbar();
+        initStateNameSpinner();
     }
 
     private void initToolbar() {
@@ -158,22 +174,26 @@ public class SelectPlaceActivity extends BaseActivity {
 
     private void initStateNameSpinner() {
 
+        List<StatePojo> statePojoListTemp = new ArrayList<StatePojo>();
 
-        if (AUtils.isNull(statePojoList) || statePojoList.isEmpty()) {
+        if (!AUtils.isNull(statePojoList) && !statePojoList.isEmpty()) {
 
-            statePojoList = new ArrayList<StatePojo>();
+            for (StatePojo statePojo : statePojoList) {
+
+                statePojoListTemp.add(statePojo);
+            }
         }
 
         StatePojo statePojo = new StatePojo();
         statePojo.setId("0");
-        statePojo.setState_name(getString(R.string.select_state));
+        statePojo.setStateName(getString(R.string.select_state));
+        statePojo.setStateNameMar(getString(R.string.select_state));
 
-        statePojoList.add(0, statePojo);
+        statePojoListTemp.add(0, statePojo);
 
         ArrayAdapter<StatePojo> statePojoArrayAdapter = new ArrayAdapter(
-                this, R.layout.spinner_text_view, statePojoList);
+                this, R.layout.spinner_text_view, statePojoListTemp);
         stateNameSpinner.setAdapter(statePojoArrayAdapter);
-
     }
 
     private void initDistrictSpinner() {
@@ -184,7 +204,8 @@ public class SelectPlaceActivity extends BaseActivity {
 
             DistrictPojo districtPojo = new DistrictPojo();
             districtPojo.setId("0");
-            districtPojo.setDistrict_name(getString(R.string.select_district));
+            districtPojo.setDistrictNameMar(getString(R.string.select_district));
+            districtPojo.setDistrictName(getString(R.string.select_district));
             districtPojoList.add(0, districtPojo);
 
             ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -206,7 +227,10 @@ public class SelectPlaceActivity extends BaseActivity {
 
             TahsilPojo tahsilPojo = new TahsilPojo();
             tahsilPojo.setId("0");
-            tahsilPojo.setName(getString(R.string.select_tahsil));
+            tahsilPojo.setName("Select Tahsil");
+            tahsilPojo.setNameMar("तहसील निवडा");
+//            tahsilPojo.setName(getString(R.string.select_tahsil));
+//            tahsilPojo.setNameMar(getString(R.string.select_tahsil));
             tahsilPojoArrayList.add(0, tahsilPojo);
 
             ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -255,7 +279,8 @@ public class SelectPlaceActivity extends BaseActivity {
 
                     DistrictPojo districtPojo = new DistrictPojo();
                     districtPojo.setId("0");
-                    districtPojo.setDistrict_name(getString(R.string.select_district));
+                    districtPojo.setDistrictName(getString(R.string.select_district));
+                    districtPojo.setDistrictNameMar(getString(R.string.select_district));
                     districtPojoList.add(0, districtPojo);
 
                     ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -267,7 +292,8 @@ public class SelectPlaceActivity extends BaseActivity {
 
                     DistrictPojo districtPojo = new DistrictPojo();
                     districtPojo.setId("0");
-                    districtPojo.setDistrict_name(getString(R.string.select_district));
+                    districtPojo.setDistrictName(getString(R.string.select_district));
+                    districtPojo.setDistrictNameMar(getString(R.string.select_district));
                     districtPojoList.add(0, districtPojo);
 
                     ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -304,6 +330,7 @@ public class SelectPlaceActivity extends BaseActivity {
                     TahsilPojo tahsilPojo = new TahsilPojo();
                     tahsilPojo.setId("0");
                     tahsilPojo.setName(getString(R.string.select_tahsil));
+                    tahsilPojo.setNameMar(getString(R.string.select_tahsil));
                     tahsilPojoArrayList.add(0, tahsilPojo);
 
                     ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -317,6 +344,7 @@ public class SelectPlaceActivity extends BaseActivity {
                     TahsilPojo tahsilPojo = new TahsilPojo();
                     tahsilPojo.setId("0");
                     tahsilPojo.setName(getString(R.string.select_tahsil));
+                    tahsilPojo.setNameMar(getString(R.string.select_tahsil));
                     tahsilPojoArrayList.add(0, tahsilPojo);
 
                     ArrayAdapter<DistrictPojo> contactArrayAdapter = new ArrayAdapter(
@@ -345,8 +373,6 @@ public class SelectPlaceActivity extends BaseActivity {
 
         initStateNameSpinner();
         getStateList(true);
-//        initDistrictSpinner();
-
     }
 
     private void getStateList(boolean isShowPrgressDialog) {
@@ -420,5 +446,75 @@ public class SelectPlaceActivity extends BaseActivity {
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        if (android.R.id.home == item.getItemId()) {
+            if (QuickUtils.prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
+                onBackPressed();
+            }
+            return true;
+        } else if (R.id.action_language == item.getItemId()) {
+
+            changeLanguageOnClick();
+            return true;
+
+        } else if (R.id.action_rate == item.getItemId()) {
+            AUtils.rateApp(SelectPlaceActivity.this);
+            return true;
+
+        } else if (R.id.action_share_app == item.getItemId()) {
+            AUtils.shareThisApp(SelectPlaceActivity.this, "");
+            return true;
+
+        } else if (R.id.action_about_appynitty == item.getItemId()) {
+            startActivity(new Intent(SelectPlaceActivity.this, AboutAppynittyActivity.class));
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeLanguageOnClick() {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Choose Language / भाषा निवडा");
+
+        alert.setPositiveButton("English", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "1");
+                changeLanguage(1);
+            }
+        });
+        alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "2");
+                changeLanguage(2);
+            }
+        });
+        alert.show();
+    }
+
+    public void changeLanguage(int type) {
+
+        AUtils.changeLanguage(this, type);
+        onResume();
+    }
 
 }

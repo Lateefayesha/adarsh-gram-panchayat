@@ -13,6 +13,4 @@
         android:numColumns="2"></GridView>
 
 
-
-
 </RelativeLayout>

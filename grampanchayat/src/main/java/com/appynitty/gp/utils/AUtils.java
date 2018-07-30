@@ -29,20 +29,18 @@ public class AUtils extends MsUtils {
 
 
     //    Local URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/api/";
+//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-    public static final String SERVER_URL = "http://115.115.153.117:7055/api/";
+    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/api/";
+//    public static final String SERVER_URL = "";
 
 
     //    Genral Constant
     public static final String STATUS_SUCCESS = "Success";
 
-    //    Production URL
-//    public static final String SERVER_URL = "https://way2voice.in:444/api/";
     public static final String STATUS_ERROR = "error";
     public static final String STATUS_EXPIRED = "expired";
     public static final int CAMERA_CAPTURE = 111;
@@ -56,7 +54,7 @@ public class AUtils extends MsUtils {
     public static final String GALLERY_POJO = "GalleryPhotoPojo";
     public static final String GALLERY_IMG_PATH = "GalleryImagePath";
     public static final String API_KEY_YOU_TUBE = "AIzaSyAS_cjGGfe76O9vBWYNZLm208UoS90o1_k";
-    public static final String GP_ID = "AppId";
+    public static final String APP_ID = "AppId";
     public static final String DEFAULT_LANGUAGE_ID = "2";
     public static final String LANGUAGE_ID = "LanguageId";
     public static final String GALLERY_IMG_POSITION = "GalleryImagePosition";
@@ -79,6 +77,9 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
     private static final String TAG = "AUtils";
     public static final String GP_NAME = "GramPanchayatName";
+    public static final String APP_LOCATION = "LocationOfTheVillage";
+    public static final String YOCC_NO = "YoccNoForOrg";
+    public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
 
 
     private AUtils() {

@@ -18,11 +18,8 @@ import retrofit2.http.POST;
 
 public interface WorkCheckOutWebservice {
 
-    @POST("Notes/Save")
-    Call<List<WorkCheckOutPojo>> saveNoteList(@Header("OrgId") String key,
-                                              @Body List<WorkCheckOutPojo> notesPojoList);
 
-    @GET("APIWork/GetDetailList")
+    @GET("api/APIWork/GetDetailList")
     Call<List<WorkCheckOutPojo>> pullWorkCheckOutList(@Header("appId") String appId,
                                                       @Header("languageId") String languageId,
                                                       @Header("fdate") String fdate);

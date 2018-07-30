@@ -18,11 +18,7 @@ import retrofit2.http.POST;
 
 public interface OurGramPanchayatWebservice {
 
-    @POST("Notes/Save")
-    Call<List<OurGramPanchayatPojo>> saveNoteList(@Header("OrgId") String key,
-                                                  @Body List<OurGramPanchayatPojo> notesPojoList);
-
-    @GET("APIProfile/GetDetailList")
+    @GET("api/APIProfile/GetDetailList")
     Call<List<OurGramPanchayatPojo>> pullOurGramPanchayatList(@Header("appId") String appId,
                                                               @Header("languageId") String languageId,
                                                               @Header("fdate") String fdate);

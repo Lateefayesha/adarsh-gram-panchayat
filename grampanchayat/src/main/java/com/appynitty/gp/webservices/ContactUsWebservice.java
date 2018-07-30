@@ -19,11 +19,8 @@ import retrofit2.http.POST;
 
 public interface ContactUsWebservice {
 
-    @POST("Notes/Save")
-    Call<List<OurGramPanchayatPojo>> saveNoteList(@Header("OrgId") String key,
-                                                  @Body List<OurGramPanchayatPojo> notesPojoList);
 
-    @GET("APIContactUs/GetDetailList")
+    @GET("api/APIContactUs/GetDetailList")
     Call<ContactUsPojo> pullContactUsList(@Header("appId") String appId,
                                           @Header("languageId") String languageId,
                                           @Header("fdate") String fdate);

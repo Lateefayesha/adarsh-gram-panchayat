@@ -13,6 +13,8 @@ import com.appynitty.gp.utils.AUtils;
 
 import java.util.List;
 
+import quickutils.core.QuickUtils;
+
 
 /**
  * Created by MiTHUN on 5/3/18.
@@ -50,26 +52,53 @@ public class GramPanchayatListAdapter extends ArrayAdapter<GramPanchayatPojo> {
         if (!AUtils.isNull(gramPanchayatPojoList) && !gramPanchayatPojoList.isEmpty()) {
             GramPanchayatPojo gramPanchayatPojo = gramPanchayatPojoList.get(position);
 
-            if (!AUtils.isNullString(gramPanchayatPojo.getAppName())) {
-                holder.titleTextView.setText(gramPanchayatPojo.getAppName());
-            } else {
-                holder.titleTextView.setText("");
-            }
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+
+                if (!AUtils.isNullString(gramPanchayatPojo.getAppName())) {
+                    holder.titleTextView.setText(gramPanchayatPojo.getAppName());
+                } else {
+                    holder.titleTextView.setText("");
+                }
 //            if (!AUtils.isNullString(gramPanchayatPojo.getState())) {
 //                holder.descTextView.setText(context.getString(R.string.state) + " " + gramPanchayatPojo.getState() + " |");
 //            } else {
 //                holder.descTextView.setText("");
 //            }
-            if (!AUtils.isNullString(gramPanchayatPojo.getDistrict())) {
+                if (!AUtils.isNullString(gramPanchayatPojo.getDistrict())) {
 //                holder.descTextView.setText(holder.descTextView.getText() + context.getString(R.string.district) + " : " + gramPanchayatPojo.getDistrict() + " | ");
-                holder.descTextView.setText(context.getString(R.string.district) + " : " + gramPanchayatPojo.getDistrict() + " | ");
+                    holder.descTextView.setText(context.getString(R.string.district) + " : " + gramPanchayatPojo.getDistrict() + " | ");
+                } else {
+                    holder.descTextView.setText("");
+                }
+                if (!AUtils.isNullString(gramPanchayatPojo.getTehsil())) {
+                    holder.descTextView.setText(holder.descTextView.getText() + context.getString(R.string.tahsil) + " : " + gramPanchayatPojo.getTehsil());
+                } else {
+                    holder.descTextView.setText("");
+                }
             } else {
-                holder.descTextView.setText("");
-            }
-            if (!AUtils.isNullString(gramPanchayatPojo.getTehsil())) {
-                holder.descTextView.setText(holder.descTextView.getText() + context.getString(R.string.tahsil) + " : " + gramPanchayatPojo.getTehsil());
-            } else {
-                holder.descTextView.setText("");
+
+                if (!AUtils.isNullString(gramPanchayatPojo.getAppNamemar())) {
+                    holder.titleTextView.setText(gramPanchayatPojo.getAppNamemar());
+                } else {
+                    holder.titleTextView.setText("");
+                }
+//                if (!AUtils.isNullString(gramPanchayatPojo.getStateMar())) {
+//                    holder.descTextView.setText(context.getString(R.string.state) + " " + gramPanchayatPojo.getStateMar() + " |");
+//                } else {
+//                    holder.descTextView.setText("");
+//                }
+                if (!AUtils.isNullString(gramPanchayatPojo.getDistrictMar())) {
+//                holder.descTextView.setText(holder.descTextView.getText() + context.getString(R.string.district) + " : " + gramPanchayatPojo.getDistrict() + " | ");
+                    holder.descTextView.setText(context.getString(R.string.district) + " : " + gramPanchayatPojo.getDistrictMar() + " | ");
+                } else {
+                    holder.descTextView.setText("");
+                }
+                if (!AUtils.isNullString(gramPanchayatPojo.getTehsilMar())) {
+                    holder.descTextView.setText(holder.descTextView.getText() + context.getString(R.string.tahsil) + " : " + gramPanchayatPojo.getTehsilMar());
+                } else {
+                    holder.descTextView.setText("");
+                }
+
             }
         }
         return view;

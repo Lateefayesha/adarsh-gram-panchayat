@@ -80,6 +80,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name="com.appynitty.gp.activity.UtilityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.appynitty.gp.activity.WeatherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.appynitty.gp.activity.AboutAppynittyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!--<meta-data-->
         <!--android:name="com.google.android.geo.API_KEY"-->
         <!--android:value="@string/google_maps_key" />-->

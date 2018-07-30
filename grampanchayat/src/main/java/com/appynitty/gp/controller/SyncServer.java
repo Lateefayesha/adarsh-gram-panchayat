@@ -72,7 +72,7 @@ public class SyncServer {
         try {
 
             WorkCheckOutWebservice service = AUtils.createService(WorkCheckOutWebservice.class, AUtils.SERVER_URL);
-            workCheckOutPojoList = service.pullWorkCheckOutList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            workCheckOutPojoList = service.pullWorkCheckOutList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -98,7 +98,7 @@ public class SyncServer {
         try {
 
             YoungBusinessWebservice service = AUtils.createService(YoungBusinessWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullYoungBusinessList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            youngBusinessPojoList = service.pullYoungBusinessList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -124,7 +124,7 @@ public class SyncServer {
         try {
 
             SchemesWebservice service = AUtils.createService(SchemesWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullSchemesList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            youngBusinessPojoList = service.pullSchemesList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -151,7 +151,7 @@ public class SyncServer {
         try {
 
             OurGramPanchayatWebservice service = AUtils.createService(OurGramPanchayatWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullOurGramPanchayatList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            youngBusinessPojoList = service.pullOurGramPanchayatList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -177,7 +177,7 @@ public class SyncServer {
         try {
 
             GalleryWebservice service = AUtils.createService(GalleryWebservice.class, AUtils.SERVER_URL);
-            galleryPojo = service.pullGalleryList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            galleryPojo = service.pullGalleryList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -211,7 +211,7 @@ public class SyncServer {
         try {
 
             SocialNetworkWebservice service = AUtils.createService(SocialNetworkWebservice.class, AUtils.SERVER_URL);
-            socialNetworkPojoList = service.pullSocialNetworkList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            socialNetworkPojoList = service.pullSocialNetworkList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     "1",
                     "").execute().body();
 
@@ -237,7 +237,7 @@ public class SyncServer {
         try {
 
             ContactUsWebservice service = AUtils.createService(ContactUsWebservice.class, AUtils.SERVER_URL);
-            contactUsPojo = service.pullContactUsList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            contactUsPojo = service.pullContactUsList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -359,7 +359,7 @@ public class SyncServer {
 
             YoungBusinessWebservice service = AUtils.createService(YoungBusinessWebservice.class, AUtils.SERVER_URL);
 
-            resultPojo = service.saveBusinessApplication(QuickUtils.prefs.getString(AUtils.GP_ID, ""), yBId,
+            resultPojo = service.saveBusinessApplication(QuickUtils.prefs.getString(AUtils.APP_ID, ""), yBId,
                     name, number, address, education, email, adharCardNo, otherSkill,
                     interestedBusiness, aboutYourself, languageId, createdDate,
                     resourceAvailable, helpRequired,
@@ -379,7 +379,7 @@ public class SyncServer {
         try {
 
             TankerBookingWebservice service = AUtils.createService(TankerBookingWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveTankerBooking(QuickUtils.prefs.getString(AUtils.GP_ID, ""), tankerBookingPojo).execute().body();
+            resultPojo = service.saveTankerBooking(QuickUtils.prefs.getString(AUtils.APP_ID, ""), tankerBookingPojo).execute().body();
 
         } catch (Exception e) {
 
@@ -431,7 +431,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CleaningCompleantWebservice service = AUtils.createService(CleaningCompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveCleaningCompleant(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            resultPojo = service.saveCleaningCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, imageFileMultiBody1).execute().body();
 
@@ -484,7 +484,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CleaningCompleantWebservice service = AUtils.createService(CleaningCompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveDrinkingWaterCompleant(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            resultPojo = service.saveDrinkingWaterCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, imageFileMultiBody1).execute().body();
 
@@ -537,7 +537,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CleaningCompleantWebservice service = AUtils.createService(CleaningCompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveLightCompleant(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            resultPojo = service.saveLightCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, imageFileMultiBody1).execute().body();
 
@@ -590,7 +590,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CleaningCompleantWebservice service = AUtils.createService(CleaningCompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveMaintenanceCompleant(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            resultPojo = service.saveMaintenanceCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, imageFileMultiBody1).execute().body();
 
@@ -711,7 +711,7 @@ public class SyncServer {
 
             YoungJobWebservice service = AUtils.createService(YoungJobWebservice.class, AUtils.SERVER_URL);
 
-            resultPojo = service.saveYoungJobApplication(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            resultPojo = service.saveYoungJobApplication(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, education, email, adharCardNo, otherSkill,
                     interestedJob, aboutYourself, languageId, createdDate,
                     specialization,
@@ -733,7 +733,7 @@ public class SyncServer {
         try {
 
             CertificateWebservice service = AUtils.createService(CertificateWebservice.class, AUtils.SERVER_URL);
-            certificatePojoList = service.pullCertificateList(QuickUtils.prefs.getString(AUtils.GP_ID, ""),
+            certificatePojoList = service.pullCertificateList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
@@ -839,7 +839,7 @@ public class SyncServer {
         try {
 
             SmartGpWebservice service = AUtils.createService(SmartGpWebservice.class, AUtils.SERVER_URL);
-            gramPanchayatPojoList = service.pullGramPanchayatList(stateId, districtId, tahsilId).execute().body();
+            gramPanchayatPojoList = service.pullGramPanchayatList(stateId, districtId, tahsilId, "gp").execute().body();
 
             if (!AUtils.isNull(gramPanchayatPojoList) && !gramPanchayatPojoList.isEmpty()) {
 

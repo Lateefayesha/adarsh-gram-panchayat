@@ -1,6 +1,8 @@
 package com.appynitty.gp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
+import com.appynitty.gp.activity.UtilityActivity;
+import com.appynitty.gp.activity.WeatherActivity;
 import com.appynitty.gp.adapter.MainMenuAdapter;
 import com.appynitty.gp.pojo.MenuPojo;
 import com.appynitty.gp.utils.AUtils;
@@ -36,6 +41,7 @@ public class MenuFragment extends MyFragemtV4 {
     private GridView menuGridView;
     private Fragment mFragment = null;
     private FragmentManager mFragmentManager;
+    private LocationManager locationManager;
 
     public static Fragment newInstance() {
 
@@ -58,11 +64,27 @@ public class MenuFragment extends MyFragemtV4 {
         genrateId();
         registerEvents();
         initData();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+
+        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME, "")) &&
+                !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))) {
+
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+                ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME, ""));
+            } else {
+                ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""));
+            }
+        } else {
+
+            ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.app_name_tab));
+        }
     }
 
     private void genrateId() {
 
-        ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME, getString(R.string.gram_panchayat)));
         ((HomeActivity) getActivity()).setTitleIcon(R.mipmap.ic_launcher);
         QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 1);
         mFragmentManager = getFragmentManager();
@@ -130,15 +152,34 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = ContactUsFragment.newInstance();
                 break;
             case 14:
-                mFragment = UtilityFragment.newInstance();
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    startActivity(new Intent(context, WeatherActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 15:
+//                mFragment = UtilityFragment.newInstance();
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    startActivity(new Intent(context, UtilityActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
-        if (!AUtils.isNull(mFragment)) {
+        if (!AUtils.isNull(mFragment))
+
+        {
 
 //            mFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             mFragmentManager.beginTransaction().addToBackStack(null)
                     .replace(R.id.content_frame, mFragment).commit();
         }
+
     }
 
 
@@ -167,6 +208,7 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.social_media)));
         menuPojoList.add(new MenuPojo(getString(R.string.contact_us)));
 
+        menuPojoList.add(new MenuPojo(getString(R.string.weather)));
         menuPojoList.add(new MenuPojo(getString(R.string.utility)));
 
         MainMenuAdapter mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
@@ -40,6 +41,7 @@ public class TankerBookingFragment extends MyFragemtV4 {
     private EditText mobileNoTextView;
     private EditText wardNoTextView;
     private EditText addressTextView;
+    private TextView yoccNoTextView;
     private LinearLayout yoccLinearLayout;
     private Button saveButton;
     private TankerBookingPojo tankerBookingPojo;
@@ -78,6 +80,15 @@ public class TankerBookingFragment extends MyFragemtV4 {
         addressTextView = view.findViewById(R.id.tb_address_et);
         saveButton = view.findViewById(R.id.tb_save_btn);
         yoccLinearLayout = view.findViewById(R.id.tb_yocc_no_ll);
+        yoccNoTextView = view.findViewById(R.id.tb_yocc_no);
+
+        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.YOCC_NO, ""))) {
+
+            yoccNoTextView.setText(QuickUtils.prefs.getString(AUtils.YOCC_NO, ""));
+
+        } else {
+            yoccLinearLayout.setVisibility(View.GONE);
+        }
     }
 
     private void registerEvents() {
@@ -95,14 +106,13 @@ public class TankerBookingFragment extends MyFragemtV4 {
             public void onClick(View v) {
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + "8806750750"));
+                    callIntent.setData(Uri.parse("tel:" + QuickUtils.prefs.getString(AUtils.YOCC_NO, "")));
                     context.startActivity(callIntent);
                 } catch (ActivityNotFoundException activityException) {
                     Toast.makeText(context, "Call has failed", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 
 

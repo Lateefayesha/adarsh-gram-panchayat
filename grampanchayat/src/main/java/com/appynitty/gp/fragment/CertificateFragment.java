@@ -85,16 +85,6 @@ public class CertificateFragment extends MyFragemtV4 {
                 if (!AUtils.isNull(certificatePojo) && !AUtils.isNullString(certificatePojo.getPageLink())
                         && !AUtils.isNullString(certificatePojo.getDocumentName())) {
 
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString(AUtils.UTILITY_URL, certificatePojo.getPageLink());
-//                    bundle.putString(AUtils.UTILITY_TITLE, certificatePojo.getDocumentName());
-//
-//                    CertificateItemFragment certificateItemFragment = new CertificateItemFragment();
-//                    certificateItemFragment.setArguments(bundle);
-//                    getFragmentManager().beginTransaction().addToBackStack(null)
-//                            .replace(R.id.content_frame, certificateItemFragment).commit();
-//
-
                     if (AUtils.isNetWorkAvailable(context)) {
 
                         Intent intent = new Intent(context, CertificateItemActivity.class);

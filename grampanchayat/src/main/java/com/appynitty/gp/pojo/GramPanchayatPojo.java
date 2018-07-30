@@ -9,9 +9,13 @@ public class GramPanchayatPojo implements Serializable {
 
     private String appId;
     private String appName;
+    private String appNamemar;
     private String state;
-    private String tehsil;
+    private String stateMar;
     private String district;
+    private String districtMar;
+    private String tehsil;
+    private String tehsilMar;
 
     public String getAppId() {
         return appId;
@@ -29,6 +33,14 @@ public class GramPanchayatPojo implements Serializable {
         this.appName = appName;
     }
 
+    public String getAppNamemar() {
+        return appNamemar;
+    }
+
+    public void setAppNamemar(String appNamemar) {
+        this.appNamemar = appNamemar;
+    }
+
     public String getState() {
         return state;
     }
@@ -37,12 +49,12 @@ public class GramPanchayatPojo implements Serializable {
         this.state = state;
     }
 
-    public String getTehsil() {
-        return tehsil;
+    public String getStateMar() {
+        return stateMar;
     }
 
-    public void setTehsil(String tehsil) {
-        this.tehsil = tehsil;
+    public void setStateMar(String stateMar) {
+        this.stateMar = stateMar;
     }
 
     public String getDistrict() {
@@ -53,14 +65,42 @@ public class GramPanchayatPojo implements Serializable {
         this.district = district;
     }
 
+    public String getDistrictMar() {
+        return districtMar;
+    }
+
+    public void setDistrictMar(String districtMar) {
+        this.districtMar = districtMar;
+    }
+
+    public String getTehsil() {
+        return tehsil;
+    }
+
+    public void setTehsil(String tehsil) {
+        this.tehsil = tehsil;
+    }
+
+    public String getTehsilMar() {
+        return tehsilMar;
+    }
+
+    public void setTehsilMar(String tehsilMar) {
+        this.tehsilMar = tehsilMar;
+    }
+
     @Override
     public String toString() {
         return "GramPanchayatPojo{" +
                 "appId='" + appId + '\'' +
                 ", appName='" + appName + '\'' +
+                ", appNamemar='" + appNamemar + '\'' +
                 ", state='" + state + '\'' +
-                ", tehsil='" + tehsil + '\'' +
+                ", stateMar='" + stateMar + '\'' +
                 ", district='" + district + '\'' +
+                ", districtMar='" + districtMar + '\'' +
+                ", tehsil='" + tehsil + '\'' +
+                ", tehsilMar='" + tehsilMar + '\'' +
                 '}';
     }
 }

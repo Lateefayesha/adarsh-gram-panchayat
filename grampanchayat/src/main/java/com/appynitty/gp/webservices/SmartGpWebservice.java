@@ -19,18 +19,19 @@ import retrofit2.http.Header;
 
 public interface SmartGpWebservice {
 
-    @GET("APICommon/GetStateList")
+    @GET("api/APICommon/GetStateList")
     Call<List<StatePojo>> pullStateList();
 
-    @GET("APICommon/GetDistrictList")
+    @GET("api/APICommon/GetDistrictList")
     Call<List<DistrictPojo>> pullDistrictList(@Header("state") String stateId);
 
-    @GET("APICommon/GetTehsilList")
+    @GET("api/APICommon/GetTehsilList")
     Call<List<TahsilPojo>> pullTahsilList(@Header("district") String districtId);
 
-    @GET("APICommon/GetGramPanchayatList")
+    @GET("api/APICommon/GetGramPanchayatList")
     Call<List<GramPanchayatPojo>> pullGramPanchayatList(@Header("state") String stateId,
                                                         @Header("district") String districtId,
-                                                        @Header("tehsil") String tahsilId);
+                                                        @Header("tehsil") String tahsilId,
+                                                        @Header("type") String type);
 
 }

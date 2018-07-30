@@ -1,6 +1,10 @@
 package com.appynitty.gp.pojo;
 
+import com.appynitty.gp.utils.AUtils;
+
 import java.io.Serializable;
+
+import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 5/7/18.
@@ -8,7 +12,8 @@ import java.io.Serializable;
 public class StatePojo implements Serializable {
 
     private String id;
-    private String state_name;
+    private String stateName;
+    private String stateNameMar;
 
     public String getId() {
         return id;
@@ -18,16 +23,29 @@ public class StatePojo implements Serializable {
         this.id = id;
     }
 
-    public String getState_name() {
-        return state_name;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setState_name(String state_name) {
-        this.state_name = state_name;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getStateNameMar() {
+        return stateNameMar;
+    }
+
+    public void setStateNameMar(String stateNameMar) {
+        this.stateNameMar = stateNameMar;
     }
 
     @Override
     public String toString() {
-        return state_name;
+
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            return stateName;
+        } else {
+            return stateNameMar;
+        }
     }
 }
