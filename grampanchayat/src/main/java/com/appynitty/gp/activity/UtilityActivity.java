@@ -55,11 +55,11 @@ public class UtilityActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index.html");
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/index_marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index_marathi.html");
         }
     }
 
@@ -68,7 +68,7 @@ public class UtilityActivity extends BaseActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                UtilityActivity.this.finish();
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

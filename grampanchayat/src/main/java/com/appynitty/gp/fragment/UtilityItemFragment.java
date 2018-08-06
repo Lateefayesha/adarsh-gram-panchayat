@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -52,24 +51,31 @@ public class UtilityItemFragment extends MyFragemtV4 {
 
         Bundle bundle = getArguments();
 
-        String url = bundle.getString(AUtils.UTILITY_URL);
-        int title = bundle.getInt(AUtils.UTILITY_TITLE);
+//        String url = bundle.getString(AUtils.UTILITY_URL);
+//        int title = bundle.getInt(AUtils.UTILITY_TITLE);
 
-        ((HomeActivity) getActivity()).setTitleActionBar(getString(title));
+        ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.utility));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
         QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
 
         WebView webView = view.findViewById(R.id.aa_ww);
 
         webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setDomStorageEnabled(true);
+//        webView.getSettings().setSupportZoom(false);
+//        webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        webView.getSettings().setAppCacheEnabled(true);
+//        webView.getSettings().setBuiltInZoomControls(true);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        webView.loadUrl(url);
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index.html");
+
+        } else {
+
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index_marathi.html");
+        }
 
 
     }

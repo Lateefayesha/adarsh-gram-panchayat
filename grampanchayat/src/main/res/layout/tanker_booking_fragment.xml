@@ -11,7 +11,7 @@
         <LinearLayout
             android:id="@+id/tb_yocc_no_ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -108,7 +108,7 @@
                 <EditText
                     android:id="@+id/tb_address_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/address"
+                    android:hint="@string/address_comp"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 

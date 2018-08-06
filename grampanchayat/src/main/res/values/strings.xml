@@ -21,6 +21,7 @@
     <string name="gallery">Photos, Video Galleries</string>
     <string name="certificate">Important Government Certificates and Documents required for their application</string>
     <string name="social_media">Social Media</string>
+    <string name="map">Map</string>
     <string name="contact_us">Contact Us</string>
     <string name="our_gram_panchayat">Our Gram Panchayat</string>
     <string name="submit">Submit</string>
@@ -28,10 +29,11 @@
     <string name="photo">Photos</string>
     <string name="vedio">Video</string>
     <string name="office_address">Office Address</string>
-    <string name="name">Name</string>
-    <string name="mobile_no">Mobile No.</string>
-    <string name="email">Email (if any)</string>
+    <string name="name">Name *</string>
+    <string name="mobile_no">Mobile No. *</string>
+    <string name="email">Email</string>
     <string name="address">Address</string>
+    <string name="address_comp">Address *</string>
     <string name="business_desc">Business Description</string>
     <string name="submit_done">Submited</string>
     <string name="serverError">Oops! We\'re having technical problems. Please try again later.</string>
@@ -61,10 +63,10 @@
     <string name="plz_select_state">Please select state</string>
 
 
-    <string name="ward_no">Ward number</string>
+    <string name="ward_no">Ward number *</string>
     <string name="personal_information">Personal information :</string>
-    <string name="compleant_details">Complaint / Feedback Info</string>
-    <string name="place">Location</string>
+    <string name="compleant_details">Complaint / Feedback Info *</string>
+    <string name="place">Location *</string>
     <string name="action_change_language">Change Language</string>
     <string name="action_about_appynitty">About Appynitty</string>
     <string name="action_rate_app">Rate this app</string>
@@ -72,6 +74,7 @@
     <string name="prsonal_conatct_no">Personal contact number :</string>
     <string name="yocc_no">YOCC Number : </string>
     <string name="education_qulification">Educational Qualifications</string>
+    <string name="education_qulification_comp">Educational Qualifications *</string>
     <string name="aadhar_card_no">Aadhar Card No</string>
     <string name="other_skill">Other Professional Skills if any (Pls Specify)</string>
     <string name="interested_field_in_job">Interested Fields for Job</string>
@@ -84,6 +87,7 @@
     <string name="or">OR</string>
     <string name="capture_photo_of_resource">Capture photo of resource</string>
     <string name="utility">Utility</string>
+    <string name="website">Website</string>
     <string name="voter_id">Voter ID</string>
     <string name="railway">Railway</string>
     <string name="police">Police</string>
@@ -146,4 +150,5 @@
 
     <!--<string name="google_maps_key">AIzaSyDoOwvqEwN6en8FPeNVaJadE93TTwBQARE</string>-->
     <!--<string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>-->
+    <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
 </resources>

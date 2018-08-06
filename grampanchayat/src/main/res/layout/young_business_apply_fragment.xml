@@ -61,7 +61,7 @@
                 <EditText
                     android:id="@+id/yb_address_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/address"
+                    android:hint="@string/address_comp"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +86,7 @@
                 <EditText
                     android:id="@+id/yb_education_qulification_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/education_qulification"
+                    android:hint="@string/education_qulification_comp"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 

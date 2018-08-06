@@ -8,14 +8,15 @@ public class MenuPojo {
 
     private String menuName;
     private Integer image;
+    private String color;
 
     public MenuPojo(String menuName) {
         this.menuName = menuName;
     }
 
-    public MenuPojo(String menuName, Integer image) {
+    public MenuPojo(String menuName, String color) {
         this.menuName = menuName;
-        this.image = image;
+        this.color = color;
     }
 
     public String getMenuName() {
@@ -32,5 +33,13 @@ public class MenuPojo {
 
     public void setImage(Integer image) {
         this.image = image;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

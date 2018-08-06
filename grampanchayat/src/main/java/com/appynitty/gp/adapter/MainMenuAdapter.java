@@ -1,11 +1,12 @@
 package com.appynitty.gp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appynitty.gp.R;
@@ -38,7 +39,7 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
             view = inflater.inflate(R.layout.menu_adapter, null);
             final ViewHolder viewHolder = new ViewHolder();
             viewHolder.menuNameTextView = view.findViewById(R.id.menuNameTV);
-            viewHolder.menuImageView = view.findViewById(R.id.imageMenuIV);
+            viewHolder.menuCardView = view.findViewById(R.id.menu_cv);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -49,7 +50,7 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
 
             MenuPojo menuPojo = menuList.get(position);
             holder.menuNameTextView.setText(menuPojo.getMenuName());
-//            holder.menuImageView.setImageResource(menuPojo.getImage());
+            holder.menuCardView.setCardBackgroundColor(Color.parseColor(menuPojo.getColor()));
         }
 
         return view;
@@ -58,6 +59,6 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
     class ViewHolder {
 
         private TextView menuNameTextView;
-        private ImageView menuImageView;
+        private CardView menuCardView;
     }
 }

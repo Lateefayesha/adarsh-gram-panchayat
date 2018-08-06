@@ -29,10 +29,10 @@ public class AUtils extends MsUtils {
 
 
     //    Local URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
     //    Relese URL
 //    public static final String SERVER_URL = "";
@@ -76,10 +76,11 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
     private static final String TAG = "AUtils";
-    public static final String GP_NAME = "GramPanchayatName";
     public static final String APP_LOCATION = "LocationOfTheVillage";
     public static final String YOCC_NO = "YoccNoForOrg";
+    public static final String GP_NAME = "GramPanchayatName";
     public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
+    public static final String GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
 
 
     private AUtils() {

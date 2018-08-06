@@ -52,17 +52,33 @@ public class WeatherActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-//        webView.loadUrl("https://weather.com/en-IN/weather/today/l/21.065566,77.332243?par=google");
+//        webView.loadUrl("http://bigv.in/shreyansh_development/weath_web/index.html?lat=21.009502&log=79.464432");
 
         if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.APP_LOCATION, ""))) {
 
             String[] split = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "").split(",");
             String lat = split[0];
             String log = split[1];
-            webView.loadUrl(AUtils.SERVER_URL + "Images/weather_web/?lat=" + lat + "&log=" + log);
-        } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/weather_web/?lat=21.065566&log=77.332243");
+            String name = "";
+            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME, ""))) {
+
+                name = QuickUtils.prefs.getString(AUtils.GP_NAME, "");
+                name = name.replace("Gram Panchayat", "");
+                name = name.replace("Gram panchayat", "");
+                name = name.replace("gram Panchayat", "");
+                name = name.replace("gram panchayat", "");
+                name = name.replace("Nagar Panchayat", "");
+                name = name.replace("Nagar panchayat", "");
+                name = name.replace("nagar Panchayat", "");
+                name = name.replace("nagar panchayat", "");
+                name = name.replace("Nagar Parishad", "");
+                name = name.replace("Nagar parishad", "");
+                name = name.replace("nagar Parishad", "");
+                name = name.replace("nagar parishad", "");
+            }
+
+            webView.loadUrl(AUtils.SERVER_URL + "Images/weather_web/index.html?lat=" + lat + "&log=" + log + "&name=" + name);
         }
     }
 

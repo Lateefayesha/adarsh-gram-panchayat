@@ -85,6 +85,21 @@ public class SelectGramPanchayatActivity extends BaseActivity {
             QuickUtils.prefs.save(AUtils.APP_ID, gramPanchayatPojo.getAppId());
             QuickUtils.prefs.save(AUtils.GP_NAME, gramPanchayatPojo.getAppName());
             QuickUtils.prefs.save(AUtils.GP_NAME_MAR, gramPanchayatPojo.getAppNamemar());
+            QuickUtils.prefs.save(AUtils.APP_LOCATION, "21.065566,77.332243");
+            QuickUtils.prefs.save(AUtils.YOCC_NO, "");
+
+            String details = "";
+            if (!AUtils.isNullString(gramPanchayatPojo.getDistrictMar())) {
+
+                details = "जिल्हा : " + gramPanchayatPojo.getDistrictMar();
+            }
+
+            if (!AUtils.isNullString(gramPanchayatPojo.getTehsilMar())) {
+
+                details = details + " | तहसील : " + gramPanchayatPojo.getTehsilMar();
+            }
+
+            QuickUtils.prefs.save(AUtils.GP_DETAILS, details);
             startActivity(new Intent(SelectGramPanchayatActivity.this, HomeActivity.class));
 
         } else {
