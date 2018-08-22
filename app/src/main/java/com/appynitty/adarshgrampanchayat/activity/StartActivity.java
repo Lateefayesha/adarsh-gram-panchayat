@@ -1,10 +1,11 @@
-package com.appynitty.adarshgrampanchayat;
+package com.appynitty.adarshgrampanchayat.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.appynitty.adarshgrampanchayat.R;
 import com.appynitty.gp.activity.SmartSplashScreenActivity;
 
 

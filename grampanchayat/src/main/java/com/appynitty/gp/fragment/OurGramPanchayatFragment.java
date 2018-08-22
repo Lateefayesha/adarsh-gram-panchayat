@@ -20,7 +20,6 @@ import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.componants.MyNoDataView;
@@ -46,7 +45,7 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
     private List<OurGramPanchayatPojo> ourGramPanchayatPojoList;
     private LinearLayout listLinearLayout;
     private ScrollView scrollView;
-    private List<ContactUsTeamMember> contactUsTeamMembers;
+//    private List<ContactUsTeamMember> contactUsTeamMembers;
 
     public static OurGramPanchayatFragment newInstance() {
 
@@ -123,11 +122,14 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
         Type type2 = new TypeToken<List<ContactUsTeamMember>>() {
         }.getType();
 
-        contactUsTeamMembers = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type2);
+//        contactUsTeamMembers = new Gson().fromJson(
+//                QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type2);
 
-        if ((!AUtils.isNull(ourGramPanchayatPojoList) && !ourGramPanchayatPojoList.isEmpty()) ||
-                (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty())) {
+        listLinearLayout.addView(getListViewItem2());
+
+        if ((!AUtils.isNull(ourGramPanchayatPojoList) && !ourGramPanchayatPojoList.isEmpty())
+//                || (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty())
+                ) {
 
             if (!AUtils.isNull(ourGramPanchayatPojoList) && !ourGramPanchayatPojoList.isEmpty()) {
                 for (OurGramPanchayatPojo ourGramPanchayatPojo : ourGramPanchayatPojoList) {
@@ -135,16 +137,16 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
                     listLinearLayout.addView(getListViewItem(ourGramPanchayatPojo));
                 }
             }
-            if (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty()) {
-                for (ContactUsTeamMember contactUsTeamMember : contactUsTeamMembers) {
-
-                    if (!contactUsTeamMember.getMemberId().equals("2023") &&
-                            !contactUsTeamMember.getMemberId().equals("2022")) {
-
-                        listLinearLayout.addView(getListViewItem2(contactUsTeamMember));
-                    }
-                }
-            }
+//            if (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty()) {
+//                for (ContactUsTeamMember contactUsTeamMember : contactUsTeamMembers) {
+//
+//                    if (!contactUsTeamMember.getMemberId().equals("2023") &&
+//                            !contactUsTeamMember.getMemberId().equals("2022")) {
+//
+//                        listLinearLayout.addView(getListViewItem2(contactUsTeamMember));
+//                    }
+//                }
+//            }
 
             getDataFromServer(false);
         } else {
@@ -169,7 +171,7 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
     }
 
 
-    private View getListViewItem2(ContactUsTeamMember staffPojo) {
+    private View getListViewItem2() {
 
         final View view = getLayoutInflater().inflate(R.layout.staff_list_adapter, null);
 
@@ -177,29 +179,35 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
         TextView description = view.findViewById(R.id.note_adp_desc);
         ImageView image = view.findViewById(R.id.staff_img);
 
-        if (!AUtils.isNullString(staffPojo.getJobTitle())) {
+        title.setText(R.string.title);
+        description.setText(R.string.dscription);
+        image.setImageResource(R.drawable.profile_image_bawankule);
 
-            title.setText(staffPojo.getMemberName() + "\n(" + staffPojo.getJobTitle() + ")");
-        } else {
-            title.setText(staffPojo.getMemberName());
-        }
 
-        if (!AUtils.isNullString(staffPojo.getProfileImageUrl())) {
-
-            Glide.with(context).load(staffPojo.getProfileImageUrl())
-                    .placeholder(R.drawable.loading_image)
-                    .error(R.drawable.loading_image)
-                    .into(image);
-        } else {
-
-            image.setImageResource(R.drawable.loading_image);
-        }
-        if (!AUtils.isNullString(staffPojo.getMemberDescription())) {
-
-            description.setText(staffPojo.getMemberDescription());
-        } else {
-            description.setText("");
-        }
+//        if (!AUtils.isNullString(staffPojo.getJobTitle())) {
+//
+//            title.setText(staffPojo.getMemberName() + "\n(" + staffPojo.getJobTitle() + ")");
+//        } else {
+//            title.setText(staffPojo.getMemberName());
+//        }
+//
+//        if (!AUtils.isNullString(staffPojo.getProfileImageUrl())) {
+//
+//            Glide.with(context).load(staffPojo.getProfileImageUrl())
+//                    .placeholder(R.drawable.loading_image)
+//                    .error(R.drawable.loading_image)
+//                    .into(image);
+//        } else {
+//
+//            image.setImageResource(R.drawable.loading_image);
+//        }
+//
+//        if (!AUtils.isNullString(staffPojo.getMemberDescription())) {
+//
+//            description.setText(staffPojo.getMemberDescription());
+//        } else {
+//            description.setText("");
+//        }
 
         return view;
     }
@@ -215,13 +223,15 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
 
 
                 isDataPull = syncServer.pullOurGramPanchayatListFromServer();
-                isDataPull = syncServer.pullContactUsListFromServer();
+//                isDataPull = syncServer.pullContactUsListFromServer();
             }
 
             @Override
             public void onFinished() {
 
-                if (AUtils.isNull(ourGramPanchayatPojoList) && AUtils.isNull(contactUsTeamMembers)) {
+                if (AUtils.isNull(ourGramPanchayatPojoList)
+//                        && AUtils.isNull(contactUsTeamMembers)
+                        ) {
 
                     listLinearLayout.removeAllViews();
 
@@ -234,11 +244,14 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
                     Type type2 = new TypeToken<List<ContactUsTeamMember>>() {
                     }.getType();
 
-                    contactUsTeamMembers = new Gson().fromJson(
-                            QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type2);
+                    listLinearLayout.addView(getListViewItem2());
 
-                    if ((!AUtils.isNull(ourGramPanchayatPojoList) && !ourGramPanchayatPojoList.isEmpty()) ||
-                            (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty())) {
+//                    contactUsTeamMembers = new Gson().fromJson(
+//                            QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type2);
+
+                    if ((!AUtils.isNull(ourGramPanchayatPojoList) && !ourGramPanchayatPojoList.isEmpty())
+//                            || (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty())
+                            ) {
 
                         noDataView.setVisibility(View.GONE);
                         scrollView.setVisibility(View.VISIBLE);
@@ -249,16 +262,16 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
                                 listLinearLayout.addView(getListViewItem(ourGramPanchayatPojo));
                             }
                         }
-                        if (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty()) {
-                            for (ContactUsTeamMember contactUsTeamMember : contactUsTeamMembers) {
-
-                                if (!contactUsTeamMember.getMemberId().equals("2023") &&
-                                        !contactUsTeamMember.getMemberId().equals("2022")) {
-
-                                    listLinearLayout.addView(getListViewItem2(contactUsTeamMember));
-                                }
-                            }
-                        }
+//                        if (!AUtils.isNull(contactUsTeamMembers) && !contactUsTeamMembers.isEmpty()) {
+//                            for (ContactUsTeamMember contactUsTeamMember : contactUsTeamMembers) {
+//
+//                                if (!contactUsTeamMember.getMemberId().equals("2023") &&
+//                                        !contactUsTeamMember.getMemberId().equals("2022")) {
+//
+//                                    listLinearLayout.addView(getListViewItem2(contactUsTeamMember));
+//                                }
+//                            }
+//                        }
                     } else {
 
                         noDataView.setVisibility(View.VISIBLE);

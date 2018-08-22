@@ -105,4 +105,10 @@ public class WeatherActivity extends BaseActivity {
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        super.onDestroy();
+    }
 }

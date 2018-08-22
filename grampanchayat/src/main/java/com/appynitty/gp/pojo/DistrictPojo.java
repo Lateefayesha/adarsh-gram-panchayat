@@ -1,7 +1,5 @@
 package com.appynitty.gp.pojo;
 
-import android.util.Log;
-
 import com.appynitty.gp.utils.AUtils;
 
 import java.io.Serializable;

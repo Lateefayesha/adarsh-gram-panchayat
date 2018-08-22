@@ -14,38 +14,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/contact_adp_img"
+                android:layout_width="@dimen/square_image_hight_width"
+                android:layout_height="@dimen/square_image_hight_width"
+                android:scaleType="fitXY" />
 
-            <TextView
-                android:id="@+id/youn_business_out_adp_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/padding_margin_layout"
-                android:padding="@dimen/padding_margin_layout"
-                android:textColor="@color/text_color_primary"
-                android:textSize="@dimen/primery_text_size"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/layout_background_color" />
+                <TextView
+                    android:id="@+id/contact_adp_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_margin_layout"
+                    android:layout_marginTop="@dimen/padding_margin_layout"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="@dimen/primery_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/contact_adp_designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_margin_layout"
+                    android:layout_marginTop="@dimen/padding_margin_layout"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="@dimen/primery_text_size" />
 
 
-            <TextView
-                android:id="@+id/youn_business_out_adp_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/note_adp_title"
-                android:layout_margin="@dimen/padding_margin_layout"
-                android:drawableLeft="@drawable/ic_call"
-                android:gravity="center_vertical"
-                android:padding="@dimen/padding_margin_layout"
-                android:textColor="@color/text_color_secondary"
-                android:textSize="@dimen/primery_text_size" />
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/layout_background_color" />-->
 
+
+                <TextView
+                    android:id="@+id/contact_adp_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_call"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="@dimen/primery_text_size" />
+
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

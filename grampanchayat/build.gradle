@@ -41,7 +41,6 @@ dependencies {
 
     // manual added libs
     implementation files('libs/QuickUtils.jar')
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation(name: 'mithsoftlib-release', ext: 'aar')
 
     // image loading libs

@@ -141,8 +141,6 @@ public class ContactUsFragment extends MyFragemtV4 {
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
-
-
     }
 
 
@@ -197,6 +195,4 @@ public class ContactUsFragment extends MyFragemtV4 {
             }
         }).execute();
     }
-
-
 }

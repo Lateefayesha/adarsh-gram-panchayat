@@ -2,7 +2,6 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,8 +14,11 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
+import com.appynitty.gp.activity.BookingActivity;
+import com.appynitty.gp.activity.EPaymentActivity;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.activity.MapsMarkerActivity;
+import com.appynitty.gp.activity.UtilityActivity;
 import com.appynitty.gp.activity.WeatherActivity;
 import com.appynitty.gp.activity.WebsiteActivity;
 import com.appynitty.gp.adapter.MainMenuAdapter;
@@ -42,7 +44,6 @@ public class MenuFragment extends MyFragemtV4 {
     private GridView menuGridView;
     private Fragment mFragment = null;
     private FragmentManager mFragmentManager;
-    private LocationManager locationManager;
 
     public static Fragment newInstance() {
 
@@ -66,6 +67,18 @@ public class MenuFragment extends MyFragemtV4 {
         registerEvents();
         initData();
         initToolbar();
+        loadFragment();
+
+    }
+
+    private void loadFragment() {
+
+        if (getArguments().getBoolean(AUtils.FCM_NOTI)) {
+
+            mFragment = MyComplentStatusFragment.newInstance();
+            mFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.content_frame, mFragment).commit();
+        }
     }
 
     private void initToolbar() {
@@ -141,18 +154,42 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = SchemesFragment.newInstance();
                 break;
             case 10:
-                mFragment = CertificateFragment.newInstance();
+                mFragment = SuggestionFragment.newInstance();
                 break;
             case 11:
-                mFragment = GalleryFragment.newInstance();
+                mFragment = MyComplentStatusFragment.newInstance();
                 break;
             case 12:
-                mFragment = SocialNetworkFragment.newInstance();
+                mFragment = CertificateFragment.newInstance();
                 break;
             case 13:
-                context.startActivity(new Intent(context, MapsMarkerActivity.class));
+                mFragment = GalleryFragment.newInstance();
                 break;
             case 14:
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    context.startActivity(new Intent(context, EPaymentActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 15:
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    context.startActivity(new Intent(context, BookingActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 16:
+                mFragment = SocialNetworkFragment.newInstance();
+                break;
+            case 17:
+                context.startActivity(new Intent(context, MapsMarkerActivity.class));
+                break;
+            case 18:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WebsiteActivity.class));
@@ -161,10 +198,10 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 15:
+            case 19:
                 mFragment = ContactUsFragment.newInstance();
                 break;
-            case 16:
+            case 20:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WeatherActivity.class));
@@ -173,15 +210,15 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 17:
-                mFragment = UtilityItemFragment.newInstance();
-//                if (AUtils.isNetWorkAvailable(context)) {
-//
-//                    startActivity(new Intent(context, UtilityActivity.class));
-//                } else {
-//
-//                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
-//                }
+            case 21:
+//                mFragment = UtilityItemFragment.newInstance();
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    startActivity(new Intent(context, UtilityActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
 
@@ -213,8 +250,14 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), "#03A9F4"));
         menuPojoList.add(new MenuPojo(getString(R.string.schemes), "#FF9800"));
 
+        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), "#FF9800"));
+        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), "#4CAF50"));
+
         menuPojoList.add(new MenuPojo(getString(R.string.certificate), "#8C7676"));
         menuPojoList.add(new MenuPojo(getString(R.string.gallery), "#8BC34A"));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.e_payment), "#03A9F4"));
+        menuPojoList.add(new MenuPojo(getString(R.string.booking), "#3949AB"));
 
         menuPojoList.add(new MenuPojo(getString(R.string.social_media), "#F44336"));
         menuPojoList.add(new MenuPojo(getString(R.string.map), "#FFC107"));

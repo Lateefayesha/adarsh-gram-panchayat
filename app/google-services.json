@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "858685861086",
+    "firebase_url": "https://adarsh-gram-panchayat.firebaseio.com",
+    "project_id": "adarsh-gram-panchayat",
+    "storage_bucket": "adarsh-gram-panchayat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858685861086:android:dc18b1fde635d8a2",
+        "android_client_info": {
+          "package_name": "com.appynitty.adarshgrampanchayat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858685861086-1kat1ste3crphg65pgck3llr6nrn405e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appynitty.adarshgrampanchayat",
+            "certificate_hash": "9c7661d3b3f8b4cdc0524d252258f8b863954fd8"
+          }
+        },
+        {
+          "client_id": "858685861086-rbmfd59qu4a489mt2ts9gfqh61v3vinq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8BNCrA61FGwCB9hchdgfumrC5T_S01Z0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858685861086-rbmfd59qu4a489mt2ts9gfqh61v3vinq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="padding_margin_layout_double">12dp</dimen>
+    <dimen name="padding_margin_layout_double">10dp</dimen>
     <dimen name="event_image_height">250dp</dimen>
     <dimen name="floating_button_spacing">25dp</dimen>
     <dimen name="news_img_hight_width">135dp</dimen>

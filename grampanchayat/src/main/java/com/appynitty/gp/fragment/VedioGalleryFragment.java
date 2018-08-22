@@ -1,7 +1,9 @@
 package com.appynitty.gp.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.appynitty.gp.R;
-import com.appynitty.gp.activity.YouTubePlayerActivity;
 import com.appynitty.gp.adapter.VedioGalleryAdapter;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.PhotoGalleryVideo;
@@ -20,6 +22,7 @@ import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mithsoft.lib.componants.Toasty;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -84,14 +87,26 @@ public class VedioGalleryFragment extends Fragment {
 
         PhotoGalleryVideo photoGalleryVideo = photoGalleryVideoList.get(position);
 
-        Intent intent = new Intent(context, YouTubePlayerActivity.class);
-        intent.putExtra("VIDEO_ID", AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl()));
-        startActivity(intent);
+//        Intent intent = new Intent(context, YouTubePlayerActivity.class);
+//        intent.putExtra("VIDEO_ID", AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl()));
+//        startActivity(intent);
+
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl())));
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+
+            Toasty.warning(context, "Please download youtube player", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.youtube")));
+
+//            Intent intent = new Intent(Intent.ACTION_VIEW,
+//                    Uri.parse("https://www.youtube.com/watch?v=8mKTiD02v3M"));
+//            context.startActivity(intent);
+        }
     }
 
 
     private void ininData() {
-
 
         Type type = new TypeToken<List<PhotoGalleryVideo>>() {
         }.getType();

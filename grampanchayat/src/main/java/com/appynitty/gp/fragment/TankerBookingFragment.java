@@ -169,7 +169,7 @@ public class TankerBookingFragment extends MyFragemtV4 {
         }
 
         if (AUtils.isNullString(wardNoTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_email), Toast.LENGTH_SHORT).show();
+            Toasty.warning(context, getString(R.string.plz_ent_ward_no), Toast.LENGTH_SHORT).show();
             return false;
         }
 

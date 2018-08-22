@@ -12,6 +12,7 @@ public class OurGramPanchayatPojo implements Serializable {
     private String title;
     private String description;
     private String createdDate;
+    private String imageUrl;
 
     public String getGramPtId() {
         return gramPtId;
@@ -45,6 +46,13 @@ public class OurGramPanchayatPojo implements Serializable {
         this.createdDate = createdDate;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     @Override
     public String toString() {
@@ -53,6 +61,7 @@ public class OurGramPanchayatPojo implements Serializable {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", createdDate='" + createdDate + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

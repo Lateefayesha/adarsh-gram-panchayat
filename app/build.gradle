@@ -29,6 +29,7 @@ repositories {
     }
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -39,4 +40,19 @@ dependencies {
 
     implementation project(':grampanchayat')
     implementation(name: 'mithsoftlib-release', ext: 'aar')
+
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+
+
+//    configurations.all {
+//        resolutionStrategy {
+//            force "com.google.firebase:firebase-analytics:9.0.0"
+//        }
+//    }
+
+    // map
+    implementation 'com.google.android.gms:play-services:12.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

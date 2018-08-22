@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import quickutils.core.QuickUtils;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -32,10 +33,10 @@ public class AUtils extends MsUtils {
     public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "";
+//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
 
     //    Genral Constant
@@ -53,7 +54,6 @@ public class AUtils extends MsUtils {
     public static final String START_PATH_IMAGE = "/storage/";
     public static final String GALLERY_POJO = "GalleryPhotoPojo";
     public static final String GALLERY_IMG_PATH = "GalleryImagePath";
-    public static final String API_KEY_YOU_TUBE = "AIzaSyAS_cjGGfe76O9vBWYNZLm208UoS90o1_k";
     public static final String APP_ID = "AppId";
     public static final String DEFAULT_LANGUAGE_ID = "2";
     public static final String LANGUAGE_ID = "LanguageId";
@@ -66,6 +66,11 @@ public class AUtils extends MsUtils {
     public static final String LOCATION = "LocationLatLog";
     public static final int LOCATION_INTERVAL = 10000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000;
+    public static final String APP_LOCATION = "LocationOfTheVillage";
+    public static final String YOCC_NO = "YoccNoForOrg";
+    public static final String GP_NAME = "GramPanchayatName";
+    public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
+    public static final String GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
@@ -76,11 +81,9 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
     private static final String TAG = "AUtils";
-    public static final String APP_LOCATION = "LocationOfTheVillage";
-    public static final String YOCC_NO = "YoccNoForOrg";
-    public static final String GP_NAME = "GramPanchayatName";
-    public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
-    public static final String GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
+    public static final String USER_ID = "UserId";
+    public static final String FCM_NOTI = "IsFcmNotification";
+    public static final String COMPLAINT_STATUS_POJO = "ComplaintStatusPojo";
 
 
     private AUtils() {
@@ -214,6 +217,7 @@ public class AUtils extends MsUtils {
         String WORK_CHECK_OUT_POJO_LIST = "WorkCheckOutPullList";
         String YOUNG_BUSINESS_POJO_LIST = "YoungBusinessPojoList";
         String SCHEMES_POJO_LIST = "SchemesPojoList";
+        String MY_COMPLENT_STATUS_POJO_LIST = "MyComplentStatusPojoList";
         String OUR_GRAM_PANCHAYT_POJO_LIST = "OutGramPanchayatPojoList";
         String IMAGES_GALLERY_POJO_LIST = "GalleryImagesList";
         String VEDIO_GALLERY_POJO_LIST = "GalleryVedioList";
@@ -226,5 +230,10 @@ public class AUtils extends MsUtils {
         String DISTRICT_POJO_LIST = "DistrictPojoList";
         String TAHSIL_POJO_LIST = "TahsilPojoList";
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
+    }
+
+    public static void saveFcmId(String fcmId) {
+
+        QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
     }
 }

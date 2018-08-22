@@ -75,4 +75,11 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
 //        googleMap.getUiSettings().setZoomControlsEnabled(false);
 
     }
+
+
+    @Override
+    protected void onDestroy() {
+        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        super.onDestroy();
+    }
 }

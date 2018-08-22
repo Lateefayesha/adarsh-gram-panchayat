@@ -7,7 +7,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
+import com.appynitty.gp.utils.AUtils;
 import com.mithsoft.lib.activity.BaseActivity;
+
+import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 2/7/18.
@@ -74,5 +77,11 @@ public class AboutAppynittyActivity extends BaseActivity {
 
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        super.onDestroy();
     }
 }

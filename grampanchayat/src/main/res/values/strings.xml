@@ -19,7 +19,7 @@
     <string name="tanker_booking">Water Tanker Booking</string>
     <string name="schemes">Government Schemes</string>
     <string name="gallery">Photos, Video Galleries</string>
-    <string name="certificate">Important Government Certificates and Documents required for their application</string>
+    <string name="certificate">Important Certificates and Documents Provided by Gram Panchayat</string>
     <string name="social_media">Social Media</string>
     <string name="map">Map</string>
     <string name="contact_us">Contact Us</string>
@@ -45,6 +45,9 @@
     <string name="district">District</string>
     <string name="tahsil">Tahsil</string>
     <string name="weather">Weather</string>
+    <string name="suggestion_tab">Smart Suggestion</string>
+    <string name="e_payment">E Payment</string>
+    <string name="booking">Booking</string>
 
     <string name="plz_ent_name">Please enter name</string>
     <string name="plz_ent_mobile_no">Please enter mobile number</string>
@@ -61,6 +64,7 @@
     <string name="plz_ent_edu_quli">Please enter educational qualifications</string>
     <string name="plz_capture_img">Please capture image</string>
     <string name="plz_select_state">Please select state</string>
+    <string name="plz_ent_suggestion">Please enter Suggestion / Idea</string>
 
 
     <string name="ward_no">Ward number *</string>
@@ -141,6 +145,8 @@
     <string name="water_info">Information About Drinking Water</string>
     <string name="light_info">Information About Light and Solar Lights</string>
     <string name="mantanance_info">Information About Maintenance and Repairs</string>
+    <string name="suggestion">Suggestion / Idea *</string>
+    <string name="complent_status_tab">My Complaint Status</string>
 
     <string name="clening_complent_details">The citizens are requested to classify household waste in the form of wet and dry garbage. Wet waste should be collected in green and dry garbage in blue trash and thus the classified waste should be handed over to the cleaner.\n\nDry waste is polyethylene bags, plastic goods, iron goods, torn clothes, newspaper trash, paper, cardboard, rappers, etc., which can be disposed of through the disposal of the wreckage.\n\nWet Waste is the waste which includes stale food, spoiled fruit, leafy vegetables, egg shells, tea powder, waterproofing of plants, which are destroyed by nature, etc.\n\nTo make dangerous waste like hay waste, dry trash and glass to be binding, and to impose a furore on those who do not; Such instructions have been made to the Central Government by the Parliamentary Committee appointed for the management of waste. The report submitted by the committee said that the government should take initiative to restrict the garbage collection by encouraging the waste to be kept separate.</string>
     <string name="water_complent_details">Development of water resources such as removal of sludge in village pond, removal of sludge in wells, recharge of well, water tank construction and repair, installation of bore well / hand pumps and maintenance etc.  are included in village development plan.\n\nRepairing of water supply related equipment such as connecting and repair of pipelines for water, borewell / hand pump / drainage of wells, and water tanker facilities etc.\n\nIn this plan, the provision is made to supply water to the village through solar pumps where electricity supply is not available.\n\nIn order to provide clean drinking water provisions like, the use of RO technology or water purification project to maintain the drinking water supply in villages, to set up water meter devices to avoid water abuse, and to expand the water supply schemes for economically weaker sections are made in village development plan.</string>
@@ -151,4 +157,8 @@
     <!--<string name="google_maps_key">AIzaSyDoOwvqEwN6en8FPeNVaJadE93TTwBQARE</string>-->
     <!--<string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>-->
     <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
+
+
+    <string name="title">The introduction of Shri Chandrashekhar Bawankule, the Honorable Guardian Minister of Nagpur District</string>
+    <string name="dscription">Mr. Chandrashekhar Bawankule was born and a farmer family with a non-political background. His education and higher education took place at Koradi near Nagpur. With the objective of selfless social service, he established "Chhatrapati Sena" and till 1994 he was active in social services. Later, he joined the Bharatiya Janata Party in 1995 under the leadership of late Gopinath Munde and Nitin Gadkari. In 1995, he served as the Vice President of the Bhartiya Janta Yuva Morcha. In 1997 and 2002, Mr. Chandrashekhar Bawankul was elected as a member of the Zilla Parishad. In 2004, he was elected to the state assembly. They are currently working for the third time as the legislator till 2014. On December 6, 2014, Bawankule was sworn in as Energy, New and Renewable Energy Minister by BJP. Shri Chandrasekhar Bavankule is also working as Nagpur's District Guardian Minister. They have a lion's share in the development of Mahadula. All the development works have been implemented in Mahadula Nagar area under their leadership. That is why Shri Chandrashekhar Bawankul is a very popular and respected leader.</string>
 </resources>

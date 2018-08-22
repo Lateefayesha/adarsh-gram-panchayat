@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.ContactUsTeamMember;
 import com.appynitty.gp.utils.AUtils;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -42,8 +44,10 @@ public class ContactUsListAdapter extends ArrayAdapter<ContactUsTeamMember> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.contact_us_list_adapter, null);
             final ViewHolder viewHolder = new ViewHolder();
-            viewHolder.titleTextView = view.findViewById(R.id.youn_business_out_adp_title);
-            viewHolder.descTextView = view.findViewById(R.id.youn_business_out_adp_desc);
+            viewHolder.titleTextView = view.findViewById(R.id.contact_adp_title);
+            viewHolder.descTextView = view.findViewById(R.id.contact_adp_number);
+            viewHolder.designationTextView = view.findViewById(R.id.contact_adp_designation);
+            viewHolder.imageView = view.findViewById(R.id.contact_adp_img);
 
             view.setTag(viewHolder);
         } else {
@@ -52,21 +56,36 @@ public class ContactUsListAdapter extends ArrayAdapter<ContactUsTeamMember> {
         holder = (ViewHolder) view.getTag();
 
         if (!AUtils.isNull(contactUsPojoList) && !contactUsPojoList.isEmpty()) {
+
             final ContactUsTeamMember contactUsTeamMember = contactUsPojoList.get(position);
 
             if (!AUtils.isNullString(contactUsTeamMember.getMemberName())) {
                 holder.titleTextView.setText(contactUsTeamMember.getMemberName());
-
-                if (!AUtils.isNullString(contactUsTeamMember.getJobTitle())) {
-                    holder.titleTextView.setText(holder.titleTextView.getText() + " (" + contactUsTeamMember.getJobTitle() + ")");
-                }
             } else {
                 holder.titleTextView.setText("");
             }
+
+            if (!AUtils.isNullString(contactUsTeamMember.getJobTitle())) {
+                holder.designationTextView.setText(contactUsTeamMember.getJobTitle());
+            } else {
+                holder.designationTextView.setText("");
+            }
+
             if (!AUtils.isNullString(contactUsTeamMember.getPhoneNumber())) {
                 holder.descTextView.setText(contactUsTeamMember.getPhoneNumber());
             } else {
                 holder.descTextView.setText("");
+            }
+
+            if (!AUtils.isNullString(contactUsTeamMember.getProfileImageUrl())) {
+
+                Glide.with(context).load(contactUsTeamMember.getProfileImageUrl())
+                        .placeholder(R.drawable.loading_image)
+                        .error(R.drawable.loading_image)
+                        .into(holder.imageView);
+            } else {
+
+                holder.imageView.setImageResource(R.drawable.loading_image);
             }
 
             holder.descTextView.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +111,8 @@ public class ContactUsListAdapter extends ArrayAdapter<ContactUsTeamMember> {
 
     class ViewHolder {
         private TextView titleTextView;
+        private TextView designationTextView;
         private TextView descTextView;
+        private ImageView imageView;
     }
 }

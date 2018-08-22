@@ -36,6 +36,7 @@ import quickutils.core.QuickUtils;
 
 public class YoungBusinessFragment extends MyFragemtV4 {
 
+    private static final String TAG = "YoungBusinessFragment";
     private View view;
     private Context context;
     private YoungBusinessListAdapter youngBusinessListAdapter;
@@ -105,6 +106,9 @@ public class YoungBusinessFragment extends MyFragemtV4 {
             public void onClick(View v) {
 
                 applyBusinessButtonOnClick();
+//                FirebaseInstanceId.getInstance().getToken();
+//                Log.e(TAG, "Fcm Id1 = " + FirebaseInstanceId.getInstance().getToken());
+//                Log.e(TAG, "Fcm Id = " + QuickUtils.prefs.getString(MsUtils.FCM_ID, null));
             }
         });
 

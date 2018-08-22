@@ -58,12 +58,24 @@ public class HomeActivity extends AppCompatActivity {
 
     private void loadMenuFragment() {
 
-        mFragment = new MenuFragment().newInstance();
+        Bundle bundle = new Bundle();
+
+        if (getIntent().getBooleanExtra(AUtils.FCM_NOTI, false)) {
+
+            bundle.putBoolean(AUtils.FCM_NOTI, true);
+
+        } else {
+
+            bundle.putBoolean(AUtils.FCM_NOTI, false);
+        }
+
+        mFragment = new MenuFragment();
+        mFragment.setArguments(bundle);
+
         mFragmentManager.popBackStack(null,
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
         mFragmentManager.beginTransaction()
                 .replace(R.id.content_frame, mFragment).commit();
-
     }
 
     private void initActionBar() {
