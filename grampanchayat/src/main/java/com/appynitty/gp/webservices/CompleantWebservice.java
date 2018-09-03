@@ -89,6 +89,23 @@ public interface CompleantWebservice {
                                               @Part("userId") RequestBody userId,
                                               @Part MultipartBody.Part imageFile1);
 
+    @Multipart
+    @POST("api/APIBandhKamCompliant/Save")
+    Call<ResultPojo> saveConstructionCompleant(@Header("appId") String key,
+                                               @Part("name") RequestBody name,
+                                               @Part("number") RequestBody number,
+                                               @Part("address") RequestBody address,
+                                               @Part("tip") RequestBody tip,
+                                               @Part("email") RequestBody email,
+                                               @Part("wardNo") RequestBody wardNo,
+                                               @Part("place") RequestBody location,
+                                               @Part("details") RequestBody details,
+                                               @Part("languageId") RequestBody languageId,
+                                               @Part("createdDate") RequestBody createdDate,
+                                               @Part("latlog") RequestBody latLog,
+                                               @Part("userId") RequestBody userId,
+                                               @Part MultipartBody.Part imageFile1);
+
 
     @GET("api/Get/MyComplaintStatus")
     Call<List<ComplentStatusPojo>> pullMyStatusList(@Header("appId") String appId,

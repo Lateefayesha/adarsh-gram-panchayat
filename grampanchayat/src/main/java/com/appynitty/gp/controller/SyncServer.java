@@ -10,6 +10,7 @@ import com.appynitty.gp.pojo.ComplentStatusPojo;
 import com.appynitty.gp.pojo.ContactUs;
 import com.appynitty.gp.pojo.ContactUsPojo;
 import com.appynitty.gp.pojo.ContactUsTeamMember;
+import com.appynitty.gp.pojo.ContructionCompleantPojo;
 import com.appynitty.gp.pojo.DistrictPojo;
 import com.appynitty.gp.pojo.FcmIdPojo;
 import com.appynitty.gp.pojo.GalleryPojo;
@@ -18,6 +19,7 @@ import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.pojo.PhotoGalleryVideo;
 import com.appynitty.gp.pojo.ResultPojo;
+import com.appynitty.gp.pojo.SamajBavanBookingPojo;
 import com.appynitty.gp.pojo.SchemesPojo;
 import com.appynitty.gp.pojo.SocialNetworkPojo;
 import com.appynitty.gp.pojo.StatePojo;
@@ -33,6 +35,7 @@ import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
+import com.appynitty.gp.webservices.SamajBavanBookingWebservice;
 import com.appynitty.gp.webservices.SchemesWebservice;
 import com.appynitty.gp.webservices.SmartGpWebservice;
 import com.appynitty.gp.webservices.SocialNetworkWebservice;
@@ -88,6 +91,9 @@ public class SyncServer {
                 QuickUtils.prefs.save(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(workCheckOutPojoList, type));
 
                 return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -114,6 +120,9 @@ public class SyncServer {
                 QuickUtils.prefs.save(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -140,6 +149,9 @@ public class SyncServer {
                 QuickUtils.prefs.save(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -167,6 +179,9 @@ public class SyncServer {
                 QuickUtils.prefs.save(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -275,47 +290,43 @@ public class SyncServer {
 
             RequestBody requestBody1 = null;
             MultipartBody.Part imageFileMultiBody1 = null;
-            RequestBody latLog1 = null;
+            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath1())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath1());
                 requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-                latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody2 = null;
             MultipartBody.Part imageFileMultiBody2 = null;
-            RequestBody latLog2 = null;
+            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath2())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath2());
                 requestBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody2 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody2);
-                latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody3 = null;
             MultipartBody.Part imageFileMultiBody3 = null;
-            RequestBody latLog3 = null;
+            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath3())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath3());
                 requestBody3 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody3 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody3);
-                latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody4 = null;
             MultipartBody.Part imageFileMultiBody4 = null;
-            RequestBody latLog4 = null;
+            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath4())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath4());
                 requestBody4 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody4 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody4);
-                latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody yBId = RequestBody.create(okhttp3.MultipartBody.FORM, "0");
@@ -636,46 +647,42 @@ public class SyncServer {
 
             RequestBody requestBody1 = null;
             MultipartBody.Part imageFileMultiBody1 = null;
-            RequestBody latLog1 = null;
+            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath1())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath1());
                 requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-                latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody2 = null;
             MultipartBody.Part imageFileMultiBody2 = null;
-            RequestBody latLog2 = null;
+            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath2())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath2());
                 requestBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody2 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody2);
-                latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody3 = null;
             MultipartBody.Part imageFileMultiBody3 = null;
-            RequestBody latLog3 = null;
+            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath3())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath3());
                 requestBody3 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody3 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody3);
-                latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody requestBody4 = null;
             MultipartBody.Part imageFileMultiBody4 = null;
-            RequestBody latLog4 = null;
+            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath4())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath4());
                 requestBody4 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
                 imageFileMultiBody4 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody4);
-                latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
             }
 
             RequestBody resumRequestBody = null;
@@ -944,5 +951,79 @@ public class SyncServer {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public ResultPojo saveSamajBavanBooking(SamajBavanBookingPojo samajBavanBookingPojo) {
+
+        ResultPojo resultPojo = null;
+        try {
+
+            SamajBavanBookingWebservice service = AUtils.createService(SamajBavanBookingWebservice.class, AUtils.SERVER_URL);
+            resultPojo = service.saveSamajBavanBooking(QuickUtils.prefs.getString(AUtils.APP_ID, ""), samajBavanBookingPojo).execute().body();
+
+        } catch (Exception e) {
+
+            resultPojo = null;
+            e.printStackTrace();
+        }
+        return resultPojo;
+    }
+
+    public ResultPojo saveConstructionCompleant(ContructionCompleantPojo contructionCompleantPojo) {
+
+        ResultPojo resultPojo = null;
+
+        try {
+
+            RequestBody requestBody1 = null;
+            MultipartBody.Part imageFileMultiBody1 = null;
+            RequestBody latLog = null;
+
+            File startImageFile = new File(contructionCompleantPojo.getImgUrl());
+
+            requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
+            imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+
+            RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getName());
+            RequestBody number = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getNumber());
+
+            RequestBody address = null;
+            if (!AUtils.isNullString(contructionCompleantPojo.getAddress())) {
+                address = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getAddress());
+            }
+
+            RequestBody tip = null;
+            if (!AUtils.isNullString(contructionCompleantPojo.getTip())) {
+                tip = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getTip());
+            }
+
+            RequestBody email = null;
+            if (!AUtils.isNullString(contructionCompleantPojo.getEmail())) {
+                email = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getEmail());
+            }
+
+            RequestBody userId = null;
+            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            }
+
+            RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getWardNo());
+            RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getLocation());
+            RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getDetails());
+            RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
+            RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
+
+            CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
+            resultPojo = service.saveConstructionCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+                    name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
+                    latLog, userId, imageFileMultiBody1).execute().body();
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return resultPojo;
     }
 }

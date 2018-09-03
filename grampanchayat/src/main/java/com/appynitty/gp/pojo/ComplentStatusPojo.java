@@ -21,6 +21,7 @@ public class ComplentStatusPojo implements Serializable {
     private String tips;
     private String refId;
     private String comment;
+    private String type;
 
     public String getWardNo() {
         return wardNo;
@@ -134,6 +135,14 @@ public class ComplentStatusPojo implements Serializable {
         this.comment = comment;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "ComplentStatusPojo{" +
@@ -150,6 +159,8 @@ public class ComplentStatusPojo implements Serializable {
                 ", endImage='" + endImage + '\'' +
                 ", tips='" + tips + '\'' +
                 ", refId='" + refId + '\'' +
+                ", comment='" + comment + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

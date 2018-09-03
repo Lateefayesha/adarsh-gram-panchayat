@@ -55,11 +55,11 @@ public class WebsiteActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
 
-            webView.loadUrl("https://nagpur.gov.in/public-utility/mahadula-nagar-panchayat/");
+            webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""));
 
         } else {
 
-            webView.loadUrl("https://nagpur.gov.in/mr/public-utility/महादूला-नगरपंचायत/");
+            webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_MAR, ""));
         }
     }
 

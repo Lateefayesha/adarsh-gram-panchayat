@@ -58,11 +58,30 @@ public class MyComplentStatusListAdapter extends ArrayAdapter<ComplentStatusPojo
                 holder.typeTextView.setText("");
             }
             if (!AUtils.isNullString(complentStatusPojo.getRefId())) {
-                holder.refrenceIdTextView.setText("Reference Id : " + complentStatusPojo.getRefId());
+                holder.refrenceIdTextView.setText("Grievance Id : " + complentStatusPojo.getRefId());
             } else {
                 holder.refrenceIdTextView.setText("");
             }
             if (!AUtils.isNullString(complentStatusPojo.getStatus())) {
+
+                switch (complentStatusPojo.getStatus()) {
+
+                    case "Pending":
+                        holder.statusTextView.setTextColor(context.getResources().getColor(R.color.pending));
+                        break;
+
+                    case "Processing":
+                        holder.statusTextView.setTextColor(context.getResources().getColor(R.color.processing));
+                        break;
+
+                    case "Resolved":
+                        holder.statusTextView.setTextColor(context.getResources().getColor(R.color.accepeted));
+                        break;
+
+                    case "Rejected":
+                        holder.statusTextView.setTextColor(context.getResources().getColor(R.color.rejeceted));
+                        break;
+                }
                 holder.statusTextView.setText(complentStatusPojo.getStatus());
             } else {
                 holder.statusTextView.setText("");

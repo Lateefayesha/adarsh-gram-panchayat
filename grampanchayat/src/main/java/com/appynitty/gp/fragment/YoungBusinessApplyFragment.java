@@ -217,6 +217,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
 
                             Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.deleteAllImagesInTheFolder();
                             getFragmentManager().popBackStack();
                         } else {
                             Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();

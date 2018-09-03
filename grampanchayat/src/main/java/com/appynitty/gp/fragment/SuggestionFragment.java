@@ -90,70 +90,79 @@ public class SuggestionFragment extends MyFragemtV4 {
 
     private void saveButtonOnClick() {
 
-        if (validateForm()) {
-            getFormData();
+//        if (validateForm()) {
+        getFormData();
 
-            new MyAsyncTask(context, true, new MyAsyncTask.AsynTaskListener() {
-                public ResultPojo resultPojo = null;
+        new MyAsyncTask(context, true, new MyAsyncTask.AsynTaskListener() {
+            public ResultPojo resultPojo = null;
 
-                @Override
-                public void doInBackgroundOpration(SyncServer syncServer) {
+            @Override
+            public void doInBackgroundOpration(SyncServer syncServer) {
 
-                    resultPojo = syncServer.saveSuggestion(suggestionPojo);
-                }
+                resultPojo = syncServer.saveSuggestion(suggestionPojo);
+            }
 
-                @Override
-                public void onFinished() {
+            @Override
+            public void onFinished() {
 
-                    if (!AUtils.isNull(resultPojo)) {
+                if (!AUtils.isNull(resultPojo)) {
 
-                        if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
-                            Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
-                            getFragmentManager().popBackStack();
-                        } else {
-                            Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
-                        }
+                    if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
+                        Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                        getFragmentManager().popBackStack();
                     } else {
-                        Toasty.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT).show();
+                        Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
                     }
-
+                } else {
+                    Toasty.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT).show();
                 }
-            }).execute();
-        }
+
+            }
+        }).execute();
+//        }
 
     }
 
     private boolean validateForm() {
 
-        if (AUtils.isNullString(nameTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+        if (AUtils.isNullString(nameTextView.getText().toString())
+                && AUtils.isNullString(mobileNoTextView.getText().toString())
+                && AUtils.isNullString(emailTextView.getText().toString())
+                && AUtils.isNullString(addressTextView.getText().toString())
+                && AUtils.isNullString(suggestionTextView.getText().toString())) {
+            Toasty.warning(context, getString(R.string.plz_ent_something), Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (AUtils.isNullString(mobileNoTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (mobileNoTextView.getText().toString().length() < 10) {
-            Toasty.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (!AUtils.isNullString(emailTextView.getText().toString()) && !AUtils.isEmailValid(emailTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (AUtils.isNullString(addressTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (AUtils.isNullString(suggestionTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_suggestion), Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (AUtils.isNullString(nameTextView.getText().toString())) {
+//            Toasty.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (AUtils.isNullString(mobileNoTextView.getText().toString())) {
+//            Toasty.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (mobileNoTextView.getText().toString().length() < 10) {
+//            Toasty.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (!AUtils.isNullString(emailTextView.getText().toString()) && !AUtils.isEmailValid(emailTextView.getText().toString())) {
+//            Toasty.warning(context, getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (AUtils.isNullString(addressTextView.getText().toString())) {
+//            Toasty.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//
+//        if (AUtils.isNullString(suggestionTextView.getText().toString())) {
+//            Toasty.warning(context, getString(R.string.plz_ent_suggestion), Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
 
         return true;
     }
@@ -162,8 +171,8 @@ public class SuggestionFragment extends MyFragemtV4 {
 
         suggestionPojo = new SuggestionPojo();
         suggestionPojo.setName(nameTextView.getText().toString());
-        suggestionPojo.setMobile_Number(mobileNoTextView.getText().toString());
-        suggestionPojo.setEmail_Address(emailTextView.getText().toString());
+        suggestionPojo.setMobileNumber(mobileNoTextView.getText().toString());
+        suggestionPojo.setEmailAddress(emailTextView.getText().toString());
         suggestionPojo.setAddress(addressTextView.getText().toString());
         suggestionPojo.setSuggesstion(suggestionTextView.getText().toString());
     }

@@ -21,9 +21,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/fb_name_et"
+                    android:id="@+id/tb_name_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/name"
+                    android:hint="@string/name_comp"
                     android:inputType="textCapWords" />
 
             </android.support.design.widget.TextInputLayout>
@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/fb_number_et"
+                    android:id="@+id/tb_number_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/mobile_no"
+                    android:hint="@string/mobile_no_comp"
                     android:inputType="number"
                     android:maxLength="10" />
 
@@ -47,9 +47,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/fb_email_et"
+                    android:id="@+id/tb_prabhag_kramak_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/email"
+                    android:hint="@string/ward_no"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -59,21 +59,9 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/fb_suggesstion_et"
+                    android:id="@+id/tb_address_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/suggestion"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/fb_address_et"
-                    style="@style/MyEditTextStyle"
-                    android:hint="@string/address"
+                    android:hint="@string/address_comp"
                     android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
@@ -87,7 +75,7 @@
         android:padding="@dimen/padding_margin_layout">
 
         <Button
-            android:id="@+id/fb_save_btn"
+            android:id="@+id/tb_save_btn"
             style="@style/MyButtonStyle"
             android:text="@string/submit" />
 

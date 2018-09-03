@@ -61,21 +61,9 @@ public class WeatherActivity extends BaseActivity {
             String log = split[1];
 
             String name = "";
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME, ""))) {
+            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_WEATHER_NAME, ""))) {
 
-                name = QuickUtils.prefs.getString(AUtils.GP_NAME, "");
-                name = name.replace("Gram Panchayat", "");
-                name = name.replace("Gram panchayat", "");
-                name = name.replace("gram Panchayat", "");
-                name = name.replace("gram panchayat", "");
-                name = name.replace("Nagar Panchayat", "");
-                name = name.replace("Nagar panchayat", "");
-                name = name.replace("nagar Panchayat", "");
-                name = name.replace("nagar panchayat", "");
-                name = name.replace("Nagar Parishad", "");
-                name = name.replace("Nagar parishad", "");
-                name = name.replace("nagar Parishad", "");
-                name = name.replace("nagar parishad", "");
+                name = QuickUtils.prefs.getString(AUtils.GP_WEATHER_NAME, "");
             }
 
             webView.loadUrl(AUtils.SERVER_URL + "Images/weather_web/index.html?lat=" + lat + "&log=" + log + "&name=" + name);

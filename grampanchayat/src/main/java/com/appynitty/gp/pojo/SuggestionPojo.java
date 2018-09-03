@@ -8,60 +8,60 @@ import java.io.Serializable;
 public class SuggestionPojo implements Serializable {
 
 
-    private String Name;
-    private String Mobile_Number;
-    private String Email_Address;
-    private String Suggesstion;
-    private String Address;
+    private String name;
+    private String mobileNumber;
+    private String emailAddress;
+    private String suggesstion;
+    private String address;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getMobile_Number() {
-        return Mobile_Number;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setMobile_Number(String mobile_Number) {
-        Mobile_Number = mobile_Number;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public String getEmail_Address() {
-        return Email_Address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail_Address(String email_Address) {
-        Email_Address = email_Address;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getSuggesstion() {
-        return Suggesstion;
+        return suggesstion;
     }
 
     public void setSuggesstion(String suggesstion) {
-        Suggesstion = suggesstion;
+        this.suggesstion = suggesstion;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "SuggestionPojo{" +
-                "Name='" + Name + '\'' +
-                ", Mobile_Number='" + Mobile_Number + '\'' +
-                ", Email_Address='" + Email_Address + '\'' +
-                ", Suggesstion='" + Suggesstion + '\'' +
-                ", Address='" + Address + '\'' +
+                "name='" + name + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", suggesstion='" + suggesstion + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

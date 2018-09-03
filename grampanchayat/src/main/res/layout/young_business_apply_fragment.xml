@@ -23,7 +23,7 @@
                 <EditText
                     android:id="@+id/yb_name_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/name"
+                    android:hint="@string/name_comp"
                     android:inputType="textCapWords" />
 
             </android.support.design.widget.TextInputLayout>
@@ -36,7 +36,7 @@
                 <EditText
                     android:id="@+id/yb_number_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/mobile_no"
+                    android:hint="@string/mobile_no_comp"
                     android:inputType="number"
                     android:maxLength="10" />
 

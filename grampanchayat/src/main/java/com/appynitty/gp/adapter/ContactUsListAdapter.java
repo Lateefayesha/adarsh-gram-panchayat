@@ -81,11 +81,11 @@ public class ContactUsListAdapter extends ArrayAdapter<ContactUsTeamMember> {
 
                 Glide.with(context).load(contactUsTeamMember.getProfileImageUrl())
                         .placeholder(R.drawable.loading_image)
-                        .error(R.drawable.loading_image)
+                        .error(R.drawable.no_image)
                         .into(holder.imageView);
             } else {
 
-                holder.imageView.setImageResource(R.drawable.loading_image);
+                holder.imageView.setImageResource(R.drawable.no_image);
             }
 
             holder.descTextView.setOnClickListener(new View.OnClickListener() {

@@ -406,13 +406,21 @@ public class LightCompleantFragment extends MyFragemtV4 {
 
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        File destination = null;
         try {
 
-            File destination = new File(Environment.getExternalStorageDirectory(),
-                    System.currentTimeMillis() + ".jpg");
+            File dir = new File(Environment.getExternalStorageDirectory()
+                    .toString() + "/Gram Panchayat");
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            destination = new File(dir, System.currentTimeMillis() + ".jpg");
 
             FileOutputStream fOut = new FileOutputStream(destination);
             thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+
             imageFilePath = destination.getAbsolutePath();
 
         } catch (Exception e) {
@@ -447,6 +455,7 @@ public class LightCompleantFragment extends MyFragemtV4 {
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
 
                             Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.deleteAllImagesInTheFolder();
                             getFragmentManager().popBackStack();
                         } else {
                             Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();

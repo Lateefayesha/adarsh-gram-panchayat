@@ -9,14 +9,18 @@
     <string name="work_check_out">Works of the Gram Panchayat</string>
     <string name="young_business">Self Employment/Business Purpose</string>
     <string name="young_jobs">Rojgar Registration</string>
-    <string name="cleaning_compleant">Cleanliness Complaint Booking</string>
-    <string name="water_compleant">Complaints/Feedback Related to Drinking Water</string>
-    <string name="water_compleant_booking">Drinking Water Complaint Booking</string>
-    <string name="light_compleant">Complaints/Feedback Related to the Use of Light and Solar Lights</string>
-    <string name="light_compleant_booking">Light and Solar Lights Complaint Booking</string>
-    <string name="maintenance_compleant">Complaints/Feedback Related to Necessary Maintenance and Repairs</string>
-    <string name="mentainence_compleant_booking">Maintenance and Repairs Complaint Booking</string>
+    <string name="cleaning_compleant">Cleanliness Grievance Booking</string>
+    <string name="water_compleant">Grievances/Feedback Related to Drinking Water</string>
+    <string name="water_compleant_booking">Drinking Water Grievance Booking</string>
+    <string name="light_compleant">Grievances/Feedback Related to the Use of Light and Solar Lights</string>
+    <string name="light_compleant_booking">Light and Solar Lights Grievance Booking</string>
+    <string name="maintenance_compleant">Grievances/Feedback Related to Necessary Maintenance and Repairs</string>
+    <string name="mentainence_compleant_booking">Maintenance and Repairs Grievance Booking</string>
     <string name="tanker_booking">Water Tanker Booking</string>
+    <string name="samaj_bavan_booking">Samaj Bhavan and Bhakta Niwas Booking</string>
+    <string name="construction_info">Information About Construction</string>
+    <string name="construction_compleant_booking">Construction Grievance Booking</string>
+    <string name="construction_compleant">Grievances/Feedback Related to Construction</string>
     <string name="schemes">Government Schemes</string>
     <string name="gallery">Photos, Video Galleries</string>
     <string name="certificate">Important Certificates and Documents Provided by Gram Panchayat</string>
@@ -29,8 +33,10 @@
     <string name="photo">Photos</string>
     <string name="vedio">Video</string>
     <string name="office_address">Office Address</string>
-    <string name="name">Name *</string>
-    <string name="mobile_no">Mobile No. *</string>
+    <string name="name">Name</string>
+    <string name="name_comp">Name *</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="mobile_no_comp">Mobile No. *</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
     <string name="address_comp">Address *</string>
@@ -38,6 +44,7 @@
     <string name="submit_done">Submited</string>
     <string name="serverError">Oops! We\'re having technical problems. Please try again later.</string>
     <string name="submit_error">Unable to submit. Please try again later</string>
+    <string name="select_type">Select Type *</string>
     <string name="select_state">Select State</string>
     <string name="select_district">Select District</string>
     <string name="select_tahsil">Select Tahsil</string>
@@ -49,6 +56,7 @@
     <string name="e_payment">E Payment</string>
     <string name="booking">Booking</string>
 
+    <string name="plz_ent_something">Please enter something</string>
     <string name="plz_ent_name">Please enter name</string>
     <string name="plz_ent_mobile_no">Please enter mobile number</string>
     <string name="plz_ent_valid_mobile_no">Please enter valid mobile number</string>
@@ -57,10 +65,10 @@
     <string name="plz_ent_valid_email">Please enter valid email</string>
     <string name="plz_ent_address">Please enter address</string>
     <string name="plz_ent_business_desc">Please enter business description</string>
-    <string name="plz_ent_compleant_dtl">Please enter compleant details</string>
+    <string name="plz_ent_compleant_dtl">Please enter grievance details</string>
     <string name="plz_ent_ward_no">Please enter ward no</string>
     <string name="plz_ent_location">Please enter location</string>
-    <string name="plz_ent_complent_dtl">Please enter complaint details</string>
+    <string name="plz_ent_complent_dtl">Please enter grievance details</string>
     <string name="plz_ent_edu_quli">Please enter educational qualifications</string>
     <string name="plz_capture_img">Please capture image</string>
     <string name="plz_select_state">Please select state</string>
@@ -69,7 +77,7 @@
 
     <string name="ward_no">Ward number *</string>
     <string name="personal_information">Personal information :</string>
-    <string name="compleant_details">Complaint / Feedback Info *</string>
+    <string name="compleant_details">Grievance / Feedback Info *</string>
     <string name="place">Location *</string>
     <string name="action_change_language">Change Language</string>
     <string name="action_about_appynitty">About Appynitty</string>
@@ -140,18 +148,19 @@
     <string name="jagran_josh">Jagran Josh</string>
     <string name="careesma">careesma</string>
     <string name="tip">Tip</string>
-    <string name="complaint_booking">Complaint Booking</string>
+    <string name="complaint_booking">Grievance Booking</string>
     <string name="cleaning_info">Information About Cleanliness</string>
     <string name="water_info">Information About Drinking Water</string>
     <string name="light_info">Information About Light and Solar Lights</string>
     <string name="mantanance_info">Information About Maintenance and Repairs</string>
-    <string name="suggestion">Suggestion / Idea *</string>
-    <string name="complent_status_tab">My Complaint Status</string>
+    <string name="suggestion">Suggestion / Idea </string>
+    <string name="complent_status_tab">My Grievance Status</string>
 
     <string name="clening_complent_details">The citizens are requested to classify household waste in the form of wet and dry garbage. Wet waste should be collected in green and dry garbage in blue trash and thus the classified waste should be handed over to the cleaner.\n\nDry waste is polyethylene bags, plastic goods, iron goods, torn clothes, newspaper trash, paper, cardboard, rappers, etc., which can be disposed of through the disposal of the wreckage.\n\nWet Waste is the waste which includes stale food, spoiled fruit, leafy vegetables, egg shells, tea powder, waterproofing of plants, which are destroyed by nature, etc.\n\nTo make dangerous waste like hay waste, dry trash and glass to be binding, and to impose a furore on those who do not; Such instructions have been made to the Central Government by the Parliamentary Committee appointed for the management of waste. The report submitted by the committee said that the government should take initiative to restrict the garbage collection by encouraging the waste to be kept separate.</string>
     <string name="water_complent_details">Development of water resources such as removal of sludge in village pond, removal of sludge in wells, recharge of well, water tank construction and repair, installation of bore well / hand pumps and maintenance etc.  are included in village development plan.\n\nRepairing of water supply related equipment such as connecting and repair of pipelines for water, borewell / hand pump / drainage of wells, and water tanker facilities etc.\n\nIn this plan, the provision is made to supply water to the village through solar pumps where electricity supply is not available.\n\nIn order to provide clean drinking water provisions like, the use of RO technology or water purification project to maintain the drinking water supply in villages, to set up water meter devices to avoid water abuse, and to expand the water supply schemes for economically weaker sections are made in village development plan.</string>
     <string name="light_complent_details">Not having a system of street light on rural roads is a serious problem. With absence of street light there are problems like social insecurity, crime etc. Keeping all this in mind, priority has been given on the issue of establishing and maintaining a street light in the development plan.\n\nThe provision is made in the development plan for the use of L E D / Solar Lamps and their annual maintenance.</string>
     <string name="maintenance_complent_details">Since most of the rural areas lack basic infrastructure such as Gram Panchayat building, proper furniture, etc., the result is lack of efficiency in the Gram Panchayat and other administrative offices. Given the seriousness of all these issues, priority has been given in the rural development plan on the development and maintenance of infrastructure for the Gram Panchayat.\n\nThe provision is made in the development plan, to maintain necessary amendments to the various properties of the Gram Panchayat created under the Gram Panchayat area\n\nBuilding gram panchayat building where there is no Gram Panchayat building, or expanding the Gram Panchayat Bhavan, necessary furniture for the Gram Panchayat building, building for anganwadi etc. are included in village development plan.</string>
+    <string name="construction_complent_details">Most of the rural areas are constructing new and renovation works. The purpose of keeping the entire care and rule of construction works is to the Nagar Panchayat. However, if there is a grievance or some suggestions regarding the construction of any kind, the citizen is requested to note the grievance or notice through the following menu.\n\nGrievance will be resolved at the right time.</string>
 
 
     <!--<string name="google_maps_key">AIzaSyDoOwvqEwN6en8FPeNVaJadE93TTwBQARE</string>-->
@@ -159,6 +168,4 @@
     <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
 
 
-    <string name="title">The introduction of Shri Chandrashekhar Bawankule, the Honorable Guardian Minister of Nagpur District</string>
-    <string name="dscription">Mr. Chandrashekhar Bawankule was born and a farmer family with a non-political background. His education and higher education took place at Koradi near Nagpur. With the objective of selfless social service, he established "Chhatrapati Sena" and till 1994 he was active in social services. Later, he joined the Bharatiya Janata Party in 1995 under the leadership of late Gopinath Munde and Nitin Gadkari. In 1995, he served as the Vice President of the Bhartiya Janta Yuva Morcha. In 1997 and 2002, Mr. Chandrashekhar Bawankul was elected as a member of the Zilla Parishad. In 2004, he was elected to the state assembly. They are currently working for the third time as the legislator till 2014. On December 6, 2014, Bawankule was sworn in as Energy, New and Renewable Energy Minister by BJP. Shri Chandrasekhar Bavankule is also working as Nagpur's District Guardian Minister. They have a lion's share in the development of Mahadula. All the development works have been implemented in Mahadula Nagar area under their leadership. That is why Shri Chandrashekhar Bawankul is a very popular and respected leader.</string>
 </resources>

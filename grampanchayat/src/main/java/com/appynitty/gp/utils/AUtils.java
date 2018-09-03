@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.os.Environment;
 
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -28,12 +30,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AUtils extends MsUtils {
 
-
     //    Local URL
-    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
+    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
 //    public static final String SERVER_URL = "http://115.115.153.117:7055/";
@@ -71,6 +72,12 @@ public class AUtils extends MsUtils {
     public static final String GP_NAME = "GramPanchayatName";
     public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
     public static final String GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
+    public static final String USER_ID = "UserId";
+    public static final String FCM_NOTI = "IsFcmNotification";
+    public static final String COMPLAINT_STATUS_POJO = "ComplaintStatusPojo";
+    public static final String GP_WEATHER_NAME = "GPWeatherScreenName";
+    public static final String WEBSITE_ENG = "Website";
+    public static final String WEBSITE_MAR = "WebsiteMarathi";
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
@@ -81,9 +88,6 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
     private static final String TAG = "AUtils";
-    public static final String USER_ID = "UserId";
-    public static final String FCM_NOTI = "IsFcmNotification";
-    public static final String COMPLAINT_STATUS_POJO = "ComplaintStatusPojo";
 
 
     private AUtils() {
@@ -198,6 +202,24 @@ public class AUtils extends MsUtils {
 
     }
 
+    public static void deleteAllImagesInTheFolder() {
+
+        File dir = new File(Environment.getExternalStorageDirectory()
+                .toString() + "/Gram Panchayat");
+
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                new File(dir, children[i]).delete();
+            }
+        }
+    }
+
+    public static void saveFcmId(String fcmId) {
+
+        QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
+    }
+
     // SharedPreferences Constant
     public interface PREFS {
 
@@ -230,10 +252,5 @@ public class AUtils extends MsUtils {
         String DISTRICT_POJO_LIST = "DistrictPojoList";
         String TAHSIL_POJO_LIST = "TahsilPojoList";
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
-    }
-
-    public static void saveFcmId(String fcmId) {
-
-        QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
     }
 }

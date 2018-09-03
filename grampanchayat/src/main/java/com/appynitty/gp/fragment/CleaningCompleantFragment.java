@@ -20,16 +20,22 @@ import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
+import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ResultPojo;
+import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
@@ -37,6 +43,8 @@ import com.mithsoft.lib.componants.Toasty;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import quickutils.core.QuickUtils;
 
@@ -65,6 +73,8 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
     private CleaningCompleantPojo cleaningCompleantPojo;
     private Uri picUri;
     private String imageFilePath;
+    private TextView typeSpinnerHintTitleTextView;
+    private Spinner typeSpinner;
 
     public static CleaningCompleantFragment newInstance() {
 
@@ -104,6 +114,96 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
         compleantDetailsTextView = view.findViewById(R.id.cc_details_et);
         captureImageView = view.findViewById(R.id.cc_cature_img);
         saveButton = view.findViewById(R.id.cc_save_btn);
+        typeSpinnerHintTitleTextView = view.findViewById(R.id.type_sp_title_hint);
+        typeSpinner = view.findViewById(R.id.cc_type_sp);
+        initTypeSpinner();
+    }
+
+    private void initTypeSpinner() {
+
+        List<ComplaintTypePojo> complaintTypePojoList = new ArrayList<ComplaintTypePojo>();
+
+        ComplaintTypePojo complaintTypePojo = new ComplaintTypePojo();
+        complaintTypePojo.setId("0");
+        complaintTypePojo.setDescription(getString(R.string.select_type));
+        complaintTypePojo.setDescriptionMar(getString(R.string.select_type));
+        complaintTypePojoList.add(complaintTypePojo);
+
+        ComplaintTypePojo complaintTypePojo1 = new ComplaintTypePojo();
+        complaintTypePojo1.setId("1");
+        complaintTypePojo1.setDescription("Choke of Nala, Nali / Cleaning of Nala, Nali");
+        complaintTypePojo1.setDescriptionMar("नाला, नाली चोक / नाली, नाल्याची साफसफाई");
+        complaintTypePojoList.add(complaintTypePojo1);
+
+        ComplaintTypePojo complaintTypePojo2 = new ComplaintTypePojo();
+        complaintTypePojo2.setId("2");
+        complaintTypePojo2.setDescription("Complaint regarding not collecting garbage");
+        complaintTypePojo2.setDescriptionMar("कचरा गोळा न करण्याबद्दल तक्रार");
+        complaintTypePojoList.add(complaintTypePojo2);
+
+        ComplaintTypePojo complaintTypePojo3 = new ComplaintTypePojo();
+        complaintTypePojo3.setId("3");
+        complaintTypePojo3.setDescription("Complaint regarding poring of garbage at public place by any person");
+        complaintTypePojo3.setDescriptionMar("कोणत्याही व्यक्तीकडून सार्वजनिक ठिकाणी कचरा टाकण्याशी संबंधित तक्रार");
+        complaintTypePojoList.add(complaintTypePojo3);
+
+        ComplaintTypePojo complaintTypePojo4 = new ComplaintTypePojo();
+        complaintTypePojo4.setId("4");
+        complaintTypePojo4.setDescription("Complaint regarding poring of garbage in Nala,Nali by any person");
+        complaintTypePojo4.setDescriptionMar("कोणत्याही व्यक्तीने नाला, नाली मधील कचरा फोडण्याबाबत तक्रार");
+        complaintTypePojoList.add(complaintTypePojo4);
+
+        ComplaintTypePojo complaintTypePojo5 = new ComplaintTypePojo();
+        complaintTypePojo5.setId("8");
+        complaintTypePojo5.setDescription("Complaint regarding not taking bio medical");
+        complaintTypePojo5.setDescriptionMar("जैव-वैद्यकीय उपचार न करण्याबद्दल तक्रार");
+        complaintTypePojoList.add(complaintTypePojo5);
+
+        ComplaintTypePojo complaintTypePojo6 = new ComplaintTypePojo();
+        complaintTypePojo6.setId("10");
+        complaintTypePojo6.setDescription("Complaint regarding poring bio medical waste from Hospital  / Nursing / Home to Nala or garbage collection center / public place");
+        complaintTypePojo6.setDescriptionMar("हॉस्पिटल / नर्सिंग / होम ते नाला किंवा कचरा संकलन केंद्र / सार्वजनिक ठिकाणापासून पिअर्स बायो-मेडिकल कचराबाबत तक्रार");
+        complaintTypePojoList.add(complaintTypePojo6);
+
+        ComplaintTypePojo complaintTypePojo7 = new ComplaintTypePojo();
+        complaintTypePojo7.setId("11");
+        complaintTypePojo7.setDescription("Infection Diseases");
+        complaintTypePojo7.setDescriptionMar("संक्रमण रोग");
+        complaintTypePojoList.add(complaintTypePojo7);
+
+        ComplaintTypePojo complaintTypePojo8 = new ComplaintTypePojo();
+        complaintTypePojo8.setId("12");
+        complaintTypePojo8.setDescription("Not picking of primary garbage / cleaning");
+        complaintTypePojo8.setDescriptionMar("प्राथमिक कचरा / साफसफाईची निवड नाही");
+        complaintTypePojoList.add(complaintTypePojo8);
+
+        ComplaintTypePojo complaintTypePojo9 = new ComplaintTypePojo();
+        complaintTypePojo9.setId("15");
+        complaintTypePojo9.setDescription("Problem in Drainage because of Blockage in Nala");
+        complaintTypePojo9.setDescriptionMar("नाला मधील अडथळामुळे ड्रेनेज मध्ये समस्या");
+        complaintTypePojoList.add(complaintTypePojo9);
+
+        ComplaintTypePojo complaintTypePojo10 = new ComplaintTypePojo();
+        complaintTypePojo10.setId("16");
+        complaintTypePojo10.setDescription("Removal of Dead Animals body");
+        complaintTypePojo10.setDescriptionMar("मृत प्राण्यांचे शरीर काढून टाकणे");
+        complaintTypePojoList.add(complaintTypePojo10);
+
+        ComplaintTypePojo complaintTypePojo11 = new ComplaintTypePojo();
+        complaintTypePojo11.setId("17");
+        complaintTypePojo11.setDescription("Removing of Building Material from public roads & footpath");
+        complaintTypePojo11.setDescriptionMar("सार्वजनिक रस्ते व पदपथावरील बांधकाम साहित्य काढणे");
+        complaintTypePojoList.add(complaintTypePojo11);
+
+        ComplaintTypePojo complaintTypePojo12 = new ComplaintTypePojo();
+        complaintTypePojo12.setId("18");
+        complaintTypePojo12.setDescription("Street Animals");
+        complaintTypePojo12.setDescriptionMar("स्ट्रीट जनावरे");
+        complaintTypePojoList.add(complaintTypePojo12);
+
+        ArrayAdapter<StatePojo> statePojoArrayAdapter = new ArrayAdapter(
+                context, R.layout.spinner_text_view, complaintTypePojoList);
+        typeSpinner.setAdapter(statePojoArrayAdapter);
     }
 
     private void registerEvents() {
@@ -113,6 +213,21 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
             public void onClick(View v) {
 
                 saveButtonOnClick();
+            }
+        });
+
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                ComplaintTypePojo complaintTypePojo = (ComplaintTypePojo) parent.getItemAtPosition(position);
+//                stateId = statePojo.getId();
+                typeSpinnerOnItemSelected(complaintTypePojo);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -132,6 +247,15 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
 
     }
 
+    private void typeSpinnerOnItemSelected(ComplaintTypePojo complaintTypePojo) {
+
+        if (complaintTypePojo.getId().equals("0")) {
+
+            typeSpinnerHintTitleTextView.setVisibility(View.INVISIBLE);
+        } else {
+            typeSpinnerHintTitleTextView.setVisibility(View.VISIBLE);
+        }
+    }
 
     private void isCameraPermissionGiven() {
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -406,14 +530,21 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
 
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-
+        File destination = null;
         try {
 
-            File destination = new File(Environment.getExternalStorageDirectory(),
-                    System.currentTimeMillis() + ".jpg");
+            File dir = new File(Environment.getExternalStorageDirectory()
+                    .toString() + "/Gram Panchayat");
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            destination = new File(dir, System.currentTimeMillis() + ".jpg");
 
             FileOutputStream fOut = new FileOutputStream(destination);
             thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+
             imageFilePath = destination.getAbsolutePath();
 
         } catch (Exception e) {
@@ -448,6 +579,7 @@ public class CleaningCompleantFragment extends MyFragemtV4 {
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
 
                             Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.deleteAllImagesInTheFolder();
                             getFragmentManager().popBackStack();
                         } else {
                             Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();

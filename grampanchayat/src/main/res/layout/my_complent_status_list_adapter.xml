@@ -58,7 +58,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/primery_text_size" />
+                    android:textSize="@dimen/primery_text_size"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>

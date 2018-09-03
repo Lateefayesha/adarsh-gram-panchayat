@@ -36,8 +36,6 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-//    http://mithsoft.net/extra/notification/notify.php
-
     private static final String TAG = "MyFirebaseMsgService";
 
     /**
@@ -45,54 +43,40 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
-    // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // [START_EXCLUDE]
-        // There are two types of messages data messages and l_notification messages. Data messages are handled
-        // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
-        // traditionally used with GCM. Notification messages are only received here in onMessageReceived when the app
-        // is in the foreground. When the app is in the background an automatically generated l_notification is displayed.
-        // When the user taps on the l_notification they are returned to the app. Messages containing both l_notification
-        // and data payloads are treated as l_notification messages. The Firebase console always sends l_notification
-        // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
-        // [END_EXCLUDE]
 
-        Log.e(TAG, "Inside   onMessageReceived");
+        super.onMessageReceived(remoteMessage);
+
+        Log.d(TAG, "Inside   onMessageReceived");
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.e(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            Log.e(TAG, "Message data payload: " + remoteMessage.getData());
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
         }
 
-        // Check if message contains a l_notification payload.
+        // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            Log.e(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+
+//            sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
-//        String s = remoteMessage.getData().get("body");
-//        String s2 = remoteMessage.getData().get("message");
-//        Log.e(TAG, "Body: " + s);
-//        Log.e(TAG, "message: " + s2);
-//        sendNotification(remoteMessage.getData().get("body"));
+        Log.d(TAG, "TITLE : " + remoteMessage.getData().get("title"));
+        Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
 
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
+        sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
     }
-    // [END receive_message]
 
     /**
-     * Create and show a simple l_notification containing the received FCM message.
+     * Create and show a simple notification containing the received FCM message.
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody) {
-
-        Log.e(TAG, "Inside sendNotification = " + messageBody);
+    private void sendNotification(String title, String messageBody) {
 
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -102,15 +86,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(),
-                R.mipmap.ic_launcher);
+                R.drawable.notify);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getPackageName())
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("FCM Message")
-                .setContentText(messageBody)
+                .setContentTitle(title)
+//                .setContentText(messageBody)// single line message
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody)) // Multi line message
                 .setTicker(getString(R.string.app_name))
-                .setColor(Color.parseColor("#009688"))
+                .setColor(Color.parseColor("#FFA726"))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setLargeIcon(Bitmap.createScaledBitmap(largeIconBitmap, 128, 128, false))
@@ -121,5 +106,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of l_notification */, notificationBuilder.build());
     }
-
 }

@@ -2,6 +2,7 @@ package com.appynitty.gp.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import com.mithsoft.lib.activity.BaseActivity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 17/8/18.
@@ -129,7 +132,7 @@ public class MyComlaintDetailsActivity extends BaseActivity {
     protected void initData() {
 
         if (!AUtils.isNullString(complentStatusPojo.getRefId())) {
-            refrenceIdTextView.setText("Reference Id : " + complentStatusPojo.getRefId());
+            refrenceIdTextView.setText("Grievance Id : " + complentStatusPojo.getRefId());
         } else {
             refrenceIdTextView.setVisibility(View.GONE);
         }
@@ -140,6 +143,26 @@ public class MyComlaintDetailsActivity extends BaseActivity {
         }
 //        dateTextView.setText("Date : " + complentStatusPojo.getCreatedDate());
         if (!AUtils.isNullString(complentStatusPojo.getStatus())) {
+
+            switch (complentStatusPojo.getStatus()) {
+
+                case "Pending":
+                    statusTextView.setTextColor(getResources().getColor(R.color.pending));
+                    break;
+
+                case "Processing":
+                    statusTextView.setTextColor(getResources().getColor(R.color.processing));
+                    break;
+
+                case "Resolved":
+                    statusTextView.setTextColor(getResources().getColor(R.color.accepeted));
+                    break;
+
+                case "Rejected":
+                    statusTextView.setTextColor(getResources().getColor(R.color.rejeceted));
+                    break;
+            }
+
             statusTextView.setText("" + complentStatusPojo.getStatus());
         } else {
             statusTextView.setVisibility(View.GONE);
@@ -156,7 +179,7 @@ public class MyComlaintDetailsActivity extends BaseActivity {
         }
 
         if (!AUtils.isNullString(complentStatusPojo.getDetails())) {
-            complaintTextView.setText("Complaint : " + complentStatusPojo.getDetails());
+            complaintTextView.setText("Grievance : " + complentStatusPojo.getDetails());
         } else {
             complaintTextView.setVisibility(View.GONE);
         }
@@ -177,7 +200,7 @@ public class MyComlaintDetailsActivity extends BaseActivity {
 
             Glide.with(this).load(complentStatusPojo.getStartImage())
                     .placeholder(R.drawable.loading_image)
-                    .error(R.drawable.image_load_error)
+                    .error(R.drawable.no_image)
                     .into(startImageView);
         } else {
 
@@ -194,5 +217,29 @@ public class MyComlaintDetailsActivity extends BaseActivity {
 
             endImageView.setBackgroundResource(R.drawable.no_image);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        super.onDestroy();
     }
 }

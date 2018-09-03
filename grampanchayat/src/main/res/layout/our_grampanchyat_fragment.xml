@@ -2,27 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/layout_background_color">
+    android:background="@color/layout_background_color"
+    android:padding="@dimen/padding_margin_layout">
 
-    <ScrollView
-        android:id="@+id/our_gram_panchayat_sv"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/content_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/our_gram_panchayat_ll"
+        <ListView
+            android:id="@+id/content_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_margin_layout" />
+            android:divider="@color/layout_background_color" />
 
-    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.mithsoft.lib.componants.MyNoDataView
         android:id="@+id/no_data_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
-
 
 </RelativeLayout>

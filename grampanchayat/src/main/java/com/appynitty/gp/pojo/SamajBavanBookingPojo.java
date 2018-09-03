@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by MiTHUN on 30/5/18.
  */
-public class TankerBookingPojo implements Serializable {
+public class SamajBavanBookingPojo implements Serializable {
 
     private String name;
     private String number;

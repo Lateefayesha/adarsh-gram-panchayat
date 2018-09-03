@@ -15,6 +15,8 @@ import com.mithsoft.lib.viewpager.ViewPagerTransformer;
 
 import java.util.List;
 
+import quickutils.core.QuickUtils;
+
 /**
  * Created by MiTHUN on 7/5/18.
  */
@@ -59,5 +61,11 @@ public class ViewImageActivity extends BaseActivity {
         viewImgViewPager.setAdapter(viewImagePagerAdapter);
         viewImgViewPager.setCurrentItem(imagePosition, true);
         viewImgViewPager.setPageTransformer(false, new ViewPagerTransformer(ViewPagerTransformer.TransformType.ZOOM));
+    }
+
+    @Override
+    protected void onDestroy() {
+        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        super.onDestroy();
     }
 }

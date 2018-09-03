@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 
 import com.appynitty.gp.utils.AUtils;
 import com.google.android.gms.common.ConnectionResult;
@@ -88,7 +87,7 @@ public class LocationMonitoringService extends Service implements
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mLocationClient, mLocationRequest, this);
 
-        Log.d(TAG, "Connected to Google API");
+//        Log.d(TAG, "Connected to Google API");
     }
 
     /*
@@ -97,17 +96,17 @@ public class LocationMonitoringService extends Service implements
      */
     @Override
     public void onConnectionSuspended(int i) {
-        Log.d(TAG, "Connection suspended");
+//        Log.d(TAG, "Connection suspended");
     }
 
 
     //to get the location change
     @Override
     public void onLocationChanged(Location location) {
-        Log.d(TAG, "Location changed");
+//        Log.d(TAG, "Location changed");
 
         if (location != null) {
-            Log.d(TAG, "== location != null");
+//            Log.d(TAG, "== location != null");
 
             //Send result to activities
 
@@ -145,10 +144,9 @@ public class LocationMonitoringService extends Service implements
 //
 //    }
 
-
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d(TAG, "Failed to connect to Google API");
+//        Log.d(TAG, "Failed to connect to Google API");
 
     }
 

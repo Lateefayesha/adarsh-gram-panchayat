@@ -54,7 +54,7 @@ public class PhotoGalleryAdapter extends ArrayAdapter<PhotoGalleryImages> {
 
                 Glide.with(context).load(imageShopPojo.getImageUrl())
                         .placeholder(R.drawable.loading_image)
-                        .error(R.drawable.loading_image)
+                        .error(R.drawable.no_image)
                         .into(holder.imageView);
             }
         }

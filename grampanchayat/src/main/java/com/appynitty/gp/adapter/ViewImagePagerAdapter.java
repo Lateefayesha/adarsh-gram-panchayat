@@ -57,7 +57,7 @@ public class ViewImagePagerAdapter extends android.support.v4.view.PagerAdapter 
 
         Glide.with(context).load(imagesGalleryPojoList.get(position).getImageUrl())
                 .placeholder(R.drawable.loading_image)
-                .error(R.drawable.loading_image)
+                .error(R.drawable.no_image)
                 .into(photoImageView);
 
         container.addView(view);
