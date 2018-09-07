@@ -157,7 +157,7 @@
                                 android:layout_marginRight="@dimen/padding_margin_layout"
                                 android:layout_weight="5"
                                 android:gravity="center"
-                                android:text="Before"
+                                android:text="@string/before"
                                 android:textColor="@color/text_color_primary"
                                 android:textSize="@dimen/primery_text_size"
                                 android:textStyle="bold" />
@@ -168,7 +168,7 @@
                                 android:layout_marginLeft="@dimen/padding_margin_layout"
                                 android:layout_weight="5"
                                 android:gravity="center"
-                                android:text="After"
+                                android:text="@string/after"
                                 android:textColor="@color/text_color_primary"
                                 android:textSize="@dimen/primery_text_size"
                                 android:textStyle="bold" />
@@ -179,7 +179,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Comments :"
+                            android:text="@string/comments"
                             android:textColor="@color/text_color_primary"
                             android:textSize="@dimen/primery_text_size"
                             android:textStyle="bold" />

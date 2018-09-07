@@ -153,22 +153,22 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = ConstructionCompleantDetailsFragment.newInstance();
                 break;
             case 9:
-                mFragment = TankerBookingFragment.newInstance();
+                mFragment = MyComplentStatusFragment.newInstance();
                 break;
             case 10:
                 mFragment = SamajBhawanBookingFragment.newInstance();
                 break;
             case 11:
-                mFragment = SuggestionFragment.newInstance();
+                mFragment = TankerBookingFragment.newInstance();
                 break;
             case 12:
                 mFragment = SchemesFragment.newInstance();
                 break;
             case 13:
-                mFragment = MyComplentStatusFragment.newInstance();
+                mFragment = CertificateFragment.newInstance();
                 break;
             case 14:
-                mFragment = CertificateFragment.newInstance();
+                mFragment = SuggestionFragment.newInstance();
                 break;
             case 15:
                 mFragment = GalleryFragment.newInstance();
@@ -195,9 +195,6 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = SocialNetworkFragment.newInstance();
                 break;
             case 19:
-                context.startActivity(new Intent(context, MapsMarkerActivity.class));
-                break;
-            case 20:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WebsiteActivity.class));
@@ -206,8 +203,23 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case 20:
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    context.startActivity(new Intent(context, MapsMarkerActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
+                break;
             case 21:
-                mFragment = ContactUsFragment.newInstance();
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    startActivity(new Intent(context, UtilityActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
                 break;
             case 22:
                 if (AUtils.isNetWorkAvailable(context)) {
@@ -219,13 +231,7 @@ public class MenuFragment extends MyFragemtV4 {
                 }
                 break;
             case 23:
-                if (AUtils.isNetWorkAvailable(context)) {
-
-                    startActivity(new Intent(context, UtilityActivity.class));
-                } else {
-
-                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
-                }
+                mFragment = ContactUsFragment.newInstance();
                 break;
         }
 
@@ -255,28 +261,28 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.maintenance_compleant), "#BA9B47"));
 
         menuPojoList.add(new MenuPojo(getString(R.string.construction_compleant), "#8BC34A"));
+        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), "#FF9800"));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), "#BA9B47"));
         menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), "#03A9F4"));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), "#03A9F4"));
-        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), "#FF9800"));
-
         menuPojoList.add(new MenuPojo(getString(R.string.schemes), "#384259"));
-        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), "#4CAF50"));
-
         menuPojoList.add(new MenuPojo(getString(R.string.certificate), "#8C7676"));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), "#FF9800"));
         menuPojoList.add(new MenuPojo(getString(R.string.gallery), "#8BC34A"));
 
         menuPojoList.add(new MenuPojo(getString(R.string.e_payment), "#03A9F4"));
         menuPojoList.add(new MenuPojo(getString(R.string.booking), "#3949AB"));
 
         menuPojoList.add(new MenuPojo(getString(R.string.social_media), "#F44336"));
-        menuPojoList.add(new MenuPojo(getString(R.string.map), "#FFC107"));
-
         menuPojoList.add(new MenuPojo(getString(R.string.website), "#4CAF50"));
-        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), "#03A9F4"));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.weather), "#FFC107"));
+        menuPojoList.add(new MenuPojo(getString(R.string.map), "#FFC107"));
         menuPojoList.add(new MenuPojo(getString(R.string.utility), "#384259"));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.weather), "#4CAF50"));
+        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), "#03A9F4"));
 
         MainMenuAdapter mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);

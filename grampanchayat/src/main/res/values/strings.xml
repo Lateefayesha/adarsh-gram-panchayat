@@ -6,6 +6,7 @@
     <string name="app_name_tab">Gram Panchayat</string>
     <string name="action_settings">Settings</string>
     <string name="noData">No data found</string>
+    <string name="no_website">No website found</string>
     <string name="work_check_out">Works of the Gram Panchayat</string>
     <string name="young_business">Self Employment/Business Purpose</string>
     <string name="young_jobs">Rojgar Registration</string>
@@ -44,7 +45,7 @@
     <string name="submit_done">Submited</string>
     <string name="serverError">Oops! We\'re having technical problems. Please try again later.</string>
     <string name="submit_error">Unable to submit. Please try again later</string>
-    <string name="select_type">Select Type *</string>
+    <string name="select_type">Select Grievance Type *</string>
     <string name="select_state">Select State</string>
     <string name="select_district">Select District</string>
     <string name="select_tahsil">Select Tahsil</string>
@@ -55,6 +56,13 @@
     <string name="suggestion_tab">Smart Suggestion</string>
     <string name="e_payment">E Payment</string>
     <string name="booking">Booking</string>
+    <string name="date">Date</string>
+    <string name="grievance_id">Grievance Id</string>
+    <string name="grievance">Grievance</string>
+    <string name="comments">Comments</string>
+    <string name="before">Before</string>
+    <string name="after">After</string>
+
 
     <string name="plz_ent_something">Please enter something</string>
     <string name="plz_ent_name">Please enter name</string>
@@ -72,13 +80,16 @@
     <string name="plz_ent_edu_quli">Please enter educational qualifications</string>
     <string name="plz_capture_img">Please capture image</string>
     <string name="plz_select_state">Please select state</string>
+    <string name="plz_select_complaint_type">Please select grievance type</string>
     <string name="plz_ent_suggestion">Please enter Suggestion / Idea</string>
 
 
-    <string name="ward_no">Ward number *</string>
+    <string name="ward_no_comp">Ward number *</string>
+    <string name="ward_no">Ward number</string>
     <string name="personal_information">Personal information :</string>
     <string name="compleant_details">Grievance / Feedback Info *</string>
-    <string name="place">Location *</string>
+    <string name="place">Location</string>
+    <string name="place_comp">Location *</string>
     <string name="action_change_language">Change Language</string>
     <string name="action_about_appynitty">About Appynitty</string>
     <string name="action_rate_app">Rate this app</string>
@@ -100,53 +111,6 @@
     <string name="capture_photo_of_resource">Capture photo of resource</string>
     <string name="utility">Utility</string>
     <string name="website">Website</string>
-    <string name="voter_id">Voter ID</string>
-    <string name="railway">Railway</string>
-    <string name="police">Police</string>
-    <string name="passport">Passport</string>
-    <string name="jobs">Jobs</string>
-    <string name="bloodbank">Blood Bank</string>
-    <string name="newspaper">Newspaper</string>
-    <string name="times_of_india">Times Of India</string>
-    <string name="the_echonomic_times">The Economic Times</string>
-    <string name="live_hundustan">Live हिंदुस्तान</string>
-    <string name="tarun_bharat">तरुण भारत</string>
-    <string name="the_hitvada">The Hitavada</string>
-    <string name="lokmat">लोकमत</string>
-    <string name="navbharat_times">NBT नवभारत टाइम्स</string>
-    <string name="navbharat">नवभारत</string>
-    <string name="dainik_bhaskar">दैनिक भास्कर</string>
-    <string name="visit_website">Visit Website</string>
-    <string name="call">Call</string>
-    <string name="job_sarkari">JobSarkari.com</string>
-    <string name="naukri_com">naukri.com</string>
-    <string name="shine_com">Shine.com</string>
-    <string name="times_jobs">TiMES JOBS</string>
-    <string name="monster">monster</string>
-    <string name="glassdoor">glassdoor</string>
-    <string name="freshersworld_com">Freshersworld.com</string>
-    <string name="indeed">indeed</string>
-    <string name="locsatta">लोकसत्ता</string>
-    <string name="sakal">सकाळ</string>
-    <string name="prahar">प्रहार</string>
-    <string name="ekmat">एकमत</string>
-    <string name="pudhari">पुढारी</string>
-    <string name="kesari">केसरी</string>
-    <string name="maharashtra_times">महाराष्ट्र टाइम्स</string>
-    <string name="hindustan">हिंदुस्थान</string>
-    <string name="divya_marathi">दिव्य मराठी</string>
-    <string name="sanchar">संचार</string>
-    <string name="shvner">शिवनेर</string>
-    <string name="apali_zilha_parisad">Your Zilla Parishad</string>
-    <string name="aple_zilaadhikhari_kayalay">Your Collector Office</string>
-    <string name="employment_news">Employment News</string>
-    <string name="sarkari_naukri_blog">Sarkari Naukri Blog</string>
-    <string name="sarkari_naukri">Sarkari Naukri</string>
-    <string name="e_govt_job_in">EGovt Job.In</string>
-    <string name="ind_govt_jobs">IndGovtJobs</string>
-    <string name="sarkari_exam_com">Sarkari Exam.com</string>
-    <string name="jagran_josh">Jagran Josh</string>
-    <string name="careesma">careesma</string>
     <string name="tip">Tip</string>
     <string name="complaint_booking">Grievance Booking</string>
     <string name="cleaning_info">Information About Cleanliness</string>
@@ -155,6 +119,10 @@
     <string name="mantanance_info">Information About Maintenance and Repairs</string>
     <string name="suggestion">Suggestion / Idea </string>
     <string name="complent_status_tab">My Grievance Status</string>
+    <string name="pending">Pending</string>
+    <string name="processing">Processing</string>
+    <string name="resolved">Resolved</string>
+    <string name="rejected">Rejected</string>
 
     <string name="clening_complent_details">The citizens are requested to classify household waste in the form of wet and dry garbage. Wet waste should be collected in green and dry garbage in blue trash and thus the classified waste should be handed over to the cleaner.\n\nDry waste is polyethylene bags, plastic goods, iron goods, torn clothes, newspaper trash, paper, cardboard, rappers, etc., which can be disposed of through the disposal of the wreckage.\n\nWet Waste is the waste which includes stale food, spoiled fruit, leafy vegetables, egg shells, tea powder, waterproofing of plants, which are destroyed by nature, etc.\n\nTo make dangerous waste like hay waste, dry trash and glass to be binding, and to impose a furore on those who do not; Such instructions have been made to the Central Government by the Parliamentary Committee appointed for the management of waste. The report submitted by the committee said that the government should take initiative to restrict the garbage collection by encouraging the waste to be kept separate.</string>
     <string name="water_complent_details">Development of water resources such as removal of sludge in village pond, removal of sludge in wells, recharge of well, water tank construction and repair, installation of bore well / hand pumps and maintenance etc.  are included in village development plan.\n\nRepairing of water supply related equipment such as connecting and repair of pipelines for water, borewell / hand pump / drainage of wells, and water tanker facilities etc.\n\nIn this plan, the provision is made to supply water to the village through solar pumps where electricity supply is not available.\n\nIn order to provide clean drinking water provisions like, the use of RO technology or water purification project to maintain the drinking water supply in villages, to set up water meter devices to avoid water abuse, and to expand the water supply schemes for economically weaker sections are made in village development plan.</string>
@@ -163,8 +131,6 @@
     <string name="construction_complent_details">Most of the rural areas are constructing new and renovation works. The purpose of keeping the entire care and rule of construction works is to the Nagar Panchayat. However, if there is a grievance or some suggestions regarding the construction of any kind, the citizen is requested to note the grievance or notice through the following menu.\n\nGrievance will be resolved at the right time.</string>
 
 
-    <!--<string name="google_maps_key">AIzaSyDoOwvqEwN6en8FPeNVaJadE93TTwBQARE</string>-->
-    <!--<string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>-->
     <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
 
 

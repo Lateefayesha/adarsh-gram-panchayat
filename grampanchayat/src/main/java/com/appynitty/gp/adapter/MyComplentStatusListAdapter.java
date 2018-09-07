@@ -58,7 +58,7 @@ public class MyComplentStatusListAdapter extends ArrayAdapter<ComplentStatusPojo
                 holder.typeTextView.setText("");
             }
             if (!AUtils.isNullString(complentStatusPojo.getRefId())) {
-                holder.refrenceIdTextView.setText("Grievance Id : " + complentStatusPojo.getRefId());
+                holder.refrenceIdTextView.setText(context.getString(R.string.grievance_id) + " : " + complentStatusPojo.getRefId());
             } else {
                 holder.refrenceIdTextView.setText("");
             }
@@ -68,26 +68,29 @@ public class MyComplentStatusListAdapter extends ArrayAdapter<ComplentStatusPojo
 
                     case "Pending":
                         holder.statusTextView.setTextColor(context.getResources().getColor(R.color.pending));
+                        holder.statusTextView.setText(context.getString(R.string.pending));
                         break;
 
                     case "Processing":
                         holder.statusTextView.setTextColor(context.getResources().getColor(R.color.processing));
+                        holder.statusTextView.setText(context.getString(R.string.processing));
                         break;
 
                     case "Resolved":
                         holder.statusTextView.setTextColor(context.getResources().getColor(R.color.accepeted));
+                        holder.statusTextView.setText(context.getString(R.string.resolved));
                         break;
 
                     case "Rejected":
                         holder.statusTextView.setTextColor(context.getResources().getColor(R.color.rejeceted));
+                        holder.statusTextView.setText(context.getString(R.string.rejected));
                         break;
                 }
-                holder.statusTextView.setText(complentStatusPojo.getStatus());
             } else {
                 holder.statusTextView.setText("");
             }
             if (!AUtils.isNullString(complentStatusPojo.getStatus())) {
-                holder.dateTextView.setText("Date : " + complentStatusPojo.getCreatedDate());
+                holder.dateTextView.setText(context.getString(R.string.date) + " : " + complentStatusPojo.getCreatedDate());
             } else {
                 holder.dateTextView.setText("");
             }

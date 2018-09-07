@@ -23,11 +23,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.controller.SyncServer;
+import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ContructionCompleantPojo;
 import com.appynitty.gp.pojo.ResultPojo;
 import com.appynitty.gp.utils.AUtils;
@@ -37,6 +40,7 @@ import com.mithsoft.lib.componants.Toasty;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import quickutils.core.QuickUtils;
 
@@ -65,6 +69,9 @@ public class ConstructionCompleantFragment extends MyFragemtV4 {
     private ContructionCompleantPojo contructionCompleantPojo;
     private Uri picUri;
     private String imageFilePath;
+    private TextView typeSpinnerHintTitleTextView;
+    private Spinner typeSpinner;
+    private List<ComplaintTypePojo> complaintTypePojoList;
 
     public static ConstructionCompleantFragment newInstance() {
 
@@ -76,7 +83,7 @@ public class ConstructionCompleantFragment extends MyFragemtV4 {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.construction_compleant_fragment, container, false);
+        view = inflater.inflate(R.layout.cleaning_compleant_fragment, container, false);
         context = container.getContext();
         initComponents();
         return view;
@@ -104,6 +111,11 @@ public class ConstructionCompleantFragment extends MyFragemtV4 {
         compleantDetailsTextView = view.findViewById(R.id.cc_details_et);
         captureImageView = view.findViewById(R.id.cc_cature_img);
         saveButton = view.findViewById(R.id.cc_save_btn);
+        typeSpinnerHintTitleTextView = view.findViewById(R.id.type_sp_title_hint);
+        typeSpinner = view.findViewById(R.id.cc_type_sp);
+
+        typeSpinnerHintTitleTextView.setVisibility(View.GONE);
+        typeSpinner.setVisibility(View.GONE);
     }
 
     private void registerEvents() {

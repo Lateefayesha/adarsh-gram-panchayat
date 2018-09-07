@@ -2,12 +2,14 @@ package com.appynitty.gp.activity;
 
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
 import com.mithsoft.lib.activity.BaseActivity;
+import com.mithsoft.lib.componants.MyNoDataView;
 
 import quickutils.core.QuickUtils;
 
@@ -18,12 +20,16 @@ import quickutils.core.QuickUtils;
 public class WebsiteActivity extends BaseActivity {
 
     private WebView webView;
+    private MyNoDataView noDataView;
 
     @Override
     protected void generateId() {
 
-        setContentView(R.layout.certificate_activity);
+        setContentView(R.layout.weather_activity);
         webView = findViewById(R.id.aa_ww);
+        noDataView = findViewById(R.id.no_data_view);
+//        noDataView.setNoDataImage(R.drawable.defaut);
+        noDataView.setMessage(getString(R.string.no_website));
 
         initToolbar();
     }
@@ -53,14 +59,23 @@ public class WebsiteActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))
+                && !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))) {
 
-            webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""));
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
 
+                webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""));
+
+            } else {
+
+                webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_MAR, ""));
+            }
         } else {
 
-            webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_MAR, ""));
+            webView.setVisibility(View.GONE);
+            noDataView.setVisibility(View.VISIBLE);
         }
+
     }
 
     @Override

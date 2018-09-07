@@ -41,9 +41,6 @@ dependencies {
     implementation project(':grampanchayat')
     implementation(name: 'mithsoftlib-release', ext: 'aar')
 
-    implementation 'com.google.firebase:firebase-messaging:12.0.1'
-    implementation 'com.google.firebase:firebase-core:12.0.1'
-
     // map
     implementation 'com.google.android.gms:play-services:12.0.1'
 }

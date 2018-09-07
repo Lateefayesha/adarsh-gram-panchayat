@@ -42,7 +42,7 @@
                     <EditText
                         android:id="@+id/cc_ward_no_et"
                         style="@style/MyEditTextStyle"
-                        android:hint="@string/ward_no"
+                        android:hint="@string/ward_no_comp"
                         android:inputType="textCapWords" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -54,7 +54,7 @@
                     <EditText
                         android:id="@+id/cc_place_et"
                         style="@style/MyEditTextStyle"
-                        android:hint="@string/place"
+                        android:hint="@string/place_comp"
                         android:inputType="textCapWords" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -67,8 +67,7 @@
                     android:text="@string/select_type"
                     android:textColor="@color/title_hint_text_color"
                     android:textSize="@dimen/third_text_size"
-                    android:visibility="gone" />
-                <!--android:visibility="invisible"-->
+                    android:visibility="invisible" />
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -76,8 +75,7 @@
                     android:layout_marginBottom="@dimen/padding_margin_layout_double"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
-                    android:layout_marginTop="@dimen/padding_margin_layout"
-                    android:visibility="gone">
+                    android:layout_marginTop="@dimen/padding_margin_layout">
 
                     <Spinner
                         android:id="@+id/cc_type_sp"

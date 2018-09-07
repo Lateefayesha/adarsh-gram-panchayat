@@ -5,6 +5,7 @@
     <string name="noInternet">कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा</string>
     <string name="action_settings">सेटिंग</string>
     <string name="noData">माहिती आढळली नाही</string>
+    <string name="no_website">कोणतीही वेबसाइट आढळली नाही</string>
     <string name="work_check_out">ग्रामपंचायतीचे कार्य</string>
     <string name="young_business">स्वयंरोजगार/व्यवसाय नोंदणी करिता</string>
     <string name="young_jobs"> रोजगार/नोकरी नोंदणी</string>
@@ -44,10 +45,12 @@
     <string name="submit_done">सबमिट झाला</string>
     <string name="serverError">आमच्याकडे तांत्रिक समस्या आहेत. कृपया पुन्हा प्रयत्न करा.</string>
     <string name="submit_error">सबमिट करण्यास अक्षम कृपया पुन्हा प्रयत्न करा</string>
-    <string name="ward_no">प्रभाग क्रमांक *</string>
+    <string name="ward_no_comp">प्रभाग क्रमांक *</string>
+    <string name="ward_no">प्रभाग क्रमांक</string>
     <string name="personal_information">वैयक्तिक माहिती :</string>
     <string name="compleant_details">तक्रार / अभिप्राय माहिती *</string>
-    <string name="place">स्थान *</string>
+    <string name="place_comp">स्थान *</string>
+    <string name="place">स्थान</string>
     <string name="action_change_language">भाषा बदला</string>
     <string name="action_about_appynitty">अँपीनीटी बद्दल</string>
     <string name="action_rate_app">अँप रेट करा</string>
@@ -86,7 +89,7 @@
     <string name="water_info">पिण्याच्या पाण्याची माहिती</string>
     <string name="light_info">लाइट आणि सौर लाइट बद्दल माहिती</string>
     <string name="mantanance_info">देखभाल आणि दुरुस्ती बद्दल माहिती</string>
-    <string name="select_type">प्रकार निवडा *</string>
+    <string name="select_type">तक्रार प्रकार निवडा *</string>
     <string name="select_state">राज्य निवडा</string>
     <string name="select_district">जिल्हा निवडा</string>
     <string name="select_tahsil">तहसील निवडा</string>
@@ -99,6 +102,16 @@
     <string name="complent_status_tab">माझी तक्रार स्थिती</string>
     <string name="e_payment">ई पेमेंट</string>
     <string name="booking">बुकिंग</string>
+    <string name="pending">प्रलंबित</string>
+    <string name="processing">प्रक्रिया</string>
+    <string name="resolved">निराकरण केले</string>
+    <string name="rejected">नाकारले</string>
+    <string name="date">तारीख</string>
+    <string name="grievance_id">तक्रार क्रमांक</string>
+    <string name="grievance">तक्रार</string>
+    <string name="comments">टिप्पण्या</string>
+    <string name="before">पूर्वी</string>
+    <string name="after">नंतर</string>
 
 
     <string name="plz_ent_something">कृपया काहीतरी टाइप करा</string>
@@ -117,6 +130,7 @@
     <string name="plz_ent_complent_dtl">कृपया तक्रारची माहिती टाइप करा</string>
     <string name="plz_ent_edu_quli">कृपया शैक्षणिक पात्रता टाइप करा</string>
     <string name="plz_select_state">कृपया राज्य निवडा</string>
+    <string name="plz_select_complaint_type">कृपया तक्रार प्रकार निवडा</string>
     <string name="plz_ent_suggestion">कृपया सूचना / आयडिया प्रविष्ट करा</string>
 
 
@@ -126,7 +140,5 @@
     <string name="maintenance_complent_details">बहुतांश ग्रामीण विभागात पायाभूत सुविधा जसे ग्राम पंचायत इमारत, योग्य फर्निचर, इत्यादी साधनांची व्यवस्था नसल्याने त्याचा परिणाम ग्राम पंचायत व इतर प्रशासनिक कार्यक्षमतेवर पडतो. या सर्व बाबींचा गंभीरतेने विचार करून ग्राम पंचायतीकरिता पायाभूत सुविधांचा विकास व आवश्यक देखभाल या विषयांवर ग्राम विकास आराखड्यात प्राधान्य देण्यात आले आहे.\n\nग्रामपंचायतीच्या क्षेत्रांतर्गत निर्माण झालेल्या/केलेल्या ग्राम पंचायतीच्या विविध मालमत्तेत सुधारणा करण्यासाठी आवश्यक दुरुस्ती व देखभाल करणे अशी तरतूद विकास आराखड्यात करण्यात आली आहे.\n\nग्रामपंचायत भवन नसेल अशा ठिकाणी ग्रामपंचायत भवन बांधणे किंवा असलेल्या ग्रामपंचायत भवनाचा विस्तार करणे, ग्राम पंचायत भवनास आवश्यक असलेले फर्निचर, अंगणवाडीसाठी इमारत बांधणे इत्यादी बाबींचा समावेश आहे</string>
     <string name="construction_complent_details">बहुतांश ग्रामीण विभागात नवीन व नवीनीकरणाचे बांधकाम कार्ये सुरु आहेत. बांधकाम कामे संपूर्ण काळजी व नियम ध्यानात ठेऊन करण्याचे उद्दिष्ट नगर पंचायतीचे आहे. तरीही कोणत्याही प्रकारच्या बांधकामाच्या कामासंदर्भात तक्रार किंवा काही सूचना असल्यास नागरिकांना विनंती आहे कि त्यांनी खालील मेनूद्वारे तक्रार किंवा सूचनेची नोंद करावी. ग्राह्य तक्रारींचे निवारण योग्य त्या वेळेत करण्यात येईल.</string>
 
-    <string name="title">आमचे प्रेरणास्रोत नागपूर जिल्हाचे पालकमंत्री श्री चंद्रशेखर बावनकुळे यांचा परिचय</string>
-    <string name="dscription">श्री चंद्रशेखर बावनकुळे यांचा जन्म आणि एक गैर-राजकीय पार्श्वभूमी असलेल्या शेतकरी कुटुंबात झाला. त्यांचे शिक्षण व उच्च शिक्षण नागपूरजवळील कोराडी या ठिकाणी झाले. निस्वार्थ समाजसेवा या उद्देशाने त्यांनी "छत्रपती सेना" स्थापन केली आणि १९९४ पर्यंत ते समाजसेवेत सक्रिय होते. तदनंतर त्यांनी स्वर्गीय गोपीनाथ मुंडे व नितीन गडकरी यांच्या नेतृत्वाखाली 1995 मध्ये भारतीय जनता पक्षात प्रवेश केला. १९९५ मध्ये त्यांनी भारतीय जनता युवा मोर्चाचे उपाध्यक्ष पद भूषविले. 1997 व 2002 मध्ये, श्री चंद्रशेखर बावनकुळे जिल्हा परिषद सदस्य म्हणून निवडून आले. 2004 मध्ये ते राज्य विधानसभेवर निवडून गेले. ते सध्या 2014 पर्यंत आमदार म्हणून तिसऱ्यांदा कार्यरत आहेत. 6 डिसेंबर 2014 रोजी भाजपाकडून बावनकुळे यांनी ऊर्जा, नवीन आणि नवीकरणीय ऊर्जा मंत्री म्हणून शपथ घेतली. श्री चंद्रशेखर बावनकुळे नागपूर जिल्ह्याचे विद्यमान पालकमंत्री म्हणूनही कार्यरत आहेत. महादुला नगराच्या विकासात त्यांचा सिंहाचा वाटा आहे. महादुला नागरक्षेत्रात सर्व विकास कार्ये त्यांच्या नेतृत्वाखाली राबवण्यात आली आहेत. त्यामुळेच श्री चंद्रशेखर बावनकुळे अत्यंत लोकप्रिय व सन्माननीय नेते आहेत.</string>
 
 </resources>

@@ -252,5 +252,6 @@ public class AUtils extends MsUtils {
         String DISTRICT_POJO_LIST = "DistrictPojoList";
         String TAHSIL_POJO_LIST = "TahsilPojoList";
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
+        String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
     }
 }

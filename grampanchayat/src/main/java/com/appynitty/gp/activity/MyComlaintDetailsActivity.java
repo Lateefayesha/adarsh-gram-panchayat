@@ -132,12 +132,12 @@ public class MyComlaintDetailsActivity extends BaseActivity {
     protected void initData() {
 
         if (!AUtils.isNullString(complentStatusPojo.getRefId())) {
-            refrenceIdTextView.setText("Grievance Id : " + complentStatusPojo.getRefId());
+            refrenceIdTextView.setText(getString(R.string.grievance_id) + " : " + complentStatusPojo.getRefId());
         } else {
             refrenceIdTextView.setVisibility(View.GONE);
         }
         if (!AUtils.isNullString(complentStatusPojo.getCreatedDate())) {
-            dateTextView.setText("Date : " + complentStatusPojo.getCreatedDate());
+            dateTextView.setText(getString(R.string.date) + " : " + complentStatusPojo.getCreatedDate());
         } else {
             dateTextView.setVisibility(View.GONE);
         }
@@ -148,44 +148,46 @@ public class MyComlaintDetailsActivity extends BaseActivity {
 
                 case "Pending":
                     statusTextView.setTextColor(getResources().getColor(R.color.pending));
+                    statusTextView.setText(getString(R.string.pending));
                     break;
 
                 case "Processing":
                     statusTextView.setTextColor(getResources().getColor(R.color.processing));
+                    statusTextView.setText(getString(R.string.processing));
                     break;
 
                 case "Resolved":
                     statusTextView.setTextColor(getResources().getColor(R.color.accepeted));
+                    statusTextView.setText(getString(R.string.resolved));
                     break;
 
                 case "Rejected":
                     statusTextView.setTextColor(getResources().getColor(R.color.rejeceted));
+                    statusTextView.setText(getString(R.string.rejected));
                     break;
             }
-
-            statusTextView.setText("" + complentStatusPojo.getStatus());
         } else {
             statusTextView.setVisibility(View.GONE);
         }
         if (!AUtils.isNullString(complentStatusPojo.getWardNo())) {
-            wardNoTextView.setText("Ward No : " + complentStatusPojo.getWardNo());
+            wardNoTextView.setText(getString(R.string.ward_no) + " : " + complentStatusPojo.getWardNo());
         } else {
             wardNoTextView.setVisibility(View.GONE);
         }
         if (!AUtils.isNullString(complentStatusPojo.getPlace())) {
-            loactionTextView.setText("Location : " + complentStatusPojo.getPlace());
+            loactionTextView.setText(getString(R.string.place) + " : " + complentStatusPojo.getPlace());
         } else {
             loactionTextView.setVisibility(View.GONE);
         }
 
         if (!AUtils.isNullString(complentStatusPojo.getDetails())) {
-            complaintTextView.setText("Grievance : " + complentStatusPojo.getDetails());
+            complaintTextView.setText(getString(R.string.grievance) + " : " + complentStatusPojo.getDetails());
         } else {
             complaintTextView.setVisibility(View.GONE);
         }
 
         if (!AUtils.isNullString(complentStatusPojo.getTips())) {
-            tipsTextView.setText("Tips : " + complentStatusPojo.getTips());
+            tipsTextView.setText(getString(R.string.tip) + " : " + complentStatusPojo.getTips());
         } else {
             tipsTextView.setVisibility(View.GONE);
         }

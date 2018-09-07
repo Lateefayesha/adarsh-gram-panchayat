@@ -1,6 +1,7 @@
 package com.appynitty.gp.webservices;
 
 
+import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ComplentStatusPojo;
 import com.appynitty.gp.pojo.ResultPojo;
 
@@ -36,6 +37,7 @@ public interface CompleantWebservice {
                                            @Part("createdDate") RequestBody createdDate,
                                            @Part("latlog") RequestBody latLog,
                                            @Part("userId") RequestBody userId,
+                                           @Part("typeId") RequestBody typeId,
                                            @Part MultipartBody.Part imageFile1);
 
     @Multipart
@@ -53,6 +55,7 @@ public interface CompleantWebservice {
                                                 @Part("createdDate") RequestBody createdDate,
                                                 @Part("latlog") RequestBody latLog,
                                                 @Part("userId") RequestBody userId,
+                                                @Part("typeId") RequestBody typeId,
                                                 @Part MultipartBody.Part imageFile1);
 
     @Multipart
@@ -70,6 +73,7 @@ public interface CompleantWebservice {
                                         @Part("createdDate") RequestBody createdDate,
                                         @Part("latlog") RequestBody latLog,
                                         @Part("userId") RequestBody userId,
+                                        @Part("typeId") RequestBody typeId,
                                         @Part MultipartBody.Part imageFile1);
 
     @Multipart
@@ -87,6 +91,7 @@ public interface CompleantWebservice {
                                               @Part("createdDate") RequestBody createdDate,
                                               @Part("latlog") RequestBody latLog,
                                               @Part("userId") RequestBody userId,
+                                              @Part("typeId") RequestBody typeId,
                                               @Part MultipartBody.Part imageFile1);
 
     @Multipart
@@ -104,11 +109,17 @@ public interface CompleantWebservice {
                                                @Part("createdDate") RequestBody createdDate,
                                                @Part("latlog") RequestBody latLog,
                                                @Part("userId") RequestBody userId,
+                                               @Part("typeId") RequestBody typeId,
                                                @Part MultipartBody.Part imageFile1);
 
 
     @GET("api/Get/MyComplaintStatus")
     Call<List<ComplentStatusPojo>> pullMyStatusList(@Header("appId") String appId,
                                                     @Header("userId") String userId);
+
+
+    @GET("api/Get/ComplaintType")
+    Call<List<ComplaintTypePojo>> pullTypeList(@Header("appId") String appId,
+                                               @Header("headerTypeId") String typeId);
 
 }

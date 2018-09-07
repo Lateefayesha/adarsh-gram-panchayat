@@ -20,23 +20,34 @@ import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
+import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ResultPojo;
+import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.componants.Toasty;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import quickutils.core.QuickUtils;
 
@@ -65,6 +76,9 @@ public class WaterCompleantFragment extends MyFragemtV4 {
     private CleaningCompleantPojo cleaningCompleantPojo;
     private Uri picUri;
     private String imageFilePath;
+    private TextView typeSpinnerHintTitleTextView;
+    private Spinner typeSpinner;
+    private List<ComplaintTypePojo> complaintTypePojoList;
 
     public static WaterCompleantFragment newInstance() {
 
@@ -86,6 +100,7 @@ public class WaterCompleantFragment extends MyFragemtV4 {
 
         genrateId();
         registerEvents();
+        initData();
     }
 
     private void genrateId() {
@@ -103,8 +118,65 @@ public class WaterCompleantFragment extends MyFragemtV4 {
         locationTextView = view.findViewById(R.id.cc_place_et);
         compleantDetailsTextView = view.findViewById(R.id.cc_details_et);
         captureImageView = view.findViewById(R.id.cc_cature_img);
+        typeSpinnerHintTitleTextView = view.findViewById(R.id.type_sp_title_hint);
         saveButton = view.findViewById(R.id.cc_save_btn);
+        typeSpinner = view.findViewById(R.id.cc_type_sp);
     }
+
+    private void initData() {
+
+        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + "1", null))) {
+
+            initTypeSpinner();
+            getTypeList(false, "2");
+        } else {
+            getTypeList(true, "2");
+        }
+    }
+
+    private void initTypeSpinner() {
+
+        if (AUtils.isNull(complaintTypePojoList) || complaintTypePojoList.isEmpty()) {
+            complaintTypePojoList = new ArrayList<ComplaintTypePojo>();
+        }
+
+        ComplaintTypePojo complaintTypePojo = new ComplaintTypePojo();
+        complaintTypePojo.setId("0");
+        complaintTypePojo.setDescription(context.getString(R.string.select_type));
+        complaintTypePojo.setDescriptionMar(context.getString(R.string.select_type));
+        complaintTypePojoList.add(0, complaintTypePojo);
+
+        ArrayAdapter<StatePojo> statePojoArrayAdapter = new ArrayAdapter(
+                context, R.layout.spinner_text_view, complaintTypePojoList);
+        typeSpinner.setAdapter(statePojoArrayAdapter);
+    }
+
+    private void getTypeList(boolean isShowPrgressDialog, final String typeId) {
+
+        new MyAsyncTask(context, isShowPrgressDialog, new MyAsyncTask.AsynTaskListener() {
+            public boolean isDataPull = false;
+
+            @Override
+            public void doInBackgroundOpration(SyncServer syncServer) {
+
+
+                isDataPull = syncServer.pullTypeListFromServer(typeId);
+            }
+
+            @Override
+            public void onFinished() {
+
+                Type type = new TypeToken<List<ComplaintTypePojo>>() {
+                }.getType();
+
+                complaintTypePojoList = new Gson().fromJson(
+                        QuickUtils.prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, null), type);
+
+                initTypeSpinner();
+            }
+        }).execute();
+    }
+
 
     private void registerEvents() {
 
@@ -113,6 +185,20 @@ public class WaterCompleantFragment extends MyFragemtV4 {
             public void onClick(View v) {
 
                 saveButtonOnClick();
+            }
+        });
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                ComplaintTypePojo complaintTypePojo = (ComplaintTypePojo) parent.getItemAtPosition(position);
+//                stateId = statePojo.getId();
+                typeSpinnerOnItemSelected(complaintTypePojo);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -132,6 +218,15 @@ public class WaterCompleantFragment extends MyFragemtV4 {
 
     }
 
+    private void typeSpinnerOnItemSelected(ComplaintTypePojo complaintTypePojo) {
+
+        if (complaintTypePojo.getId().equals("0")) {
+
+            typeSpinnerHintTitleTextView.setVisibility(View.INVISIBLE);
+        } else {
+            typeSpinnerHintTitleTextView.setVisibility(View.VISIBLE);
+        }
+    }
 
     private void isCameraPermissionGiven() {
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -486,6 +581,10 @@ public class WaterCompleantFragment extends MyFragemtV4 {
             Toasty.warning(context, getString(R.string.plz_ent_location), Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (typeSpinner.getSelectedItemPosition() == 0) {
+            Toasty.warning(context, context.getString(R.string.plz_select_complaint_type), Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if (AUtils.isNullString(compleantDetailsTextView.getText().toString())) {
             Toasty.warning(context, getString(R.string.plz_ent_complent_dtl), Toast.LENGTH_SHORT).show();
             return false;
@@ -529,6 +628,7 @@ public class WaterCompleantFragment extends MyFragemtV4 {
         cleaningCompleantPojo = new CleaningCompleantPojo();
         cleaningCompleantPojo.setName(nameTextView.getText().toString());
         cleaningCompleantPojo.setNumber(mobileNoTextView.getText().toString());
+        cleaningCompleantPojo.setTypeId(((ComplaintTypePojo) typeSpinner.getSelectedItem()).getId());
         if (!AUtils.isNullString(emailTextView.getText().toString())) {
             cleaningCompleantPojo.setEmail(emailTextView.getText().toString());
         }
@@ -542,6 +642,5 @@ public class WaterCompleantFragment extends MyFragemtV4 {
         cleaningCompleantPojo.setLocation(locationTextView.getText().toString());
         cleaningCompleantPojo.setDetails(compleantDetailsTextView.getText().toString());
         cleaningCompleantPojo.setImgUrl(imageFilePath);
-
     }
 }

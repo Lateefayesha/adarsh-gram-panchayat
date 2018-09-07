@@ -96,7 +96,7 @@
                 <EditText
                     android:id="@+id/tb_prabhag_kramak_et"
                     style="@style/MyEditTextStyle"
-                    android:hint="@string/ward_no"
+                    android:hint="@string/ward_no_comp"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>

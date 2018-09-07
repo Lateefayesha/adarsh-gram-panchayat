@@ -16,6 +16,7 @@ public class ContructionCompleantPojo implements Serializable {
     private String location;
     private String details;
     private String imgUrl;
+    private String typeId;
 
 
     public String getName() {
@@ -88,5 +89,13 @@ public class ContructionCompleantPojo implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 }

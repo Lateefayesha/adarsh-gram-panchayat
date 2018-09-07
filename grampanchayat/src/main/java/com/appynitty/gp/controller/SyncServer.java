@@ -6,6 +6,7 @@ import com.appynitty.gp.pojo.ApplyBusinessPojo;
 import com.appynitty.gp.pojo.ApplyJobPojo;
 import com.appynitty.gp.pojo.CertificatePojo;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
+import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ComplentStatusPojo;
 import com.appynitty.gp.pojo.ContactUs;
 import com.appynitty.gp.pojo.ContactUsPojo;
@@ -447,6 +448,7 @@ public class SyncServer {
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
             RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getLocation());
+            RequestBody typeId = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getTypeId());
             RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getDetails());
             RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
@@ -454,7 +456,7 @@ public class SyncServer {
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
             resultPojo = service.saveCleaningCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
-                    latLog, userId, imageFileMultiBody1).execute().body();
+                    latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
 
         } catch (Exception e) {
@@ -505,6 +507,7 @@ public class SyncServer {
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
             RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getLocation());
+            RequestBody typeId = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getTypeId());
             RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getDetails());
             RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
@@ -512,7 +515,7 @@ public class SyncServer {
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
             resultPojo = service.saveDrinkingWaterCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
-                    latLog, userId, imageFileMultiBody1).execute().body();
+                    latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
 
         } catch (Exception e) {
@@ -563,6 +566,7 @@ public class SyncServer {
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
             RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getLocation());
+            RequestBody typeId = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getTypeId());
             RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getDetails());
             RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
@@ -570,7 +574,7 @@ public class SyncServer {
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
             resultPojo = service.saveLightCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
-                    latLog, userId,
+                    latLog, userId, typeId,
                     imageFileMultiBody1).execute().body();
 
 
@@ -622,6 +626,7 @@ public class SyncServer {
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
             RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getLocation());
+            RequestBody typeId = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getTypeId());
             RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getDetails());
             RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
@@ -629,7 +634,7 @@ public class SyncServer {
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
             resultPojo = service.saveMaintenanceCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
-                    latLog, userId, imageFileMultiBody1).execute().body();
+                    latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
 
         } catch (Exception e) {
@@ -1010,6 +1015,7 @@ public class SyncServer {
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getWardNo());
             RequestBody location = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getLocation());
+            RequestBody typeId = null;
             RequestBody details = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getDetails());
             RequestBody languageId = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
@@ -1017,7 +1023,7 @@ public class SyncServer {
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
             resultPojo = service.saveConstructionCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
-                    latLog, userId, imageFileMultiBody1).execute().body();
+                    latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
 
         } catch (Exception e) {
@@ -1025,5 +1031,29 @@ public class SyncServer {
             e.printStackTrace();
         }
         return resultPojo;
+    }
+
+    public boolean pullTypeListFromServer(String typeId) {
+
+        List<ComplaintTypePojo> complaintTypePojoList = null;
+
+        try {
+
+            CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
+            complaintTypePojoList = service.pullTypeList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+                    typeId).execute().body();
+
+            if (!AUtils.isNull(complaintTypePojoList) && !complaintTypePojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<ComplaintTypePojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, gson.toJson(complaintTypePojoList, type));
+            }
+            return true;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
     }
 }
