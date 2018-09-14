@@ -59,7 +59,7 @@
     <string name="date">Date</string>
     <string name="grievance_id">Grievance Id</string>
     <string name="grievance">Grievance</string>
-    <string name="comments">Comments</string>
+    <string name="comments">Comments :</string>
     <string name="before">Before</string>
     <string name="after">After</string>
 
@@ -123,6 +123,7 @@
     <string name="processing">Processing</string>
     <string name="resolved">Resolved</string>
     <string name="rejected">Rejected</string>
+    <string name="details">Details</string>
 
     <string name="clening_complent_details">The citizens are requested to classify household waste in the form of wet and dry garbage. Wet waste should be collected in green and dry garbage in blue trash and thus the classified waste should be handed over to the cleaner.\n\nDry waste is polyethylene bags, plastic goods, iron goods, torn clothes, newspaper trash, paper, cardboard, rappers, etc., which can be disposed of through the disposal of the wreckage.\n\nWet Waste is the waste which includes stale food, spoiled fruit, leafy vegetables, egg shells, tea powder, waterproofing of plants, which are destroyed by nature, etc.\n\nTo make dangerous waste like hay waste, dry trash and glass to be binding, and to impose a furore on those who do not; Such instructions have been made to the Central Government by the Parliamentary Committee appointed for the management of waste. The report submitted by the committee said that the government should take initiative to restrict the garbage collection by encouraging the waste to be kept separate.</string>
     <string name="water_complent_details">Development of water resources such as removal of sludge in village pond, removal of sludge in wells, recharge of well, water tank construction and repair, installation of bore well / hand pumps and maintenance etc.  are included in village development plan.\n\nRepairing of water supply related equipment such as connecting and repair of pipelines for water, borewell / hand pump / drainage of wells, and water tanker facilities etc.\n\nIn this plan, the provision is made to supply water to the village through solar pumps where electricity supply is not available.\n\nIn order to provide clean drinking water provisions like, the use of RO technology or water purification project to maintain the drinking water supply in villages, to set up water meter devices to avoid water abuse, and to expand the water supply schemes for economically weaker sections are made in village development plan.</string>

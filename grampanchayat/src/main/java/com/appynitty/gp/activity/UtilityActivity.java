@@ -55,11 +55,10 @@ public class UtilityActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index.html");
-
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index.html");
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/np/index_marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html");
         }
     }
 

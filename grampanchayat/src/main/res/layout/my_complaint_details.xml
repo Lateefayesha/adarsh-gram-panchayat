@@ -49,15 +49,21 @@
                                 android:textSize="@dimen/primery_text_size"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/complent_details_status_tv"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:textColor="@color/colorAccent"
-                                android:textSize="@dimen/primery_text_size"
-                                android:textStyle="bold" />
+                                android:gravity="right">
 
+                                <TextView
+                                    android:id="@+id/complent_details_status_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_background"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="@dimen/primery_text_size"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
                         </LinearLayout>
 
                         <TextView
@@ -65,7 +71,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/padding_margin_layout_double"
-                            android:layout_marginTop="@dimen/padding_margin_layout_double"
                             android:textSize="@dimen/primery_text_size" />
 
                     </LinearLayout>

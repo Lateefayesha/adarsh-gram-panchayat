@@ -64,9 +64,9 @@ public class MyComlaintDetailsActivity extends BaseActivity {
 
         if (!AUtils.isNull(complentStatusPojo.getComplaintType())) {
 
-            toolbar.setTitle(complentStatusPojo.getComplaintType() + " Details");
+            toolbar.setTitle(complentStatusPojo.getComplaintType() + " " + getString(R.string.details));
         } else {
-            toolbar.setTitle("Complaint Details");
+            toolbar.setTitle(getString(R.string.details));
         }
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);

@@ -1,6 +1,10 @@
 package com.appynitty.gp.pojo;
 
+import com.appynitty.gp.utils.AUtils;
+
 import java.io.Serializable;
+
+import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 10/8/18.
@@ -15,6 +19,7 @@ public class ComplentStatusPojo implements Serializable {
     private String complaintId;
     private String place;
     private String complaintType;
+    private String complaintTypeMar;
     private String createdDate;
     private String startImage;
     private String endImage;
@@ -22,6 +27,8 @@ public class ComplentStatusPojo implements Serializable {
     private String refId;
     private String comment;
     private String type;
+    private String typeMar;
+
 
     public String getWardNo() {
         return wardNo;
@@ -80,11 +87,24 @@ public class ComplentStatusPojo implements Serializable {
     }
 
     public String getComplaintType() {
-        return complaintType;
+
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            return complaintType;
+        } else {
+            return complaintTypeMar;
+        }
     }
 
     public void setComplaintType(String complaintType) {
         this.complaintType = complaintType;
+    }
+
+    public String getComplaintTypeMar() {
+        return complaintTypeMar;
+    }
+
+    public void setComplaintTypeMar(String complaintTypeMar) {
+        this.complaintTypeMar = complaintTypeMar;
     }
 
     public String getCreatedDate() {
@@ -136,11 +156,24 @@ public class ComplentStatusPojo implements Serializable {
     }
 
     public String getType() {
-        return type;
+
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            return type;
+        } else {
+            return typeMar;
+        }
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTypeMar() {
+        return typeMar;
+    }
+
+    public void setTypeMar(String typeMar) {
+        this.typeMar = typeMar;
     }
 
     @Override
@@ -154,6 +187,7 @@ public class ComplentStatusPojo implements Serializable {
                 ", complaintId='" + complaintId + '\'' +
                 ", place='" + place + '\'' +
                 ", complaintType='" + complaintType + '\'' +
+                ", complaintTypeMar='" + complaintTypeMar + '\'' +
                 ", createdDate='" + createdDate + '\'' +
                 ", startImage='" + startImage + '\'' +
                 ", endImage='" + endImage + '\'' +
@@ -161,6 +195,7 @@ public class ComplentStatusPojo implements Serializable {
                 ", refId='" + refId + '\'' +
                 ", comment='" + comment + '\'' +
                 ", type='" + type + '\'' +
+                ", typeMar='" + typeMar + '\'' +
                 '}';
     }
 }

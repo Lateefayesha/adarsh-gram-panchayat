@@ -34,10 +34,10 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-    public static final String SERVER_URL = "http://115.115.153.117:6088/";
+//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
 
     //    Genral Constant
@@ -88,6 +88,7 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
     private static final String TAG = "AUtils";
+    public static final String TYPE = "TypeOfApplication";
 
 
     private AUtils() {
