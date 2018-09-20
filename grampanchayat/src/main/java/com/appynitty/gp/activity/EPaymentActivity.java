@@ -1,5 +1,7 @@
 package com.appynitty.gp.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -45,7 +47,7 @@ public class EPaymentActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new InternalWebViewClient());
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -91,5 +93,18 @@ public class EPaymentActivity extends BaseActivity {
     protected void onDestroy() {
         AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
         super.onDestroy();
+    }
+
+    private class InternalWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (url.indexOf("tel:") > -1) {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
