@@ -62,6 +62,14 @@
     <string name="comments">Comments :</string>
     <string name="before">Before</string>
     <string name="after">After</string>
+    <string name="upcoming_programs">Upcoming Programs</string>
+    <string name="mandi">Mandi</string>
+    <string name="event_address">Address :</string>
+    <string name="mandi_name">Mandi Name :</string>
+    <string name="mandi_date">Date :</string>
+    <string name="mandi_minimum_price">Minimum Rate</string>
+    <string name="mandi_maximum_price">Maximum Rate</string>
+    <string name="event_detail">Details :</string>
 
 
     <string name="plz_ent_something">Please enter something</string>

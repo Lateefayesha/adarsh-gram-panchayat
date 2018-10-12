@@ -113,6 +113,14 @@
     <string name="comments">टिप्पण्या :</string>
     <string name="before">पूर्वी</string>
     <string name="after">नंतर</string>
+    <string name="upcoming_programs">आगामी कार्यक्रम</string>
+    <string name="mandi">मंडी</string>
+    <string name="event_address">पत्ता :</string>
+    <string name="mandi_name">मंडीचे नाव :</string>
+    <string name="mandi_date">तारीख :</string>
+    <string name="mandi_minimum_price">न्यूनतम दर</string>
+    <string name="mandi_maximum_price">अधिकतम दर</string>
+    <string name="event_detail">तपशील :</string>
 
 
     <string name="plz_ent_something">कृपया काहीतरी टाइप करा</string>

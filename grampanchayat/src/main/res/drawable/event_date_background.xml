@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/event_date_background_color" />
+
+    <corners android:radius="@dimen/padding_margin_layout" />
+
+    <padding
+        android:bottom="@dimen/padding_margin_layout"
+        android:left="@dimen/padding_margin_layout_double"
+        android:right="@dimen/padding_margin_layout_double"
+        android:top="@dimen/padding_margin_layout" />
+
+    <!--<stroke-->
+    <!--android:width="1dp"-->
+    <!--android:color="@color/text_color_primary" />-->
+
+</shape>

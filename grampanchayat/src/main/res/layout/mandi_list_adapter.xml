@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        style="@style/MyCardView"
+        app:cardBackgroundColor="@color/card_view_background_color"
+        app:cardCornerRadius="@dimen/cardview_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_margin_layout">
+
+                    <TextView
+                        android:id="@+id/mandi_adp_variety"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:text="Wheat"
+                        android:textColor="@color/text_color_primary"
+                        android:textSize="@dimen/primery_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mandi_adp_subvariety"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:text="Grains"
+                        android:textColor="@color/text_color_tertiary"
+                        android:textSize="@dimen/secondary_text_size"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mandi_adp_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:padding="@dimen/padding_margin_layout"
+                    android:text="Rs/100kg"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/primery_text_size"
+                    android:textStyle="normal" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/layout_background_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/mandi_adp_min_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/note_adp_title"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:layout_weight="1"
+                        android:padding="@dimen/padding_margin_layout"
+                        android:text="@string/mandi_minimum_price"
+                        android:textColor="@color/text_color_tertiary"
+                        android:textSize="@dimen/secondary_text_size" />
+
+                    <TextView
+                        android:id="@+id/mandi_adp_min_price_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/note_adp_title"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_primary"
+                        android:textSize="@dimen/primery_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/padding_margin_layout"
+                    android:layout_marginBottom="@dimen/padding_margin_layout"
+                    android:background="@color/layout_background_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/mandi_adp_max_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/note_adp_title"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:layout_weight="1"
+                        android:padding="@dimen/padding_margin_layout"
+                        android:text="@string/mandi_maximum_price"
+                        android:textColor="@color/text_color_tertiary"
+                        android:textSize="@dimen/secondary_text_size" />
+
+                    <TextView
+                        android:id="@+id/mandi_adp_max_price_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/note_adp_title"
+                        android:layout_margin="@dimen/padding_margin_layout"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_primary"
+                        android:textSize="@dimen/primery_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
