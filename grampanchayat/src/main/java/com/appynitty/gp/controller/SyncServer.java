@@ -16,6 +16,7 @@ import com.appynitty.gp.pojo.DistrictPojo;
 import com.appynitty.gp.pojo.FcmIdPojo;
 import com.appynitty.gp.pojo.GalleryPojo;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
+import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.pojo.PhotoGalleryVideo;
@@ -27,6 +28,7 @@ import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.pojo.SuggestionPojo;
 import com.appynitty.gp.pojo.TahsilPojo;
 import com.appynitty.gp.pojo.TankerBookingPojo;
+import com.appynitty.gp.pojo.UpcomingEventsPojo;
 import com.appynitty.gp.pojo.WorkCheckOutPojo;
 import com.appynitty.gp.pojo.YoungBusinessPojo;
 import com.appynitty.gp.utils.AUtils;
@@ -35,6 +37,7 @@ import com.appynitty.gp.webservices.CompleantWebservice;
 import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
+import com.appynitty.gp.webservices.MandiWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
 import com.appynitty.gp.webservices.SamajBavanBookingWebservice;
 import com.appynitty.gp.webservices.SchemesWebservice;
@@ -42,6 +45,7 @@ import com.appynitty.gp.webservices.SmartGpWebservice;
 import com.appynitty.gp.webservices.SocialNetworkWebservice;
 import com.appynitty.gp.webservices.SuggestionWebservice;
 import com.appynitty.gp.webservices.TankerBookingWebservice;
+import com.appynitty.gp.webservices.UpcomingEventWebservice;
 import com.appynitty.gp.webservices.WorkCheckOutWebservice;
 import com.appynitty.gp.webservices.YoungBusinessWebservice;
 import com.appynitty.gp.webservices.YoungJobWebservice;
@@ -1056,4 +1060,62 @@ public class SyncServer {
         }
         return false;
     }
+
+    public boolean pullMandiListFromServer(String selectedDate) {
+
+        List<MandiPojo> mandiPojoList = null;
+
+        try {
+
+            MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
+            mandiPojoList = service.pullMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+                    selectedDate
+            ).execute().body();
+
+            if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean pullUpcomingEventListFromServer() {
+
+        List<UpcomingEventsPojo> upcomingEventsPojoList = null;
+
+        try {
+
+            UpcomingEventWebservice service = AUtils.createService(UpcomingEventWebservice.class, AUtils.SERVER_URL);
+            upcomingEventsPojoList = service.pullUpcomingEventList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            ).execute().body();
+
+            if (!AUtils.isNull(upcomingEventsPojoList) && !upcomingEventsPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<UpcomingEventsPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(upcomingEventsPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

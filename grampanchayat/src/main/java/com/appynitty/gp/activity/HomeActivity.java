@@ -172,6 +172,9 @@ public class HomeActivity extends AppCompatActivity {
 
         AUtils.changeLanguage(this, type);
 
+
+        initActionBar();
+
         MyFragemtV4 myFragemtV4 = (MyFragemtV4) mFragmentManager.findFragmentById(R.id.content_frame);
         myFragemtV4.updateDataForLanguage();
     }

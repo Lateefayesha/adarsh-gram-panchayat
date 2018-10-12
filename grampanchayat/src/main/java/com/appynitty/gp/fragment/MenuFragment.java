@@ -17,6 +17,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.activity.BookingActivity;
 import com.appynitty.gp.activity.EPaymentActivity;
 import com.appynitty.gp.activity.HomeActivity;
+import com.appynitty.gp.activity.MandiDetailsActivity;
 import com.appynitty.gp.activity.MapsMarkerActivity;
 import com.appynitty.gp.activity.UtilityActivity;
 import com.appynitty.gp.activity.WeatherActivity;
@@ -230,9 +231,18 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 23:
+            case 24:
                 mFragment = ContactUsFragment.newInstance();
                 break;
+
+            case 23:
+                mFragment = UpcomingEventsFragment.newInstance();
+                break;
+
+            case 25:
+                //context.startActivity(new Intent(context, MandiDetailsActivity.class));
+                break;
+
         }
 
         if (!AUtils.isNull(mFragment)) {
@@ -282,7 +292,10 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.utility), "#384259"));
 
         menuPojoList.add(new MenuPojo(getString(R.string.weather), "#4CAF50"));
-        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), "#03A9F4"));
+        menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),"#03A9F4"));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), "#8BC34A"));
+        //menuPojoList.add(new MenuPojo(getString(R.string.mandi), "#FFC107"));
 
         MainMenuAdapter mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);

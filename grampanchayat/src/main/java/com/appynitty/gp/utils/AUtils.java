@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -31,13 +32,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AUtils extends MsUtils {
 
     //    Local URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+
+    //    Relese temp URL
+//    public static final String SERVER_URL = "http://103.233.168.190:7055/";
+
+    //    Staging temp URL
+//    public static final String SERVER_URL = "http://103.233.168.190:6088/";
 
 
     //    Genral Constant
@@ -87,6 +94,9 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_TIME_FORMATE = "dd/MM/yyyy hh:mm a";
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
+    private static final String SERVER_EVENT_DATE_FORMATE = "dd-mm-yyyy";
+    private static final String MOBILE_EVENT_DATE_FORMATE = "dd MMM yy";
+
     private static final String TAG = "AUtils";
     public static final String TYPE = "TypeOfApplication";
 
@@ -133,6 +143,36 @@ public class AUtils extends MsUtils {
 
         SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_TIME_FORMATE);
         return format.format(new Date());
+    }
+
+    public static String getEventDisplayDate(String dateTime) {
+
+        SimpleDateFormat currentFormat = new SimpleDateFormat(SERVER_EVENT_DATE_FORMATE, Locale.ENGLISH);
+        SimpleDateFormat displayFormat = new SimpleDateFormat(MOBILE_EVENT_DATE_FORMATE, Locale.ENGLISH);
+
+        Date givenDate = null;
+        try {
+            givenDate = currentFormat.parse(dateTime);
+        } catch (ParseException e) {
+            givenDate = null;
+        }
+        if (!AUtils.isNull(givenDate)) {
+            return displayFormat.format(givenDate);
+        } else {
+
+            return "";
+        }
+    }
+
+    public static String getSeverDate() {
+
+        SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_FORMATE, Locale.ENGLISH);
+        return format.format(new Date());
+    }
+
+    public static String getServerDateFormate() {
+
+        return AUtils.SERVER_DATE_FORMATE;
     }
 
 
@@ -248,6 +288,8 @@ public class AUtils extends MsUtils {
         String CONTACT_US_POJO = "ConatctUsPojo";
         String CONTACT_US_MEMBER_POJO_LIST = "ContactUsMemberList";
         String CERTIFICATE_POJO_LIST = "CertificatePojoList";
+        String MANDI_POJO_LIST = "MandiPullList";
+        String UPCOMING_EVENT_POJO_LIST = "UpcomingEventPullList";
 
         String STATE_POJO_LIST = "StatePojoList";
         String DISTRICT_POJO_LIST = "DistrictPojoList";

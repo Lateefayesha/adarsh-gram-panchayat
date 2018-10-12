@@ -19,6 +19,11 @@ public class AboutAppynittyActivity extends BaseActivity {
 
     private WebView webView;
 
+
+
+
+
+
     @Override
     protected void generateId() {
 

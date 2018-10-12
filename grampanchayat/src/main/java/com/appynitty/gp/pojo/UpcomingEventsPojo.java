@@ -19,6 +19,7 @@ public class UpcomingEventsPojo {
 
     private String subject;
 
+    private String enddate;
 
     private String date;
 
@@ -96,6 +97,14 @@ public class UpcomingEventsPojo {
         this.languageId = languageId;
     }
 
+    public String getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
     @Override
     public String toString() {
         return "UpcomingEventsPojo{" +
@@ -106,6 +115,7 @@ public class UpcomingEventsPojo {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", description='" + description + '\'' +
                 ", subject='" + subject + '\'' +
+                ", enddate='" + enddate + '\'' +
                 ", date='" + date + '\'' +
                 ", languageId='" + languageId + '\'' +
                 '}';

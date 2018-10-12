@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,9 +74,12 @@ public class ConstructionCompleantFragment extends MyFragemtV4 {
     private Spinner typeSpinner;
     private List<ComplaintTypePojo> complaintTypePojoList;
 
+    private String mPreviousLanguage = "";
+    private static ConstructionCompleantFragment fragment = null;
+
     public static ConstructionCompleantFragment newInstance() {
 
-        ConstructionCompleantFragment fragment = new ConstructionCompleantFragment();
+        fragment = new ConstructionCompleantFragment();
         return fragment;
     }
 
@@ -90,6 +94,15 @@ public class ConstructionCompleantFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
+
+        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
+        }
 
         genrateId();
         registerEvents();
