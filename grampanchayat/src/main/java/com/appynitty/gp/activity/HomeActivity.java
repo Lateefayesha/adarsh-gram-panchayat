@@ -23,6 +23,7 @@ import com.appynitty.gp.fragment.MenuFragment;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyFragemtV4;
+import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
 
 import java.util.Locale;
 
@@ -58,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void ganrateId() {
-
+        new SaveFcmIdAsyncTask(this).execute();
         mFragmentManager = getSupportFragmentManager();
         loadMenuFragment();
     }
