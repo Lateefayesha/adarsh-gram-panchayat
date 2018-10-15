@@ -1,10 +1,12 @@
 package com.appynitty.gp.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appynitty.gp.pojo.ApplyBusinessPojo;
 import com.appynitty.gp.pojo.ApplyJobPojo;
 import com.appynitty.gp.pojo.CertificatePojo;
+import com.appynitty.gp.pojo.ClassificationPojo;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
 import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ComplentStatusPojo;
@@ -33,6 +35,7 @@ import com.appynitty.gp.pojo.WorkCheckOutPojo;
 import com.appynitty.gp.pojo.YoungBusinessPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.webservices.CertificateWebservice;
+import com.appynitty.gp.webservices.ClassificationWebservice;
 import com.appynitty.gp.webservices.CompleantWebservice;
 import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
@@ -447,6 +450,7 @@ public class SyncServer {
 
             RequestBody userId = null;
             if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
+                Log.e(TAG, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
                 userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
             }
 
@@ -1110,6 +1114,34 @@ public class SyncServer {
             } else {
 
                 QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean pullClassificationListFromServer() {
+
+        List<ClassificationPojo> classificationPojoList = null;
+
+        try {
+
+            ClassificationWebservice service = AUtils.createService(ClassificationWebservice.class, AUtils.SERVER_URL);
+            classificationPojoList = service.pullClassificationList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            ).execute().body();
+
+            if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(classificationPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 

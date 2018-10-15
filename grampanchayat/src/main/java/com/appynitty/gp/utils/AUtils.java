@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Environment;
+import android.os.LocaleList;
 
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
@@ -32,19 +34,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AUtils extends MsUtils {
 
     //    Local URL
-    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
-
-    //    Relese temp URL
-//    public static final String SERVER_URL = "http://103.233.168.190:7055/";
-
-    //    Staging temp URL
-//    public static final String SERVER_URL = "http://103.233.168.190:6088/";
+    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
 
     //    Genral Constant
@@ -221,7 +217,11 @@ public class AUtils extends MsUtils {
                 languageStr = "en";
                 break;
             case 2:
-                languageStr = "mi";
+                /* if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)) {
+                    languageStr = "mr";
+                } else { */
+                    languageStr = "mi";
+//                }
                 break;
             case 3:
                 languageStr = "hi";
@@ -233,6 +233,25 @@ public class AUtils extends MsUtils {
                 languageStr = "pa";
                 break;
         }
+
+       /* Locale locale = new Locale(languageStr);
+        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+        Configuration config = context.getApplicationContext().getResources().getConfiguration();
+//        config.locale = locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+        } else {
+            config.locale = locale;
+        }
+//        context.getApplicationContext().getResources().updateConfiguration(config, null);
+        context.getApplicationContext().getResources().updateConfiguration(config, context.getApplicationContext().getResources().getDisplayMetrics());
+        //        context.onConfigurationChanged(config);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.createConfigurationContext(config);
+        } else {
+            context.onConfigurationChanged(config);
+        } */
 
         Locale locale = new Locale(languageStr);
         Locale.setDefault(locale);
@@ -290,11 +309,28 @@ public class AUtils extends MsUtils {
         String CERTIFICATE_POJO_LIST = "CertificatePojoList";
         String MANDI_POJO_LIST = "MandiPullList";
         String UPCOMING_EVENT_POJO_LIST = "UpcomingEventPullList";
+        String CLASSIFICATION_POJO_LIST = "ClassificationPullList";
 
         String STATE_POJO_LIST = "StatePojoList";
         String DISTRICT_POJO_LIST = "DistrictPojoList";
         String TAHSIL_POJO_LIST = "TahsilPojoList";
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
         String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
+    }
+
+    // Color Constant
+    public interface Colour {
+
+        //    Color Constant
+        String Green = "#8BC34A";
+        String Yellow = "#FFC107";
+        String Blue = "#3949AB";
+        String Red = "#E53935";
+        String Pink = "#E91E63";
+        String SkyBlue = "#03A9F4";
+        String Gray = "#607D8B";
+        String Khakhi = "#BA9B47";
+        String Orange ="#FF9800";
+        String DarkGray = "#384259";
     }
 }

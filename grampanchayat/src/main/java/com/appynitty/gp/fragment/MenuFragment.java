@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.BookingActivity;
+import com.appynitty.gp.activity.ClassificationActivity;
 import com.appynitty.gp.activity.EPaymentActivity;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.activity.MandiDetailsActivity;
@@ -162,19 +164,19 @@ public class MenuFragment extends MyFragemtV4 {
             case 11:
                 mFragment = TankerBookingFragment.newInstance();
                 break;
-            case 12:
+            case 15:
                 mFragment = SchemesFragment.newInstance();
                 break;
-            case 13:
+            case 16:
                 mFragment = CertificateFragment.newInstance();
                 break;
-            case 14:
+            case 17:
                 mFragment = SuggestionFragment.newInstance();
                 break;
-            case 15:
+            case 18:
                 mFragment = GalleryFragment.newInstance();
                 break;
-            case 16:
+            case 19:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, EPaymentActivity.class));
@@ -183,7 +185,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 17:
+            case 20:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, BookingActivity.class));
@@ -192,10 +194,10 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 18:
+            case 21:
                 mFragment = SocialNetworkFragment.newInstance();
                 break;
-            case 19:
+            case 22:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WebsiteActivity.class));
@@ -204,7 +206,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 20:
+            case 23:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, MapsMarkerActivity.class));
@@ -213,7 +215,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 21:
+            case 24:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     startActivity(new Intent(context, UtilityActivity.class));
@@ -222,7 +224,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 22:
+            case 25:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WeatherActivity.class));
@@ -231,16 +233,20 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 24:
+            case 26:
                 mFragment = ContactUsFragment.newInstance();
                 break;
 
-            case 23:
+            case 13:
                 mFragment = UpcomingEventsFragment.newInstance();
                 break;
 
-            case 25:
-                //context.startActivity(new Intent(context, MandiDetailsActivity.class));
+            case 12:
+                context.startActivity(new Intent(context, MandiDetailsActivity.class));
+                break;
+
+            case 14:
+                context.startActivity(new Intent(context, ClassificationActivity.class));
                 break;
 
         }
@@ -258,44 +264,48 @@ public class MenuFragment extends MyFragemtV4 {
 
         List<MenuPojo> menuPojoList = new ArrayList<MenuPojo>();
 
-        menuPojoList.add(new MenuPojo(getString(R.string.our_gram_panchayat), "#8BC34A"));
-        menuPojoList.add(new MenuPojo(getString(R.string.work_check_out), "#FFC107"));
+        Log.e(TAG,getResources().getString(R.string.our_gram_panchayat));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.young_business), "#3949AB"));
-        menuPojoList.add(new MenuPojo(getString(R.string.young_jobs), "#E53935"));
+        menuPojoList.add(new MenuPojo(getString(R.string.our_gram_panchayat), AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(getString(R.string.work_check_out), AUtils.Colour.Yellow));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.cleaning_compleant), "#E91E63"));
-        menuPojoList.add(new MenuPojo(getString(R.string.water_compleant), "#03A9F4"));
+        menuPojoList.add(new MenuPojo(getString(R.string.young_business), AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(getString(R.string.young_jobs), AUtils.Colour.Red));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.light_compleant), "#607D8B"));
-        menuPojoList.add(new MenuPojo(getString(R.string.maintenance_compleant), "#BA9B47"));
+        menuPojoList.add(new MenuPojo(getString(R.string.cleaning_compleant), AUtils.Colour.Pink));
+        menuPojoList.add(new MenuPojo(getString(R.string.water_compleant), AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.construction_compleant), "#8BC34A"));
-        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), "#FF9800"));
+        menuPojoList.add(new MenuPojo(getString(R.string.light_compleant), AUtils.Colour.Gray));
+        menuPojoList.add(new MenuPojo(getString(R.string.maintenance_compleant), AUtils.Colour.Khakhi));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), "#BA9B47"));
-        menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), "#03A9F4"));
+        menuPojoList.add(new MenuPojo(getString(R.string.construction_compleant), AUtils.Colour.Orange));
+        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), AUtils.Colour.DarkGray));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.schemes), "#384259"));
-        menuPojoList.add(new MenuPojo(getString(R.string.certificate), "#8C7676"));
+        menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), "#FF9800"));
-        menuPojoList.add(new MenuPojo(getString(R.string.gallery), "#8BC34A"));
+        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow));
+        menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),AUtils.Colour.Pink));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.e_payment), "#03A9F4"));
-        menuPojoList.add(new MenuPojo(getString(R.string.booking), "#3949AB"));
+        menuPojoList.add(new MenuPojo(getString(R.string.classified), AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(getString(R.string.schemes), AUtils.Colour.Red));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.social_media), "#F44336"));
-        menuPojoList.add(new MenuPojo(getString(R.string.website), "#4CAF50"));
+        menuPojoList.add(new MenuPojo(getString(R.string.certificate), AUtils.Colour.Gray));
+        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), AUtils.Colour.Khakhi));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.map), "#FFC107"));
-        menuPojoList.add(new MenuPojo(getString(R.string.utility), "#384259"));
+        menuPojoList.add(new MenuPojo(getString(R.string.gallery), AUtils.Colour.Orange));
+        menuPojoList.add(new MenuPojo(getString(R.string.e_payment), AUtils.Colour.DarkGray));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.weather), "#4CAF50"));
-        menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),"#03A9F4"));
+        menuPojoList.add(new MenuPojo(getString(R.string.booking), AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(getString(R.string.social_media), AUtils.Colour.Yellow));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), "#8BC34A"));
-        //menuPojoList.add(new MenuPojo(getString(R.string.mandi), "#FFC107"));
+        menuPojoList.add(new MenuPojo(getString(R.string.website), AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(getString(R.string.map), AUtils.Colour.Red));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.utility), AUtils.Colour.Pink));
+        menuPojoList.add(new MenuPojo(getString(R.string.weather), AUtils.Colour.SkyBlue));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), AUtils.Colour.Gray));
 
         MainMenuAdapter mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);

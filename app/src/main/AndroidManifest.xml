@@ -121,6 +121,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name="com.appynitty.gp.activity.ClassificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service android:name="com.appynitty.gp.services.LocationMonitoringService" />
 
         <meta-data

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/classification_data_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_margin_layout"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.mithsoft.lib.viewpager.AutoScrollViewPager
+                    android:id="@+id/viewPagerLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <com.mithsoft.lib.viewpager.AutoScrollViewPager
+                        android:id="@+id/viewPagerMedium_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="138dp"
+                        android:layout_weight="50" />
+
+                    <com.mithsoft.lib.viewpager.AutoScrollViewPager
+                        android:id="@+id/viewPagerMedium_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="138dp"
+                        android:layout_weight="50" />
+
+
+                </LinearLayout>
+
+                <com.mithsoft.lib.viewpager.AutoScrollViewPager
+                    android:id="@+id/viewPagerLarge_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+
+
+                <com.mithsoft.lib.viewpager.AutoScrollViewPager
+                    android:id="@+id/viewPagerSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+
+            </LinearLayout>
+
+
+
+            <!-- <com.mithsoft.lib.components.MyNoDataView
+                android:id="@+id/classification_no_data_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" /> -->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.mithsoft.lib.componants.MyNoDataView
+        android:id="@+id/classification_no_data_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
