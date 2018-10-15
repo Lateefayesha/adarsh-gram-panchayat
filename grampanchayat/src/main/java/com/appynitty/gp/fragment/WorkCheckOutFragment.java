@@ -112,15 +112,15 @@ public class WorkCheckOutFragment extends MyFragemtV4 {
                 QuickUtils.prefs.getString(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
         if (!AUtils.isNull(workCheckOutPojoList) && !workCheckOutPojoList.isEmpty()) {
-
             noDataView.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             workChechOutListAdapter = new WorkChechOutListAdapter(context, workCheckOutPojoList);
             listView.setAdapter(workChechOutListAdapter);
 
             getDataFromServer(false);
 
         } else {
-
+            listView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
@@ -136,7 +136,6 @@ public class WorkCheckOutFragment extends MyFragemtV4 {
 
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
-
 
                 isDataPull = syncServer.pullWorkCheckOutListFromServer();
             }
