@@ -119,28 +119,29 @@ public class UpcomingEventsFragment extends MyFragemtV4 {
 
         if (!AUtils.isNull(upcomingEventsPojoList) && !upcomingEventsPojoList.isEmpty()) {
 
-            for(int i = 0; i < upcomingEventsPojoList.size(); i++) {
-                if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(upcomingEventsPojoList.get(i).getLanguageId()))
-                {
-                    updatedUpcomingEventsPojoList.add(upcomingEventsPojoList.get(i));
-                }
-            }
-            if(!AUtils.isNull(updatedUpcomingEventsPojoList) && !updatedUpcomingEventsPojoList.isEmpty()) {
+//            for(int i = 0; i < upcomingEventsPojoList.size(); i++) {
+//                if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(upcomingEventsPojoList.get(i).getLanguageId()))
+//                {
+//                    updatedUpcomingEventsPojoList.add(upcomingEventsPojoList.get(i));
+//                }
+//            }
+//            if(!AUtils.isNull(updatedUpcomingEventsPojoList) && !updatedUpcomingEventsPojoList.isEmpty()) {
                 noDataView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
-                upcomingEventsListAdapter = new UpcomingEventsListAdapter(context, updatedUpcomingEventsPojoList);
+                upcomingEventsListAdapter = new UpcomingEventsListAdapter(context, upcomingEventsPojoList);
                 listView.setAdapter(upcomingEventsListAdapter);
-            }
-            else
-            {
-                noDataView.setVisibility(View.VISIBLE);
-                listView.setVisibility(View.GONE);
-            }
+//            }
+//            else
+//            {
+//                noDataView.setVisibility(View.VISIBLE);
+//                listView.setVisibility(View.GONE);
+//            }
 
             getDataFromServer(false);
 
         } else {
 
+            listView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
@@ -172,25 +173,25 @@ public class UpcomingEventsFragment extends MyFragemtV4 {
 
                 if (!AUtils.isNull(upcomingEventsPojoList) && !upcomingEventsPojoList.isEmpty()) {
 
-                    for(int i = 0; i < upcomingEventsPojoList.size(); i++) {
-                        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(upcomingEventsPojoList.get(i).getLanguageId()))
-                        {
-                            updatedUpcomingEventsPojoList.add(upcomingEventsPojoList.get(i));
-                        }
-                    }
+//                    for(int i = 0; i < upcomingEventsPojoList.size(); i++) {
+//                        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(upcomingEventsPojoList.get(i).getLanguageId()))
+//                        {
+//                            updatedUpcomingEventsPojoList.add(upcomingEventsPojoList.get(i));
+//                        }
+//                    }
 
-                    if(!AUtils.isNull(updatedUpcomingEventsPojoList) && !updatedUpcomingEventsPojoList.isEmpty()) {
+//                    if(!AUtils.isNull(updatedUpcomingEventsPojoList) && !updatedUpcomingEventsPojoList.isEmpty()) {
                         noDataView.setVisibility(View.GONE);
                         listView.setVisibility(View.VISIBLE);
-                        upcomingEventsListAdapter = new UpcomingEventsListAdapter(context, updatedUpcomingEventsPojoList);
+                        upcomingEventsListAdapter = new UpcomingEventsListAdapter(context, upcomingEventsPojoList);
                         listView.setAdapter(upcomingEventsListAdapter);
-                    }
+//                    }
 
-                    else
-                    {
-                        noDataView.setVisibility(View.VISIBLE);
-                        listView.setVisibility(View.GONE);
-                    }
+//                    else
+//                    {
+//                        noDataView.setVisibility(View.VISIBLE);
+//                        listView.setVisibility(View.GONE);
+//                    }
                 }
 
                 if (swipeRefreshLayout.isRefreshing()) {
