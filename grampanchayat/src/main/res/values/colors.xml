@@ -29,7 +29,7 @@
     <!--<color name="text_color_secondary">#1A2113</color>-->
     <color name="text_color_secondary">#363636</color>
     <color name="text_color_tertiary">#616161</color>
-    <color name="event_date_background_color">#FF8A80</color>
+    <color name="event_date_background_color">#f7941d</color>
     <color name="button_text_color">#FFFFFF</color>
     <color name="accepeted">#9CCC65</color>
     <color name="pending">#D3B12B</color>
