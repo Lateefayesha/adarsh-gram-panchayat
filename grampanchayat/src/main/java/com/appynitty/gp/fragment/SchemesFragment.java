@@ -127,13 +127,14 @@ public class SchemesFragment extends MyFragemtV4 {
             });
 
             noDataView.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             sechemesListAdapter = new SechemesListAdapter(context, schemesPojoList);
             listView.setAdapter(sechemesListAdapter);
 
             getDataFromServer(false);
 
         } else {
-
+            listView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
@@ -173,6 +174,7 @@ public class SchemesFragment extends MyFragemtV4 {
                     });
 
                     noDataView.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
                     sechemesListAdapter = new SechemesListAdapter(context, schemesPojoList);
                     listView.setAdapter(sechemesListAdapter);
                 }
