@@ -138,13 +138,14 @@ public class YoungBusinessFragment extends MyFragemtV4 {
         if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
 
             noDataView.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             youngBusinessListAdapter = new YoungBusinessListAdapter(context, youngBusinessPojoList);
             listView.setAdapter(youngBusinessListAdapter);
 
             getDataFromServer(false);
 
         } else {
-
+            listView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
@@ -177,6 +178,7 @@ public class YoungBusinessFragment extends MyFragemtV4 {
                 if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
 
                     noDataView.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
                     youngBusinessListAdapter = new YoungBusinessListAdapter(context, youngBusinessPojoList);
                     listView.setAdapter(youngBusinessListAdapter);
                 }
