@@ -90,7 +90,7 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_TIME_FORMATE = "dd/MM/yyyy hh:mm a";
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
-    private static final String SERVER_EVENT_DATE_FORMATE = "dd-mm-yyyy";
+    private static final String SERVER_EVENT_DATE_FORMATE = "dd-MM-yyyy";
     private static final String MOBILE_EVENT_DATE_FORMATE = "dd MMM yy";
 
     private static final String TAG = "AUtils";
