@@ -152,6 +152,7 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
 
                 if (!AUtils.isNull(ourGramPanchayatList) && !ourGramPanchayatList.isEmpty()) {
 
+                    listView.setVisibility(View.VISIBLE);
                     noDataView.setVisibility(View.GONE);
                     ourGramPanchayatListAdapter = new OurGramPanchayatListAdapter(context, ourGramPanchayatList);
                     listView.setAdapter(ourGramPanchayatListAdapter);

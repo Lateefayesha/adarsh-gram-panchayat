@@ -12,6 +12,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
+import com.mithsoft.lib.componants.MyProgressDialog;
 
 import quickutils.core.QuickUtils;
 
@@ -22,6 +23,7 @@ import quickutils.core.QuickUtils;
 public class BookingActivity extends BaseActivity {
 
     private WebView webView;
+    private MyProgressDialog myProgressDialog;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -34,6 +36,7 @@ public class BookingActivity extends BaseActivity {
 
         setContentView(R.layout.certificate_activity);
         webView = findViewById(R.id.aa_ww);
+        myProgressDialog = new MyProgressDialog(BookingActivity.this, R.drawable.progress_bar, false);
 
         initToolbar();
     }
@@ -55,7 +58,15 @@ public class BookingActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebViewClient());
+        myProgressDialog.show();
+        webView.setWebViewClient(new InternalWebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                myProgressDialog.hide();
+            }
+        });
+
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -63,7 +74,7 @@ public class BookingActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
             webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html");
 

@@ -151,6 +151,7 @@ public class WorkCheckOutFragment extends MyFragemtV4 {
 
                 if (!AUtils.isNull(workCheckOutPojoList) && !workCheckOutPojoList.isEmpty()) {
 
+                    listView.setVisibility(View.VISIBLE);
                     noDataView.setVisibility(View.GONE);
                     workChechOutListAdapter = new WorkChechOutListAdapter(context, workCheckOutPojoList);
                     listView.setAdapter(workChechOutListAdapter);

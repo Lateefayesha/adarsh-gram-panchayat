@@ -10,6 +10,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
+import com.mithsoft.lib.componants.MyProgressDialog;
 
 import quickutils.core.QuickUtils;
 
@@ -19,6 +20,7 @@ import quickutils.core.QuickUtils;
 public class WeatherActivity extends BaseActivity {
 
     private WebView webView;
+    private MyProgressDialog myProgressDialog;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -31,6 +33,7 @@ public class WeatherActivity extends BaseActivity {
 
         setContentView(R.layout.certificate_activity);
         webView = findViewById(R.id.aa_ww);
+        myProgressDialog = new MyProgressDialog(WeatherActivity.this, R.drawable.progress_bar, false);
 
         initToolbar();
     }
@@ -52,7 +55,14 @@ public class WeatherActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new WebViewClient());
+        myProgressDialog.show();
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                myProgressDialog.hide();
+            }
+        });
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
