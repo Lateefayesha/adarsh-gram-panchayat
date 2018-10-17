@@ -3,15 +3,13 @@ package com.appynitty.gp.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Environment;
-import android.os.LocaleList;
 
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,10 +35,10 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
+    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
 
     //    Genral Constant
@@ -81,6 +79,7 @@ public class AUtils extends MsUtils {
     public static final String GP_WEATHER_NAME = "GPWeatherScreenName";
     public static final String WEBSITE_ENG = "Website";
     public static final String WEBSITE_MAR = "WebsiteMarathi";
+    public static final String DEFAULT_LANGUAGE_NAME = "mi";
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
@@ -95,6 +94,10 @@ public class AUtils extends MsUtils {
 
     private static final String TAG = "AUtils";
     public static final String TYPE = "TypeOfApplication";
+
+    public static final String LANGUAGE_NAME = "LanguageName";
+
+    public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
 
 
     private AUtils() {
@@ -143,8 +146,8 @@ public class AUtils extends MsUtils {
 
     public static String getEventDisplayDate(String dateTime) {
 
-        SimpleDateFormat currentFormat = new SimpleDateFormat(SERVER_EVENT_DATE_FORMATE, Locale.ENGLISH);
-        SimpleDateFormat displayFormat = new SimpleDateFormat(MOBILE_EVENT_DATE_FORMATE, Locale.ENGLISH);
+        DateFormat currentFormat = new SimpleDateFormat(SERVER_EVENT_DATE_FORMATE, Locale.ENGLISH);
+        DateFormat displayFormat = new SimpleDateFormat(MOBILE_EVENT_DATE_FORMATE, Locale.ENGLISH);
 
         Date givenDate = null;
         try {
@@ -215,50 +218,28 @@ public class AUtils extends MsUtils {
         switch (languageId) {
             case 1:
                 languageStr = "en";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 2:
-                /* if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)) {
-                    languageStr = "mr";
-                } else { */
-                    languageStr = "mi";
-//                }
+                languageStr = "mi";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 3:
                 languageStr = "hi";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 4:
                 languageStr = "gu";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 5:
                 languageStr = "pa";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
         }
 
-       /* Locale locale = new Locale(languageStr);
-        Locale.setDefault(locale);
-//        Configuration config = new Configuration();
-        Configuration config = context.getApplicationContext().getResources().getConfiguration();
-//        config.locale = locale;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.setLocales(new LocaleList(locale));
-        } else {
-            config.locale = locale;
-        }
-//        context.getApplicationContext().getResources().updateConfiguration(config, null);
-        context.getApplicationContext().getResources().updateConfiguration(config, context.getApplicationContext().getResources().getDisplayMetrics());
-        //        context.onConfigurationChanged(config);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            context.createConfigurationContext(config);
-        } else {
-            context.onConfigurationChanged(config);
-        } */
-
-        Locale locale = new Locale(languageStr);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
-        context.onConfigurationChanged(config);
+        LocaleHelper.setLocale(context, languageStr);
+        ((Activity)context).recreate();
 
     }
 
