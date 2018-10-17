@@ -1,4 +1,4 @@
-package com.appynitty.gp.activity;
+package com.appynitty.gp.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
