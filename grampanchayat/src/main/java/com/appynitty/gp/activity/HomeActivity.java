@@ -3,12 +3,9 @@ package com.appynitty.gp.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -22,10 +19,9 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.fragment.MenuFragment;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyFragemtV4;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
-
-import java.util.Locale;
 
 import quickutils.core.QuickUtils;
 
@@ -51,6 +47,12 @@ public class HomeActivity extends AppCompatActivity {
         initComponants();
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     public void initComponants() {
@@ -153,19 +155,7 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*@Override
-    protected void attachBaseContext(Context base) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Configuration config = base.getResources().getConfiguration();
-            //Update your config with the Locale i. e. saved in SharedPreferences
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(base);
-            Locale locale = new Locale("mi");
-            Locale.setDefault(locale);
-            config.setLocale(locale);
-            base = base.createConfigurationContext(config);
-        }
-        super.attachBaseContext(base);
-    } */
+
 
     private void changeLanguageOnClick() {
 

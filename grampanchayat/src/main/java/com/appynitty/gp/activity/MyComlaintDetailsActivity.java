@@ -1,5 +1,6 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.ComplentStatusPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.bumptech.glide.Glide;
 import com.mithsoft.lib.activity.BaseActivity;
 
@@ -36,6 +38,12 @@ public class MyComlaintDetailsActivity extends BaseActivity {
     private TextView commentsTextView;
     private ImageView startImageView;
     private ImageView endImageView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {

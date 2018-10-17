@@ -1,5 +1,6 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.view.WindowManager;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
 
 import quickutils.core.QuickUtils;
@@ -19,6 +21,12 @@ import quickutils.core.QuickUtils;
  */
 
 public class SmartSplashScreenActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

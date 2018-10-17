@@ -1,10 +1,12 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,6 +20,12 @@ import quickutils.core.QuickUtils;
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
  */
 public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

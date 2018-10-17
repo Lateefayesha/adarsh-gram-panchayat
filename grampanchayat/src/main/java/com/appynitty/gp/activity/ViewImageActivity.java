@@ -1,5 +1,6 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.ViewImagePagerAdapter;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
 import com.mithsoft.lib.viewpager.ViewPagerTransformer;
 
@@ -26,6 +28,12 @@ public class ViewImageActivity extends BaseActivity {
     private ViewPager viewImgViewPager;
     private List<PhotoGalleryImages> imagesGalleryPojoList;
     private int imagePosition;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {

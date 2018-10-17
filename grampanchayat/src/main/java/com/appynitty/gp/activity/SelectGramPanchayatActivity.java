@@ -1,6 +1,7 @@
 package com.appynitty.gp.activity;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.GramPanchayatListAdapter;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.activity.BaseActivity;
@@ -36,6 +38,12 @@ public class SelectGramPanchayatActivity extends BaseActivity {
     private GramPanchayatListAdapter gramPanchayatListAdapter;
     private ListView listView;
     private MyNoDataView noDataView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {

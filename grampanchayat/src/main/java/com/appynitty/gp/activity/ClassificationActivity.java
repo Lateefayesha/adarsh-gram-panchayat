@@ -1,5 +1,6 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.ClassificationPojo;
 import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +60,11 @@ public class ClassificationActivity extends BaseActivity {
 
     private SwipeRefreshLayout swipeRefreshLayout = null;
 
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {

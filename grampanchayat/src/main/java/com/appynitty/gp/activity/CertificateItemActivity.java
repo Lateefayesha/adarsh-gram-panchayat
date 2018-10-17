@@ -2,6 +2,7 @@ package com.appynitty.gp.activity;
 
 import android.Manifest;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
 import com.mithsoft.lib.componants.Toasty;
 
@@ -36,6 +38,12 @@ public class CertificateItemActivity extends BaseActivity {
     private String userAgent1;
     private String url1;
     private String title;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {

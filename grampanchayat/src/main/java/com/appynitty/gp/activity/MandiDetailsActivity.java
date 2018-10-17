@@ -1,6 +1,7 @@
 package com.appynitty.gp.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import com.appynitty.gp.adapter.MandiListAdapter;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
 import com.google.gson.Gson;
@@ -57,6 +59,12 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
     private String selecetedDate;
     private SimpleDateFormat format;
     private Calendar currentCalender;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
 
     @Override
     protected void generateId() {
