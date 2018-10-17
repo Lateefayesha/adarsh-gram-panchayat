@@ -52,6 +52,6 @@ public class ClassificationAdapter extends PagerAdapter {
     }
 
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((RelativeLayout)object);
+        container.removeView((LinearLayout)object);
     }
 }

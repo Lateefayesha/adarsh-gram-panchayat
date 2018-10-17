@@ -1,10 +1,15 @@
 package com.appynitty.gp.activity;
 
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.ClassificationAdapter;
@@ -17,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.activity.BaseActivity;
 import com.mithsoft.lib.componants.MyNoDataView;
+import com.mithsoft.lib.componants.Toasty;
 import com.mithsoft.lib.viewpager.AutoScrollViewPager;
 import com.mithsoft.lib.viewpager.ViewPagerTransformer;
 
@@ -46,9 +52,11 @@ public class ClassificationActivity extends BaseActivity {
 
     private MyNoDataView noDataView = null;
 
-    private ScrollView recordDataView = null;
+    private LinearLayout recordDataView = null;
 
     private HashMap<String,List<String>> mRecordHashMap = null;
+
+    private SwipeRefreshLayout swipeRefreshLayout = null;
 
 
     @Override
@@ -71,12 +79,19 @@ public class ClassificationActivity extends BaseActivity {
 
         recordDataView = findViewById(R.id.classification_data_view);
 
+        swipeRefreshLayout = findViewById(R.id.classification_content_refresh);
+
         initToolbar();
     }
 
     @Override
     protected void registerEvents() {
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromServer(false);
+            }
+        });
     }
 
     @Override
@@ -103,6 +118,8 @@ public class ClassificationActivity extends BaseActivity {
             initMedium2Scroll(mRecordHashMap);
             initLarge2Scroll(mRecordHashMap);
             initSmallScroll(mRecordHashMap);
+
+            getDataFromServer(false);
         } else {
 
             makeViewVisible(false);
@@ -143,11 +160,11 @@ public class ClassificationActivity extends BaseActivity {
     {
         List<String> LargeData = Data.get("Large1");
 
-        Collections.shuffle(LargeData, new Random());
-
         ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData);
         autoScrollViewPagerLarge.setAdapter(pagerAdapter);
 
+        int height = autoScrollViewPagerLarge.getHeight();
+        Log.e(TAG, String.valueOf(height));
 //        autoScrollViewPager.setPageTransformer(false, new FadePageTransformer());
         autoScrollViewPagerLarge.setPageTransformer(true, new ViewPagerTransformer(ViewPagerTransformer.TransformType.DEPTH));
         autoScrollViewPagerLarge.setOffscreenPageLimit(pagerAdapter.getCount());
@@ -158,8 +175,6 @@ public class ClassificationActivity extends BaseActivity {
     private void initMedium1Scroll(HashMap<String,List<String>> Data)
     {
         List<String> MediumData = Data.get("Medium1");
-
-        Collections.shuffle(MediumData, new Random());
 
         ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData);
         autoScrollViewPagerMedium1.setAdapter(pagerAdapter);
@@ -176,8 +191,6 @@ public class ClassificationActivity extends BaseActivity {
 
         List<String> MediumData = Data.get("Medium2");
 
-        Collections.shuffle(MediumData, new Random());
-
         ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData);
         autoScrollViewPagerMedium2.setAdapter(pagerAdapter);
 
@@ -193,8 +206,6 @@ public class ClassificationActivity extends BaseActivity {
 
         List<String> LargeData = Data.get("Large2");
 
-        Collections.shuffle(LargeData, new Random());
-
         ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData);
         autoScrollViewPagerLarge2.setAdapter(pagerAdapter);
 
@@ -209,8 +220,6 @@ public class ClassificationActivity extends BaseActivity {
     {
 
         List<String> SmallData = Data.get("Small");
-
-        Collections.shuffle(SmallData, new Random());
 
         ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, SmallData);
         autoScrollViewPagerSmall.setAdapter(pagerAdapter);
@@ -258,20 +267,23 @@ public class ClassificationActivity extends BaseActivity {
         {
             switch (mList.get(i).getType())
             {
-                case "Large1":
-                    mLarge1Url.add(mList.get(i).getImage());
+                case "Large":
+                    if(i%2 == 0) {
+                        mLarge1Url.add(mList.get(i).getImage());
+                    }
+                    else
+                    {
+                        mLarge2Url.add(mList.get(i).getImage());
+                    }
                     break;
 
-                case "Large2":
-                    mLarge2Url.add(mList.get(i).getImage());
-                    break;
-
-                case "Medium1":
-                    mMedium1Url.add(mList.get(i).getImage());
-                    break;
-
-                case "Medium2":
-                    mMedium2Url.add(mList.get(i).getImage());
+                case "Medium":
+                    if(i%2 == 0) {
+                        mMedium1Url.add(mList.get(i).getImage());
+                    }
+                    else {
+                        mMedium2Url.add(mList.get(i).getImage());
+                    }
                     break;
 
                 case "Small":
@@ -304,17 +316,17 @@ public class ClassificationActivity extends BaseActivity {
             @Override
             public void onFinished() {
 
-                Type type = new TypeToken<List<MandiPojo>>() {
+                Type type = new TypeToken<List<ClassificationPojo>>() {
                 }.getType();
 
                 classificationPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        QuickUtils.prefs.getString(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
                 if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
 
                     makeViewVisible(true);
 
-                    prepareHashMap(classificationPojoList);
+                    mRecordHashMap = prepareHashMap(classificationPojoList);
 
                     initLargeScroll(mRecordHashMap);
                     initMedium1Scroll(mRecordHashMap);
@@ -325,6 +337,12 @@ public class ClassificationActivity extends BaseActivity {
                 else {
 
                     makeViewVisible(false);
+                }
+
+                if (swipeRefreshLayout.isRefreshing()) {
+
+                    Toasty.success(ClassificationActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false);
                 }
 
             }
