@@ -3,6 +3,8 @@ package com.appynitty.gp.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Environment;
 
 import com.google.gson.Gson;
@@ -238,8 +240,16 @@ public class AUtils extends MsUtils {
                 break;
         }
 
-        LocaleHelper.setLocale(context, languageStr);
-        ((Activity)context).recreate();
+        Locale locale = new Locale(languageStr);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Locale.setDefault(Locale.Category.DISPLAY, locale);
+        } else {
+            Locale.setDefault(locale);
+        }
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getApplicationContext().getResources().updateConfiguration(config, null);
+        context.onConfigurationChanged(config);
 
     }
 
