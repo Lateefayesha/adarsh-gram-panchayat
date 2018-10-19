@@ -74,9 +74,9 @@ public class UtilityActivity extends BaseActivity {
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, "1"));
         } else {
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, "1"));
         }
     }
 
