@@ -74,11 +74,9 @@ public class UtilityActivity extends BaseActivity {
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         } else {
-
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + QuickUtils.prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
@@ -116,10 +114,13 @@ public class UtilityActivity extends BaseActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (url.indexOf("tel:") > -1) {
+            if (url.contains("tel:")) {
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
                 return true;
-            } else {
+            }if (url.contains("play.google.com")) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                return true;
+            }else {
                 return false;
             }
         }

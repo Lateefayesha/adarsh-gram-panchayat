@@ -59,13 +59,7 @@ public class EPaymentActivity extends BaseActivity {
     protected void initData() {
 
         myProgressDialog.show();
-        webView.setWebViewClient(new InternalWebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                myProgressDialog.hide();
-            }
-        });
+        webView.setWebViewClient(new InternalWebViewClient());
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -75,11 +69,11 @@ public class EPaymentActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
@@ -123,6 +117,12 @@ public class EPaymentActivity extends BaseActivity {
             } else {
                 return false;
             }
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            myProgressDialog.hide();
         }
     }
 }

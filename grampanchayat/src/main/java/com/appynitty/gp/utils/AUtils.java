@@ -37,10 +37,10 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-    public static final String SERVER_URL = "http://115.115.153.117:6088/";
+//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+    public static final String SERVER_URL = "http://115.115.153.117:7055/";
 
 
     //    Genral Constant

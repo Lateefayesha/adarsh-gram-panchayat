@@ -56,13 +56,7 @@ public class WeatherActivity extends BaseActivity {
     protected void initData() {
 
         myProgressDialog.show();
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                myProgressDialog.hide();
-            }
-        });
+        webView.setWebViewClient(new InternalWebViewClient());
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -116,5 +110,14 @@ public class WeatherActivity extends BaseActivity {
     protected void onDestroy() {
         AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
         super.onDestroy();
+    }
+
+    private class InternalWebViewClient extends WebViewClient{
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            myProgressDialog.hide();
+        }
     }
 }

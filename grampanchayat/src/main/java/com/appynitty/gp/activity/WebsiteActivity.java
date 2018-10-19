@@ -70,7 +70,7 @@ public class WebsiteActivity extends BaseActivity {
         if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))
                 && !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))) {
 
-            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
                 webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""));
 

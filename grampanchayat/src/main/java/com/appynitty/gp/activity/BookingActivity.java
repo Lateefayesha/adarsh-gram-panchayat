@@ -59,13 +59,7 @@ public class BookingActivity extends BaseActivity {
     protected void initData() {
 
         myProgressDialog.show();
-        webView.setWebViewClient(new InternalWebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                myProgressDialog.hide();
-            }
-        });
+        webView.setWebViewClient(new InternalWebViewClient());
 
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
@@ -76,11 +70,11 @@ public class BookingActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
@@ -124,6 +118,12 @@ public class BookingActivity extends BaseActivity {
             } else {
                 return false;
             }
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            myProgressDialog.hide();
         }
     }
 }
