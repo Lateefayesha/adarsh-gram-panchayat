@@ -1,18 +1,15 @@
 package com.appynitty.gp.activity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.InternalWebviewClient;
 import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.MyProgressDialog;
 
 import quickutils.core.QuickUtils;
 
@@ -23,7 +20,6 @@ import quickutils.core.QuickUtils;
 public class EPaymentActivity extends BaseActivity {
 
     private WebView webView;
-    private MyProgressDialog myProgressDialog;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -36,7 +32,6 @@ public class EPaymentActivity extends BaseActivity {
 
         setContentView(R.layout.certificate_activity);
         webView = findViewById(R.id.aa_ww);
-        myProgressDialog = new MyProgressDialog(EPaymentActivity.this, R.drawable.progress_bar, false);
 
         initToolbar();
     }
@@ -58,14 +53,7 @@ public class EPaymentActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        myProgressDialog.show();
-        webView.setWebViewClient(new InternalWebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                myProgressDialog.hide();
-            }
-        });
+        webView.setWebViewClient(new InternalWebviewClient(EPaymentActivity.this, true));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -113,16 +101,4 @@ public class EPaymentActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    private class InternalWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (url.indexOf("tel:") > -1) {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
 }
