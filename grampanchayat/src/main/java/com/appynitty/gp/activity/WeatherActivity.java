@@ -31,7 +31,6 @@ public class WeatherActivity extends BaseActivity {
 
         setContentView(R.layout.certificate_activity);
         webView = findViewById(R.id.aa_ww);
-        myProgressDialog = new MyProgressDialog(WeatherActivity.this, R.drawable.progress_bar, false);
 
         initToolbar();
     }
