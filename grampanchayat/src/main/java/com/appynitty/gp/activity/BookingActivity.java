@@ -10,6 +10,7 @@ import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.InternalWebviewClient;
 import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
+import com.mithsoft.lib.componants.MyProgressDialog;
 
 import quickutils.core.QuickUtils;
 
