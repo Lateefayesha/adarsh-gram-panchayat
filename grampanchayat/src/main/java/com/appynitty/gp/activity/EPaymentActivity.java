@@ -63,11 +63,11 @@ public class EPaymentActivity extends BaseActivity {
 
         if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
