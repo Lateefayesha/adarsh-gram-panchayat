@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.fragment.MenuFragment;
+import com.appynitty.gp.fragment.MenuFragmentLess;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
@@ -82,7 +83,11 @@ public class HomeActivity extends AppCompatActivity {
 //            QuickUtils.prefs.save(AUtils.FCM_NOTI, true);
 //        }
 
+        /* For Older Apps till 19-10-2018 */
+//        mFragment = new MenuFragmentLess();
+        /* For Newer Apps after 19-10-2018 */
         mFragment = new MenuFragment();
+
 //        mFragment.setArguments(bundle);
 
         mFragmentManager.popBackStack(null,

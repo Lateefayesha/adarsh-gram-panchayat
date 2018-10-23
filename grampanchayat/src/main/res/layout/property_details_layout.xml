@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/padding_margin_layout">
+
+    <Button
+        android:id="@+id/online_payment"
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="@dimen/padding_margin_layout"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:text="@string/property_online_payment"
+        android:textSize="@dimen/button_text_size"/>
+
+    <android.support.v7.widget.CardView
+        style="@style/MyCardView"
+        android:padding="0dp"
+        android:layout_above="@id/online_payment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MyTextViewStyle"
+                android:layout_margin="0dp"
+                android:background="@drawable/property_title_background"
+                android:text="@string/details"
+                android:textColor="@color/button_text_color"
+                android:textSize="@dimen/primery_text_size"
+                android:padding="@dimen/padding_margin_layout"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:layout_marginBottom="@dimen/padding_margin_layout">
+
+                    <TextView
+                        android:id="@+id/property_lbl_house_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_house_number"
+                        android:textColor="@color/text_blue_dark"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_house_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_house_number"
+                        android:layout_alignBaseline="@id/property_lbl_house_number"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_assessment_date"
+                        android:layout_below="@id/property_lbl_house_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_assessment_date"
+                        android:textColor="@color/text_blue_dark"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_assessment_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_assessment_date"
+                        android:layout_alignBaseline="@id/property_lbl_assessment_date"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_form_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_form_no"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_assessment_date"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_form_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_form_no"
+                        android:layout_alignBaseline="@id/property_lbl_form_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_ward_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_ward_name"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_form_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_ward_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_ward_name"
+                        android:layout_alignBaseline="@id/property_lbl_ward_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_mohalla_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_mohalla_name"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_ward_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_mohalla_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_mohalla_name"
+                        android:layout_alignBaseline="@id/property_lbl_mohalla_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_ownership_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_ownership_type"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_mohalla_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_ownership_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_ownership_type"
+                        android:layout_alignBaseline="@id/property_lbl_ownership_type"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_owner_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_owner_name"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_ownership_type"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_owner_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_owner_name"
+                        android:layout_alignBaseline="@id/property_lbl_owner_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_house_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_house_no"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_owner_name"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_house_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_house_no"
+                        android:layout_alignBaseline="@id/property_lbl_house_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_house_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_house_address"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_house_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_house_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_house_address"
+                        android:layout_alignBaseline="@id/property_lbl_house_address"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_mobile_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_mobile_no"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_house_address"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_mobile_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_mobile_no"
+                        android:layout_alignBaseline="@id/property_lbl_mobile_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_rent_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_rent_area"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_mobile_no"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_rent_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_rent_area"
+                        android:layout_alignBaseline="@id/property_lbl_rent_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_own_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_rent_area"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_rent_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_own_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_own_area"
+                        android:layout_alignBaseline="@id/property_lbl_own_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_area"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_own_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_area"
+                        android:layout_alignBaseline="@id/property_lbl_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_area_rates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_area_rates"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_area"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_area_rates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_area_rates"
+                        android:layout_alignBaseline="@id/property_lbl_area_rates"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_road_width_less"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_road_width_less"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_area_rates"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_road_width_less"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_road_width_less"
+                        android:layout_alignBaseline="@id/property_lbl_road_width_less"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_construction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_construction"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_road_width_less"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_construction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_construction"
+                        android:layout_alignBaseline="@id/property_lbl_construction"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_type_construction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_type_construction"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_construction"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_type_construction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_type_construction"
+                        android:layout_alignBaseline="@id/property_lbl_type_construction"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_arv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_arv"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_type_construction"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_arv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_arv"
+                        android:layout_alignBaseline="@id/property_lbl_arv"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_depreciation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_depreciation"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_arv"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_depreciation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_depreciation"
+                        android:layout_alignBaseline="@id/property_lbl_depreciation"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_appreciation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_appreciation"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_depreciation"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_appreciation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_appreciation"
+                        android:layout_alignBaseline="@id/property_lbl_appreciation"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_final_arv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_final_arv"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_appreciation"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_final_arv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_final_arv"
+                        android:layout_alignBaseline="@id/property_lbl_final_arv"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+
+                    <TextView
+                        android:id="@+id/property_lbl_current_year_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_current_year_tax"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_final_arv"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_current_year_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_current_year_tax"
+                        android:layout_alignBaseline="@id/property_lbl_current_year_tax"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_arrear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_arrear"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_current_year_tax"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_arrear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_arrear"
+                        android:layout_alignBaseline="@id/property_lbl_arrear"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_interest"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_arrear"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_interest"
+                        android:layout_alignBaseline="@id/property_lbl_interest"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_total_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_total_deposit"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_interest"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_total_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_total_deposit"
+                        android:layout_alignBaseline="@id/property_lbl_total_deposit"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+
+                    <TextView
+                        android:id="@+id/property_lbl_tax_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_tax_discount"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_total_deposit"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_tax_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_tax_discount"
+                        android:layout_alignBaseline="@id/property_lbl_tax_discount"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+                    <TextView
+                        android:id="@+id/property_lbl_total_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/property_total_tax"
+                        android:textColor="@color/text_blue_dark"
+                        android:layout_below="@id/property_lbl_tax_discount"
+                        android:textSize="@dimen/secondary_text_size"
+                        android:layout_marginBottom="@dimen/padding_margin_layout_double"/>
+
+                    <TextView
+                        android:id="@+id/property_total_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/property_lbl_total_tax"
+                        android:layout_alignBaseline="@id/property_lbl_total_tax"
+                        android:textSize="@dimen/secondary_text_size"/>
+
+
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

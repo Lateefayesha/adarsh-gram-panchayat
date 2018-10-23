@@ -39,7 +39,7 @@ import quickutils.core.QuickUtils;
  * Created by MiTHUN on 8/2/18.
  */
 
-public class MenuFragment extends MyFragemtV4 {
+public class MenuFragmentLess extends MyFragemtV4 {
 
     private static final String TAG = "MenuFragment";
     private View view;
@@ -50,7 +50,7 @@ public class MenuFragment extends MyFragemtV4 {
 
     public static Fragment newInstance() {
 
-        MenuFragment menuFragment = new MenuFragment();
+        MenuFragmentLess menuFragment = new MenuFragmentLess();
         return menuFragment;
     }
 
@@ -164,31 +164,28 @@ public class MenuFragment extends MyFragemtV4 {
             case 11:
                 mFragment = TankerBookingFragment.newInstance();
                 break;
-            case 12:
-                mFragment = PropertyTaxFragment.newInstance();
-                break;
-            case 13:
-                context.startActivity(new Intent(context, MandiDetailsActivity.class));
-                break;
-            case 14:
+//            case 12: // Mandi
+//                context.startActivity(new Intent(context, MandiDetailsActivity.class));
+//                break;
+            case 12: // Upcoming Events 13
                 mFragment = UpcomingEventsFragment.newInstance();
                 break;
-            case 15:
-                context.startActivity(new Intent(context, ClassificationActivity.class));
-                break;
-            case 16:
+//            case 14: // Classifief 14
+//                context.startActivity(new Intent(context, ClassificationActivity.class));
+//                break;
+            case 13:
                 mFragment = SchemesFragment.newInstance();
                 break;
-            case 17:
+            case 14:
                 mFragment = CertificateFragment.newInstance();
                 break;
-            case 18:
+            case 15:
                 mFragment = SuggestionFragment.newInstance();
                 break;
-            case 19:
+            case 16:
                 mFragment = GalleryFragment.newInstance();
                 break;
-            case 20:
+            case 17:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, EPaymentActivity.class));
@@ -197,7 +194,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 21:
+            case 18:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, BookingActivity.class));
@@ -206,10 +203,10 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 22:
+            case 19:
                 mFragment = SocialNetworkFragment.newInstance();
                 break;
-            case 23:
+            case 20:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WebsiteActivity.class));
@@ -218,7 +215,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 24:
+            case 21:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, MapsMarkerActivity.class));
@@ -227,7 +224,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 25:
+            case 22:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     startActivity(new Intent(context, UtilityActivity.class));
@@ -236,7 +233,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 26:
+            case 23:
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, WeatherActivity.class));
@@ -245,7 +242,7 @@ public class MenuFragment extends MyFragemtV4 {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case 27:
+            case 24:
                 mFragment = ContactUsFragment.newInstance();
                 break;
         }
@@ -283,12 +280,10 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), AUtils.Colour.Green));
         menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.property_tax), AUtils.Colour.DarkGray));
-
-        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow));
+//        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow));
         menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),AUtils.Colour.Pink));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.classified), AUtils.Colour.Blue));
+//        menuPojoList.add(new MenuPojo(getString(R.string.classified), AUtils.Colour.Blue));
         menuPojoList.add(new MenuPojo(getString(R.string.schemes), AUtils.Colour.Red));
 
         menuPojoList.add(new MenuPojo(getString(R.string.certificate), AUtils.Colour.Gray));

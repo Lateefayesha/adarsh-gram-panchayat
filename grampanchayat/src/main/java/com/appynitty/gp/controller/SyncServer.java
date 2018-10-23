@@ -22,6 +22,7 @@ import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.pojo.PhotoGalleryVideo;
+import com.appynitty.gp.pojo.PropertyTaxPojo;
 import com.appynitty.gp.pojo.ResultPojo;
 import com.appynitty.gp.pojo.SamajBavanBookingPojo;
 import com.appynitty.gp.pojo.SchemesPojo;
@@ -42,6 +43,7 @@ import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
 import com.appynitty.gp.webservices.MandiWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
+import com.appynitty.gp.webservices.PropertyTaxDetailsWebservice;
 import com.appynitty.gp.webservices.SamajBavanBookingWebservice;
 import com.appynitty.gp.webservices.SchemesWebservice;
 import com.appynitty.gp.webservices.SmartGpWebservice;
@@ -1147,6 +1149,35 @@ public class SyncServer {
 
             e.printStackTrace();
         }
+        return false;
+    }
+
+    public Boolean getDetailsUsingId(String propertyNumber){
+
+        PropertyTaxPojo propertyTaxPojo = null;
+
+        try{
+
+            PropertyTaxDetailsWebservice service = AUtils.createService(PropertyTaxDetailsWebservice.class, AUtils.SERVER_URL);
+
+            propertyTaxPojo = service.fetchPropertyDetails(QuickUtils.prefs.getString(AUtils.APP_ID, "1"), propertyNumber)
+                .execute().body();
+
+            if(!AUtils.isNull(propertyTaxPojo)){
+
+                Type type = new TypeToken<PropertyTaxPojo>() {}.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, gson.toJson(propertyTaxPojo, type));
+                return true;
+
+            }else{
+
+                return false;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return false;
     }
 
