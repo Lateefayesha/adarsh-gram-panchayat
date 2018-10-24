@@ -41,8 +41,11 @@ public class CertificateItemActivity extends BaseActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(LocaleHelper.onAttach(base));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     @Override

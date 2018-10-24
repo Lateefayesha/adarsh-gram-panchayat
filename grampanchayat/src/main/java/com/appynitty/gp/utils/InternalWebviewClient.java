@@ -40,6 +40,29 @@ public class InternalWebviewClient extends WebViewClient {
     }
 
     @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+        if(url.contains("tel:")){
+
+            mContext.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
+            return true;
+
+        }else if(url.contains("mailto:")){
+
+            mContext.startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(url)));
+            return true;
+
+        }else if(url.contains("market:") || url.contains("//play.google.com")){
+
+            mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
 
         String stringUrl = request.getUrl().toString();

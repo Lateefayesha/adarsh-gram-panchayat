@@ -1,6 +1,7 @@
 package com.appynitty.gp.activity;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -39,8 +40,11 @@ public class SocialNetworkActivity extends BaseActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(LocaleHelper.onAttach(base));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     @Override

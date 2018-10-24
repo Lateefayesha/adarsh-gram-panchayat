@@ -2,6 +2,7 @@ package com.appynitty.gp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -89,8 +90,11 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(LocaleHelper.onAttach(base));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     protected void registerEvents() {

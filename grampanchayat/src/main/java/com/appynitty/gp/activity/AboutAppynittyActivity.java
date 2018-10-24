@@ -1,6 +1,7 @@
 package com.appynitty.gp.activity;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
@@ -23,8 +24,11 @@ public class AboutAppynittyActivity extends BaseActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(LocaleHelper.onAttach(base));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     @Override

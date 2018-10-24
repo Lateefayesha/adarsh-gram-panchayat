@@ -4,6 +4,7 @@ package com.appynitty.gp.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -41,8 +42,11 @@ public class SelectGramPanchayatActivity extends BaseActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(LocaleHelper.onAttach(base));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     @Override
