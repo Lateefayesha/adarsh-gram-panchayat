@@ -6,5 +6,6 @@
         android:id="@+id/action_property_pdf"
         android:icon="@drawable/pdf"
         android:title="Pdf"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:visible="false"/>
 </menu>

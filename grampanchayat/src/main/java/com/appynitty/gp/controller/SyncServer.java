@@ -1096,6 +1096,33 @@ public class SyncServer {
         return false;
     }
 
+    public boolean pullDefaultMandiListFromServer() {
+
+        List<MandiPojo> mandiPojoList = null;
+
+        try {
+
+            MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
+            mandiPojoList = service.pullDefaultMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, "")).execute().body();
+
+            if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean pullUpcomingEventListFromServer() {
 
         List<UpcomingEventsPojo> upcomingEventsPojoList = null;

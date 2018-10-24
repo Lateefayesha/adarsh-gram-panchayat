@@ -17,4 +17,7 @@ public interface MandiWebservice {
     @GET("api/Get/MandiRate")
     Call<List<MandiPojo>> pullMandiList(@Header("appId") String appId,
                                         @Header("date") String date);
+
+    @GET("api/Get/DefaultMandiRate")
+    Call<List<MandiPojo>> pullDefaultMandiList(@Header("appId") String appId);
 }

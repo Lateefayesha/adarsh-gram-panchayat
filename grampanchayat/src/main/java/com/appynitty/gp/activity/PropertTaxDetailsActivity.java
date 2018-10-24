@@ -1,9 +1,16 @@
 package com.appynitty.gp.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.appynitty.gp.R;
@@ -13,13 +20,16 @@ import com.appynitty.gp.utils.LocaleHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.activity.BaseActivity;
+import com.payumoney.core.PayUmoneySdkInitializer;
+import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.lang.reflect.Type;
-import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import quickutils.core.QuickUtils;
 
-public class PropertTaxDetailsActivity extends BaseActivity {
+public class PropertTaxDetailsActivity extends AppCompatActivity {
 
     TextView propertyHouseNumber, propertyAssessmentDate, propertyFormNo, propertyWardName, propertyMohallaName, propertyOwnershipType,
             propertyOwnerName, propertyHouseNo, propertyHouseAddress, propertyMobileNo, propertyRentArea,
@@ -27,7 +37,23 @@ public class PropertTaxDetailsActivity extends BaseActivity {
             propertyArv, propertyDepreciation, propertyAppreciation, propertyFinalArv, propertyCurrentYearTax, propertyArrear, propertyInterest,
             propertyTotalDeposit, propertyTaxDiscount, propertyTotalTax;
 
+    Button onlinePayment;
+
+    String MERCHANTID, KEY, SALT, txnid, amount, productinfo, firstname, email, mobileNo;
+
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initComponent();
+    }
+
+    private void initComponent(){
+        generateId();
+        registerEvents();
+        initData();
+    }
+
+
     protected void generateId() {
         setContentView(R.layout.activity_propert_tax_details);
         propertyHouseNumber = findViewById(R.id.property_house_number);
@@ -57,6 +83,7 @@ public class PropertTaxDetailsActivity extends BaseActivity {
         propertyTotalDeposit = findViewById(R.id.property_total_deposit);
         propertyTaxDiscount = findViewById(R.id.property_tax_discount);
         propertyTotalTax = findViewById(R.id.property_total_tax);
+        onlinePayment = findViewById(R.id.online_payment);
         initToolbar();
     }
 
@@ -66,10 +93,80 @@ public class PropertTaxDetailsActivity extends BaseActivity {
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
-    @Override
-    protected void registerEvents() {}
+    protected void registerEvents() {
+        onlinePayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PropertTaxDetailsActivity.this, PaymentGatewayWebpageActivity.class));
+//                initiatePayment();
+            }
+        });
+    }
 
-    @Override
+    private void initiatePayment() {
+        KEY = "XE63fjFz";
+        SALT = "jH9z1ixBW9";
+        MERCHANTID = "6490756";
+        txnid = "test_prod";
+        amount = "1";
+        productinfo = "Test Product";
+        firstname = "Ayan";
+        email = "ayand@appynitty.com";
+        mobileNo = "9405892926";
+
+        prepareForPayment();
+
+    }
+
+    public static String hashCal(String type, String hashString) {
+        StringBuilder hash = new StringBuilder();
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance(type);
+            messageDigest.update(hashString.getBytes());
+            byte[] mdbytes = messageDigest.digest();
+            for (byte hashByte : mdbytes) {
+                hash.append(Integer.toString((hashByte & 0xff) + 0x100, 16).substring(1));
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hash.toString();
+    }
+
+    private void prepareForPayment() {
+        try{
+            String hashSequence = KEY+"|"+txnid+"|"+amount+"|"+productinfo+"|"+firstname+"|"+email+"|"+SALT;
+            String serverCalculatedHash = hashCal("SHA-512", hashSequence);
+
+            PayUmoneySdkInitializer.PaymentParam.Builder builder = new PayUmoneySdkInitializer.PaymentParam.Builder();
+            builder.setAmount(amount)                          // Payment amount
+                    .setTxnId(txnid)                    // Transaction ID
+                    .setPhone(mobileNo)                 // User Phone number
+                    .setProductName(productinfo)         // Product Name or description
+                    .setFirstName(firstname)                              // User First name
+                    .setEmail(email)                                            // User Email ID
+                    .setsUrl("")                    // Success URL (surl)
+                    .setfUrl("")                     //Failure URL (furl)
+                    .setUdf1("")
+                    .setIsDebug(true)                              // Integration environment - true (Debug)/ false(Production)
+                    .setKey(KEY)                        // Merchant KEY
+                    .setMerchantId(MERCHANTID);             // Merchant ID
+
+            //declare paymentParam object
+            PayUmoneySdkInitializer.PaymentParam paymentParam = builder.build();
+            //set the hash
+            paymentParam.setMerchantHash(serverCalculatedHash);
+
+            // Invoke the following function to open the checkout page.
+            PayUmoneyFlowManager.startPayUMoneyFlow(paymentParam,PropertTaxDetailsActivity.this,
+            R.style.AppTheme_NoActionBar, true);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     protected void initData() {
         PropertyTaxPojo propertyTaxPojo;
         Type type = new TypeToken<PropertyTaxPojo>() {

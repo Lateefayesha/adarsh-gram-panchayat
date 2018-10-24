@@ -167,7 +167,7 @@ public class ClassificationActivity extends BaseActivity {
     {
         List<String> LargeData = Data.get("Large1");
 
-        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData);
+        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData, "large");
         autoScrollViewPagerLarge.setAdapter(pagerAdapter);
 
         int height = autoScrollViewPagerLarge.getHeight();
@@ -183,7 +183,7 @@ public class ClassificationActivity extends BaseActivity {
     {
         List<String> MediumData = Data.get("Medium1");
 
-        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData);
+        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData, "medium");
         autoScrollViewPagerMedium1.setAdapter(pagerAdapter);
 
 //        autoScrollViewPager.setPageTransformer(false, new FadePageTransformer());
@@ -198,7 +198,7 @@ public class ClassificationActivity extends BaseActivity {
 
         List<String> MediumData = Data.get("Medium2");
 
-        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData);
+        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, MediumData, "medium");
         autoScrollViewPagerMedium2.setAdapter(pagerAdapter);
 
 //        autoScrollViewPager.setPageTransformer(false, new FadePageTransformer());
@@ -213,7 +213,7 @@ public class ClassificationActivity extends BaseActivity {
 
         List<String> LargeData = Data.get("Large2");
 
-        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData);
+        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, LargeData, "large");
         autoScrollViewPagerLarge2.setAdapter(pagerAdapter);
 
 //        autoScrollViewPager.setPageTransformer(false, new FadePageTransformer());
@@ -228,7 +228,7 @@ public class ClassificationActivity extends BaseActivity {
 
         List<String> SmallData = Data.get("Small");
 
-        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, SmallData);
+        ClassificationAdapter pagerAdapter = new ClassificationAdapter(ClassificationActivity.this, SmallData, "small");
         autoScrollViewPagerSmall.setAdapter(pagerAdapter);
 
 //        autoScrollViewPager.setPageTransformer(false, new FadePageTransformer());

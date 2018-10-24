@@ -59,6 +59,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
     private String selecetedDate;
     private SimpleDateFormat format;
     private Calendar currentCalender;
+    Boolean isfirstTime;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -83,6 +84,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
         selecetedDate = AUtils.getSeverDate();
 
         currentCalender = Calendar.getInstance();
+        isfirstTime = true;
 
         initToolbar();
     }
@@ -93,7 +95,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDataFromServer(false);
+                getDataFromServer(false, false);
             }
         });
     }
@@ -170,24 +172,25 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
             mTitleCardView.setVisibility(View.VISIBLE);
             mMandiListView.setVisibility(View.VISIBLE);
 
-            mMandiName.setText(mandiPojoList.get(0).getMandi() + " (" + mandiPojoList.get(0).getState() + ")");
+            String mandiNameStr = mandiPojoList.get(0).getMandi() + " (" + mandiPojoList.get(0).getState() + ")";
+            mMandiName.setText(mandiNameStr);
             mDate.setText(mandiPojoList.get(0).getDate());
 
             mandiListAdapter = new MandiListAdapter(this, mandiPojoList);
             mMandiListView.setAdapter(mandiListAdapter);
 
-            getDataFromServer(false);
+            getDataFromServer(false, false);
 
         } else {
 
             noDataView.setVisibility(View.VISIBLE);
             mTitleCardView.setVisibility(View.GONE);
             mMandiListView.setVisibility(View.GONE);
-            getDataFromServer(true);
+            getDataFromServer(true, false);
         }
     }
 
-    private void getDataFromServer(boolean isShowPrgressDialog) {
+    private void getDataFromServer(boolean isShowPrgressDialog, final Boolean loadDefault) {
 
         new MyAsyncTask(MandiDetailsActivity.this, isShowPrgressDialog, new MyAsyncTask.AsynTaskListener() {
             public boolean isDataPull = false;
@@ -195,8 +198,11 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
 
-
-                isDataPull = syncServer.pullMandiListFromServer(selecetedDate);
+                if(loadDefault){
+                    isDataPull = syncServer.pullDefaultMandiListFromServer();
+                }else{
+                    isDataPull = syncServer.pullMandiListFromServer(selecetedDate);
+                }
             }
 
             @Override
@@ -215,17 +221,24 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
                     mTitleCardView.setVisibility(View.VISIBLE);
                     mMandiListView.setVisibility(View.VISIBLE);
 
-                    mMandiName.setText(mandiPojoList.get(0).getMandi() +" (" + mandiPojoList.get(0).getState() +")");
+                    String mandiNameStr = mandiPojoList.get(0).getMandi() + " (" + mandiPojoList.get(0).getState() + ")";
+                    mMandiName.setText(mandiNameStr);
                     mDate.setText(mandiPojoList.get(0).getDate());
 
                     mandiListAdapter = new MandiListAdapter(MandiDetailsActivity.this, mandiPojoList);
                     mMandiListView.setAdapter(mandiListAdapter);
+                    isfirstTime = false;
                 }
                 else {
 
                     mTitleCardView.setVisibility(View.GONE);
                     mMandiListView.setVisibility(View.GONE);
                     noDataView.setVisibility(View.VISIBLE);
+
+                    if(isfirstTime){
+                        isfirstTime = false;
+                        getDataFromServer(true, true);
+                    }
                 }
 
                 if (swipeRefreshLayout.isRefreshing()) {
@@ -253,11 +266,11 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
             if(selectedDateLong <= currentDateLong) {
                 selecetedDate = format.format(date);
 
-                getDataFromServer(false);
+                getDataFromServer(false, false);
             }
             else
             {
-                Toast.makeText(MandiDetailsActivity.this.getApplicationContext(),"Please Select Valid Date",Toast.LENGTH_SHORT);
+                Toast.makeText(MandiDetailsActivity.this.getApplicationContext(),"Please Select Valid Date",Toast.LENGTH_SHORT).show();
             }
         }
         catch (Exception e)
