@@ -1,13 +1,16 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.InternalWebviewClient;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
 import com.mithsoft.lib.componants.MyNoDataView;
 
@@ -21,6 +24,15 @@ public class WebsiteActivity extends BaseActivity {
 
     private WebView webView;
     private MyNoDataView noDataView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void generateId() {
@@ -51,7 +63,7 @@ public class WebsiteActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new InternalWebviewClient(WebsiteActivity.this, false));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -62,7 +74,7 @@ public class WebsiteActivity extends BaseActivity {
         if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))
                 && !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""))) {
 
-            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
                 webView.loadUrl(QuickUtils.prefs.getString(AUtils.WEBSITE_ENG, ""));
 

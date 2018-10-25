@@ -1,7 +1,9 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -21,6 +23,7 @@ import com.appynitty.gp.pojo.GramPanchayatPojo;
 import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.pojo.TahsilPojo;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,6 +54,15 @@ public class SelectPlaceActivity extends BaseActivity {
     private String tahsilId = "0";
     private String districtId = "0";
     private List<TahsilPojo> tahsilPojoArrayList;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void generateId() {

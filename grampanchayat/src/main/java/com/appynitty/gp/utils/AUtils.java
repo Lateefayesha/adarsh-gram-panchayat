@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Environment;
 
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -78,6 +81,7 @@ public class AUtils extends MsUtils {
     public static final String GP_WEATHER_NAME = "GPWeatherScreenName";
     public static final String WEBSITE_ENG = "Website";
     public static final String WEBSITE_MAR = "WebsiteMarathi";
+    public static final String DEFAULT_LANGUAGE_NAME = "mi";
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
@@ -87,8 +91,15 @@ public class AUtils extends MsUtils {
     private static final String MOBILE_DATE_TIME_FORMATE = "dd/MM/yyyy hh:mm a";
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
+    private static final String SERVER_EVENT_DATE_FORMATE = "dd-MM-yyyy";
+    private static final String MOBILE_EVENT_DATE_FORMATE = "dd MMM yy";
+
     private static final String TAG = "AUtils";
     public static final String TYPE = "TypeOfApplication";
+
+    public static final String LANGUAGE_NAME = "LanguageName";
+
+    public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
 
 
     private AUtils() {
@@ -135,6 +146,36 @@ public class AUtils extends MsUtils {
         return format.format(new Date());
     }
 
+    public static String getEventDisplayDate(String dateTime) {
+
+        DateFormat currentFormat = new SimpleDateFormat(SERVER_EVENT_DATE_FORMATE, Locale.ENGLISH);
+        DateFormat displayFormat = new SimpleDateFormat(MOBILE_EVENT_DATE_FORMATE, Locale.ENGLISH);
+
+        Date givenDate = null;
+        try {
+            givenDate = currentFormat.parse(dateTime);
+        } catch (ParseException e) {
+            givenDate = null;
+        }
+        if (!AUtils.isNull(givenDate)) {
+            return displayFormat.format(givenDate);
+        } else {
+
+            return "";
+        }
+    }
+
+    public static String getSeverDate() {
+
+        SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_FORMATE, Locale.ENGLISH);
+        return format.format(new Date());
+    }
+
+    public static String getServerDateFormate() {
+
+        return AUtils.SERVER_DATE_FORMATE;
+    }
+
 
     //app setting for permissions dialog
     public static void showPermissionDialog(Context context, String message, DialogInterface.OnClickListener okListener) {
@@ -179,23 +220,32 @@ public class AUtils extends MsUtils {
         switch (languageId) {
             case 1:
                 languageStr = "en";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 2:
                 languageStr = "mi";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 3:
                 languageStr = "hi";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 4:
                 languageStr = "gu";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 5:
                 languageStr = "pa";
+                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
         }
 
         Locale locale = new Locale(languageStr);
-        Locale.setDefault(locale);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Locale.setDefault(Locale.Category.DISPLAY, locale);
+        } else {
+            Locale.setDefault(locale);
+        }
         Configuration config = new Configuration();
         config.locale = locale;
         context.getApplicationContext().getResources().updateConfiguration(config, null);
@@ -248,11 +298,31 @@ public class AUtils extends MsUtils {
         String CONTACT_US_POJO = "ConatctUsPojo";
         String CONTACT_US_MEMBER_POJO_LIST = "ContactUsMemberList";
         String CERTIFICATE_POJO_LIST = "CertificatePojoList";
+        String MANDI_POJO_LIST = "MandiPullList";
+        String UPCOMING_EVENT_POJO_LIST = "UpcomingEventPullList";
+        String CLASSIFICATION_POJO_LIST = "ClassificationPullList";
 
         String STATE_POJO_LIST = "StatePojoList";
         String DISTRICT_POJO_LIST = "DistrictPojoList";
         String TAHSIL_POJO_LIST = "TahsilPojoList";
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
         String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
+        String PROPERTY_TAX_DETAILS_POJO_LIST = "PropertyTaxDetailsList";
+    }
+
+    // Color Constant
+    public interface Colour {
+
+        //    Color Constant
+        String Green = "#8BC34A";
+        String Yellow = "#FFC107";
+        String Blue = "#3949AB";
+        String Red = "#E53935";
+        String Pink = "#E91E63";
+        String SkyBlue = "#03A9F4";
+        String Gray = "#607D8B";
+        String Khakhi = "#BA9B47";
+        String Orange ="#FF9800";
+        String DarkGray = "#384259";
     }
 }

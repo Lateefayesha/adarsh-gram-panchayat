@@ -16,6 +16,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,11 +76,13 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
     private EditText resourceAvailableTextView;
     private int imageViewNo = 0;
     private LocationManager locationManager;
+    private String mPreviousLanguage = "";
+    private static YoungBusinessApplyFragment fragment = null;
 
 
     public static YoungBusinessApplyFragment newInstance() {
 
-        YoungBusinessApplyFragment fragment = new YoungBusinessApplyFragment();
+        fragment = new YoungBusinessApplyFragment();
         return fragment;
     }
 
@@ -94,6 +97,15 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
+
+        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
+        }
 
         genrateId();
         registerEvents();

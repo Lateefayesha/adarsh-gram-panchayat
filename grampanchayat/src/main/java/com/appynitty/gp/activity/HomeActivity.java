@@ -1,7 +1,9 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -15,9 +17,12 @@ import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.fragment.MenuFragment;
+import com.appynitty.gp.fragment.MenuFragmentLess;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyFragemtV4;
+import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
 
 import quickutils.core.QuickUtils;
 
@@ -39,9 +44,20 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+        new SaveFcmIdAsyncTask(this).execute();
         initComponants();
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
     }
 
     public void initComponants() {
@@ -71,7 +87,11 @@ public class HomeActivity extends AppCompatActivity {
 //            QuickUtils.prefs.save(AUtils.FCM_NOTI, true);
 //        }
 
+        /* For Older Apps till 19-10-2018 */
+//        mFragment = new MenuFragmentLess();
+        /* For Newer Apps after 19-10-2018 */
         mFragment = new MenuFragment();
+
 //        mFragment.setArguments(bundle);
 
         mFragmentManager.popBackStack(null,
@@ -144,6 +164,8 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private void changeLanguageOnClick() {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -171,6 +193,9 @@ public class HomeActivity extends AppCompatActivity {
     public void changeLanguage(int type) {
 
         AUtils.changeLanguage(this, type);
+
+
+        initActionBar();
 
         MyFragemtV4 myFragemtV4 = (MyFragemtV4) mFragmentManager.findFragmentById(R.id.content_frame);
         myFragemtV4.updateDataForLanguage();

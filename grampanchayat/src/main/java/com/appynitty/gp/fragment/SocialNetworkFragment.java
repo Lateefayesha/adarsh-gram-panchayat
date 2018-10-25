@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.appynitty.gp.R;
-import com.appynitty.gp.activity.CustomTabViewPagerAdapter;
+import com.appynitty.gp.adapter.CustomTabViewPagerAdapter;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.SocialNetworkPojo;

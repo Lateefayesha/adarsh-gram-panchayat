@@ -1,14 +1,15 @@
 package com.appynitty.gp.activity;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.InternalWebviewClient;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
 
 import quickutils.core.QuickUtils;
@@ -20,6 +21,15 @@ import quickutils.core.QuickUtils;
 public class EPaymentActivity extends BaseActivity {
 
     private WebView webView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void generateId() {
@@ -47,7 +57,7 @@ public class EPaymentActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebViewClient());
+        webView.setWebViewClient(new InternalWebviewClient(EPaymentActivity.this, true));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -55,13 +65,13 @@ public class EPaymentActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID) == "1") {
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html");
+            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
@@ -95,16 +105,4 @@ public class EPaymentActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    private class InternalWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (url.indexOf("tel:") > -1) {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
 }

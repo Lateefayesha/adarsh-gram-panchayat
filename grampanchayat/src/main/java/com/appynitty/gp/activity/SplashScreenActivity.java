@@ -1,6 +1,8 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -9,6 +11,7 @@ import android.view.WindowManager;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
 
 import quickutils.core.QuickUtils;
@@ -19,6 +22,15 @@ import quickutils.core.QuickUtils;
  */
 
 public class SplashScreenActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

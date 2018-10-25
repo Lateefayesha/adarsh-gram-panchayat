@@ -113,6 +113,16 @@
     <string name="comments">टिप्पण्या :</string>
     <string name="before">पूर्वी</string>
     <string name="after">नंतर</string>
+    <string name="upcoming_programs">आगामी कार्यक्रम</string>
+    <string name="mandi">मंडी</string>
+    <string name="event_address">पत्ता :</string>
+    <string name="mandi_name">मंडीचे नाव :</string>
+    <string name="mandi_date">तारीख :</string>
+    <string name="mandi_minimum_price">न्यूनतम दर</string>
+    <string name="mandi_maximum_price">अधिकतम दर</string>
+    <string name="event_detail">तपशील :</string>
+    <string name="classified">वर्गीकृत जाहिराती</string>
+    <string name="property_tax">मालमत्ता कर</string>
 
 
     <string name="plz_ent_something">कृपया काहीतरी टाइप करा</string>
@@ -134,6 +144,39 @@
     <string name="plz_select_complaint_type">कृपया तक्रार प्रकार निवडा</string>
     <string name="plz_ent_suggestion">कृपया सूचना / आयडिया प्रविष्ट करा</string>
     <string name="details">तपशील</string>
+
+    <string name="property_number">मालमत्ता क्रमांक</string>
+    <string name="plz_ent_property_no">कृपया मालमत्ता क्रमांक प्रविष्ट करा</string>
+    <string name="property_details">निवासी मालमत्ता तपशील</string>
+    <string name="property_house_number">मालमत्ता/घरांची संख्या</string>
+    <string name="property_assessment_date">मूल्यांकन तारीख. (DD-MM-YYYY)</string>
+    <string name="property_form_no">फोर्म नं.</string>
+    <string name="property_ward_name">वार्ड नाव.</string>
+    <string name="property_mohalla_name">मोहल्ला नाव.</string>
+    <string name="property_ownership_type">मालकीचे प्रकार.</string>
+    <string name="property_owner_name">मालकाचे नाव.</string>
+    <string name="property_house_no">घर क्रमांक.</string>
+    <string name="property_house_address">मालमत्ता/घरचा पत्ता.</string>
+    <string name="property_mobile_no">मोबाइल नंबर.</string>
+    <string name="property_rent_area">एससी फीट मधील एकूण भाडे क्षेत्र</string>
+    <string name="property_own_area">एसके फीट मधील एकूण मालकीचा क्षेत्र</string>
+    <string name="property_area">एससी फीटमध्ये संपत्तीचा एकूण क्षेत्र</string>
+    <string name="property_area_rates">क्षेत्र दर</string>
+    <string name="property_road_width_less">रस्त्याच्या रुंदीपेक्षा कमी</string>
+    <string name="property_construction">बांधकाम वर्ष</string>
+    <string name="property_type_construction">बांधकाम प्रकार</string>
+    <string name="property_arv">वार्षिक भाडे मूल्य (एआरव्ही)</string>
+    <string name="property_appreciation">प्रशंसा %</string>
+    <string name="property_depreciation">घसारा %</string>
+    <string name="property_final_arv">अंतिम वार्षिक भाडे मूल्य (एआरव्ही)</string>
+    <string name="property_current_year_tax">करंट कर</string>
+    <string name="property_arrear">अरेर</string>
+    <string name="property_interest">व्याज</string>
+    <string name="property_total_deposit">एकूण ठेव</string>
+    <string name="property_tax_discount">करपात्र कर 10% सवलत</string>
+    <string name="property_total_tax">एकूण कर कारण</string>
+    <string name="property_online_payment">ऑनलाइन पेमेंट</string>
+
 
 
     <string name="clening_complent_details">नागरिकांना विनंती आहे कि त्यांनी घरगुती कचऱ्याचे ओला व सुका कचरा या प्रकारे वर्गीकरण करावे. ओला कचरा हिरव्या तसेच सुका कचरा निळ्या कचरापेटीत एकत्र करावा व अशाप्रकारे वर्गीकृत केलेला कचरा सफाई कर्मचाऱ्यास सुपूर्द करावा.\n\nसुका कचरा म्हणजे पॉलीथीन च्या पिशव्या, प्लॅस्टिकच्या वस्तू, लोखंडी वस्तू, फाटलेले कपडे, वर्तमानपत्राची रद्दी, कागद, पुठ्ठे, रॅपर, इत्यादी साहित्य, ज्याची विल्हेवाट भंगारवाल्यांच्या माध्यमातून करता येऊ शकेल.\n\nओला कचरा म्हणजे शिळे अन्न, कुजकी फळे, पालेभाज्या, अंड्याची टरफले, चहा पावडर, झाडांचा पालापाचोळा, निसर्गात जे जे विघटनाद्वारे नष्ट होते इत्यादी साऱ्यांचा समावेश ओला कचऱ्यांमध्ये होतो\n\nओला कचरा, सुका कचरा आणि काचांसारखा धोकादायक कचरा वेगळा करणे नागरिकांवर बंधनकारक करावे आणि तसे न करणाऱ्यांवर जबर दंडाची आकारणी करावी; अशी सूचना कचरा व्यवस्थापनासाठी नियुक्त करण्यात आलेल्या संसदीय समितीने केंद्र सरकारला केली आहे. कचरा वेगळा ठेवण्यासाठी प्रोत्साहन देऊन रस्त्यावर कचरा टाकण्यावर निर्बंध घालण्यासाठी सरकारने पुढाकार घेण्याची आवश्यकता या समितीने सादर केलेल्या अहवालात नमूद करण्यात आली आहे.</string>

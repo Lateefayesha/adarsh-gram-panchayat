@@ -2,6 +2,7 @@ package com.appynitty.gp.utils;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.FcmIdPojo;
@@ -32,6 +33,8 @@ public class SaveFcmIdAsyncTask extends AsyncTask {
         if (AUtils.isNetWorkAvailable(context)) {
             try {
 
+                Log.e(SaveFcmIdAsyncTask.class.getName(),"FCM ID :" + QuickUtils.prefs.getString(AUtils.FCM_ID, ""));
+                Log.e(SaveFcmIdAsyncTask.class.getName(),"Device ID : " + QuickUtils.prefs.getString(AUtils.USER_ID, ""));
                 FcmIdPojo fcmIdPojo = new FcmIdPojo();
                 fcmIdPojo.setFcmid(QuickUtils.prefs.getString(AUtils.FCM_ID, ""));
                 fcmIdPojo.setUserid(QuickUtils.prefs.getString(AUtils.USER_ID, ""));

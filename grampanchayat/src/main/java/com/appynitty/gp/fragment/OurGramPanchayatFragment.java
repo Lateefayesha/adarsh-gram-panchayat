@@ -116,13 +116,14 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
         if (!AUtils.isNull(ourGramPanchayatList) && !ourGramPanchayatList.isEmpty()) {
 
             noDataView.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             ourGramPanchayatListAdapter = new OurGramPanchayatListAdapter(context, ourGramPanchayatList);
             listView.setAdapter(ourGramPanchayatListAdapter);
 
             getDataFromServer(false);
 
         } else {
-
+            listView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
             getDataFromServer(true);
         }
@@ -136,7 +137,6 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
 
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
-
 
                 isDataPull = syncServer.pullOurGramPanchayatListFromServer();
             }
@@ -152,6 +152,7 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
 
                 if (!AUtils.isNull(ourGramPanchayatList) && !ourGramPanchayatList.isEmpty()) {
 
+                    listView.setVisibility(View.VISIBLE);
                     noDataView.setVisibility(View.GONE);
                     ourGramPanchayatListAdapter = new OurGramPanchayatListAdapter(context, ourGramPanchayatList);
                     listView.setAdapter(ourGramPanchayatListAdapter);

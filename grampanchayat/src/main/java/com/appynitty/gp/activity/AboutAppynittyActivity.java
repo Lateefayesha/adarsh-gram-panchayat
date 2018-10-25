@@ -1,5 +1,7 @@
 package com.appynitty.gp.activity;
 
+import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
@@ -8,6 +10,7 @@ import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.mithsoft.lib.activity.BaseActivity;
 
 import quickutils.core.QuickUtils;
@@ -18,6 +21,15 @@ import quickutils.core.QuickUtils;
 public class AboutAppynittyActivity extends BaseActivity {
 
     private WebView webView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }else{
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void generateId() {

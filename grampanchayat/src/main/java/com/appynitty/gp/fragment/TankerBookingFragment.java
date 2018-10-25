@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,12 @@ public class TankerBookingFragment extends MyFragemtV4 {
     private Button saveButton;
     private TankerBookingPojo tankerBookingPojo;
 
+    private String mPreviousLanguage = "";
+    private static TankerBookingFragment fragment = null;
+
     public static TankerBookingFragment newInstance() {
 
-        TankerBookingFragment fragment = new TankerBookingFragment();
+        fragment = new TankerBookingFragment();
         return fragment;
     }
 
@@ -63,6 +67,15 @@ public class TankerBookingFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
+
+        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
+        }
 
         genrateId();
         registerEvents();

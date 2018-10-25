@@ -3,6 +3,7 @@ package com.appynitty.gp.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,12 @@ public class SamajBhawanBookingFragment extends MyFragemtV4 {
     private Button saveButton;
     private SamajBavanBookingPojo samajBavanBookingPojo;
 
+    private String mPreviousLanguage = "";
+    private static SamajBhawanBookingFragment fragment = null;
+
     public static SamajBhawanBookingFragment newInstance() {
 
-        SamajBhawanBookingFragment fragment = new SamajBhawanBookingFragment();
+        fragment = new SamajBhawanBookingFragment();
         return fragment;
     }
 
@@ -56,6 +60,15 @@ public class SamajBhawanBookingFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
+
+        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(fragment);
+            fragmentTransaction.attach(fragment);
+            fragmentTransaction.commit();
+            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
+        }
 
         genrateId();
         registerEvents();

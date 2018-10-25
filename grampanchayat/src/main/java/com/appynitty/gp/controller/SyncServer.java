@@ -1,10 +1,12 @@
 package com.appynitty.gp.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.appynitty.gp.pojo.ApplyBusinessPojo;
 import com.appynitty.gp.pojo.ApplyJobPojo;
 import com.appynitty.gp.pojo.CertificatePojo;
+import com.appynitty.gp.pojo.ClassificationPojo;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
 import com.appynitty.gp.pojo.ComplaintTypePojo;
 import com.appynitty.gp.pojo.ComplentStatusPojo;
@@ -16,9 +18,11 @@ import com.appynitty.gp.pojo.DistrictPojo;
 import com.appynitty.gp.pojo.FcmIdPojo;
 import com.appynitty.gp.pojo.GalleryPojo;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
+import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.pojo.PhotoGalleryVideo;
+import com.appynitty.gp.pojo.PropertyTaxPojo;
 import com.appynitty.gp.pojo.ResultPojo;
 import com.appynitty.gp.pojo.SamajBavanBookingPojo;
 import com.appynitty.gp.pojo.SchemesPojo;
@@ -27,21 +31,26 @@ import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.pojo.SuggestionPojo;
 import com.appynitty.gp.pojo.TahsilPojo;
 import com.appynitty.gp.pojo.TankerBookingPojo;
+import com.appynitty.gp.pojo.UpcomingEventsPojo;
 import com.appynitty.gp.pojo.WorkCheckOutPojo;
 import com.appynitty.gp.pojo.YoungBusinessPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.webservices.CertificateWebservice;
+import com.appynitty.gp.webservices.ClassificationWebservice;
 import com.appynitty.gp.webservices.CompleantWebservice;
 import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
+import com.appynitty.gp.webservices.MandiWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
+import com.appynitty.gp.webservices.PropertyTaxDetailsWebservice;
 import com.appynitty.gp.webservices.SamajBavanBookingWebservice;
 import com.appynitty.gp.webservices.SchemesWebservice;
 import com.appynitty.gp.webservices.SmartGpWebservice;
 import com.appynitty.gp.webservices.SocialNetworkWebservice;
 import com.appynitty.gp.webservices.SuggestionWebservice;
 import com.appynitty.gp.webservices.TankerBookingWebservice;
+import com.appynitty.gp.webservices.UpcomingEventWebservice;
 import com.appynitty.gp.webservices.WorkCheckOutWebservice;
 import com.appynitty.gp.webservices.YoungBusinessWebservice;
 import com.appynitty.gp.webservices.YoungJobWebservice;
@@ -443,6 +452,7 @@ public class SyncServer {
 
             RequestBody userId = null;
             if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
+                Log.e(TAG, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
                 userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
             }
 
@@ -1056,4 +1066,146 @@ public class SyncServer {
         }
         return false;
     }
+
+    public boolean pullMandiListFromServer(String selectedDate) {
+
+        List<MandiPojo> mandiPojoList = null;
+
+        try {
+
+            MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
+            mandiPojoList = service.pullMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+                    selectedDate
+            ).execute().body();
+
+            if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean pullDefaultMandiListFromServer() {
+
+        List<MandiPojo> mandiPojoList = null;
+
+        try {
+
+            MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
+            mandiPojoList = service.pullDefaultMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, "")).execute().body();
+
+            if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean pullUpcomingEventListFromServer() {
+
+        List<UpcomingEventsPojo> upcomingEventsPojoList = null;
+
+        try {
+
+            UpcomingEventWebservice service = AUtils.createService(UpcomingEventWebservice.class, AUtils.SERVER_URL);
+            upcomingEventsPojoList = service.pullUpcomingEventList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            ).execute().body();
+
+            if (!AUtils.isNull(upcomingEventsPojoList) && !upcomingEventsPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<UpcomingEventsPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(upcomingEventsPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean pullClassificationListFromServer() {
+
+        List<ClassificationPojo> classificationPojoList = null;
+
+        try {
+
+            ClassificationWebservice service = AUtils.createService(ClassificationWebservice.class, AUtils.SERVER_URL);
+            classificationPojoList = service.pullClassificationList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            ).execute().body();
+
+            if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
+
+                Type type = new TypeToken<List<MandiPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(classificationPojoList, type));
+
+                return true;
+            } else {
+
+                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Boolean getDetailsUsingId(String propertyNumber){
+
+        PropertyTaxPojo propertyTaxPojo = null;
+
+        try{
+
+            PropertyTaxDetailsWebservice service = AUtils.createService(PropertyTaxDetailsWebservice.class, AUtils.SERVER_URL);
+
+            propertyTaxPojo = service.fetchPropertyDetails(QuickUtils.prefs.getString(AUtils.APP_ID, "1"), propertyNumber)
+                .execute().body();
+
+            if(!AUtils.isNull(propertyTaxPojo)){
+
+                Type type = new TypeToken<PropertyTaxPojo>() {}.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, gson.toJson(propertyTaxPojo, type));
+                return true;
+
+            }else{
+
+                return false;
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

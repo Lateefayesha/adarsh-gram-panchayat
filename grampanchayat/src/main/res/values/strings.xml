@@ -62,6 +62,16 @@
     <string name="comments">Comments :</string>
     <string name="before">Before</string>
     <string name="after">After</string>
+    <string name="upcoming_programs">Upcoming Programs</string>
+    <string name="mandi">Mandi</string>
+    <string name="event_address">Address :</string>
+    <string name="mandi_name">Mandi Name :</string>
+    <string name="mandi_date">Date :</string>
+    <string name="mandi_minimum_price">Minimum Rate</string>
+    <string name="mandi_maximum_price">Maximum Rate</string>
+    <string name="event_detail">Details :</string>
+    <string name="classified">Classified Ads</string>
+    <string name="property_tax">Property Tax</string>
 
 
     <string name="plz_ent_something">Please enter something</string>
@@ -82,6 +92,7 @@
     <string name="plz_select_state">Please select state</string>
     <string name="plz_select_complaint_type">Please select grievance type</string>
     <string name="plz_ent_suggestion">Please enter Suggestion / Idea</string>
+    <string name="plz_ent_property_no">Please enter Property Number</string>
 
 
     <string name="ward_no_comp">Ward number *</string>
@@ -125,6 +136,38 @@
     <string name="rejected">Rejected</string>
     <string name="details">Details</string>
 
+    <string name="property_number">Property Number</string>
+    <string name="property_details">Residency Property Details</string>
+    <string name="property_house_number">Property/House Number</string>
+    <string name="property_assessment_date">Assessment Date. (DD-MM-YYYY)</string>
+    <string name="property_form_no">Form No.</string>
+    <string name="property_ward_name">Ward Name.</string>
+    <string name="property_mohalla_name">Mohalla Name.</string>
+    <string name="property_ownership_type">Ownership Type.</string>
+    <string name="property_owner_name">Owner Name.</string>
+    <string name="property_house_no">House No.</string>
+    <string name="property_house_address">Property/House Address.</string>
+    <string name="property_mobile_no">Mobile No.</string>
+    <string name="property_rent_area">Total Rent Area in Sq Feet</string>
+    <string name="property_own_area">Total Own Area in Sq Feet</string>
+    <string name="property_area">Total Area Of Property in Sq Feet</string>
+    <string name="property_area_rates">Area Rates</string>
+    <string name="property_road_width_less">Road Width Less than</string>
+    <string name="property_construction">Construction Year</string>
+    <string name="property_type_construction">Type of Construction</string>
+    <string name="property_arv">Annual Rental Value(ARV)</string>
+    <string name="property_appreciation">Appreciation %</string>
+    <string name="property_depreciation">Depreciation %</string>
+    <string name="property_final_arv">Final Annual Rental Value(ARV)</string>
+    <string name="property_current_year_tax">Current Year Tax</string>
+    <string name="property_arrear">Arrear</string>
+    <string name="property_interest">Interest</string>
+    <string name="property_total_deposit">Total Deposit</string>
+    <string name="property_tax_discount">10% Discount on Current Tax</string>
+    <string name="property_total_tax">Total tax Due</string>
+    <string name="property_online_payment">Online Payment</string>
+
+
     <string name="clening_complent_details">The citizens are requested to classify household waste in the form of wet and dry garbage. Wet waste should be collected in green and dry garbage in blue trash and thus the classified waste should be handed over to the cleaner.\n\nDry waste is polyethylene bags, plastic goods, iron goods, torn clothes, newspaper trash, paper, cardboard, rappers, etc., which can be disposed of through the disposal of the wreckage.\n\nWet Waste is the waste which includes stale food, spoiled fruit, leafy vegetables, egg shells, tea powder, waterproofing of plants, which are destroyed by nature, etc.\n\nTo make dangerous waste like hay waste, dry trash and glass to be binding, and to impose a furore on those who do not; Such instructions have been made to the Central Government by the Parliamentary Committee appointed for the management of waste. The report submitted by the committee said that the government should take initiative to restrict the garbage collection by encouraging the waste to be kept separate.</string>
     <string name="water_complent_details">Development of water resources such as removal of sludge in village pond, removal of sludge in wells, recharge of well, water tank construction and repair, installation of bore well / hand pumps and maintenance etc.  are included in village development plan.\n\nRepairing of water supply related equipment such as connecting and repair of pipelines for water, borewell / hand pump / drainage of wells, and water tanker facilities etc.\n\nIn this plan, the provision is made to supply water to the village through solar pumps where electricity supply is not available.\n\nIn order to provide clean drinking water provisions like, the use of RO technology or water purification project to maintain the drinking water supply in villages, to set up water meter devices to avoid water abuse, and to expand the water supply schemes for economically weaker sections are made in village development plan.</string>
     <string name="light_complent_details">Not having a system of street light on rural roads is a serious problem. With absence of street light there are problems like social insecurity, crime etc. Keeping all this in mind, priority has been given on the issue of establishing and maintaining a street light in the development plan.\n\nThe provision is made in the development plan for the use of L E D / Solar Lamps and their annual maintenance.</string>
@@ -133,6 +176,5 @@
 
 
     <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
-
 
 </resources>
