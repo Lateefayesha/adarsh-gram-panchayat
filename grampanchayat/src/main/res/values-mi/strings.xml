@@ -149,7 +149,7 @@
     <string name="plz_ent_property_no">कृपया मालमत्ता क्रमांक प्रविष्ट करा</string>
     <string name="property_details">निवासी मालमत्ता तपशील</string>
     <string name="property_house_number">मालमत्ता/घरांची संख्या</string>
-    <string name="property_assessment_date">मूल्यांकन तारीख. (YYYY-MM-DD)</string>
+    <string name="property_assessment_date">मूल्यांकन तारीख. (DD-MM-YYYY)</string>
     <string name="property_form_no">फोर्म नं.</string>
     <string name="property_ward_name">वार्ड नाव.</string>
     <string name="property_mohalla_name">मोहल्ला नाव.</string>

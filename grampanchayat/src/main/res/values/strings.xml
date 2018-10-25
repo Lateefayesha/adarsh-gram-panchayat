@@ -139,7 +139,7 @@
     <string name="property_number">Property Number</string>
     <string name="property_details">Residency Property Details</string>
     <string name="property_house_number">Property/House Number</string>
-    <string name="property_assessment_date">Assessment Date. (YYYY-MM-DD)</string>
+    <string name="property_assessment_date">Assessment Date. (DD-MM-YYYY)</string>
     <string name="property_form_no">Form No.</string>
     <string name="property_ward_name">Ward Name.</string>
     <string name="property_mohalla_name">Mohalla Name.</string>
