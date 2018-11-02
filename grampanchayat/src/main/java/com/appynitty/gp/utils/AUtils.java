@@ -142,7 +142,7 @@ public class AUtils extends MsUtils {
 
     public static String getCurrentDateTime() {
 
-        SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_TIME_FORMATE);
+        SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_TIME_FORMATE, Locale.ENGLISH);
         return format.format(new Date());
     }
 
@@ -154,13 +154,9 @@ public class AUtils extends MsUtils {
         Date givenDate = null;
         try {
             givenDate = currentFormat.parse(dateTime);
-        } catch (ParseException e) {
-            givenDate = null;
-        }
-        if (!AUtils.isNull(givenDate)) {
             return displayFormat.format(givenDate);
-        } else {
-
+        } catch (ParseException e) {
+            e.printStackTrace();
             return "";
         }
     }
