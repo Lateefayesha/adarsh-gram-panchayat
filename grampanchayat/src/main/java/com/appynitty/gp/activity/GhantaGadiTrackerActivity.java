@@ -1,17 +1,34 @@
+
 package com.appynitty.gp.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.appynitty.gp.R;
+import com.appynitty.gp.adapter.MapInfoWindowAdapter;
+import com.appynitty.gp.controller.SyncServer;
+import com.appynitty.gp.pojo.ActiveUserListPojo;
+import com.appynitty.gp.pojo.AreaListPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
+import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,8 +39,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.mithsoft.lib.componants.Toasty;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import quickutils.core.QuickUtils;
@@ -31,12 +53,20 @@ import quickutils.core.QuickUtils;
 /**
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
  */
+
 public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener {
 
     private static final String TAG = "GhantaGadiTracker";
     private LatLngBounds bounds;
     private GoogleMap mGmap;
+    private AutoCompleteTextView searchViewAutoComplete;
+    private Context context;
+    private int ghataGadiCount;
+    private LatLng currlatLng;
+
+    private List<ActiveUserListPojo> activeUserListPojos;
+    private List<AreaListPojo> areaListPojos;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -52,6 +82,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
         super.onCreate(savedInstanceState);
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_ghanta_gadi_tracker);
+        context = GhantaGadiTrackerActivity.this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.title_activity_ghanta_gadi_tracker));
@@ -62,67 +93,84 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
         // when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        initComponents();
+    }
+
+    private void initComponents(){
+        generateId();
+        registerEvents();
+        initData();
+    }
+
+    private void generateId(){
+        //    private Spinner areaListSpinner;
+        SearchView searchView = findViewById(R.id.search_area);
+        ImageView imageViewSearchMag = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        imageViewSearchMag.setImageResource(R.drawable.icn_search_ghanta_gadi);
+        searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchViewAutoComplete.setDropDownBackgroundResource(R.color.white);
+        searchViewAutoComplete.setThreshold(0);
+        ghataGadiCount = 0;
+        currlatLng = null;
+    }
+
+    private void registerEvents(){
+
+        searchViewAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String searchArea = adapterView.getItemAtPosition(i).toString().trim();
+                searchViewAutoComplete.setText(searchArea);
+                searchViewAutoComplete.setSelection(searchArea.length());
+                searchViewAutoComplete.clearFocus();
+                fetchActiveUserList(searchArea);
+            }
+        });
+
+        searchViewAutoComplete.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    if(searchViewAutoComplete.getText().length() == 0)
+                        fetchActiveUserList(null);
+                    else
+                        fetchActiveUserList(searchViewAutoComplete.getText().toString().trim());
+
+                    searchViewAutoComplete.clearFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void initData(){
+
+        String LatLng = QuickUtils.prefs.getString(AUtils.LOCATION, "");
+        if(!LatLng.equals("")) {
+            String[] split = LatLng.split(",");
+            String lat = split[0];
+            String lng = split[1];
+            currlatLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+        }
+
+        fetchAreaList(false);
+        initSpinner();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        try{
-            mGmap = googleMap;
-            mGmap.setOnMapLoadedCallback(this);
-            mGmap.setOnInfoWindowClickListener(this);
+        mGmap = googleMap;
 
-            LatLng latLng = null;
-            String latiLngi = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "");
-
-            ArrayList<String> arr = new ArrayList<>();
-
-            arr.add("20.50,78.50");
-            arr.add("20.90,78.90");
-            arr.add("21.00,79.00");
-            arr.add("21.50,79.50");
-            arr.add("21.90,79.90");
-
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-
-            for (String latlng : arr){
-                if(!latlng.equals("")){
-                    String[] split = latlng.split(",");
-                    String lat = split[0];
-                    String lng = split[1];
-
-                    latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-                }else{
-                    latLng = new LatLng(Double.parseDouble("21.00"), Double.parseDouble("79.00"));
-                }
-
-
-                mGmap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .icon(
-                            BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                                .decodeResource(getResources(),R.drawable.ic_truck_location))
-                        )
-                        .title(latlng)
-                        .snippet("This is for testing purpose"));
-
-                builder.include(latLng);
-
-            }
-
-            bounds = builder.build();
-
-            mGmap.setMapType(GoogleMap.MAP_TYPE_NORMAL); // set the map type
-
-            mGmap.getUiSettings().setZoomControlsEnabled(true);
-            mGmap.getUiSettings().setMapToolbarEnabled(false);
-
-        }catch (Exception e){
-            e.printStackTrace();
+        if(!AUtils.isNull(mGmap)){
+            fetchActiveUserList(null);
+        }else{
+            Toasty.error(context, "Fatal Error, Unable to load Map").show();
         }
 
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -140,13 +188,173 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
 
     @Override
     public void onMapLoaded() {
-        CameraUpdate update = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+        if(!AUtils.isNull(bounds)){
+            CameraUpdate update = (ghataGadiCount == 1)? CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 18f) : CameraUpdateFactory.newLatLngBounds(bounds, 150);
 //        mGmap.moveCamera(update);// LatLag,Zoom value
-        mGmap.animateCamera(update);
+            mGmap.animateCamera(update);
+        }else{
+            Toasty.error(context, "Fatal Error, Unable to load Map").show();
+        }
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Log.d(TAG, "onInfoWindowClick: ");
+        ActiveUserListPojo pojo = (ActiveUserListPojo) marker.getTag();
+        String mobileNo = "tel:"+Objects.requireNonNull(pojo).getUserMobile();
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(mobileNo)));
+    }
+
+    private void plotOnmap(){
+
+        try{
+            mGmap.setOnMapLoadedCallback(this);
+            mGmap.setOnInfoWindowClickListener(this);
+            mGmap.setInfoWindowAdapter(new MapInfoWindowAdapter(this));
+            mGmap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    marker.showInfoWindow();
+                    return true;
+                }
+            });
+
+            LatLng latLng = null;
+            mGmap.clear();
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            for (ActiveUserListPojo pojo : activeUserListPojos){
+                if(!AUtils.isNull(pojo)){
+
+                    latLng = new LatLng(Double.parseDouble(pojo.getLatitude()), Double.parseDouble(pojo.getLongitude()));
+                }
+
+                Marker marker = mGmap.addMarker(new MarkerOptions()
+                        .position(Objects.requireNonNull(latLng))
+                        .icon(
+                                BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                                        .decodeResource(getResources(),R.drawable.ic_marker))
+                        )
+                        .title(pojo.getVehcileNumber())
+                        .snippet(pojo.getAddress()));
+
+                marker.setTag(pojo);
+                builder.include(latLng);
+
+            }
+
+            bounds = builder.build();
+
+            mGmap.setMapType(GoogleMap.MAP_TYPE_NORMAL); // set the map type
+
+            mGmap.getUiSettings().setZoomControlsEnabled(true);
+            mGmap.getUiSettings().setMapToolbarEnabled(false);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void noMarkerView(){
+        mGmap.clear();
+        if(!AUtils.isNull(currlatLng)){
+            mGmap.animateCamera(CameraUpdateFactory.newLatLngZoom(currlatLng, 16f));
+        }else
+            mGmap.animateCamera(CameraUpdateFactory.zoomTo(15f));
+    }
+
+    private void initSpinner() {
+        ArrayList<String> spinnerList = new ArrayList<>();
+
+        if(!AUtils.isNull(areaListPojos)){
+            Type type = new TypeToken<List<AreaListPojo>>(){
+            }.getType();
+            areaListPojos = new Gson().fromJson(
+                    QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                    type);
+
+            for(AreaListPojo pojo: areaListPojos){
+                spinnerList.add(pojo.getArea());
+            }
+
+            ArrayAdapter adapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, spinnerList);
+
+            searchViewAutoComplete.setAdapter(adapter);
+
+        }else{
+            fetchAreaList(true);
+        }
+    }
+
+    private void fetchActiveUserList(@Nullable final String areaName){
+
+        new MyAsyncTask(context, true, new MyAsyncTask.AsynTaskListener() {
+            String fetchPref = null;
+            Boolean haveData = false;
+            @Override
+            public void doInBackgroundOpration(SyncServer syncServer) {
+                if(!AUtils.isNull(areaName)){
+                    haveData = syncServer.getActiveUserAreaWise(areaName);
+                    fetchPref = AUtils.PREFS.SBA_USER_LIST;
+                }else{
+                    haveData = syncServer.getAllActiveUsers();
+                    fetchPref = AUtils.PREFS.SBA_ALL_USER_LIST;
+                }
+            }
+
+            @Override
+            public void onFinished() {
+                if(haveData){
+                    Type type = new TypeToken<List<ActiveUserListPojo>>(){
+                    }.getType();
+                    activeUserListPojos = new Gson().fromJson(
+                            QuickUtils.prefs.getString(fetchPref, null),
+                            type);
+
+                    if(!AUtils.isNull(activeUserListPojos) && !activeUserListPojos.isEmpty()){
+                        ghataGadiCount = activeUserListPojos.size();
+                        plotOnmap();
+                    }else{
+                        noMarkerView();
+                        Toasty.info(context, getString(R.string.no_ghanta_gadi)).show();
+                    }
+
+                }else{
+                    Toasty.error(context, getString(R.string.something_error)).show();
+                }
+            }
+        }).execute();
+    }
+
+    private void fetchAreaList(Boolean isProgress){
+
+        new MyAsyncTask(context, isProgress, new MyAsyncTask.AsynTaskListener() {
+            boolean haveData = false;
+            @Override
+            public void doInBackgroundOpration(SyncServer syncServer) {
+                haveData = syncServer.getAreaList();
+            }
+
+            @Override
+            public void onFinished() {
+                if(haveData){
+
+                    Type type = new TypeToken<List<AreaListPojo>>(){
+                    }.getType();
+                    areaListPojos = new Gson().fromJson(
+                            QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                            type);
+
+                    if(!AUtils.isNull(areaListPojos) && !areaListPojos.isEmpty()){
+                        initSpinner();
+                    }else{
+                        Toasty.error(context, getString(R.string.serverError)).show();
+                    }
+
+                }else{
+                    Toasty.error(context, getString(R.string.something_error)).show();
+                }
+            }
+        }).execute();
     }
 }
+

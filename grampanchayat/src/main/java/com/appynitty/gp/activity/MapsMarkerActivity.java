@@ -58,33 +58,37 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
 
         LatLng latLng = null;
 
-        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.APP_LOCATION, ""))) {
+        try{
+            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.APP_LOCATION, ""))) {
 
-            String[] split = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "").split(",");
-            String lat = split[0];
-            String log = split[1];
+                String[] split = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "").split(",");
+                String lat = split[0];
+                String log = split[1];
 
-            if (!AUtils.isNullString(lat) && !AUtils.isNullString(log)) {
+                if (!AUtils.isNullString(lat) && !AUtils.isNullString(log)) {
 
-                double lat_D = Double.parseDouble(lat);
-                double log_D = Double.parseDouble(log);
+                    double lat_D = Double.parseDouble(lat);
+                    double log_D = Double.parseDouble(log);
 
-                latLng = new LatLng(lat_D, log_D);
+                    latLng = new LatLng(lat_D, log_D);
+                }
+
             }
 
-        }
-
-        googleMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .title(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))
-                .snippet(QuickUtils.prefs.getString(AUtils.GP_DETAILS, "")));
+            googleMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))
+                    .snippet(QuickUtils.prefs.getString(AUtils.GP_DETAILS, "")));
 //                .icon(icon));//title to the marker
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));// LatLag,Zoom value
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));// LatLag,Zoom value
 //        googleMap.animateCamera(CameraUpdateFactory.zoomBy(15));// set the zoom in map value
-        googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN); // set the map type
+            googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN); // set the map type
 
 //        googleMap.getUiSettings().setZoomControlsEnabled(false);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

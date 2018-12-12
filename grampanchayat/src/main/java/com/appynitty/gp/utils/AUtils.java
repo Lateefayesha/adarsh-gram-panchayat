@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by MiTHUN on 5/2/18.
- */
+// */
 
 public class AUtils extends MsUtils {
 
@@ -37,10 +37,20 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
-//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
+//    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://115.115.153.117:7055/";
+    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+
+
+    //   SBA Local URL
+//    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
+
+    //   SBA Staging URL
+//    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4088/";
+
+    //   SBA Relese URL
+    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4044/";
 
 
     //    Genral Constant
@@ -144,6 +154,21 @@ public class AUtils extends MsUtils {
 
         SimpleDateFormat format = new SimpleDateFormat(AUtils.SERVER_DATE_TIME_FORMATE);
         return format.format(new Date());
+    }
+
+    public static String formatLocationTime(String time) {
+
+        DateFormat serverTime = new SimpleDateFormat(SERVER_TIME_FORMATE, Locale.ENGLISH);
+        DateFormat mobileTime = new SimpleDateFormat(MOBILE_TIME_FORMATE, Locale.ENGLISH);
+
+        try{
+            Date server = serverTime.parse(time);
+            return mobileTime.format(server);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
     public static String getEventDisplayDate(String dateTime) {
@@ -308,6 +333,10 @@ public class AUtils extends MsUtils {
         String GRAM_PANCHAYAT_LIST = "GramPanchayatList";
         String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
         String PROPERTY_TAX_DETAILS_POJO_LIST = "PropertyTaxDetailsList";
+
+        String SBA_AREA_LIST = "SbaAreaList";
+        String SBA_USER_LIST = "SbaUserList";
+        String SBA_ALL_USER_LIST = "SbaAllUserList";
     }
 
     // Color Constant

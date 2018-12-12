@@ -3,8 +3,10 @@ package com.appynitty.gp.controller;
 import android.content.Context;
 import android.util.Log;
 
+import com.appynitty.gp.pojo.ActiveUserListPojo;
 import com.appynitty.gp.pojo.ApplyBusinessPojo;
 import com.appynitty.gp.pojo.ApplyJobPojo;
+import com.appynitty.gp.pojo.AreaListPojo;
 import com.appynitty.gp.pojo.CertificatePojo;
 import com.appynitty.gp.pojo.ClassificationPojo;
 import com.appynitty.gp.pojo.CleaningCompleantPojo;
@@ -41,6 +43,7 @@ import com.appynitty.gp.webservices.CompleantWebservice;
 import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
+import com.appynitty.gp.webservices.GhantaGadiTrackerWebservice;
 import com.appynitty.gp.webservices.MandiWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
 import com.appynitty.gp.webservices.PropertyTaxDetailsWebservice;
@@ -56,6 +59,7 @@ import com.appynitty.gp.webservices.YoungBusinessWebservice;
 import com.appynitty.gp.webservices.YoungJobWebservice;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mithsoft.lib.componants.Toasty;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -1202,6 +1206,80 @@ public class SyncServer {
             }
 
         }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public Boolean getAreaList(){
+
+        List<AreaListPojo> areaListPojos = null;
+
+        try{
+            GhantaGadiTrackerWebservice webservice = AUtils.createService(GhantaGadiTrackerWebservice.class, AUtils.SERVER_URL_SBA);
+            areaListPojos = webservice.fetchAreaList("1").execute().body();
+
+            if(!AUtils.isNull(areaListPojos)){
+
+                Type type = new TypeToken<List<AreaListPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.SBA_AREA_LIST , gson.toJson(areaListPojos, type));
+
+                return true;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+
+    public Boolean getAllActiveUsers(){
+
+        List<ActiveUserListPojo> userListPojos = null;
+
+        try{
+            GhantaGadiTrackerWebservice webservice = AUtils.createService(GhantaGadiTrackerWebservice.class, AUtils.SERVER_URL_SBA);
+            userListPojos = webservice.fetchAllActiveUserList("1").execute().body();
+
+            if(!AUtils.isNull(userListPojos)){
+
+                Type type = new TypeToken<List<ActiveUserListPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.SBA_ALL_USER_LIST , gson.toJson(userListPojos, type));
+
+                return true;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public Boolean getActiveUserAreaWise(String area){
+
+        List<ActiveUserListPojo> areaListPojos = null;
+
+        try{
+
+            GhantaGadiTrackerWebservice webservice = AUtils.createService(GhantaGadiTrackerWebservice.class, AUtils.SERVER_URL_SBA);
+            areaListPojos = webservice.fetchAreawiseUserList("1", area).execute().body();
+
+            if(!AUtils.isNull(areaListPojos)){
+
+                Type type = new TypeToken<List<ActiveUserListPojo>>() {
+                }.getType();
+                QuickUtils.prefs.save(AUtils.PREFS.SBA_USER_LIST , gson.toJson(areaListPojos, type));
+
+                return true;
+            }
+
+        }catch (Exception e){
             e.printStackTrace();
         }
 

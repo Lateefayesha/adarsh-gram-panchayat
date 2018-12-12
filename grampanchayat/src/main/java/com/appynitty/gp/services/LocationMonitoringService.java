@@ -1,6 +1,7 @@
 package com.appynitty.gp.services;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,7 +32,7 @@ public class LocationMonitoringService extends Service implements
 
     private static final String TAG = LocationMonitoringService.class.getSimpleName();
     GoogleApiClient mLocationClient;
-    LocationRequest mLocationRequest = new LocationRequest();
+    LocationRequest mLocationRequest = LocationRequest.create();
 
 
 //    public static final String ACTION_LOCATION_BROADCAST = LocationMonitoringService.class.getName() + "LocationBroadcast";
@@ -73,6 +74,7 @@ public class LocationMonitoringService extends Service implements
     /*
      * LOCATION CALLBACKS
      */
+    @SuppressLint("MissingPermission")
     @Override
     public void onConnected(Bundle dataBundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
