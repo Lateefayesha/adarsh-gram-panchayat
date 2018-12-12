@@ -18,6 +18,7 @@ import com.appynitty.gp.R;
 import com.appynitty.gp.activity.BookingActivity;
 import com.appynitty.gp.activity.ClassificationActivity;
 import com.appynitty.gp.activity.EPaymentActivity;
+import com.appynitty.gp.activity.GhantaGadiTrackerActivity;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.activity.MandiDetailsActivity;
 import com.appynitty.gp.activity.MapsMarkerActivity;
@@ -222,6 +223,7 @@ public class MenuFragment extends MyFragemtV4 {
                 if (AUtils.isNetWorkAvailable(context)) {
 
                     context.startActivity(new Intent(context, MapsMarkerActivity.class));
+
                 } else {
 
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
@@ -230,7 +232,8 @@ public class MenuFragment extends MyFragemtV4 {
             case 25:
                 if (AUtils.isNetWorkAvailable(context)) {
 
-                    startActivity(new Intent(context, UtilityActivity.class));
+                    context.startActivity(new Intent(context, GhantaGadiTrackerActivity.class));
+
                 } else {
 
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
@@ -239,13 +242,22 @@ public class MenuFragment extends MyFragemtV4 {
             case 26:
                 if (AUtils.isNetWorkAvailable(context)) {
 
-                    context.startActivity(new Intent(context, WeatherActivity.class));
+                    startActivity(new Intent(context, UtilityActivity.class));
                 } else {
 
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case 27:
+                if (AUtils.isNetWorkAvailable(context)) {
+
+                    context.startActivity(new Intent(context, WeatherActivity.class));
+                } else {
+
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 28:
                 mFragment = ContactUsFragment.newInstance();
                 break;
         }
@@ -302,6 +314,8 @@ public class MenuFragment extends MyFragemtV4 {
 
         menuPojoList.add(new MenuPojo(getString(R.string.website), AUtils.Colour.Blue));
         menuPojoList.add(new MenuPojo(getString(R.string.map), AUtils.Colour.Red));
+
+        menuPojoList.add(new MenuPojo(getString(R.string.title_activity_ghanta_gadi_tracker), AUtils.Colour.Khakhi));
 
         menuPojoList.add(new MenuPojo(getString(R.string.utility), AUtils.Colour.Pink));
         menuPojoList.add(new MenuPojo(getString(R.string.weather), AUtils.Colour.SkyBlue));

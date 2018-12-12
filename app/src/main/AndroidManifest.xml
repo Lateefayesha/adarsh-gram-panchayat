@@ -99,6 +99,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name="com.appynitty.gp.activity.GhantaGadiTrackerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name="com.appynitty.gp.activity.WebsiteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
