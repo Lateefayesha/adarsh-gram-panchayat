@@ -2,17 +2,14 @@ package com.appynitty.gp.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.appynitty.gp.R;
-import com.appynitty.gp.activity.BookingActivity;
 import com.mithsoft.lib.componants.MyProgressDialog;
-
-import java.net.URI;
 
 /**
  * Created by Ayan Dey on 19/10/18.
@@ -22,12 +19,28 @@ public class InternalWebviewClient extends WebViewClient {
     private static final String TAG = "InternalWebviewClient";
     private MyProgressDialog progressDialog = null;
     private Context mContext;
+    private Boolean mShowProgress;
 
     public InternalWebviewClient(Context context, Boolean showProgress){
         this.mContext = context;
-        progressDialog = new MyProgressDialog(context, R.drawable.progress_bar, false);
-        if(showProgress){
+        this.progressDialog = new MyProgressDialog(context, R.drawable.progress_bar, false);
+        this.mShowProgress = showProgress;
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        if(progressDialog != null && mShowProgress){
             progressDialog.show();
+        }
+    }
+
+    @Override
+    public void onPageCommitVisible(WebView view, String url) {
+        super.onPageCommitVisible(view, url);
+        if(progressDialog != null && progressDialog.isShowing()){
+            progressDialog.hide();
+            progressDialog = null;
         }
     }
 
@@ -36,6 +49,7 @@ public class InternalWebviewClient extends WebViewClient {
         super.onPageFinished(view, url);
         if(progressDialog != null && progressDialog.isShowing()){
             progressDialog.hide();
+            progressDialog = null;
         }
     }
 
