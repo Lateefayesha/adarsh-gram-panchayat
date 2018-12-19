@@ -15,5 +15,5 @@ public interface PropertyTaxDetailsWebservice {
 
     @GET("api/Get/PropertyTax")
     Call<PropertyTaxPojo>fetchPropertyDetails(@Header("appId") String appId,
-                                                    @Header("HouseNo") String propertyNo);
+                                              @Header("HouseNo") String propertyNo);
 }

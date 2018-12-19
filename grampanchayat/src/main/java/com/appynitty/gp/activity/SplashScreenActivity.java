@@ -1,6 +1,7 @@
 package com.appynitty.gp.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
+import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
 
 import quickutils.core.QuickUtils;
@@ -42,13 +45,14 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         new SaveFcmIdAsyncTask(this).execute();
 
-        lodeHomeScreen();
+        versionCheck();
+//        loadHomeScreen();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
 
-    private void lodeHomeScreen() {
+    private void loadHomeScreen() {
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -57,6 +61,37 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
             }
         }, 4000);
+    }
+
+    private void versionCheck(){
+        new MyAsyncTask(SplashScreenActivity.this, false, new MyAsyncTask.AsynTaskListener() {
+            Boolean doUpdate = false;
+            @Override
+            public void doInBackgroundOpration(SyncServer syncServer) {
+                doUpdate = syncServer.checkVersionUpdate();
+            }
+
+            @Override
+            public void onFinished() {
+                if(doUpdate){
+                    AUtils.showConfirmationDialog(SplashScreenActivity.this, AUtils.VERSION_CODE, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                            AUtils.rateApp(SplashScreenActivity.this);
+                        }
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                            finish();
+                        }
+                    });
+                }else{
+                    loadHomeScreen();
+                }
+            }
+        }).execute();
     }
 
 

@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 
+import com.appynitty.gp.R;
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
@@ -34,14 +37,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AUtils extends MsUtils {
 
     //    Local URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+//    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
+    //    Relese BACKUP URL
+//    public static final String SERVER_URL = "http://202.65.157.253:7055/";
 
     //   SBA Local URL
 //    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
@@ -51,6 +56,9 @@ public class AUtils extends MsUtils {
 
     //   SBA Relese URL
     public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4044/";
+
+    //   SBA Relese BACKUP URL
+//    public static final String SERVER_URL_SBA = "http://202.65.157.253:4044/";
 
 
     //    Genral Constant
@@ -69,6 +77,7 @@ public class AUtils extends MsUtils {
     public static final String GALLERY_POJO = "GalleryPhotoPojo";
     public static final String GALLERY_IMG_PATH = "GalleryImagePath";
     public static final String APP_ID = "AppId";
+    public static final String VERSION_CODE = "AppVersion";
     public static final String DEFAULT_LANGUAGE_ID = "2";
     public static final String LANGUAGE_ID = "LanguageId";
     public static final String GALLERY_IMG_POSITION = "GalleryImagePosition";
@@ -294,6 +303,42 @@ public class AUtils extends MsUtils {
     public static void saveFcmId(String fcmId) {
 
         QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
+    }
+
+    public static void showConfirmationDialog(Context context, String type, DialogInterface.OnClickListener
+            positiveListener, @Nullable DialogInterface.OnClickListener negativeLisner){
+
+        String message = "";
+        String title = "";
+        String positiveText = context.getResources().getString(R.string.yes_txt);
+        String negativeText = context.getResources().getString(R.string.no_txt);
+
+        if(type.equals(VERSION_CODE)){
+            title = context.getResources().getString(R.string.update_title);
+            message = context.getResources().getString(R.string.update_message);
+            positiveText = context.getResources().getString(R.string.update_txt);
+            negativeText = context.getResources().getString(R.string.no_thanks_txt);
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(positiveText, positiveListener);
+
+        if(negativeLisner != null){
+            builder.setNegativeButton(negativeText, negativeLisner);
+        }else{
+            builder.setNegativeButton(negativeText, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+        }
+
+        builder.create()
+                .show();
     }
 
     // SharedPreferences Constant

@@ -54,6 +54,7 @@ import com.appynitty.gp.webservices.SocialNetworkWebservice;
 import com.appynitty.gp.webservices.SuggestionWebservice;
 import com.appynitty.gp.webservices.TankerBookingWebservice;
 import com.appynitty.gp.webservices.UpcomingEventWebservice;
+import com.appynitty.gp.webservices.VersionCheckWebService;
 import com.appynitty.gp.webservices.WorkCheckOutWebservice;
 import com.appynitty.gp.webservices.YoungBusinessWebservice;
 import com.appynitty.gp.webservices.YoungJobWebservice;
@@ -1284,6 +1285,28 @@ public class SyncServer {
         }
 
         return false;
+    }
+
+    public Boolean checkVersionUpdate(){
+
+        Boolean doUpdate = false;
+
+        VersionCheckWebService checkService = AUtils.createService(VersionCheckWebService.class, AUtils.SERVER_URL);
+
+        try {
+            ResultPojo resultPojo = checkService.checkVersion(QuickUtils.prefs.getString(AUtils.APP_ID, "1"),
+                    QuickUtils.prefs.getInt(AUtils.VERSION_CODE, 0)).execute().body();
+
+            if (resultPojo != null) {
+                doUpdate = Boolean.parseBoolean(resultPojo.getStatus());
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return doUpdate;
     }
 
 }
