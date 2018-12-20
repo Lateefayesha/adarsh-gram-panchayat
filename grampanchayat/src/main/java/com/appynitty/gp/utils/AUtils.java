@@ -37,13 +37,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AUtils extends MsUtils {
 
     //    Local URL
-    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
-//    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
     //    Relese BACKUP URL
 //    public static final String SERVER_URL = "http://202.65.157.253:7055/";

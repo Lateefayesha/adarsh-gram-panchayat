@@ -3,16 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.appynitty.adarshgrampanchayat">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="com.appynitty.gp.utils.MyApplicationConstants"
@@ -34,119 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.appynitty.gp.activity.HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.SmartSplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.SplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.SelectPlaceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.SelectGramPanchayatActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.SocialNetworkActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.ViewImageActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.mithsoft.lib.filepicker.FileChooserActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.CertificateItemActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.UtilityActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.WeatherActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.AboutAppynittyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.MapsMarkerActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.GhantaGadiTrackerActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.WebsiteActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.EPaymentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.BookingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.MyComlaintDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.MandiDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name="com.appynitty.gp.activity.ClassificationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name="com.appynitty.gp.activity.PropertTaxDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name="com.appynitty.gp.activity.PaymentGatewayWebpageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <service android:name="com.appynitty.gp.services.LocationMonitoringService" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
 
         <service android:name=".fcm.MyFirebaseInstanceIDService">
             <intent-filter>
