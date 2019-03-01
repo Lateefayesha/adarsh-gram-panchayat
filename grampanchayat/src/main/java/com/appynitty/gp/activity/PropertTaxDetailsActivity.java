@@ -21,8 +21,6 @@ import com.appynitty.gp.utils.LocaleHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mithsoft.lib.activity.BaseActivity;
-import com.payumoney.core.PayUmoneySdkInitializer;
-import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
@@ -118,7 +116,7 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
         email = "ayand@appynitty.com";
         mobileNo = "9405892926";
 
-        prepareForPayment();
+        //prepareForPayment();
 
     }
 
@@ -138,7 +136,7 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
         return hash.toString();
     }
 
-    private void prepareForPayment() {
+/*    private void prepareForPayment() {
         try{
             String hashSequence = KEY+"|"+txnid+"|"+amount+"|"+productinfo+"|"+firstname+"|"+email+"|"+SALT;
             String serverCalculatedHash = hashCal("SHA-512", hashSequence);
@@ -169,7 +167,7 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    } */
 
     protected void initData() {
         PropertyTaxPojo propertyTaxPojo;
