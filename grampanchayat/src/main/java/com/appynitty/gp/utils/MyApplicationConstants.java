@@ -34,7 +34,11 @@ public class MyApplicationConstants extends Application {
     @Override
     protected void attachBaseContext(Context base) {
 
-        super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
     }
 
 }
