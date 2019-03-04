@@ -88,9 +88,9 @@ public class HomeActivity extends AppCompatActivity {
 //        }
 
         /* For Older Apps till 19-10-2018 */
-//        mFragment = new MenuFragmentLess();
+        mFragment = new MenuFragmentLess();
         /* For Newer Apps after 19-10-2018 */
-        mFragment = new MenuFragment();
+//        mFragment = new MenuFragment();
 
 //        mFragment.setArguments(bundle);
 
