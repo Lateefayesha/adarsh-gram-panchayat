@@ -63,7 +63,7 @@ public class WebsiteActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebviewClient(WebsiteActivity.this, false));
+        webView.setWebViewClient(new InternalWebviewClient(WebsiteActivity.this));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);

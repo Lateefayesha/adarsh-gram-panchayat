@@ -54,7 +54,7 @@ public class PaymentGatewayWebpageActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebviewClient(PaymentGatewayWebpageActivity.this, true));
+        webView.setWebViewClient(new InternalWebviewClient(PaymentGatewayWebpageActivity.this));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);

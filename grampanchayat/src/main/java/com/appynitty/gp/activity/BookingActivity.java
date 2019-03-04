@@ -58,7 +58,7 @@ public class BookingActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebviewClient(BookingActivity.this, true));
+        webView.setWebViewClient(new InternalWebviewClient(BookingActivity.this));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);

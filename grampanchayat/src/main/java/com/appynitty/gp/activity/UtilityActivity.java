@@ -57,7 +57,7 @@ public class UtilityActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebviewClient(UtilityActivity.this, true));
+        webView.setWebViewClient(new InternalWebviewClient(UtilityActivity.this));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);

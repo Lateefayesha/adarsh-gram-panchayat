@@ -57,7 +57,7 @@ public class EPaymentActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        webView.setWebViewClient(new InternalWebviewClient(EPaymentActivity.this, true));
+        webView.setWebViewClient(new InternalWebviewClient(EPaymentActivity.this));
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
