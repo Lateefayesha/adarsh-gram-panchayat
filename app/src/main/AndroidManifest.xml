@@ -6,7 +6,7 @@
 
 
     <application
-        android:name="com.appynitty.gp.utils.MyApplicationConstants"
+        android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"
         android:allowBackup="true"
         tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"

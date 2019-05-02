@@ -18,7 +18,6 @@ package com.appynitty.adarshgrampanchayat.fcm;
 
 import android.util.Log;
 
-import com.appynitty.gp.utils.AUtils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -42,7 +41,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
 
-        AUtils.saveFcmId(refreshedToken);
+//        AUtils.saveFcmId(refreshedToken);
 
 //        QuickUtils.prefs.save(MsUtils.FCM_ID, FirebaseInstanceId.getInstance().getToken());
 

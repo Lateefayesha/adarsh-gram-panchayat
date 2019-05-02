@@ -1,1 +1,1 @@
-include ':app', ':grampanchayat'
+include ':app', ':grampanchayat', ':ghantagaditracker'

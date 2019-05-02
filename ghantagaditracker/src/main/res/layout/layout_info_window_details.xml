@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/padding_margin_layout_double"
+    android:padding="@dimen/padding_margin_layout">
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/user_name_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_person_primary_dark"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/primery_text_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/vehicle_no_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout" />
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/location_date_time_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_access_time_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp"/>
+
+    <TextView
+        android:id="@+id/location_date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        app:layout_constraintLeft_toRightOf="@id/location_date_time_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"/>
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/vehicle_no_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_local_shipping_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/location_date_time"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/vehicle_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/primery_text_size"
+        app:layout_constraintTop_toBottomOf="@id/location_date_time"
+        app:layout_constraintLeft_toRightOf="@id/vehicle_no_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout" />
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/vehicle_address_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_location_on_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_no"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp" />
+
+    <TextView
+        android:id="@+id/vehicle_address"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_no"
+        app:layout_constraintLeft_toRightOf="@id/vehicle_address_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"/>
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/contact_no_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_call_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_address"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/contact_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_address"
+        app:layout_constraintLeft_toRightOf="@id/contact_no_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout"
+        android:paddingStart="@dimen/dimen_0dp"/>
+
+</android.support.constraint.ConstraintLayout>
