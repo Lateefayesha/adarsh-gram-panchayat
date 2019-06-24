@@ -34,25 +34,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AUtils extends MsUtils {
 
     //    Local URL
-//    public static final String SERVER_URL = "http://192.168.200.3:8077/";
+    public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+//    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
     //    Relese BACKUP URL
 //    public static final String SERVER_URL = "http://202.65.157.253:7055/";
 
     //   SBA Local URL
-//    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
+    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
 
     //   SBA Staging URL
 //    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4088/";
 
     //   SBA Relese URL
-    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
+//    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
     //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://202.65.157.253:4044/";

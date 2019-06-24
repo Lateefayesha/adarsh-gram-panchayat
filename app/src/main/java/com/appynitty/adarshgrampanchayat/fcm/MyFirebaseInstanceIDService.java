@@ -18,9 +18,11 @@ package com.appynitty.adarshgrampanchayat.fcm;
 
 import android.util.Log;
 
+import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import quickutils.core.QuickUtils;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
@@ -43,7 +45,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
 //        AUtils.saveFcmId(refreshedToken);
 
-//        QuickUtils.prefs.save(MsUtils.FCM_ID, FirebaseInstanceId.getInstance().getToken());
+        QuickUtils.prefs.save(AUtils.FCM_ID, FirebaseInstanceId.getInstance().getToken());
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -62,7 +64,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      * @param token The new token.
      */
     private void sendRegistrationToServer(String token) {
-
 
     }
 }
