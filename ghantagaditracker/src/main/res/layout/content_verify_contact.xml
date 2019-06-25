@@ -41,7 +41,8 @@
             android:textColor="@color/gray"
             android:background="@drawable/round_button_border_gray"
             android:layout_gravity="end"
-            android:layout_margin="@dimen/fab_margin"/>
+            android:layout_margin="@dimen/fab_margin"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

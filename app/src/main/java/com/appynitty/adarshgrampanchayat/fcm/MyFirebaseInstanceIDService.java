@@ -44,8 +44,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
         AUtils.saveFcmId(refreshedToken);
 
-//        QuickUtils.prefs.save(AUtils.FCM_ID, FirebaseInstanceId.getInstance().getToken());
-
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.

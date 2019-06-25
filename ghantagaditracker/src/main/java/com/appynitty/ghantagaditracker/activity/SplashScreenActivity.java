@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         QuickUtils.prefs.save(AUtils.APP_ID_GG, "1");
 
         QuickUtils.prefs.save(AUtils.LOCATION, "20.709423,80.469527");
-        QuickUtils.prefs.save(AUtils.VERSION_CODE, BuildConfig.VERSION_CODE);
+        QuickUtils.prefs.save(AUtils.VERSION_CODE, "5");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -39,8 +39,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-//                startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
-                startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
+                if(QuickUtils.prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, true))
+                    startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
+                else
+                    startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
+
             }
         }, 4000);
     }

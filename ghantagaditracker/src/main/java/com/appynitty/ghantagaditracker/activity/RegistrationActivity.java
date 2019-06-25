@@ -1,9 +1,13 @@
 package com.appynitty.ghantagaditracker.activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +15,17 @@ import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.appynitty.ghantagaditracker.R;
+import com.appynitty.ghantagaditracker.adapter.RegistrationAdapterClass;
+import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.mithsoft.lib.componants.MyProgressDialog;
+import com.mithsoft.lib.componants.Toasty;
+
+import quickutils.core.QuickUtils;
+import quickutils.core.categories.view;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -22,9 +34,12 @@ public class RegistrationActivity extends AppCompatActivity {
     private View viewLoaded;
     private String viewToLoadName;
 
-
     EditText txtHouseid, txtOtp, txtContact;
+    private String refId, mobNo, otp;
 
+    private MyProgressDialog progressDialog;
+
+    private RegistrationAdapterClass registrationAdapterClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +52,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void initComponents(){
 
         generateId();
+        registerEvents();
         initData();
     }
 
@@ -46,9 +62,49 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        progressDialog = new MyProgressDialog(mContext, R.drawable.progress_bar, false);
 
         viewStub = findViewById(R.id.view_stub);
 
+        registrationAdapterClass = new RegistrationAdapterClass();
+
+    }
+
+    private void registerEvents(){
+        registrationAdapterClass.setRegistrationListner(new RegistrationAdapterClass.RegistrationListner() {
+            @Override
+            public void onSuccessCallback(RegistrationDetailsPojo detailsPojo, int CallType) {
+                progressDialog.dismiss();
+                if(!AUtils.isNull(detailsPojo)){
+                    if(detailsPojo.getStatus().equals(AUtils.STATUS_SUCCESS)){
+                        switch (CallType){
+                            case RegistrationAdapterClass.RESPONSE_REGISTRATION_DETAILS:
+                                mobNo = detailsPojo.getMobileNo();
+                                loadViewStub(AUtils.ViewToLoad.VerifyContactView);
+                                break;
+                            case RegistrationAdapterClass.RESPONSE_REGISTRATION_OTP:
+                                otp = detailsPojo.getOTP();
+                                loadViewStub(AUtils.ViewToLoad.OtpView);
+                                break;
+                        }
+                    }else
+                        Toasty.info(mContext, detailsPojo.getMessageMar()).show();
+                }else
+                    Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+            }
+
+            @Override
+            public void onFailureCallback() {
+                progressDialog.dismiss();
+                Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+            }
+
+            @Override
+            public void onErrorCallback() {
+                progressDialog.dismiss();
+                Toasty.error(mContext, getResources().getString(R.string.serverError)).show();
+            }
+        });
     }
 
     private void initData(){
@@ -93,7 +149,15 @@ public class RegistrationActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadViewStub(AUtils.ViewToLoad.HouseIdView);
+                String userOtp = txtOtp.getText().toString();
+                if(userOtp.isEmpty())
+                    txtOtp.setError(getResources().getString(R.string.otp_hint));
+                else if(userOtp.equals(otp)){
+                    QuickUtils.prefs.save(AUtils.PREFS.IS_USER_LOGIN, true);
+                    startActivity(new Intent(mContext, TrackerActivity.class));
+                    ((Activity)mContext).finish();
+                }else
+                    Toasty.error(mContext, getResources().getString(R.string.otp_hint_valid)).show();
             }
         });
 
@@ -101,44 +165,97 @@ public class RegistrationActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                requestOtp();
             }
         });
     }
 
     private void loadVerifyContactView(){
+        Button button = viewLoaded.findViewById(R.id.btn_edit_contact);
         txtContact = viewLoaded.findViewById(R.id.ip_verify_contact);
+
+        if(mobNo != null && !mobNo.isEmpty()){
+            txtContact.setText(mobNo);
+            txtContact.setEnabled(false);
+            button.setVisibility(View.VISIBLE);
+        }
+
         txtContact.requestFocus();
 
         ImageButton imageButton = viewLoaded.findViewById(R.id.btn_submit_contact);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadViewStub(AUtils.ViewToLoad.OtpView);
+                String contact = txtContact.getText().toString();
+                if(contact.isEmpty())
+                    txtContact.setError(getResources().getString(R.string.plz_ent_mobile_no));
+                else if(contact.length() == 10 && contact.matches("[0-9]+$")){
+                    mobNo = contact;
+                    requestOtp();
+                }else{
+                    txtContact.setError(getResources().getString(R.string.plz_ent_valid_mobile_no));
+                    Toasty.error(mContext, getResources().getString(R.string.plz_ent_valid_mobile_no)).show();
+                }
             }
         });
 
-        Button button = viewLoaded.findViewById(R.id.btn_edit_contact);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                txtContact.setEnabled(true);
+                txtContact.setSelection(txtContact.getText().toString().length());
+                txtContact.requestFocus();
+                view.setVisibility(View.GONE);
             }
         });
     }
 
     private void loadRegistrationView(){
         txtHouseid = viewLoaded.findViewById(R.id.ip_house_id);
+        if(refId != null && !refId.isEmpty()){
+            txtHouseid.setText(refId);
+            txtHouseid.setSelection(refId.length());
+        }
         txtHouseid.requestFocus();
 
         ImageButton imageButton = viewLoaded.findViewById(R.id.btn_submit_hp_id);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadViewStub(AUtils.ViewToLoad.VerifyContactView);
+                String referenceId = txtHouseid.getText().toString();
+                if(referenceId.isEmpty())
+                    txtHouseid.setError(getResources().getString(R.string.house_number_hint));
+                if(referenceId.toLowerCase().matches("hpsba[0-9]+$")){
+                    refId = referenceId;
+                    submitReferenceId();
+                }else{
+                    txtHouseid.setError(getResources().getString(R.string.house_number_hint_valid));
+                    Toasty.warning(mContext, getResources().getString(R.string.house_number_hint_valid)).show();
+                }
             }
         });
     }
 
+    private void submitReferenceId(){
+        progressDialog.show();
+        registrationAdapterClass.callRegistrationDetails(refId);
+    }
 
+    private void requestOtp(){
+        progressDialog.show();
+        registrationAdapterClass.callRegistrationOtp(refId, mobNo);
+    }
+
+    @Override
+    public void onBackPressed() {
+        switch (viewToLoadName){
+            case AUtils.ViewToLoad.OtpView:
+                loadViewStub(AUtils.ViewToLoad.VerifyContactView);
+                break;
+            case AUtils.ViewToLoad.VerifyContactView:
+                loadViewStub(AUtils.ViewToLoad.HouseIdView);
+                break;
+            default:super.onBackPressed();
+        }
+    }
 }

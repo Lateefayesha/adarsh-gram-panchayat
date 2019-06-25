@@ -36,7 +36,7 @@ public class AUtils extends MsUtils {
     //    Local URL
     public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
-    //    Staging URL
+     //    Staging URL
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
@@ -57,6 +57,8 @@ public class AUtils extends MsUtils {
     //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://202.65.157.253:4044/";
 
+    //   SBA Relese BACKUP URL
+//    public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";
 
     //    Genral Constant
     public static final String STATUS_SUCCESS = "Success";
@@ -97,6 +99,8 @@ public class AUtils extends MsUtils {
     public static final String LANGUAGE_NAME = "LanguageName";
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
+
+    public static final String TAG_SERVER_ERROR = "OkHttp : RESPONSE ERROR";
 
 
     private AUtils() {
