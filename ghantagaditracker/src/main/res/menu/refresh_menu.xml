@@ -7,6 +7,6 @@
         android:id="@+id/refresh_map"
         android:icon="@drawable/ic_refresh_map"
         app:showAsAction="always"
-        android:title=""/>
+        android:title="refresh map"/>
 
 </menu>

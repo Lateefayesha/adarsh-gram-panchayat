@@ -1,82 +1,91 @@
 <resources>
 
-    <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
+    <string name="google_maps_key" translatable="false">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
 
     <string name="app_name" translatable="false">खिरगव्हाण ग्राम पंचायत</string>
 
-    <string name="noInternet">कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा</string>
-    <string name="action_settings">सेटिंग</string>
-    <string name="noData">माहिती आढळली नाही</string>
-    <string name="grievance_id">तक्रार क्रमांक</string>
+    <string name="noInternet">Please check your internet connection and try again</string>
+    <string name="action_settings">Setting</string>
+    <string name="noData">No data found</string>
+    <string name="grievance_id">Grievance ID</string>
 
-    <string name="title_activity_ghanta_gadi_tracker">घंटा गाडी ट्रॅकर</string>
-    <string name="title_activity_cleaning_complaint">स्वच्छताविषयी तक्रार</string>
-    <string name="title_activity_complaint_status">माझी तक्रार स्थिती</string>
-    <string name="title_activity_registration">नोंदणी</string>
+    <string name="title_activity_ghanta_gadi_tracker">Tracker for Garbage Collection Van</string>
+    <string name="title_activity_cleaning_complaint">Cleanliness Grievance</string>
+    <string name="title_activity_complaint_status">My Grievance Status</string>
+    <string name="title_activity_registration">Registration</string>
 
-    <string name="contact_no_txt">संपर्क क्रमांक. : </string>
-    <string name="search_area_txt">क्षेत्र शोधा</string>
-    <string name="logout_txt">लॉगआउट</string>
+    <string name="contact_no_txt">"Contact No. : "</string>
+    <string name="search_area_txt">Search Area</string>
+    <string name="logout_txt">Logout</string>
 
-    <string name="no_ghanta_gadi">घंटा गाडी उपलब्ध नाही</string>
-    <string name="something_error">काहीतरी चूक झाली!! कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="no_ghanta_gadi">No garbage van available</string>
+    <string name="something_error">Something went wrong!! Please try again later.</string>
 
-    <string name="yes_txt">हो</string>
-    <string name="no_txt">नाही</string>
+    <string name="yes_txt">Yes</string>
+    <string name="no_txt">No</string>
 
     <string name="update_txt" translatable="false">UPDATE</string>
     <string name="no_thanks_txt" translatable="false">NO, THANKS</string>
     <string name="update_title" translatable="false">New Version Available</string>
     <string name="update_message" translatable="false">Please, update app to new version.</string>
 
-    <string name="ward_no_comp">प्रभाग क्रमांक *</string>
-    <string name="place_comp">स्थान *</string>
-    <string name="select_type">तक्रार प्रकार निवडा *</string>
-    <string name="compleant_details">तक्रार / अभिप्राय माहिती *</string>
-    <string name="tip">सुझाव</string>
-    <string name="personal_information">वैयक्तिक माहिती :</string>
-    <string name="name_comp">नाव *</string>
-    <string name="mobile_no_comp">मोबाइल नंबर *</string>
-    <string name="email">ईमेल</string>
-    <string name="address">पत्ता</string>
-    <string name="submit">सबमिट करा</string>
+    <string name="ward_no_comp">Ward No *</string>
+    <string name="place_comp">Location *</string>
+    <string name="select_type">Select Grievance Type *</string>
+    <string name="compleant_details">Grievance / Feedback Info *</string>
+    <string name="tip">tips</string>
+    <string name="personal_information">Personal Information :</string>
+    <string name="name_comp">Name *</string>
+    <string name="mobile_no_comp">Mobile No *</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="submit">Submit</string>
 
-    <string name="plz_capture_img">कृपया फोटो कॅप्चर करा</string>
-    <string name="plz_ent_ward_no">कृपया प्रभाग क्रमांक भरा</string>
-    <string name="plz_ent_location">कृपया स्थान टाइप करा</string>
-    <string name="plz_ent_complent_dtl">कृपया तक्रारची माहिती टाइप करा</string>
-    <string name="plz_select_complaint_type">कृपया तक्रार प्रकार निवडा</string>
-    <string name="plz_ent_name">कृपया नाव टाइप करा</string>
-    <string name="plz_ent_mobile_no">कृपया मोबाइल नंबर टाइप करा</string>
-    <string name="plz_ent_valid_mobile_no">कृपया वैध मोबाइल नंबर टाइप करा</string>
-    <string name="plz_ent_valid_email">कृपया वैध ईमेल टाइप करा</string>
-    <string name="submit_done">सबमिट झाला</string>
-    <string name="serverError">आमच्याकडे तांत्रिक समस्या आहेत. कृपया पुन्हा प्रयत्न करा.</string>
-    <string name="submit_error">सबमिट करण्यास अक्षम कृपया पुन्हा प्रयत्न करा</string>
+    <string name="plz_capture_img">Please capture image</string>
+    <string name="plz_ent_ward_no">Please enter ward no</string>
+    <string name="plz_ent_location">Please enter location</string>
+    <string name="plz_ent_complent_dtl">Please enter grievance details</string>
+    <string name="plz_select_complaint_type">Please select grievance type</string>
+    <string name="plz_ent_name">Please enter name</string>
+    <string name="plz_ent_mobile_no">Please enter mobile number</string>
+    <string name="plz_ent_valid_mobile_no">Please enter valid mobile number</string>
+    <string name="plz_ent_valid_email">Please enter valid email</string>
+    <string name="submit_done">Submited</string>
+    <string name="serverError">Oops! We\\\'re having technical problems. Please try again later.</string>
+    <string name="submit_error">Unable to submit. Please try again later</string>
 
-    <string name="pending">प्रलंबित</string>
-    <string name="processing">प्रक्रिया</string>
-    <string name="resolved">निराकरण</string>
-    <string name="rejected">नाकारले</string>
+    <string name="pending">Pending</string>
+    <string name="processing">Processing</string>
+    <string name="resolved">Resolved</string>
+    <string name="rejected">Rejected</string>
 
-    <string name="date">तारीख</string>
-    <string name="grievance">तक्रार</string>
-    <string name="comments">टिप्पण्या :</string>
-    <string name="before">पूर्वी</string>
-    <string name="after">नंतर</string>
-    <string name="details">तपशील</string>
-    <string name="place">स्थान</string>
-    <string name="ward_no">प्रभाग क्रमांक</string>
+    <string name="date">Date</string>
+    <string name="grievance">Grievance</string>
+    <string name="comments">Comments</string>
+    <string name="before">Before</string>
+    <string name="after">After</string>
+    <string name="details">Details</string>
+    <string name="place">Location</string>
+    <string name="ward_no">Ward No.</string>
 
-    <string name="house_number_hint">घर क्रमांक प्रविष्ट करा</string>
-    <string name="house_number_hint_valid">वैध घर क्रमांक प्रविष्ट करा</string>
-    <string name="otp_hint">OTP प्रविष्ट करा</string>
-    <string name="otp_hint_valid">वैध OTP प्रविष्ट करा</string>
-    <string name="txt_resend_otp">OTP पुन्हा पाठवा</string>
-    <string name="confirm_contact_hint">संपर्क नंबरची पुष्टी करा</string>
-    <string name="text_edit_contact">संपर्क क्रमांक संपादित करा</string>
+    <string name="house_number_hint">Enter house number</string>
+    <string name="house_number_hint_valid">Enter valid house number</string>
+    <string name="otp_hint">Enter OTP</string>
+    <string name="otp_hint_valid">Enter valid OTP</string>
+    <string name="txt_resend_otp">Resend OTP</string>
+    <string name="confirm_contact_hint">Confirm Contact Number</string>
+    <string name="text_edit_contact">Enter contact details</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_change_language">Change Language</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="title_activity_league_questions">League 2020</string>
+    <string name="title_activity_notification_list">Notifications</string>
+    <string name="no_notifications_text">No Notifications</string>
+    <string name="clear_all" translatable="false">Clear All</string>
+
+    <string name="answer_all_question">Please answer all the questions</string>
 
 </resources>

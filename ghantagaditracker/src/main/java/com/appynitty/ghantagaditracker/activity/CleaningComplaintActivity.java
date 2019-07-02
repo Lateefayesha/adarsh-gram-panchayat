@@ -39,6 +39,7 @@ import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.pojo.StatePojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -49,6 +50,7 @@ import java.io.FileOutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import quickutils.core.QuickUtils;
 
@@ -74,6 +76,15 @@ public class CleaningComplaintActivity extends AppCompatActivity {
     private Spinner typeSpinner;
     private List<ComplaintTypePojo> complaintTypePojoList;
 
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +104,9 @@ public class CleaningComplaintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cleaning_complaint);
         context = CleaningComplaintActivity.this;
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_cleaning_complaint);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         nameTextView = findViewById(R.id.cc_name_et);
         mobileNoTextView = findViewById(R.id.cc_number_et);

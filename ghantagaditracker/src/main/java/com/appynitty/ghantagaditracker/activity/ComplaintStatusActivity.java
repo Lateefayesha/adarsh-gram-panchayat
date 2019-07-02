@@ -2,6 +2,7 @@ package com.appynitty.ghantagaditracker.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import com.appynitty.ghantagaditracker.adapter.MyComplentStatusListAdapter;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,6 +29,7 @@ import com.mithsoft.lib.componants.Toasty;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Objects;
 
 import quickutils.core.QuickUtils;
 import quickutils.core.categories.view;
@@ -39,6 +42,16 @@ public class ComplaintStatusActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private MyNoDataView noDataView;
     private List<ComplentStatusPojo> complentStatusPojoList;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +69,9 @@ public class ComplaintStatusActivity extends AppCompatActivity {
     private void generateId(){
         setContentView(R.layout.activity_complaint_status);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_complaint_status);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         context = ComplaintStatusActivity.this;
         listView = findViewById(R.id.content_lv);
@@ -106,7 +120,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
         }.getType();
 
         complentStatusPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
 
 
         if (!AUtils.isNull(complentStatusPojoList) && !complentStatusPojoList.isEmpty()) {
@@ -143,7 +157,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
                 }.getType();
 
                 complentStatusPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
 
                 if (!AUtils.isNull(complentStatusPojoList) && !complentStatusPojoList.isEmpty()) {
 

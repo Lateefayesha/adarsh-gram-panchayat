@@ -31,8 +31,11 @@ import android.util.Log;
 import com.appynitty.adarshgrampanchayat.R;
 import com.appynitty.ghantagaditracker.activity.TrackerActivity;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -59,14 +62,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
         }
 
-        // Check if message contains a notification payload.
-//        if (remoteMessage.getNotification() != null) {
-//
-//            sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
-//        }
-
         Log.d(TAG, "TITLE : " + remoteMessage.getData().get("title"));
         Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        AUtils.insertNotification(databaseHelper, remoteMessage.getData().get("message"), AUtils.getNotificationDateTime());
 
         sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
     }

@@ -8,10 +8,13 @@ import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.pojo.CleaningCompleantPojo;
 import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
+import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
+import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.webservices.CompleantWebservice;
 import com.appynitty.ghantagaditracker.webservices.GhantaGadiTrackerWebservice;
+import com.appynitty.ghantagaditracker.webservices.LeagueWebservice;
 import com.appynitty.ghantagaditracker.webservices.VersionCheckWebService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -237,7 +240,7 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<ComplentStatusPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(complentStatusPojoList, type));
+                QuickUtils.prefs.save(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), gson.toJson(complentStatusPojoList, type));
 
                 return true;
             }
@@ -246,6 +249,42 @@ public class SyncServer {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<LeagueQuestionPojo> fetchLeagueQuestion(){
+
+        List<LeagueQuestionPojo> questionPojos = null;
+
+        try{
+
+            LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL);
+            questionPojos = webservice.getLeagueQuestions(
+                    QuickUtils.prefs.getString(AUtils.APP_ID, "")).execute().body();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return questionPojos;
+    }
+
+    public ResultPojo submitLeagueAnswer(List<LeagueAnswerPojo> answerPojos){
+
+        ResultPojo resultPojo = null;
+
+        try{
+
+            LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL);
+            resultPojo = webservice.submitLeagueAnswer(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+                    QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, ""),
+                    QuickUtils.prefs.getString(AUtils.APP_ID_GG, ""),
+                    AUtils.CONTENT_TYPE, answerPojos).execute().body();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return resultPojo;
     }
 
 }

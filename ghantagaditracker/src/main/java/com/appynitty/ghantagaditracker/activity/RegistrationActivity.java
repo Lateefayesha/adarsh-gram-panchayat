@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.RegistrationAdapterClass;
 import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.mithsoft.lib.componants.MyProgressDialog;
 import com.mithsoft.lib.componants.Toasty;
 
@@ -40,6 +42,16 @@ public class RegistrationActivity extends AppCompatActivity {
     private MyProgressDialog progressDialog;
 
     private RegistrationAdapterClass registrationAdapterClass;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +166,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     txtOtp.setError(getResources().getString(R.string.otp_hint));
                 else if(userOtp.equals(otp)){
                     QuickUtils.prefs.save(AUtils.PREFS.IS_USER_LOGIN, true);
+                    QuickUtils.prefs.save(AUtils.PREFS.REFERENCE_ID, refId);
                     startActivity(new Intent(mContext, TrackerActivity.class));
                     ((Activity)mContext).finish();
                 }else

@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.appynitty.adarshgrampanchayat">
 
-
-
     <application
         android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"
         android:allowBackup="true"
@@ -18,7 +16,8 @@
         <activity
             android:name=".activity.StartActivity"
             android:label="@string/app_name"
-            android:theme="@style/SplashScreenTheme">
+            android:theme="@style/SplashScreenTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

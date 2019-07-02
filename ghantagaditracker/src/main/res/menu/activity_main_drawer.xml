@@ -22,6 +22,21 @@
             android:visible="false"/>
 
         <item
+            android:id="@+id/nav_league"
+            android:title="@string/title_activity_league_questions"
+            android:checkable="false"/>
+
+        <item
+            android:id="@+id/nav_notification"
+            android:title="@string/title_activity_notification_list"
+            android:checkable="false"/>
+
+        <item
+            android:id="@+id/nav_setting"
+            android:title="@string/action_settings"
+            android:checkable="false"/>
+
+        <item
             android:id="@+id/nav_logout"
             android:title="@string/logout_txt"
             android:checkable="false"/>

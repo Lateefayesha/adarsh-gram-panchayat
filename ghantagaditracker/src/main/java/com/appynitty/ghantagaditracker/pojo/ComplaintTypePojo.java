@@ -43,7 +43,7 @@ public class ComplaintTypePojo implements Serializable {
     @Override
     public String toString() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
             return description;
         } else {
             return descriptionMar;

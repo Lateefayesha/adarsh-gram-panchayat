@@ -1,5 +1,7 @@
 package com.appynitty.ghantagaditracker.activity;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -12,6 +14,7 @@ import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.ViewImagePagerAdapter;
 import com.appynitty.ghantagaditracker.pojo.PhotoGalleryImages;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.mithsoft.lib.viewpager.ViewPagerTransformer;
 
 import java.util.List;
@@ -27,6 +30,16 @@ public class ViewImageActivity extends AppCompatActivity {
     private ViewPager viewImgViewPager;
     private List<PhotoGalleryImages> imagesGalleryPojoList;
     private int imagePosition;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_margin_layout">
+
+    <TextView
+        android:id="@+id/sr_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1."
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/padding_margin_layout_double"/>
+
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do you see lesser use of polythene bag/200 ml water bottles/single use plastic glasses for water/juice in social functions/events conducted in your city these days?"
+        android:layout_toEndOf="@id/sr_no"/>
+
+    <RadioGroup
+        android:id="@+id/answer_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_text"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/padding_margin_layout_double"
+        android:layout_marginStart="@dimen/padding_margin_layout_double">
+
+        <RadioButton
+            android:id="@+id/radio_yes"
+            android:layout_weight="0.4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes_txt"/>
+
+        <RadioButton
+            android:id="@+id/radio_no"
+            android:layout_weight="0.4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_txt"/>
+
+    </RadioGroup>
+
+
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,10 +31,12 @@ import android.widget.TextView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.MapInfoWindowAdapter;
+import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,6 +64,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "GhantaGadiTracker";
+    private static final int REQUEST_CODE_SETTING = 1023;
+
     private LatLngBounds bounds;
     private GoogleMap mGmap;
     private AutoCompleteTextView searchViewAutoComplete;
@@ -71,6 +76,16 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
     private List<ActiveUserListPojo> activeUserListPojos;
     private List<AreaListPojo> areaListPojos;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +185,12 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
         fetchAreaList(false);
         initSpinner();
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(AUtils.FCM_NOTI) && intent.getBooleanExtra(AUtils.FCM_NOTI, false) ){
+            intent.removeExtra(AUtils.FCM_NOTI);
+            openNotificationActivity();
+        }
     }
 
     @Override
@@ -193,12 +214,6 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
-        super.onDestroy();
     }
 
     @Override
@@ -380,12 +395,46 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         }else if(item.getItemId() == R.id.nav_complaint_status){
             startActivity(new Intent(context, ComplaintStatusActivity.class));
         }else if(item.getItemId() == R.id.nav_logout){
+            QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
+            QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
             startActivity(new Intent(context, RegistrationActivity.class));
             ((Activity)context).finish();
-        }
+        }else if(item.getItemId() == R.id.nav_setting){
+            Intent intent = new Intent(context, SettingActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_SETTING);
+        }else if(item.getItemId() == R.id.nav_notification)
+            openNotificationActivity();
+        else if(item.getItemId() == R.id.nav_league)
+            startActivity(new Intent(context, LeagueQuestionsActivity.class));
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openNotificationActivity(){
+        startActivity(new Intent(context, NotificationListActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_SETTING && resultCode == RESULT_OK){
+            ((Activity)context).recreate();
+        }
+    }
+
+    @Override
+    public void recreate() {
+        super.recreate();
+        startActivity(new Intent(context, TrackerActivity.class));
+        ((Activity)context).finish();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        initComponents();
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="noInternet">कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा</string>
+    <string name="action_settings">सेटिंग</string>
+    <string name="noData">माहिती आढळली नाही</string>
+    <string name="grievance_id">तक्रार क्रमांक</string>
+
+    <string name="title_activity_ghanta_gadi_tracker">घंटा गाडी ट्रॅकर</string>
+    <string name="title_activity_cleaning_complaint">स्वच्छताविषयी तक्रार</string>
+    <string name="title_activity_complaint_status">माझी तक्रार स्थिती</string>
+    <string name="title_activity_registration">नोंदणी</string>
+
+    <string name="contact_no_txt">संपर्क क्रमांक. : </string>
+    <string name="search_area_txt">क्षेत्र शोधा</string>
+    <string name="logout_txt">लॉगआउट</string>
+
+    <string name="no_ghanta_gadi">घंटा गाडी उपलब्ध नाही</string>
+    <string name="something_error">काहीतरी चूक झाली!! कृपया पुन्हा प्रयत्न करा.</string>
+
+    <string name="yes_txt">हो</string>
+    <string name="no_txt">नाही</string>
+
+    <string name="ward_no_comp">प्रभाग क्रमांक *</string>
+    <string name="place_comp">स्थान *</string>
+    <string name="select_type">तक्रार प्रकार निवडा *</string>
+    <string name="compleant_details">तक्रार / अभिप्राय माहिती *</string>
+    <string name="tip">सुझाव</string>
+    <string name="personal_information">वैयक्तिक माहिती :</string>
+    <string name="name_comp">नाव *</string>
+    <string name="mobile_no_comp">मोबाइल नंबर *</string>
+    <string name="email">ईमेल</string>
+    <string name="address">पत्ता</string>
+    <string name="submit">सबमिट करा</string>
+
+    <string name="plz_capture_img">कृपया फोटो कॅप्चर करा</string>
+    <string name="plz_ent_ward_no">कृपया प्रभाग क्रमांक भरा</string>
+    <string name="plz_ent_location">कृपया स्थान टाइप करा</string>
+    <string name="plz_ent_complent_dtl">कृपया तक्रारची माहिती टाइप करा</string>
+    <string name="plz_select_complaint_type">कृपया तक्रार प्रकार निवडा</string>
+    <string name="plz_ent_name">कृपया नाव टाइप करा</string>
+    <string name="plz_ent_mobile_no">कृपया मोबाइल नंबर टाइप करा</string>
+    <string name="plz_ent_valid_mobile_no">कृपया वैध मोबाइल नंबर टाइप करा</string>
+    <string name="plz_ent_valid_email">कृपया वैध ईमेल टाइप करा</string>
+    <string name="submit_done">सबमिट झाला</string>
+    <string name="serverError">आमच्याकडे तांत्रिक समस्या आहेत. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="submit_error">सबमिट करण्यास अक्षम कृपया पुन्हा प्रयत्न करा</string>
+
+    <string name="pending">प्रलंबित</string>
+    <string name="processing">प्रक्रिया</string>
+    <string name="resolved">निराकरण</string>
+    <string name="rejected">नाकारले</string>
+
+    <string name="date">तारीख</string>
+    <string name="grievance">तक्रार</string>
+    <string name="comments">टिप्पण्या :</string>
+    <string name="before">पूर्वी</string>
+    <string name="after">नंतर</string>
+    <string name="details">तपशील</string>
+    <string name="place">स्थान</string>
+    <string name="ward_no">प्रभाग क्रमांक</string>
+
+    <string name="house_number_hint">घर क्रमांक प्रविष्ट करा</string>
+    <string name="house_number_hint_valid">वैध घर क्रमांक प्रविष्ट करा</string>
+    <string name="otp_hint">OTP प्रविष्ट करा</string>
+    <string name="otp_hint_valid">वैध OTP प्रविष्ट करा</string>
+    <string name="txt_resend_otp">OTP पुन्हा पाठवा</string>
+    <string name="confirm_contact_hint">संपर्क नंबरची पुष्टी करा</string>
+    <string name="text_edit_contact">संपर्क क्रमांक संपादित करा</string>
+
+    <string name="action_change_language">भाषा बदला</string>
+
+    <string name="title_activity_league_questions">लीग 2020</string>
+    <string name="title_activity_notification_list">नोटिफ़िकेशन</string>
+    <string name="no_notifications_text">नोटिफ़िकेशन आढळली नाही</string>
+
+    <string name="answer_all_question">कृपया सर्व प्रश्नांची उत्तरे द्या</string>
+
+</resources>

@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 
 import com.appynitty.ghantagaditracker.R;
+import com.appynitty.ghantagaditracker.controller.Notification;
 import com.google.gson.Gson;
 import com.mithsoft.lib.utils.MsUtils;
 
@@ -74,19 +75,18 @@ public class AUtils extends MsUtils {
     public static final String APP_ID = "AppId";
     public static final String APP_ID_GG = "AppIdGg";
     public static final String VERSION_CODE = "AppVersion";
-    public static final String DEFAULT_LANGUAGE_ID = "2";
-    public static final String LANGUAGE_ID = "LanguageId";
     public static final String LOCATION = "LocationLatLog";
     public static final String COMPLAINT_STATUS_POJO = "ComplaintStatusPojo";
     public static final String GALLERY_IMG_POSITION = "GalleryImagePosition";
     public static final String GALLERY_IMG_POJO_LIST = "GalleryImagePojo";
     public static final String USER_ID = "UserId";
     public static final String FCM_NOTI = "IsFcmNotification";
-    public static final String DEFAULT_LANGUAGE_NAME = "mi";
+
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
     private static final String SERVER_TIME_FORMATE = "HH:mm:ss";
+    private static final String NOTIFY_DATE_TIME_FORMATE = "dd MMM  hh:mm a";
     private static final String MOBILE_DATE_TIME_FORMATE = "dd/MM/yyyy hh:mm a";
     private static final String MOBILE_DATE_FORMATE = "dd/MM/yyyy";
     private static final String MOBILE_TIME_FORMATE = "hh:mm a";
@@ -95,13 +95,16 @@ public class AUtils extends MsUtils {
 
     private static final String TAG = "AUtils";
     public static final String TYPE = "TypeOfApplication";
+    public static final String CONTENT_TYPE = "application/json";
 
     public static final String LANGUAGE_NAME = "LanguageName";
+    public static final String DEFAULT_LANGUAGE_NAME = "en";
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
 
     public static final String TAG_SERVER_ERROR = "OkHttp : RESPONSE ERROR";
 
+    public static boolean isChangeLang = false;
 
     private AUtils() {
     }
@@ -168,6 +171,12 @@ public class AUtils extends MsUtils {
         return format.format(new Date());
     }
 
+    public static String getNotificationDateTime() {
+
+        SimpleDateFormat format = new SimpleDateFormat(AUtils.NOTIFY_DATE_TIME_FORMATE, Locale.ENGLISH);
+        return format.format(new Date());
+    }
+
     public static String getServerDateFormate() {
 
         return AUtils.SERVER_DATE_FORMATE;
@@ -193,43 +202,11 @@ public class AUtils extends MsUtils {
 
 
     // Language Change of an application
-    public static void changeLanguage(Activity context, int languageId) {
+    public static void changeLanguage(Activity context, String languageId) {
 
-        String languageStr = "";
-        switch (languageId) {
-            case 1:
-                languageStr = "en";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 2:
-                languageStr = "mi";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 3:
-                languageStr = "hi";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 4:
-                languageStr = "gu";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 5:
-                languageStr = "pa";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-        }
+        QuickUtils.prefs.save(AUtils.LANGUAGE_NAME, languageId);
 
-        Locale locale = new Locale(languageStr);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Locale.setDefault(Locale.Category.DISPLAY, locale);
-        } else {
-            Locale.setDefault(locale);
-        }
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
-        context.onConfigurationChanged(config);
-
+        LocaleHelper.setLocale(context, languageId);
     }
 
     public static void saveFcmId(String fcmId) {
@@ -302,6 +279,7 @@ public class AUtils extends MsUtils {
 
         String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
         String MY_COMPLENT_STATUS_POJO_LIST = "MyComplentStatusPojoList";
+        String REFERENCE_ID = "SBA_REFERENCE_ID";
     }
 
     // Color Constant
@@ -327,4 +305,9 @@ public class AUtils extends MsUtils {
         String OtpView = "OtpView";
         String VerifyContactView = "VerifyContactView";
     }
+
+    public static void insertNotification(DatabaseHelper helper, String message, String dateTime){
+        helper.insertNotification(message, dateTime, Notification.STATUS_UNREAD);
+    }
+
 }
