@@ -99,8 +99,12 @@ public class RegistrationActivity extends AppCompatActivity {
                                 loadViewStub(AUtils.ViewToLoad.OtpView);
                                 break;
                         }
-                    }else
-                        Toasty.info(mContext, detailsPojo.getMessageMar()).show();
+                    }else{
+                        if(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, "en").equals("en"))
+                            Toasty.info(mContext, detailsPojo.getMessage()).show();
+                        else
+                            Toasty.info(mContext, detailsPojo.getMessageMar()).show();
+                    }
                 }else
                     Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
             }
