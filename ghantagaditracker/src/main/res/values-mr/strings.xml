@@ -17,6 +17,7 @@
 
     <string name="no_ghanta_gadi">घंटा गाडी उपलब्ध नाही</string>
     <string name="something_error">काहीतरी चूक झाली!! कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="invalid_url_error">अवैध यूआरएल</string>
 
     <string name="yes_txt">हो</string>
     <string name="no_txt">नाही</string>
@@ -75,5 +76,8 @@
     <string name="no_notifications_text">नोटिफ़िकेशन आढळली नाही</string>
 
     <string name="answer_all_question">कृपया सर्व प्रश्नांची उत्तरे द्या</string>
+    <string name="title_activity_city_pee">सीटीपीटी स्कॅनिफाय</string>
+    <string name="skip_text">स्किप</string>
+    <string name="prompt_qr">कृपया स्कॅनिफाय कोड स्कॅन करा</string>
 
 </resources>

@@ -103,6 +103,7 @@ public class AUtils extends MsUtils {
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
 
     public static final String TAG_SERVER_ERROR = "OkHttp : RESPONSE ERROR";
+    public static final String TAG_INVALID_URL = "OkHttp : Invalid URL";
 
     public static boolean isChangeLang = false;
 
@@ -304,10 +305,6 @@ public class AUtils extends MsUtils {
         String HouseIdView = "HouseIdView";
         String OtpView = "OtpView";
         String VerifyContactView = "VerifyContactView";
-    }
-
-    public static void insertNotification(DatabaseHelper helper, String message, String dateTime){
-        helper.insertNotification(message, dateTime, Notification.STATUS_UNREAD);
     }
 
 }

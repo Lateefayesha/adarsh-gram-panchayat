@@ -5,15 +5,15 @@ package com.appynitty.ghantagaditracker.pojo;
  */
 public class LeagueAnswerPojo {
 
-    private String QuestionId;
+    private String Question;
     private String Answer;
 
-    public String getQuestionId() {
-        return QuestionId;
+    public String getQuestion() {
+        return Question;
     }
 
-    public void setQuestionId(String questionId) {
-        QuestionId = questionId;
+    public void setQuestion(String question) {
+        Question = question;
     }
 
     public String getAnswer() {
@@ -27,7 +27,7 @@ public class LeagueAnswerPojo {
     @Override
     public String toString() {
         return "LeagueAnswerPojo{" +
-                "QuestionId='" + QuestionId + '\'' +
+                "Question='" + Question + '\'' +
                 ", Answer='" + Answer + '\'' +
                 '}';
     }

@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telecom.Call;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -73,6 +76,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mContext = RegistrationActivity.this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.title_activity_registration));
         setSupportActionBar(toolbar);
         progressDialog = new MyProgressDialog(mContext, R.drawable.progress_bar, false);
 
@@ -80,6 +84,19 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registrationAdapterClass = new RegistrationAdapterClass();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.registration_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.nav_skip_registration)
+            startTracker();
+        return true;
     }
 
     private void registerEvents(){
@@ -171,8 +188,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 else if(userOtp.equals(otp)){
                     QuickUtils.prefs.save(AUtils.PREFS.IS_USER_LOGIN, true);
                     QuickUtils.prefs.save(AUtils.PREFS.REFERENCE_ID, refId);
-                    startActivity(new Intent(mContext, TrackerActivity.class));
-                    ((Activity)mContext).finish();
+                    startTracker();
                 }else
                     Toasty.error(mContext, getResources().getString(R.string.otp_hint_valid)).show();
             }
@@ -261,6 +277,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private void requestOtp(){
         progressDialog.show();
         registrationAdapterClass.callRegistrationOtp(refId, mobNo);
+    }
+
+    private void startTracker() {
+        startActivity(new Intent(mContext, TrackerActivity.class));
+        ((Activity)mContext).finish();
     }
 
     @Override

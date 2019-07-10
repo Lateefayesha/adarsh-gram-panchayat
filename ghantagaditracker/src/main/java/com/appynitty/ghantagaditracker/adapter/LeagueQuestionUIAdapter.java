@@ -7,24 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.Inflater;
 
 /**
  * Created by Ayan Dey on 2/7/19.
  */
 public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestionUIAdapter.ViewHolder> {
+
+    private static final String TAG = "LeagueQuestionUIAdapter";
+    private static final String ANSWER_YES = "Yes";
+    private static final String ANSWER_NO = "No";
 
     private Context context;
     private List<LeagueQuestionPojo> questionPojos;
@@ -63,23 +62,26 @@ public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestion
             LeagueQuestionPojo pojo = questionPojos.get(position);
             holder.srNo.setText(String.valueOf(position+1));
             holder.question.setText(pojo.getQuestion());
-            holder.answerRadio.setTag(pojo.getQuestionId());
+            holder.yesRadio.setTag(pojo.getQuestionId());
+            holder.noRadio.setTag(pojo.getQuestionId());
 
-            holder.answerRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    String queId;
-                    try{
-                        queId = (String) radioGroup.getTag();
-                        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_yes)
-                            ansMap.put(queId, "yes");
-                        else if(radioGroup.getCheckedRadioButtonId() == R.id.radio_no)
-                            ansMap.put(queId, "no");
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+            System.out.println(ansMap);
+
+            if(!ansMap.containsKey(pojo.getQuestionId())){
+                holder.yesRadio.setChecked(false);
+                holder.noRadio.setChecked(false);
+            }else {
+                switch (ansMap.get(pojo.getQuestionId())){
+                    case ANSWER_YES:
+                        holder.noRadio.setChecked(true);
+                        holder.yesRadio.setChecked(true);
+                        break;
+                    case ANSWER_NO:
+                        holder.yesRadio.setChecked(true);
+                        holder.noRadio.setChecked(true);
+                        break;
                 }
-            });
+            }
         }
     }
 
@@ -91,16 +93,31 @@ public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestion
     public class ViewHolder extends  RecyclerView.ViewHolder{
 
         TextView srNo, question;
-        RadioGroup answerRadio;
         RadioButton yesRadio, noRadio;
 
         ViewHolder(View itemView) {
             super(itemView);
             srNo = itemView.findViewById(R.id.sr_no);
             question = itemView.findViewById(R.id.question_text);
-            answerRadio = itemView.findViewById(R.id.answer_radio_group);
             yesRadio = itemView.findViewById(R.id.radio_yes);
             noRadio = itemView.findViewById(R.id.radio_no);
+
+            yesRadio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String queId = (String) view.getTag();
+                    ansMap.put(queId, ANSWER_YES);
+                }
+            });
+
+            noRadio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String queId = (String) view.getTag();
+                    ansMap.put(queId, ANSWER_NO);
+                }
+            });
+
         }
     }
 }

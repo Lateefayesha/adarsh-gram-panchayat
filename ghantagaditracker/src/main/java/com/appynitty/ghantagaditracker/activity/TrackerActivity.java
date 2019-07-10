@@ -38,6 +38,7 @@ import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
+import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -50,6 +51,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.mithsoft.lib.componants.Toasty;
 
 import java.lang.reflect.Type;
@@ -351,8 +354,14 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
                 }else{
                     Toasty.error(context, getString(R.string.something_error)).show();
                 }
+
+                saveFCM();
             }
         }).execute();
+    }
+
+    private void saveFCM() {
+        new SaveFcmIdAsyncTask(context).execute();
     }
 
     private void fetchAreaList(Boolean isProgress){
@@ -406,7 +415,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
             openNotificationActivity();
         else if(item.getItemId() == R.id.nav_league)
             startActivity(new Intent(context, LeagueQuestionsActivity.class));
-
+        else if(item.getItemId() == R.id.nav_city_pee)
+            startActivity(new Intent(context, CityPeeActivity.class));
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

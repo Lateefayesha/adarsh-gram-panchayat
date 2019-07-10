@@ -30,6 +30,7 @@ import android.util.Log;
 
 import com.appynitty.adarshgrampanchayat.R;
 import com.appynitty.ghantagaditracker.activity.TrackerActivity;
+import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -66,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        AUtils.insertNotification(databaseHelper, remoteMessage.getData().get("message"), AUtils.getNotificationDateTime());
+        databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
 
         sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
     }

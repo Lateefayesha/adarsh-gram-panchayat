@@ -13,6 +13,6 @@ public interface VersionCheckWebService {
 
     @GET("api/Get/VersionUpdate")
     Call<ResultPojo> checkVersion(@Header("appId") String appId,
-                                  @Header("version") int version);
+                                  @Header("version") String version);
 
 }

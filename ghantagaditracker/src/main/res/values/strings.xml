@@ -20,6 +20,7 @@
 
     <string name="no_ghanta_gadi">No garbage van available</string>
     <string name="something_error">Something went wrong!! Please try again later.</string>
+    <string name="invalid_url_error">Invalid URL</string>
 
     <string name="yes_txt">Yes</string>
     <string name="no_txt">No</string>
@@ -87,5 +88,8 @@
     <string name="clear_all" translatable="false">Clear All</string>
 
     <string name="answer_all_question">Please answer all the questions</string>
+    <string name="title_activity_city_pee">CTPT Scanify</string>
+    <string name="skip_text">Skip</string>
+    <string name="prompt_qr">Kindly Scan Scanify Code</string>
 
 </resources>

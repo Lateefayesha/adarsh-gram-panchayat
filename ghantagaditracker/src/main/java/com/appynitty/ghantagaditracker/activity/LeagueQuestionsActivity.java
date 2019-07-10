@@ -1,5 +1,6 @@
 package com.appynitty.ghantagaditracker.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.mithsoft.lib.componants.Toasty;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +79,8 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
 
         questionRecyclerView = findViewById(R.id.questions_list);
         submitAnswers = findViewById(R.id.submit_questions);
+
+        answerPojoList = new ArrayList<>();
     }
 
     private void registerEvents(){
@@ -105,7 +109,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         for (LeagueQuestionPojo mPojo: questionPojoList){
             LeagueAnswerPojo pojo = new LeagueAnswerPojo();
             String qid = mPojo.getQuestionId();
-            pojo.setQuestionId(qid);
+            pojo.setQuestion(mPojo.getQuestion());
             pojo.setAnswer(answerMap.get(qid));
             answerPojoList.add(pojo);
         }
@@ -157,6 +161,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
             public void onFinished() {
                 if(!AUtils.isNull(resultPojo)) {
                     Toasty.success(mContext, resultPojo.getMessage(), Toast.LENGTH_LONG).show();
+                    ((Activity)mContext).finish();
                 }else {
                     Toasty.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG).show();
                 }

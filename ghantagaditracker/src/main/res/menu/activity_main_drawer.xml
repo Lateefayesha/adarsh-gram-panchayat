@@ -10,20 +10,25 @@
             android:id="@+id/nav_ghanta_gadi_tracker"
             android:title="@string/title_activity_ghanta_gadi_tracker"
             android:checked="true"/>
+
         <item
             android:id="@+id/nav_complaint_cleaning"
             android:title="@string/title_activity_cleaning_complaint"
-            android:checkable="false"
-            android:visible="false"/>
+            android:checkable="false"/>
+
         <item
             android:id="@+id/nav_complaint_status"
             android:title="@string/title_activity_complaint_status"
-            android:checkable="false"
-            android:visible="false"/>
+            android:checkable="false"/>
 
         <item
             android:id="@+id/nav_league"
             android:title="@string/title_activity_league_questions"
+            android:checkable="false"/>
+
+        <item
+            android:id="@+id/nav_city_pee"
+            android:title="@string/title_activity_city_pee"
             android:checkable="false"/>
 
         <item

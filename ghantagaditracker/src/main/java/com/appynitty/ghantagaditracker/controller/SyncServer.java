@@ -8,11 +8,13 @@ import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.pojo.CleaningCompleantPojo;
 import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
+import com.appynitty.ghantagaditracker.pojo.FcmIdPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.webservices.CompleantWebservice;
+import com.appynitty.ghantagaditracker.webservices.FcmIdWebservice;
 import com.appynitty.ghantagaditracker.webservices.GhantaGadiTrackerWebservice;
 import com.appynitty.ghantagaditracker.webservices.LeagueWebservice;
 import com.appynitty.ghantagaditracker.webservices.VersionCheckWebService;
@@ -43,6 +45,26 @@ public class SyncServer {
 
         this.context = context;
         gson = new Gson();
+    }
+
+    public boolean saveFcmIdOnServer(FcmIdPojo fcmIdPojo) {
+
+        ResultPojo resultPojo = null;
+
+        try {
+
+            FcmIdWebservice service = AUtils.createService(FcmIdWebservice.class, AUtils.SERVER_URL);
+            resultPojo = service.saveFcmId(QuickUtils.prefs.getString(AUtils.APP_ID, ""), fcmIdPojo).execute().body();
+
+            if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
+                return true;
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return false;
+
     }
 
     public Boolean getAreaList(){
@@ -127,7 +149,7 @@ public class SyncServer {
 
         try {
             ResultPojo resultPojo = checkService.checkVersion(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getInt(AUtils.VERSION_CODE, 0)).execute().body();
+                    QuickUtils.prefs.getString(AUtils.VERSION_CODE, "")).execute().body();
 
             if (resultPojo != null) {
                 doUpdate = Boolean.parseBoolean(resultPojo.getStatus());
