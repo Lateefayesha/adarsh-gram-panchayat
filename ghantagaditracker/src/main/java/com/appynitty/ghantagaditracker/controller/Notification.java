@@ -10,8 +10,8 @@ public class Notification {
     public static final String TABLE_NAME = "notification";
     public static final int STATUS_READ = 0;
     public static final int STATUS_UNREAD = 1;
-    public static final int TYPE_SMS = 2;
-    public static final int TYPE_UPDATE = 3;
+    public static final String TYPE_GG = "GG";
+    public static final String TYPE_GP = "GP";
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TEXT = "message";
@@ -32,7 +32,7 @@ public class Notification {
 //                    COLUMN_STATUS + " INTEGER, " + COLUMN_STATUS + " INTEGER )";
 
     private int id;
-    private String text, dateTime;
+    private String text, dateTime, type;
     private int status;
 
     public int getId() {
@@ -57,6 +57,14 @@ public class Notification {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getStatus() {

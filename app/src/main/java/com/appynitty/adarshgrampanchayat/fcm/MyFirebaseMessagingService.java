@@ -29,6 +29,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.appynitty.adarshgrampanchayat.R;
+import com.appynitty.ghantagaditracker.activity.DashboardActivity;
 import com.appynitty.ghantagaditracker.activity.TrackerActivity;
 import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.utils.AUtils;
@@ -65,11 +66,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.d(TAG, "TITLE : " + remoteMessage.getData().get("title"));
         Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
+        Log.d(TAG, "BODY : " + remoteMessage.getData().get("body"));
 
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
 
-        sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
+        sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), remoteMessage.getData().get("body"));
     }
 
     /**
@@ -77,11 +79,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String title, String messageBody) {
+    private void sendNotification(String title, String messageBody, String type) {
 
-        Intent intent = new Intent(this, TrackerActivity.class);
+        Intent intent = new Intent(this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(AUtils.FCM_NOTI, true);
+        intent.putExtra(AUtils.FCM_NOTI_TYPE, type);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 

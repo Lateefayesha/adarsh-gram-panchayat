@@ -59,7 +59,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
                 if(QuickUtils.prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false))
-                    startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
+//                    startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
                 else
                     startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
 

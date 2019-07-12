@@ -280,7 +280,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void startTracker() {
-        startActivity(new Intent(mContext, TrackerActivity.class));
+//        startActivity(new Intent(mContext, TrackerActivity.class));
+        startActivity(new Intent(mContext, DashboardActivity.class));
         ((Activity)mContext).finish();
     }
 

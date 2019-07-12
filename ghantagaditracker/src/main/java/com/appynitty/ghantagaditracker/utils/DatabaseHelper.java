@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
@@ -36,12 +37,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+//    public void insertNotification(String message, String dateTime, int status, String type){
     public void insertNotification(String message, String dateTime, int status){
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Notification.COLUMN_TEXT, message);
         values.put(Notification.COLUMN_DATE_TIME, dateTime);
+//        values.put(Notification.COLUMN_TYPE, type);
         values.put(Notification.COLUMN_STATUS, status);
 
         database.insert(Notification.TABLE_NAME, null, values);

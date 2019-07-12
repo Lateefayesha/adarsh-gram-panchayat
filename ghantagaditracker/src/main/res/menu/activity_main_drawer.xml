@@ -7,9 +7,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_dashboard"
+            android:title="@string/title_activity_dashboard"
+            android:checked="true"/>
+
+        <item
             android:id="@+id/nav_ghanta_gadi_tracker"
             android:title="@string/title_activity_ghanta_gadi_tracker"
-            android:checked="true"/>
+            android:checkable="false"/>
 
         <item
             android:id="@+id/nav_complaint_cleaning"

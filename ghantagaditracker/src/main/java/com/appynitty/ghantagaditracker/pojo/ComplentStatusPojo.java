@@ -1,6 +1,8 @@
 package com.appynitty.ghantagaditracker.pojo;
 
 
+import com.appynitty.ghantagaditracker.utils.AUtils;
+
 import java.io.Serializable;
 
 import quickutils.core.QuickUtils;
@@ -87,12 +89,12 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getComplaintType() {
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-//            return complaintType;
-//        } else {
-//            return complaintTypeMar;
-//        }
-        return complaintTypeMar;
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
+            return complaintType;
+        } else {
+            return complaintTypeMar;
+        }
+//        return complaintTypeMar;
     }
 
     public void setComplaintType(String complaintType) {
@@ -157,13 +159,13 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getType() {
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-//            return type;
-//        } else {
-//            return typeMar;
-//        }
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
+            return type;
+        } else {
+            return typeMar;
+        }
 
-        return typeMar;
+//        return typeMar;
     }
 
     public void setType(String type) {

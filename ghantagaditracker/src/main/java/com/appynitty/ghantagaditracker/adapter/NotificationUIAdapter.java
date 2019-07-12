@@ -65,6 +65,7 @@ public class NotificationUIAdapter extends RecyclerView.Adapter<NotificationUIAd
             }else if(status == Notification.STATUS_READ){
                 holder.message.setTypeface(null, Typeface.NORMAL);
             }
+
             holder.clearBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

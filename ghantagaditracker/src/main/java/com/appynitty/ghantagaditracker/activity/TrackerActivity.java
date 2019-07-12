@@ -63,8 +63,7 @@ import java.util.Objects;
 import quickutils.core.QuickUtils;
 
 public class TrackerActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener{
 
     private static final String TAG = "GhantaGadiTracker";
     private static final int REQUEST_CODE_SETTING = 1023;
@@ -93,8 +92,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_drawer);
-//        setContentView(R.layout.activity_tracker);
+//        setContentView(R.layout.layout_drawer);
+        setContentView(R.layout.activity_tracker);
 
         context = TrackerActivity.this;
 
@@ -102,6 +101,7 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
         toolbar.setTitle(getResources().getString(R.string.title_activity_ghanta_gadi_tracker));
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 //        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
@@ -135,15 +135,6 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         searchViewAutoComplete.setThreshold(0);
         ghataGadiCount = 0;
         currlatLng = null;
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void registerEvents(){
@@ -188,12 +179,6 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
         fetchAreaList(false);
         initSpinner();
-
-        Intent intent = getIntent();
-        if(intent.hasExtra(AUtils.FCM_NOTI) && intent.getBooleanExtra(AUtils.FCM_NOTI, false) ){
-            intent.removeExtra(AUtils.FCM_NOTI);
-            openNotificationActivity();
-        }
     }
 
     @Override
@@ -396,50 +381,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         }).execute();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        if(item.getItemId() == R.id.nav_complaint_cleaning){
-            startActivity(new Intent(context, CleaningComplaintActivity.class));
-        }else if(item.getItemId() == R.id.nav_complaint_status){
-            startActivity(new Intent(context, ComplaintStatusActivity.class));
-        }else if(item.getItemId() == R.id.nav_logout){
-            QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
-            QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
-            startActivity(new Intent(context, RegistrationActivity.class));
-            ((Activity)context).finish();
-        }else if(item.getItemId() == R.id.nav_setting){
-            Intent intent = new Intent(context, SettingActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_SETTING);
-        }else if(item.getItemId() == R.id.nav_notification)
-            openNotificationActivity();
-        else if(item.getItemId() == R.id.nav_league)
-            startActivity(new Intent(context, LeagueQuestionsActivity.class));
-        else if(item.getItemId() == R.id.nav_city_pee)
-            startActivity(new Intent(context, CityPeeActivity.class));
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
     private void openNotificationActivity(){
         startActivity(new Intent(context, NotificationListActivity.class));
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_SETTING && resultCode == RESULT_OK){
-            ((Activity)context).recreate();
-        }
-    }
-
-    @Override
-    public void recreate() {
-        super.recreate();
-        startActivity(new Intent(context, TrackerActivity.class));
-        ((Activity)context).finish();
     }
 
     @Override

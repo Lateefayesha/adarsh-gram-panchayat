@@ -81,6 +81,7 @@ public class AUtils extends MsUtils {
     public static final String GALLERY_IMG_POJO_LIST = "GalleryImagePojo";
     public static final String USER_ID = "UserId";
     public static final String FCM_NOTI = "IsFcmNotification";
+    public static final String FCM_NOTI_TYPE = "FcmNotificationTYPE";
 
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";

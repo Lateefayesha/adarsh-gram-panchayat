@@ -71,13 +71,15 @@
 
     <string name="action_change_language">भाषा बदला</string>
 
-    <string name="title_activity_league_questions">लीग 2020</string>
+    <string name="title_activity_league_questions">SS लीग 2020</string>
     <string name="title_activity_notification_list">नोटिफ़िकेशन</string>
     <string name="no_notifications_text">नोटिफ़िकेशन आढळली नाही</string>
 
     <string name="answer_all_question">कृपया सर्व प्रश्नांची उत्तरे द्या</string>
-    <string name="title_activity_city_pee">सीटीपीटी स्कॅनिफाय</string>
+    <string name="title_activity_city_pee">सीटी/पीटी स्कॅनिफाय</string>
     <string name="skip_text">स्किप</string>
     <string name="prompt_qr">कृपया स्कॅनिफाय कोड स्कॅन करा</string>
+
+    <string name="title_activity_dashboard">डॅशबोर्ड</string>
 
 </resources>
