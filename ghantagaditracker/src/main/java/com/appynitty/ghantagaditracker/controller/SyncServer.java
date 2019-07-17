@@ -6,13 +6,16 @@ import android.util.Log;
 import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.pojo.CleaningCompleantPojo;
+import com.appynitty.ghantagaditracker.pojo.CollectionHistoryPojo;
 import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
 import com.appynitty.ghantagaditracker.pojo.FcmIdPojo;
+import com.appynitty.ghantagaditracker.pojo.LeageaAnswerDetailsPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.appynitty.ghantagaditracker.webservices.CollectionHistoryWebService;
 import com.appynitty.ghantagaditracker.webservices.CompleantWebservice;
 import com.appynitty.ghantagaditracker.webservices.FcmIdWebservice;
 import com.appynitty.ghantagaditracker.webservices.GhantaGadiTrackerWebservice;
@@ -23,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -47,7 +51,8 @@ public class SyncServer {
         gson = new Gson();
     }
 
-    public boolean saveFcmIdOnServer(FcmIdPojo fcmIdPojo) {
+    public void saveFcmIdOnServer(FcmIdPojo fcmIdPojo) {
+//    public void saveFcmIdOnServer(FcmIdPojo fcmIdPojo) {
 
         ResultPojo resultPojo = null;
 
@@ -57,13 +62,14 @@ public class SyncServer {
             resultPojo = service.saveFcmId(QuickUtils.prefs.getString(AUtils.APP_ID, ""), fcmIdPojo).execute().body();
 
             if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
-                return true;
+                Log.d(TAG, "saveFcmIdOnServer: is success");
+//                return true;
             }
         } catch (Exception e) {
 
             e.printStackTrace();
         }
-        return false;
+//        return false;
 
     }
 
@@ -149,7 +155,7 @@ public class SyncServer {
 
         try {
             ResultPojo resultPojo = checkService.checkVersion(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.VERSION_CODE, "")).execute().body();
+                    QuickUtils.prefs.getInt(AUtils.VERSION_CODE, 0)).execute().body();
 
             if (resultPojo != null) {
                 doUpdate = Boolean.parseBoolean(resultPojo.getStatus());
@@ -290,7 +296,7 @@ public class SyncServer {
         return questionPojos;
     }
 
-    public ResultPojo submitLeagueAnswer(List<LeagueAnswerPojo> answerPojos){
+    public ResultPojo submitLeagueAnswer(LeageaAnswerDetailsPojo pojo){
 
         ResultPojo resultPojo = null;
 
@@ -300,13 +306,28 @@ public class SyncServer {
             resultPojo = webservice.submitLeagueAnswer(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
                     QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, ""),
                     QuickUtils.prefs.getString(AUtils.APP_ID_GG, ""),
-                    AUtils.CONTENT_TYPE, answerPojos).execute().body();
+                    AUtils.CONTENT_TYPE, pojo).execute().body();
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
         return resultPojo;
+    }
+
+    public List<CollectionHistoryPojo> fetchCollectionHistory(String startdate, String endDate){
+        List<CollectionHistoryPojo> collectionHistoryList = null;
+        try{
+            CollectionHistoryWebService service = AUtils.createService(CollectionHistoryWebService.class, AUtils.SERVER_URL_SBA);
+            collectionHistoryList = service.getCollectionHistory(QuickUtils.prefs.getString(AUtils.APP_ID_GG, ""),
+                    startdate, endDate, "", "0", "1000", "0",
+                    QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "")).execute().body();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return collectionHistoryList;
     }
 
 }

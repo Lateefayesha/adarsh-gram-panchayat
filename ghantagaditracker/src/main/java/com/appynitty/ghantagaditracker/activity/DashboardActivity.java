@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,22 +15,19 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
 import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.pojo.LocalMenuPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.google.android.gms.nearby.connection.Payload;
+import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
+import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import quickutils.core.QuickUtils;
 
@@ -39,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private InflateLocalMenu localMenu;
     private RecyclerView localMenuRecycler;
     private Context mContext;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         localMenu = new InflateLocalMenu(mContext);
@@ -95,6 +95,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             intent.removeExtra(AUtils.FCM_NOTI_TYPE);
             openNotificationActivity(notiType);
         }
+
+        saveFCM();
     }
 
     private void createMenuItem() {
@@ -102,24 +104,36 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         pojoList.add(new LocalMenuPojo(R.id.nav_ghanta_gadi_tracker,
                 getResources().getString(R.string.title_activity_ghanta_gadi_tracker),
-                AUtils.Colour.Green));
+                AUtils.Colour.Green, ContextCompat.getDrawable(mContext, R.drawable.ic_tracker)));
+
         pojoList.add(new LocalMenuPojo(R.id.nav_complaint_cleaning,
                 getResources().getString(R.string.title_activity_cleaning_complaint),
-                AUtils.Colour.Yellow));
+                AUtils.Colour.Yellow, ContextCompat.getDrawable(mContext, R.drawable.ic_cleaning_complaint)));
 
         pojoList.add(new LocalMenuPojo(R.id.nav_complaint_status,
                 getResources().getString(R.string.title_activity_complaint_status),
-                AUtils.Colour.Blue));
+                AUtils.Colour.DarkGray, ContextCompat.getDrawable(mContext, R.drawable.ic_my_grievance)));
+
+        if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty()){
+            Menu navMenu = navigationView.getMenu();
+            MenuItem item = navMenu.findItem(R.id.nav_collection_history);
+            item.setVisible(true);
+            pojoList.add(new LocalMenuPojo(R.id.nav_collection_history,
+                    getResources().getString(R.string.title_activity_collection_history),
+                    AUtils.Colour.Blue, ContextCompat.getDrawable(mContext, R.drawable.ic_history)));
+        }
+
         pojoList.add(new LocalMenuPojo(R.id.nav_league,
                 getResources().getString(R.string.title_activity_league_questions),
-                AUtils.Colour.Red));
+                AUtils.Colour.Red, ContextCompat.getDrawable(mContext, R.drawable.ic_ss_league)));
 
         pojoList.add(new LocalMenuPojo(R.id.nav_city_pee,
                 getResources().getString(R.string.title_activity_city_pee),
-                AUtils.Colour.Pink));
+                AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
         pojoList.add(new LocalMenuPojo(R.id.nav_notification,
                 getResources().getString(R.string.title_activity_notification_list),
-                AUtils.Colour.SkyBlue));
+                AUtils.Colour.SkyBlue, ContextCompat.getDrawable(mContext, R.drawable.ic_notification_svg)));
+
 
         inflateMenuGrid(pojoList);
     }
@@ -129,15 +143,21 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         localMenuRecycler.setAdapter(localMenu);
     }
 
-    private void openNotificationActivity(String type){
-        switch (type){
-            case Notification.TYPE_GG:
-                startActivity(new Intent(mContext, NotificationListActivity.class));
-                break;
-            case Notification.TYPE_GP:
-                startActivity(new Intent(mContext, ComplaintStatusActivity.class));
-                break;
-        }
+    private void openNotificationActivity(@Nullable String type){
+        if(type != null){
+            switch (type){
+                case Notification.TYPE_GG:
+                    if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty())
+                        startActivity(new Intent(mContext, CollectionHistoryActivity.class));
+                    else
+                        startActivity(new Intent(mContext, NotificationListActivity.class));
+                    break;
+                case Notification.TYPE_GP:
+                    startActivity(new Intent(mContext, ComplaintStatusActivity.class));
+                    break;
+            }
+        }else
+            startActivity(new Intent(mContext, NotificationListActivity.class));
     }
 
     @Override
@@ -157,19 +177,28 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         }else if(itemId == R.id.nav_complaint_status){
             startActivity(new Intent(mContext, ComplaintStatusActivity.class));
         }else if(itemId == R.id.nav_logout){
-            QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
-            QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
-            startActivity(new Intent(mContext, RegistrationActivity.class));
-            ((Activity)mContext).finish();
+            performLogout();
         }else if(itemId == R.id.nav_setting){
             Intent intent = new Intent(mContext, SettingActivity.class);
             startActivityForResult(intent, REQUEST_CODE_SETTING);
         }else if(itemId == R.id.nav_notification)
-            openNotificationActivity(Notification.TYPE_GG);
+            openNotificationActivity(null);
         else if(itemId == R.id.nav_league)
             startActivity(new Intent(mContext, LeagueQuestionsActivity.class));
         else if(itemId == R.id.nav_city_pee)
             startActivity(new Intent(mContext, CityPeeActivity.class));
+        else if(itemId == R.id.nav_collection_history)
+            startActivity(new Intent(mContext, CollectionHistoryActivity.class));
+
+    }
+
+    private void performLogout() {
+        QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
+        QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
+        DatabaseHelper db = new DatabaseHelper(mContext);
+        db.deleteAllNotification();
+        startActivity(new Intent(mContext, RegistrationActivity.class));
+        ((Activity)mContext).finish();
     }
 
     @Override
@@ -187,10 +216,15 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
+    private void saveFCM() {
+        new SaveFcmIdAsyncTask(mContext).execute();
+    }
+
     @Override
     public void recreate() {
         super.recreate();
         startActivity(new Intent(mContext, mContext.getClass()));
         ((Activity)mContext).finish();
     }
+
 }

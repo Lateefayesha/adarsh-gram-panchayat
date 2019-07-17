@@ -25,6 +25,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.mithsoft.lib.componants.Toasty;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Objects;
 
 public class CityPeeActivity extends AppCompatActivity {
@@ -79,7 +81,21 @@ public class CityPeeActivity extends AppCompatActivity {
     }
 
     private void openWebView(String url){
-        webviewInitialize.InitiateDefaultWebview(url);
+        try {
+            URL murl = new URL(url);
+            String path = murl.getPath();
+            if(path.toLowerCase().equals("/feedbackform"))
+                webviewInitialize.InitiateDefaultWebview(url);
+            else{
+                Toasty.error(mContext, getResources().getString(R.string.invalid_url_error)).show();
+                ((Activity)mContext).finish();
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+            ((Activity)mContext).finish();
+        }
     }
 
     @Override
@@ -99,8 +115,11 @@ public class CityPeeActivity extends AppCompatActivity {
             if(!AUtils.isNull(str) && !str.isEmpty()){
                 if(Patterns.WEB_URL.matcher(str).matches())
                     openWebView(str);
-                else
-                    showPopup(str);
+                else {
+                    Toasty.error(mContext, getResources().getString(R.string.invalid_qr_error)).show();
+                    ((Activity)mContext).finish();
+//                    showPopup(str);
+                }
             }else{
                 ((Activity)mContext).finish();
             }

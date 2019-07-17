@@ -18,6 +18,7 @@
     <string name="no_ghanta_gadi">घंटा गाडी उपलब्ध नाही</string>
     <string name="something_error">काहीतरी चूक झाली!! कृपया पुन्हा प्रयत्न करा.</string>
     <string name="invalid_url_error">अवैध यूआरएल</string>
+    <string name="invalid_qr_error">अवैध स्कॅनिफाय</string>
 
     <string name="yes_txt">हो</string>
     <string name="no_txt">नाही</string>
@@ -67,7 +68,7 @@
     <string name="otp_hint_valid">वैध OTP प्रविष्ट करा</string>
     <string name="txt_resend_otp">OTP पुन्हा पाठवा</string>
     <string name="confirm_contact_hint">संपर्क नंबरची पुष्टी करा</string>
-    <string name="text_edit_contact">संपर्क क्रमांक संपादित करा</string>
+    <string name="text_edit_contact">संपर्क तपशील अद्यतनित करा</string>
 
     <string name="action_change_language">भाषा बदला</string>
 
@@ -81,5 +82,15 @@
     <string name="prompt_qr">कृपया स्कॅनिफाय कोड स्कॅन करा</string>
 
     <string name="title_activity_dashboard">डॅशबोर्ड</string>
+    <string name="title_activity_collection_history">घर कचरा संकलन इतिहास</string>
+    <string name="month_txt">महिना</string>
+
+    <string name="select_month_year_warn">कृपया योग्य महिना / वर्ष निवडा</string>
+
+    <string name="bifurcate_garbage">वर्गीकृत</string>
+    <string name="mixed_garbage">मिश्र</string>
+    <string name="no_garbage">किळाला नाही</string>
+
+    <string name="vehicle_number_txt">वाहन नंबर :</string>
 
 </resources>

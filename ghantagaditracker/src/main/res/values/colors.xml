@@ -38,4 +38,11 @@
     <color name="title_hint_text_color">#9D9D9D</color>
     <color name="text_blue_dark">#335bdf</color>
 
+    <color name="black_alpfa_50">#32000000</color>
+
+    <color name="garbage_segregated">#6fa570</color>
+    <color name="garbage_mixed">#d1655e</color>
+    <color name="garbage_not_received">#e89f5f</color>
+    <color name="garbage_not_specified">#0086c3</color>
+
 </resources>

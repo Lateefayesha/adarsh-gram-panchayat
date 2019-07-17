@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
-
-import com.appynitty.ghantagaditracker.BuildConfig;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.utils.AUtils;
@@ -42,7 +40,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         QuickUtils.prefs.save(AUtils.APP_ID_GG, "1");
 
         QuickUtils.prefs.save(AUtils.LOCATION, "20.709423,80.469527");
-        QuickUtils.prefs.save(AUtils.VERSION_CODE, "5");
+        QuickUtils.prefs.save(AUtils.VERSION_CODE, 5);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         AUtils.changeLanguage(this, QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME));

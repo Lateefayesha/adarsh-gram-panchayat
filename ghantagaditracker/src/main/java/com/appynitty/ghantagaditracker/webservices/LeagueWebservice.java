@@ -1,5 +1,6 @@
 package com.appynitty.ghantagaditracker.webservices;
 
+import com.appynitty.ghantagaditracker.pojo.LeageaAnswerDetailsPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
@@ -25,5 +26,5 @@ public interface LeagueWebservice {
                                         @Header("ReferenceId")String ReferenceId,
                                         @Header("GGAppId") String GGAppId,
                                         @Header("Content-Type")String contentType,
-                                        @Body List<LeagueAnswerPojo> leagueAnswerPojo);
+                                        @Body LeageaAnswerDetailsPojo leageaAnswerDetailsPojo);
 }

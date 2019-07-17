@@ -17,7 +17,10 @@ import com.mithsoft.lib.utils.MsUtils;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -34,17 +37,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AUtils extends MsUtils {
 
+    /*  GP - NP - NPP */
+
     //    Local URL
     public static final String SERVER_URL = "http://192.168.200.3:8077/";
 
      //    Staging URL
-//    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
+//    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
     //    Relese BACKUP URL
 //    public static final String SERVER_URL = "http://202.65.157.253:7055/";
+
+    /*  Swachh Bharat Abhiyan*/
 
     //   SBA Local URL
     public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
@@ -86,6 +93,7 @@ public class AUtils extends MsUtils {
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";
+    private static final String SERVER_DATE_FORMATE_GG = "MM/dd/yyyy";
     private static final String SERVER_TIME_FORMATE = "HH:mm:ss";
     private static final String NOTIFY_DATE_TIME_FORMATE = "dd MMM  hh:mm a";
     private static final String MOBILE_DATE_TIME_FORMATE = "dd/MM/yyyy hh:mm a";
@@ -105,6 +113,9 @@ public class AUtils extends MsUtils {
 
     public static final String TAG_SERVER_ERROR = "OkHttp : RESPONSE ERROR";
     public static final String TAG_INVALID_URL = "OkHttp : Invalid URL";
+
+    public static final String MONTH_START_DATE = "monthStartDate";
+    public static final String MONTH_END_DATE = "monthEndDate";
 
     public static boolean isChangeLang = false;
 
@@ -265,6 +276,70 @@ public class AUtils extends MsUtils {
                 .show();
     }
 
+    public static ArrayList<String> getMonthSpinnerList() {
+        ArrayList<String> spinnerList = new ArrayList<>();
+
+        spinnerList.add("Select Month");
+        for (int i = 0; i < 12; i++) {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMMM", Locale.ENGLISH);
+            cal.set(Calendar.MONTH, i);
+            String month_name = month_date.format(cal.getTime());
+            spinnerList.add(month_name);
+        }
+
+        return spinnerList;
+    }
+
+    public static ArrayList<String> getYearSpinnerList() {
+        ArrayList<String> spinnerList = new ArrayList<>();
+
+        spinnerList.add("Select Year");
+        for (int i = 0; i > -5; i--) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.YEAR, i);
+            spinnerList.add(String.valueOf(calendar.get(Calendar.YEAR)));
+        }
+
+        return spinnerList;
+    }
+
+    public static Integer getCurrentYear() {
+        Calendar currYear = Calendar.getInstance();
+        currYear.add(Calendar.YEAR, 0);
+        return currYear.get(Calendar.YEAR);
+    }
+
+    public static Integer getCurrentMonth() {
+        Calendar currMonth = Calendar.getInstance();
+        currMonth.add(Calendar.MONTH, 0);
+        return currMonth.get(Calendar.MONTH);
+    }
+
+    public static HashMap<String, String> getMonthStartEndDate(int month, int year){
+        HashMap<String, String> dateMap = null;
+
+        try{
+            dateMap = new HashMap<>();
+            String date = month +"/01/"+year;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SERVER_DATE_FORMATE_GG, Locale.ENGLISH);
+            Date mDate = simpleDateFormat.parse(date);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(mDate);
+
+            calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+            dateMap.put(MONTH_START_DATE, simpleDateFormat.format(calendar.getTime()));
+
+            calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            dateMap.put(MONTH_END_DATE, simpleDateFormat.format(calendar.getTime()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return dateMap;
+    }
+
     // SharedPreferences Constant
     public interface PREFS {
 
@@ -306,6 +381,14 @@ public class AUtils extends MsUtils {
         String HouseIdView = "HouseIdView";
         String OtpView = "OtpView";
         String VerifyContactView = "VerifyContactView";
+    }
+
+    public interface GarbageType{
+        String garbageMixed = "0";
+        String garbageSegregated = "1";
+        String garbageNotReceived = "2";
+        String garbageNotSpecified = "3";
+        String garbageNotCollected = "-1";
     }
 
 }

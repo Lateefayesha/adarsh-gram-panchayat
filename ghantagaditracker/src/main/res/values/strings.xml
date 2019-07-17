@@ -21,6 +21,7 @@
     <string name="no_ghanta_gadi">No garbage van available</string>
     <string name="something_error">Something went wrong!! Please try again later.</string>
     <string name="invalid_url_error">Invalid URL</string>
+    <string name="invalid_qr_error">Invalid Scaniffy</string>
 
     <string name="yes_txt">Yes</string>
     <string name="no_txt">No</string>
@@ -75,7 +76,7 @@
     <string name="otp_hint_valid">Enter valid OTP</string>
     <string name="txt_resend_otp">Resend OTP</string>
     <string name="confirm_contact_hint">Confirm Contact Number</string>
-    <string name="text_edit_contact">Enter contact details</string>
+    <string name="text_edit_contact">Update contact details</string>
 
     <string name="action_change_language">Change Language</string>
 
@@ -93,5 +94,14 @@
     <string name="prompt_qr">Kindly Scan Scanify Code</string>
 
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_collection_history">Garbage Collection History</string>
+    <string name="month_txt">Month</string>
+    <string name="select_month_year_warn">Please Select Proper Month / Year</string>
+
+    <string name="bifurcate_garbage">Bifurcated</string>
+    <string name="mixed_garbage">Mixed</string>
+    <string name="no_garbage">Not Received</string>
+
+    <string name="vehicle_number_txt">Vehicle No :</string>
 
 </resources>

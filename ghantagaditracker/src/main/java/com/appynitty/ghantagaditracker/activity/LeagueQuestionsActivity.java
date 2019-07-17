@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +15,9 @@ import android.widget.Toast;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.LeagueQuestionUIAdapter;
+import com.appynitty.ghantagaditracker.adapter.UserDetailsBulderAdapter;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
+import com.appynitty.ghantagaditracker.pojo.LeageaAnswerDetailsPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
@@ -27,22 +27,24 @@ import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.mithsoft.lib.componants.Toasty;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import quickutils.core.QuickUtils;
 
 public class LeagueQuestionsActivity extends AppCompatActivity {
 
     private Context mContext;
     private List<LeagueQuestionPojo> questionPojoList;
-    private List<LeagueAnswerPojo> answerPojoList;
     private Map<String, String> answerMap;
 
     private RecyclerView questionRecyclerView;
-    private Button submitAnswers;
+    private Button submitAnswersBtn;
+    private LeagueQuestionUIAdapter questionUIAdapter;
+    private LeageaAnswerDetailsPojo leageaAnswerDetailsPojo;
 
-    LeagueQuestionUIAdapter questionUIAdapter;
+    private UserDetailsBulderAdapter bulderAdapter;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -78,19 +80,27 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         questionUIAdapter = new LeagueQuestionUIAdapter(mContext);
 
         questionRecyclerView = findViewById(R.id.questions_list);
-        submitAnswers = findViewById(R.id.submit_questions);
-
-        answerPojoList = new ArrayList<>();
+        submitAnswersBtn = findViewById(R.id.submit_questions);
+        leageaAnswerDetailsPojo = new LeageaAnswerDetailsPojo();
+        bulderAdapter = new UserDetailsBulderAdapter(mContext);
     }
 
     private void registerEvents(){
-        submitAnswers.setOnClickListener(new View.OnClickListener() {
+        submitAnswersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(validateAns()){
                     setAnswerPojo();
                 }else
                     Toasty.warning(mContext, getResources().getString(R.string.answer_all_question)).show();
+            }
+        });
+
+        bulderAdapter.setBulderlistner(new UserDetailsBulderAdapter.UserDetailsBulderlistner() {
+            @Override
+            public void onSubmitClickSuccess(LeageaAnswerDetailsPojo.AnswersDetails details) {
+                leageaAnswerDetailsPojo.setDetails(details);
+                submitAnswers();
             }
         });
     }
@@ -106,6 +116,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
     }
 
     private void setAnswerPojo() {
+        List<LeagueAnswerPojo> answerPojoList = new ArrayList<>();
         for (LeagueQuestionPojo mPojo: questionPojoList){
             LeagueAnswerPojo pojo = new LeagueAnswerPojo();
             String qid = mPojo.getQuestionId();
@@ -114,7 +125,21 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
             answerPojoList.add(pojo);
         }
 
-        submitAnswers();
+        userDetailsList(answerPojoList);
+    }
+
+    private void userDetailsList(List<LeagueAnswerPojo> pojo){
+        leageaAnswerDetailsPojo.setAns(pojo);
+
+        if(QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").equals("")){
+            bulderAdapter.openUserDetailsDialog(true);
+        }else {
+            LeageaAnswerDetailsPojo.AnswersDetails details = new LeageaAnswerDetailsPojo.AnswersDetails();
+            details.setName("");
+            details.setMobile("");
+            leageaAnswerDetailsPojo.setDetails(details);
+            submitAnswers();
+        }
     }
 
     @Override
@@ -154,7 +179,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
 
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
-                resultPojo = syncServer.submitLeagueAnswer(answerPojoList);
+                resultPojo = syncServer.submitLeagueAnswer(leageaAnswerDetailsPojo);
             }
 
             @Override

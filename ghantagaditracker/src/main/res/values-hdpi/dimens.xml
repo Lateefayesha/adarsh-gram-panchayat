@@ -20,5 +20,6 @@
     <dimen name="spacing_between_line_and_text">18dp</dimen>
     <dimen name="spinner_text_size">20sp</dimen>
     <dimen name="button_text_size">20sp</dimen>
+    <dimen name="timeline_margin_start">40dp</dimen>
 
 </resources>

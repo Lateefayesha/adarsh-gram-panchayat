@@ -30,14 +30,11 @@ import android.util.Log;
 
 import com.appynitty.adarshgrampanchayat.R;
 import com.appynitty.ghantagaditracker.activity.DashboardActivity;
-import com.appynitty.ghantagaditracker.activity.TrackerActivity;
 import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 

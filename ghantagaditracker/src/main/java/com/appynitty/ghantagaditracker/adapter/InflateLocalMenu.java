@@ -2,13 +2,17 @@ package com.appynitty.ghantagaditracker.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appynitty.ghantagaditracker.R;
@@ -66,9 +70,15 @@ public class InflateLocalMenu extends RecyclerView.Adapter<InflateLocalMenu.View
         try{
             if(!AUtils.isNull(getMenuPojoList()) && getItemCount()>0){
                 LocalMenuPojo menuPojo = menuPojoList.get(position);
+                holder.titleLayout.setBackgroundColor(Color.parseColor(menuPojo.getMenuColor()));
                 holder.textView.setText(menuPojo.getMenuName());
 
-                holder.cardView.setBackgroundColor(Color.parseColor(menuPojo.getMenuColor()));
+                Drawable background = AppCompatResources.getDrawable(mContext, R.drawable.round_background_custom);
+                Drawable customBackground = DrawableCompat.wrap(background);
+                DrawableCompat.setTint(customBackground, Color.parseColor(menuPojo.getMenuColor()));
+                holder.imageView.setBackground(customBackground);
+
+                holder.imageView.setImageDrawable(menuPojo.getMenuIcon());
                 holder.cardView.setTag(menuPojo);
 
                 holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +106,14 @@ public class InflateLocalMenu extends RecyclerView.Adapter<InflateLocalMenu.View
         CardView cardView;
         TextView textView;
         ImageView imageView;
+        LinearLayout titleLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.menu_cv);
             textView = itemView.findViewById(R.id.menuNameTV);
+            imageView = itemView.findViewById(R.id.imageMenuIV);
+            titleLayout = itemView.findViewById(R.id.title_background);
         }
     }
 

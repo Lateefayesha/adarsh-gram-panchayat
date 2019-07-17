@@ -74,9 +74,13 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String lang = languageStringHash.get(languageList.get(position));
-                if(!lang.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME))){
-                    AUtils.changeLanguage((Activity) mContext, lang);
-                    ((Activity)mContext).recreate();
+                try {
+                    if(!lang.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME))){
+                        AUtils.changeLanguage((Activity) mContext, lang);
+                        ((Activity)mContext).recreate();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
 

@@ -1,20 +1,12 @@
 package com.appynitty.ghantagaditracker.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -31,14 +23,12 @@ import android.widget.TextView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.MapInfoWindowAdapter;
-import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
-import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,8 +41,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.mithsoft.lib.componants.Toasty;
 
 import java.lang.reflect.Type;
@@ -65,16 +53,12 @@ import quickutils.core.QuickUtils;
 public class TrackerActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener{
 
-    private static final String TAG = "GhantaGadiTracker";
-    private static final int REQUEST_CODE_SETTING = 1023;
-
     private LatLngBounds bounds;
     private GoogleMap mGmap;
     private AutoCompleteTextView searchViewAutoComplete;
     private Context context;
     private int ghataGadiCount;
     private LatLng currlatLng;
-    private Toolbar toolbar;
 
     private List<ActiveUserListPojo> activeUserListPojos;
     private List<AreaListPojo> areaListPojos;
@@ -97,7 +81,7 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
         context = TrackerActivity.this;
 
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         toolbar.setTitle(getResources().getString(R.string.title_activity_ghanta_gadi_tracker));
         setSupportActionBar(toolbar);
@@ -339,14 +323,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
                 }else{
                     Toasty.error(context, getString(R.string.something_error)).show();
                 }
-
-                saveFCM();
             }
         }).execute();
-    }
-
-    private void saveFCM() {
-        new SaveFcmIdAsyncTask(context).execute();
     }
 
     private void fetchAreaList(Boolean isProgress){
@@ -370,19 +348,16 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
                     if(!AUtils.isNull(areaListPojos) && !areaListPojos.isEmpty()){
                         initSpinner();
-                    }else{
-                        Toasty.error(context, getString(R.string.serverError)).show();
                     }
+//                    else{
+//                        Toasty.error(context, getString(R.string.serverError)).show();
+//                    }
 
                 }else{
                     Toasty.error(context, getString(R.string.something_error)).show();
                 }
             }
         }).execute();
-    }
-
-    private void openNotificationActivity(){
-        startActivity(new Intent(context, NotificationListActivity.class));
     }
 
     @Override

@@ -68,16 +68,17 @@ public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestion
             System.out.println(ansMap);
 
             if(!ansMap.containsKey(pojo.getQuestionId())){
-                holder.yesRadio.setChecked(false);
-                holder.noRadio.setChecked(false);
+//                holder.yesRadio.setChecked(false);
+//                holder.noRadio.setChecked(false);
+                holder.dummy.setChecked(true);
             }else {
                 switch (ansMap.get(pojo.getQuestionId())){
                     case ANSWER_YES:
-                        holder.noRadio.setChecked(true);
+//                        holder.noRadio.setChecked(true);
                         holder.yesRadio.setChecked(true);
                         break;
                     case ANSWER_NO:
-                        holder.yesRadio.setChecked(true);
+//                        holder.yesRadio.setChecked(true);
                         holder.noRadio.setChecked(true);
                         break;
                 }
@@ -93,7 +94,7 @@ public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestion
     public class ViewHolder extends  RecyclerView.ViewHolder{
 
         TextView srNo, question;
-        RadioButton yesRadio, noRadio;
+        RadioButton yesRadio, noRadio, dummy;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -101,6 +102,7 @@ public class LeagueQuestionUIAdapter extends RecyclerView.Adapter<LeagueQuestion
             question = itemView.findViewById(R.id.question_text);
             yesRadio = itemView.findViewById(R.id.radio_yes);
             noRadio = itemView.findViewById(R.id.radio_no);
+            dummy = itemView.findViewById(R.id.radio_dummy);
 
             yesRadio.setOnClickListener(new View.OnClickListener() {
                 @Override
