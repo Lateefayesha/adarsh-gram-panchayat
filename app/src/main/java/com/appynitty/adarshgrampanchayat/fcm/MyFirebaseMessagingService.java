@@ -95,6 +95,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String channelId = "mChannel_DEMO";
         CharSequence channelName = getResources().getString(R.string.app_name);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getPackageName())
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)

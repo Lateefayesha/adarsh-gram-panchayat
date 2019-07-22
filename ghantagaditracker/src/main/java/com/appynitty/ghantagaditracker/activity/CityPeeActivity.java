@@ -89,8 +89,8 @@ public class CityPeeActivity extends AppCompatActivity {
             String query = murl.getQuery();
             String newUrl = protocol + "://" + authority + "/FeedbackForm?" + query;
 
-            if(path.equals("/FeedbackForm"))
-//            if(path.equals("/PlayStoreLink"))
+//            if(path.equals("/FeedbackForm"))
+            if(path.equals("/PlayStoreLink"))
                 webviewInitialize.InitiateDefaultWebview(newUrl);
             else{
                 Toasty.error(mContext, getResources().getString(R.string.invalid_url_error)).show();
