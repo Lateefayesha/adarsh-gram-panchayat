@@ -16,6 +16,7 @@
 
 package com.appynitty.adarshgrampanchayat.fcm;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -25,6 +26,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -90,6 +92,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 R.drawable.notify);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        String channelId = "mChannel_DEMO";
+        CharSequence channelName = getResources().getString(R.string.app_name);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getPackageName())
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
@@ -100,10 +105,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setLargeIcon(Bitmap.createScaledBitmap(largeIconBitmap, 128, 128, false))
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setChannelId(channelId);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
         if (notificationManager != null) {
             notificationManager.notify(0 /* ID of l_notification */, notificationBuilder.build());

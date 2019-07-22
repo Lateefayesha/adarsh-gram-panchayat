@@ -3,6 +3,7 @@ package com.appynitty.ghantagaditracker.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -24,6 +25,7 @@ import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.pojo.LocalMenuPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
+import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
 
 import java.util.ArrayList;
@@ -39,6 +41,16 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private RecyclerView localMenuRecycler;
     private Context mContext;
     private NavigationView navigationView;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
