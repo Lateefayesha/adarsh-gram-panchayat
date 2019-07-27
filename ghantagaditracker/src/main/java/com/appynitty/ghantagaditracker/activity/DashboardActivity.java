@@ -162,14 +162,21 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty())
                         startActivity(new Intent(mContext, CollectionHistoryActivity.class));
                     else
-                        startActivity(new Intent(mContext, NotificationListActivity.class));
+                        startNotificationActivity();
                     break;
                 case Notification.TYPE_GP:
                     startActivity(new Intent(mContext, ComplaintStatusActivity.class));
                     break;
+                case Notification.TYPE_GGB:
+                    startNotificationActivity();
+                    break;
             }
         }else
-            startActivity(new Intent(mContext, NotificationListActivity.class));
+            startNotificationActivity();
+    }
+
+    private void startNotificationActivity(){
+        startActivity(new Intent(mContext, NotificationListActivity.class));
     }
 
     @Override

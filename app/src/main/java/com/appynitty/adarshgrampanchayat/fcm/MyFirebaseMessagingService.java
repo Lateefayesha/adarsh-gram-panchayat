@@ -31,10 +31,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.appynitty.adarshgrampanchayat.R;
-import com.appynitty.ghantagaditracker.activity.DashboardActivity;
-import com.appynitty.ghantagaditracker.controller.Notification;
-import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -67,10 +63,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
         Log.d(TAG, "BODY : " + remoteMessage.getData().get("body"));
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
+//        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+//        databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
 
-        sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), remoteMessage.getData().get("body"));
+//        sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), remoteMessage.getData().get("body"));
     }
 
     /**
@@ -78,6 +74,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
+    /*
     private void sendNotification(String title, String messageBody, String type) {
 
         Intent intent = new Intent(this, DashboardActivity.class);
@@ -116,7 +113,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT));
 
         if (notificationManager != null) {
-            notificationManager.notify(0 /* ID of l_notification */, notificationBuilder.build());
+            notificationManager.notify(0 *//* ID of l_notification *//*, notificationBuilder.build());
         }
     }
+    */
 }

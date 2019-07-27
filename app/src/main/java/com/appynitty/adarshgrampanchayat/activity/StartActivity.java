@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.appynitty.adarshgrampanchayat.R;
-import com.appynitty.ghantagaditracker.activity.SplashScreenActivity;
-import com.appynitty.ghantagaditracker.activity.TrackerActivity;
+import com.appynitty.gp.activity.SmartSplashScreenActivity;
 
 
 public class StartActivity extends Activity {
@@ -17,8 +16,8 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        startActivity(new Intent(StartActivity.this, SmartSplashScreenActivity.class));
-        startActivity(new Intent(StartActivity.this, SplashScreenActivity.class));
+        startActivity(new Intent(StartActivity.this, SmartSplashScreenActivity.class));
+//        startActivity(new Intent(StartActivity.this, SplashScreenActivity.class));
     }
 
     @Override

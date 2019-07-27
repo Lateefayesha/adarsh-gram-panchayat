@@ -117,7 +117,7 @@
     <string name="interested_business">Interested Fields for Business/Self Employment</string>
     <string name="available_resources">Available Resources</string>
     <string name="exact_nature_of_help_required">Exact Nature of help required</string>
-    <string name="captur_photo_of_resume">Captur photo of Resume / CV</string>
+    <string name="captur_photo_of_resume">Capture photo of Resume / CV</string>
     <string name="or">OR</string>
     <string name="capture_photo_of_resource">Capture photo of resource</string>
     <string name="utility">Utility</string>
@@ -188,6 +188,17 @@
     <string name="maintenance_complent_details">Since most of the rural areas lack basic infrastructure such as Gram Panchayat building, proper furniture, etc., the result is lack of efficiency in the Gram Panchayat and other administrative offices. Given the seriousness of all these issues, priority has been given in the rural development plan on the development and maintenance of infrastructure for the Gram Panchayat.\n\nThe provision is made in the development plan, to maintain necessary amendments to the various properties of the Gram Panchayat created under the Gram Panchayat area\n\nBuilding gram panchayat building where there is no Gram Panchayat building, or expanding the Gram Panchayat Bhavan, necessary furniture for the Gram Panchayat building, building for anganwadi etc. are included in village development plan.</string>
     <string name="construction_complent_details">Most of the rural areas are constructing new and renovation works. The purpose of keeping the entire care and rule of construction works is to the Nagar Panchayat. However, if there is a grievance or some suggestions regarding the construction of any kind, the citizen is requested to note the grievance or notice through the following menu.\n\nGrievance will be resolved at the right time.</string>
 
-    <string name="google_maps_key">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
+    <string name="google_maps_key" translatable="false">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
+    <string name="aple_zilaadhikhari_kayalay">Your Collector\'s Office</string>
+    <string name="apali_zilha_parisad">Your Zilla Parishad</string>
+    <string name="bloodbank">Blood Bank</string>
+    <string name="call">Call</string>
+    <string name="jobs">Jobs</string>
+    <string name="newspaper">Newsletter</string>
+    <string name="passport">passport</string>
+    <string name="police">Police</string>
+    <string name="railway">Railway</string>
+    <string name="visit_website">Visit Website</string>
+    <string name="voter_id">Voter ID</string>
 
 </resources>

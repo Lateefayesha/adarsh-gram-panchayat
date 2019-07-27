@@ -11,7 +11,7 @@ import retrofit2.http.Header;
  */
 public interface VersionCheckWebService {
 
-    @GET("api/Get/VersionUpdate")
+    @GET("api/Get/VersionUpdates")
     Call<ResultPojo> checkVersion(@Header("appId") String appId,
                                   @Header("version") int version);
 

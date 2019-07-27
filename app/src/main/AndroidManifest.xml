@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.appynitty.adarshgrampanchayat">
 
+    <!--android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"-->
+    <!--android:name="com.appynitty.gp.utils.MyApplicationConstants"-->
     <application
-        android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"
+        android:name="com.appynitty.gp.utils.MyApplicationConstants"
         android:allowBackup="true"
         tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"

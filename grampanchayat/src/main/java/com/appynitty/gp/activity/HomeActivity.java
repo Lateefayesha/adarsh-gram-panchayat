@@ -11,13 +11,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.fragment.MenuFragment;
-import com.appynitty.gp.fragment.MenuFragmentLess;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.LocaleHelper;
@@ -76,23 +77,7 @@ public class HomeActivity extends AppCompatActivity {
 
         QuickUtils.prefs.save(AUtils.FCM_NOTI, getIntent().getBooleanExtra(AUtils.FCM_NOTI, false));
 
-//        Bundle bundle = new Bundle();
-//
-//        if (getIntent().getBooleanExtra(AUtils.FCM_NOTI, false)) {
-//
-//            QuickUtils.prefs.save(AUtils.FCM_NOTI, getIntent().getBooleanExtra(AUtils.FCM_NOTI, false));
-//
-//        } else {
-//
-//            QuickUtils.prefs.save(AUtils.FCM_NOTI, true);
-//        }
-
-        /* For Older Apps till 19-10-2018 */
-        mFragment = new MenuFragmentLess();
-        /* For Newer Apps after 19-10-2018 */
-//        mFragment = new MenuFragment();
-
-//        mFragment.setArguments(bundle);
+        mFragment = new MenuFragment();
 
         mFragmentManager.popBackStack(null,
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -164,8 +149,6 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     private void changeLanguageOnClick() {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -179,7 +162,9 @@ public class HomeActivity extends AppCompatActivity {
                 changeLanguage(1);
             }
         });
-        alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
+
+//        alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("हिंदी", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

@@ -12,6 +12,7 @@ public class Notification {
     public static final int STATUS_UNREAD = 1;
     public static final String TYPE_GG = "GG";
     public static final String TYPE_GP = "GP";
+    public static final String TYPE_GGB = "GGB";
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TEXT = "message";

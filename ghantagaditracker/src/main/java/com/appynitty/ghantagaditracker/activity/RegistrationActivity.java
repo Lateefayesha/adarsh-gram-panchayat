@@ -1,17 +1,14 @@
 package com.appynitty.ghantagaditracker.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +16,6 @@ import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.RegistrationAdapterClass;
@@ -30,7 +26,6 @@ import com.mithsoft.lib.componants.MyProgressDialog;
 import com.mithsoft.lib.componants.Toasty;
 
 import quickutils.core.QuickUtils;
-import quickutils.core.categories.view;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -95,7 +90,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.nav_skip_registration)
-            startTracker();
+            startDashboard();
         return true;
     }
 
@@ -114,6 +109,11 @@ public class RegistrationActivity extends AppCompatActivity {
                             case RegistrationAdapterClass.RESPONSE_REGISTRATION_OTP:
                                 otp = detailsPojo.getOTP();
                                 loadViewStub(AUtils.ViewToLoad.OtpView);
+                                break;
+                            case RegistrationAdapterClass.RESPONSE_REGISTRATION_VERIFIED:
+                                QuickUtils.prefs.save(AUtils.PREFS.IS_USER_LOGIN, true);
+                                QuickUtils.prefs.save(AUtils.PREFS.REFERENCE_ID, refId);
+                                startDashboard();
                                 break;
                         }
                     }else{
@@ -186,9 +186,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(userOtp.isEmpty())
                     txtOtp.setError(getResources().getString(R.string.otp_hint));
                 else if(userOtp.equals(otp)){
-                    QuickUtils.prefs.save(AUtils.PREFS.IS_USER_LOGIN, true);
-                    QuickUtils.prefs.save(AUtils.PREFS.REFERENCE_ID, refId);
-                    startTracker();
+                    progressDialog.show();
+                    registrationAdapterClass.callSaveDeviceDetails(refId);
                 }else
                     Toasty.error(mContext, getResources().getString(R.string.otp_hint_valid)).show();
             }
@@ -279,8 +278,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationAdapterClass.callRegistrationOtp(refId, mobNo);
     }
 
-    private void startTracker() {
-//        startActivity(new Intent(mContext, TrackerActivity.class));
+    private void startDashboard() {
         startActivity(new Intent(mContext, DashboardActivity.class));
         ((Activity)mContext).finish();
     }

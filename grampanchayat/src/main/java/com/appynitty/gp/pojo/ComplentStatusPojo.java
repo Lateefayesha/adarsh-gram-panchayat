@@ -88,11 +88,11 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getComplaintType() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
             return complaintType;
-        } else {
-            return complaintTypeMar;
-        }
+//        } else {
+//            return complaintTypeMar;
+//        }
     }
 
     public void setComplaintType(String complaintType) {
@@ -157,11 +157,11 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getType() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
             return type;
-        } else {
-            return typeMar;
-        }
+//        } else {
+//            return typeMar;
+//        }
     }
 
     public void setType(String type) {

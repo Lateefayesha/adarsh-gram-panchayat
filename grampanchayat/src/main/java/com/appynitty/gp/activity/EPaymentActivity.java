@@ -65,14 +65,14 @@ public class EPaymentActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
             webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
-        } else {
+//        } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
-        }
+//            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+//        }
     }
 
     @Override

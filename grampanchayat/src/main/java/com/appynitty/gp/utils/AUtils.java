@@ -253,7 +253,8 @@ public class AUtils extends MsUtils {
                 QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 2:
-                languageStr = "mi";
+//                languageStr = "mi";
+                languageStr = "hi";
                 QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 3:
@@ -394,5 +395,38 @@ public class AUtils extends MsUtils {
         String Khakhi = "#BA9B47";
         String Orange ="#FF9800";
         String DarkGray = "#384259";
+    }
+
+    public interface MenuIdConstants{
+        String Our_Gram_Panchayat = "Our_Gram_Panchayat";
+        String Work_Check_Out = "Work_Check_Out";
+        String Young_Bussiness = "Young_Bussiness";
+        String Young_Jobs = "Young_Jobs";
+        String Cleaning_Complaints = "Cleaning_Complaints";
+        String Water_Complaints = "Water_Complaints";
+        String Light_Complaints = "Light_Complaints";
+        String Maintenance_Complaints = "Maintenance_Complaints";
+        String Construction_Complaints = "Construction_Complaints";
+        String Complent_Status_Tab = "Complent_Status_Tab";
+        String Samaj_Bhawan_Booking = "Samaj_Bhawan_Booking";
+        String Tanker_Booking = "Tanker_Booking";
+        String Property_Tax = "Property_Tax";
+        String Mandi_Details = "Mandi_Details";
+        String Upcoming_Events = "Upcoming_Events";
+        String Classification_Classified = "Classification_Classified";
+        String Government_Schemes = "Government_Schemes";
+        String Certificate = "Certificate";
+        String Smart_Suggestion = "Smart_Suggestion";
+        String Photo_Video_Gallery = "Photo_Video_Gallery";
+        String Online_EPayment = "Online_EPayment";
+        String Online_Booking = "Online_Booking";
+        String Social_Network_Media = "Social_Network_Media";
+        String Online_Website = "Online_Website";
+        String Online_MAP = "Online_MAP";
+        String Ghanta_Gadi_Tracker = "Ghanta_Gadi_Tracker";
+        String Utility = "Utility";
+        String Weather = "Weather";
+        String Contact_Us = "Contact_Us";
+
     }
 }
