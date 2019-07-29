@@ -93,7 +93,8 @@ public class MenuFragment extends MyFragemtV4 {
         if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME, "")) &&
                 !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))) {
 
-            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+//            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, "1").equals("1")) {
                 ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME, ""));
             } else {
                 ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""));
@@ -309,8 +310,8 @@ public class MenuFragment extends MyFragemtV4 {
         menuPojoList.add(new MenuPojo(getString(R.string.property_tax), AUtils.Colour.DarkGray,
                 AUtils.MenuIdConstants.Property_Tax, ContextCompat.getDrawable(context, R.drawable.ic_property_tax)));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow,
-                AUtils.MenuIdConstants.Mandi_Details, ContextCompat.getDrawable(context, R.drawable.ic_mandi)));
+//        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow,
+//                AUtils.MenuIdConstants.Mandi_Details, ContextCompat.getDrawable(context, R.drawable.ic_mandi)));
         menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),AUtils.Colour.Pink,
                 AUtils.MenuIdConstants.Upcoming_Events, ContextCompat.getDrawable(context, R.drawable.ic_upcoming_program)));
 
