@@ -23,6 +23,9 @@ import quickutils.core.QuickUtils;
 
 public class CleaningCompleantDetailsFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Cleaning_Complaints;
+    private final static String nextFragmentMenuId = AUtils.MenuIdConstants.Cleaning_Complaints_Register_Form;
+
     private static final String TAG = "CleaningCompleantDetailsFragment";
     private View view;
     private Context context;
@@ -49,9 +52,14 @@ public class CleaningCompleantDetailsFragment extends MyFragemtV4 {
 
         genrateId();
         registerEvents();
+        initData();
     }
 
     private void genrateId() {
+
+        if(AUtils.getMenuNavigation(AUtils.MenuIdConstants.Main_Menu_Dashboard).isEmpty())
+            if(getFragmentManager() != null)
+                getFragmentManager().popBackStack();
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.cleaning_info));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
@@ -76,10 +84,34 @@ public class CleaningCompleantDetailsFragment extends MyFragemtV4 {
 
     private void applyButtonOnClick() {
 
+        AUtils.setMenuNavigation(fragmentMenuId, nextFragmentMenuId);
         getFragmentManager().beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.content_frame, CleaningCompleantFragment.newInstance()).commit();
     }
 
+    private void initData(){
+        if(AUtils.getMenuNavigation() != null && AUtils.getMenuNavigation().containsKey(fragmentMenuId))
+            applyButtonOnClick();
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
+    }
 }

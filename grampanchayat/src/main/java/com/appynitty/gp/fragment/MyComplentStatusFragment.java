@@ -38,6 +38,8 @@ import quickutils.core.QuickUtils;
 
 public class MyComplentStatusFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Complent_Status_Tab;
+
     private View view;
     private Context context;
     private MyComplentStatusListAdapter sechemesListAdapter;
@@ -156,7 +158,6 @@ public class MyComplentStatusFragment extends MyFragemtV4 {
         }
     }
 
-
     private void getDataFromServer(boolean isShowPrgressDialog) {
 
         new MyAsyncTask(context, isShowPrgressDialog, new MyAsyncTask.AsynTaskListener() {
@@ -202,5 +203,25 @@ public class MyComplentStatusFragment extends MyFragemtV4 {
 
             }
         }).execute();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

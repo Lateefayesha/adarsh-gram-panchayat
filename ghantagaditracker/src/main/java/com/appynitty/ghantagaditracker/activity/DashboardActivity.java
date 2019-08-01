@@ -21,12 +21,16 @@ import android.view.MenuItem;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
+import com.appynitty.ghantagaditracker.adapter.LogoutAdapterClass;
 import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.pojo.LocalMenuPojo;
+import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
+import com.mithsoft.lib.componants.MyProgressDialog;
+import com.mithsoft.lib.componants.Toasty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private RecyclerView localMenuRecycler;
     private Context mContext;
     private NavigationView navigationView;
+    private LogoutAdapterClass logoutAdapter;
+    private MyProgressDialog progressDialog;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -86,6 +92,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         localMenuRecycler = findViewById(R.id.menu_recycler);
         localMenuRecycler.setLayoutManager(new GridLayoutManager(mContext, 2));
 
+        logoutAdapter = new LogoutAdapterClass();
+        progressDialog = new MyProgressDialog(mContext, R.drawable.progress_bar, false);
+
     }
 
     private void registerEvents() {
@@ -93,6 +102,36 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             @Override
             public void onLocalMenuItemClick(LocalMenuPojo menuPojo) {
                 openMenuPages(menuPojo.getMenuId());
+            }
+        });
+
+        logoutAdapter.setLogoutAdapterListner(new LogoutAdapterClass.LogoutAdapterListner() {
+            @Override
+            public void onSuccessCallback(RegistrationDetailsPojo pojo) {
+                progressDialog.dismiss();
+                if(!AUtils.isNull(pojo)){
+                    if(pojo.getStatus().equals(AUtils.STATUS_SUCCESS)){
+                        logoutRequestComplete();
+                    }else
+                        if(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, "en").equals("en"))
+                            Toasty.info(mContext, pojo.getMessage()).show();
+                        else
+                            Toasty.info(mContext, pojo.getMessageMar()).show();
+
+                }else
+                    Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+            }
+
+            @Override
+            public void onFailureCallback() {
+                progressDialog.dismiss();
+                Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+            }
+
+            @Override
+            public void onErrorCallback() {
+                progressDialog.dismiss();
+                Toasty.error(mContext, getResources().getString(R.string.serverError)).show();
             }
         });
     }
@@ -212,12 +251,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void performLogout() {
-        QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
-        QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
-        DatabaseHelper db = new DatabaseHelper(mContext);
-        db.deleteAllNotification();
-        startActivity(new Intent(mContext, RegistrationActivity.class));
-        ((Activity)mContext).finish();
+        if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty()){
+            progressDialog.show();
+            logoutAdapter.callLogoutApi();
+        }else
+            logoutRequestComplete();
     }
 
     @Override
@@ -233,6 +271,15 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         if(requestCode == REQUEST_CODE_SETTING && resultCode == RESULT_OK){
             ((Activity)mContext).recreate();
         }
+    }
+
+    private void logoutRequestComplete(){
+        QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
+        QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
+        DatabaseHelper db = new DatabaseHelper(mContext);
+        db.deleteAllNotification();
+        startActivity(new Intent(mContext, RegistrationActivity.class));
+        ((Activity)mContext).finish();
     }
 
     private void saveFCM() {

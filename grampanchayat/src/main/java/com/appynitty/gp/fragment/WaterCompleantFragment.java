@@ -59,6 +59,9 @@ import quickutils.core.QuickUtils;
 
 public class WaterCompleantFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Water_Complaints_Register_Form;
+    private final static String prevFragmentMenuId = AUtils.MenuIdConstants.Water_Complaints;
+
     private static final String TAG = "WaterCompleantFragment";
     private static final int REQUEST_CAMERA = 22;
     private static final int SELECT_FILE = 33;
@@ -81,7 +84,6 @@ public class WaterCompleantFragment extends MyFragemtV4 {
     private Spinner typeSpinner;
     private List<ComplaintTypePojo> complaintTypePojoList;
 
-    private String mPreviousLanguage = "";
     private static WaterCompleantFragment fragment = null;
 
     public static WaterCompleantFragment newInstance() {
@@ -101,16 +103,6 @@ public class WaterCompleantFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
-
-        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragment);
-            fragmentTransaction.attach(fragment);
-            fragmentTransaction.commit();
-            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
-        }
-
         genrateId();
         registerEvents();
         initData();
@@ -655,5 +647,25 @@ public class WaterCompleantFragment extends MyFragemtV4 {
         cleaningCompleantPojo.setLocation(locationTextView.getText().toString());
         cleaningCompleantPojo.setDetails(compleantDetailsTextView.getText().toString());
         cleaningCompleantPojo.setImgUrl(imageFilePath);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(prevFragmentMenuId,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

@@ -30,7 +30,9 @@ import quickutils.core.QuickUtils;
 
 public class SuggestionFragment extends MyFragemtV4 {
 
-    private static final String TAG = "TankerBookingFragment";
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Smart_Suggestion;
+
+    private static final String TAG = "SuggestionFragment";
     private View view;
     private Context context;
     private EditText nameTextView;
@@ -41,7 +43,6 @@ public class SuggestionFragment extends MyFragemtV4 {
     private Button saveButton;
     private SuggestionPojo suggestionPojo;
 
-    private String mPreviousLanguage = "";
     private static SuggestionFragment fragment = null;
 
     public static SuggestionFragment newInstance() {
@@ -61,15 +62,6 @@ public class SuggestionFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
-
-        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragment);
-            fragmentTransaction.attach(fragment);
-            fragmentTransaction.commit();
-            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
-        }
 
         genrateId();
         registerEvents();
@@ -188,5 +180,25 @@ public class SuggestionFragment extends MyFragemtV4 {
         suggestionPojo.setEmailAddress(emailTextView.getText().toString());
         suggestionPojo.setAddress(addressTextView.getText().toString());
         suggestionPojo.setSuggesstion(suggestionTextView.getText().toString());
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

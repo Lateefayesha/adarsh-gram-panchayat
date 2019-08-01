@@ -288,4 +288,12 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Mandi_Details);
+    }
 }

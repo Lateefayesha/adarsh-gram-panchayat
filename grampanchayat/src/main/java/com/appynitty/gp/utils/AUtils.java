@@ -17,8 +17,11 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -119,7 +122,10 @@ public class AUtils extends MsUtils {
     public static final String LANGUAGE_NAME = "LanguageName";
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
+    public static boolean isRecreate = false;
 
+    private static HashMap<String, String> menuNavigation = null;
+    private static ArrayList<String> menuNavigationList = null;
 
     private AUtils() {
     }
@@ -224,7 +230,7 @@ public class AUtils extends MsUtils {
                 .show();
     }
 
-    public static String getYoutubeVedioId(String youtubeVideoUrl) {
+    public static String getYoutubeVideoId(String youtubeVideoUrl) {
 
         String videoId = "";
         if (youtubeVideoUrl != null && youtubeVideoUrl.trim().length() > 0 && youtubeVideoUrl.startsWith("http")) {
@@ -246,6 +252,10 @@ public class AUtils extends MsUtils {
     // Language Change of an application
     public static void changeLanguage(Activity context, int languageId) {
 
+        if(languageId > 0){
+            QuickUtils.prefs.save(AUtils.LANGUAGE_ID, String.valueOf(languageId));
+        }
+
         String languageStr = "";
         switch (languageId) {
             case 1:
@@ -253,7 +263,7 @@ public class AUtils extends MsUtils {
                 QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
             case 2:
-//                languageStr = "mi";
+//                languageStr = "mr";
                 languageStr = "hi";
                 QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
                 break;
@@ -271,16 +281,18 @@ public class AUtils extends MsUtils {
                 break;
         }
 
-        Locale locale = new Locale(languageStr);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Locale.setDefault(Locale.Category.DISPLAY, locale);
-        } else {
-            Locale.setDefault(locale);
-        }
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
-        context.onConfigurationChanged(config);
+        LocaleHelper.setLocale(context, languageStr);
+
+//        Locale locale = new Locale(languageStr);
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            Locale.setDefault(Locale.Category.DISPLAY, locale);
+//        } else {
+//            Locale.setDefault(locale);
+//        }
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        context.getApplicationContext().getResources().updateConfiguration(config, null);
+//        context.onConfigurationChanged(config);
 
     }
 
@@ -300,6 +312,29 @@ public class AUtils extends MsUtils {
     public static void saveFcmId(String fcmId) {
 
         QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
+    }
+
+    public static void setQuickUtilsValue(String key, Object value){
+
+        if(value instanceof String){
+            QuickUtils.prefs.save(key, (String) value);
+        }
+
+        if(value instanceof Integer){
+            QuickUtils.prefs.save(key, (int) value);
+        }
+
+        if(value instanceof Boolean){
+            QuickUtils.prefs.save(key, (boolean) value);
+        }
+
+        if(value instanceof Float){
+            QuickUtils.prefs.save(key, (float) value);
+        }
+
+        if(value instanceof Long){
+            QuickUtils.prefs.save(key, (long) value);
+        }
     }
 
     public static void showConfirmationDialog(Context context, String type, DialogInterface.OnClickListener
@@ -336,6 +371,46 @@ public class AUtils extends MsUtils {
 
         builder.create()
                 .show();
+    }
+
+    public static void setMenuNavigationList(String value) {
+        if(AUtils.isNull(menuNavigationList))
+            menuNavigationList = new ArrayList<>();
+
+        if(menuNavigationList.indexOf(value) < 0)
+            menuNavigationList.add(value);
+    }
+
+    public static Boolean menuNavigationListHasItem(String key) {
+        if(!AUtils.isNull(menuNavigationList) && menuNavigationList.size() > 0)
+            return menuNavigationList.indexOf(key) >= 0;
+
+        return false;
+    }
+
+    public static void removeMenuNavigationListValue(String value){
+        if(!AUtils.isNull(menuNavigationList))
+            menuNavigationList.remove(value);
+    }
+
+    public static void setMenuNavigation(String key, String value){
+        if(menuNavigation == null)
+            menuNavigation = new HashMap<>();
+        menuNavigation.put(key, value);
+    }
+
+    @Nullable
+    public static HashMap<String, String> getMenuNavigation(){
+        return menuNavigation;
+    }
+
+    public static String getMenuNavigation(String key){
+        return (menuNavigation.containsKey(key)) ? menuNavigation.get(key): "";
+    }
+
+    public static void removeMenuNavigationValue(String parent, String value){
+        if(menuNavigation.containsValue(value))
+            menuNavigation.remove(parent);
     }
 
     // SharedPreferences Constant
@@ -398,15 +473,30 @@ public class AUtils extends MsUtils {
     }
 
     public interface MenuIdConstants{
+        String Main_Menu_Dashboard = "Main_Menu_Dashboard";
         String Our_Gram_Panchayat = "Our_Gram_Panchayat";
         String Work_Check_Out = "Work_Check_Out";
+
         String Young_Bussiness = "Young_Bussiness";
+        String Young_Bussiness_Apply_Form = "Young_Bussiness_Apply_Form";
+
         String Young_Jobs = "Young_Jobs";
+
         String Cleaning_Complaints = "Cleaning_Complaints";
+        String Cleaning_Complaints_Register_Form = "Cleaning_Complaints_Register_Form";
+
         String Water_Complaints = "Water_Complaints";
+        String Water_Complaints_Register_Form = "Water_Complaints_Register_Form";
+
         String Light_Complaints = "Light_Complaints";
+        String Light_Complaints_Register_Form = "Light_Complaints_Register_Form";
+
         String Maintenance_Complaints = "Maintenance_Complaints";
+        String Maintenance_Complaints_Register_Form = "Maintenance_Complaints_Register_Form";
+
         String Construction_Complaints = "Construction_Complaints";
+        String Construction_Complaints_Register_Form = "Construction_Complaints_Register_Form";
+
         String Complent_Status_Tab = "Complent_Status_Tab";
         String Samaj_Bhawan_Booking = "Samaj_Bhawan_Booking";
         String Tanker_Booking = "Tanker_Booking";
@@ -427,6 +517,5 @@ public class AUtils extends MsUtils {
         String Utility = "Utility";
         String Weather = "Weather";
         String Contact_Us = "Contact_Us";
-
     }
 }

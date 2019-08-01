@@ -36,6 +36,9 @@ import quickutils.core.QuickUtils;
 
 public class YoungBusinessFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Young_Bussiness;
+    private final static String nextFragmentMenuId = AUtils.MenuIdConstants.Young_Bussiness_Apply_Form;
+
     private static final String TAG = "YoungBusinessFragment";
     private View view;
     private Context context;
@@ -70,6 +73,10 @@ public class YoungBusinessFragment extends MyFragemtV4 {
     }
 
     private void genrateId() {
+
+        if(AUtils.getMenuNavigation(AUtils.MenuIdConstants.Main_Menu_Dashboard).isEmpty())
+            if(getFragmentManager() != null)
+                getFragmentManager().popBackStack();
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.young_business));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
@@ -116,6 +123,7 @@ public class YoungBusinessFragment extends MyFragemtV4 {
 
     private void applyBusinessButtonOnClick() {
 
+        AUtils.setMenuNavigation(fragmentMenuId, nextFragmentMenuId);
         getFragmentManager().beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.content_frame, YoungBusinessApplyFragment.newInstance())
@@ -124,7 +132,10 @@ public class YoungBusinessFragment extends MyFragemtV4 {
 
     private void ininData() {
 
-        initListData();
+        if(AUtils.getMenuNavigation() != null && AUtils.getMenuNavigation().containsKey(fragmentMenuId))
+            applyBusinessButtonOnClick();
+        else
+            initListData();
     }
 
     private void initListData() {
@@ -152,7 +163,6 @@ public class YoungBusinessFragment extends MyFragemtV4 {
 
 
     }
-
 
     private void getDataFromServer(boolean isShowPrgressDialog) {
 
@@ -193,5 +203,24 @@ public class YoungBusinessFragment extends MyFragemtV4 {
         }).execute();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+            if(getFragmentManager() != null)
+                getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
+    }
 
 }

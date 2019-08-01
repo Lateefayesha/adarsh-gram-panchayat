@@ -69,8 +69,8 @@ public class MenuFragment extends MyFragemtV4 {
 
     public void initComponents() {
         genrateId();
-        registerEvents();
         initData();
+        registerEvents();
         initToolbar();
         loadFragment();
 
@@ -115,21 +115,32 @@ public class MenuFragment extends MyFragemtV4 {
 
     private void registerEvents() {
 
-        menuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        menuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                menuOnClick(position);
+//            }
+//        });
 
-                menuOnClick(position);
+        mainMenuAdaptor.setMenuItemClickListner(new MainMenuAdapter.MenuItemClickListner() {
+            @Override
+            public void onItemClick(String menuId, int position) {
+                menuOnClick(menuId);
             }
         });
 
     }
 
-    private void menuOnClick(int position) {
+//    private void menuOnClick(int position) {
+    private void menuOnClick(String menuId) {
 
         mFragment = null;
 
-        switch (mainMenuAdaptor.getMenuId(position)) {
+        AUtils.setMenuNavigation(AUtils.MenuIdConstants.Main_Menu_Dashboard, menuId);
+
+//        switch (mainMenuAdaptor.getMenuId(position)) {
+        switch (menuId) {
             case AUtils.MenuIdConstants.Our_Gram_Panchayat:
                 mFragment = OurGramPanchayatFragment.newInstance();
                 break;
@@ -192,19 +203,15 @@ public class MenuFragment extends MyFragemtV4 {
                 break;
             case AUtils.MenuIdConstants.Online_EPayment:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, EPaymentActivity.class));
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Online_Booking:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, BookingActivity.class));
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -213,48 +220,36 @@ public class MenuFragment extends MyFragemtV4 {
                 break;
             case AUtils.MenuIdConstants.Online_Website:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, WebsiteActivity.class));
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Online_MAP:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, MapsMarkerActivity.class));
-
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Ghanta_Gadi_Tracker:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, GhantaGadiTrackerActivity.class));
-
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Utility:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     startActivity(new Intent(context, UtilityActivity.class));
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Weather:
                 if (AUtils.isNetWorkAvailable(context)) {
-
                     context.startActivity(new Intent(context, WeatherActivity.class));
                 } else {
-
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -352,5 +347,13 @@ public class MenuFragment extends MyFragemtV4 {
 
         mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);
+        checkOpenMenu();
+    }
+
+    private void checkOpenMenu() {
+        if(!AUtils.isNull(AUtils.getMenuNavigation()) && AUtils.getMenuNavigation().size() > 0 && AUtils.isRecreate){
+            String key = AUtils.getMenuNavigation(AUtils.MenuIdConstants.Main_Menu_Dashboard);
+            menuOnClick(key);
+        }
     }
 }

@@ -105,4 +105,11 @@ public class EPaymentActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Online_EPayment);
+    }
 }

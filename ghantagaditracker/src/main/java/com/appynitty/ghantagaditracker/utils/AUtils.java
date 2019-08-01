@@ -63,7 +63,7 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
     //   SBA Relese BACKUP URL
-//    public static final String SERVER_URL_SBA = "http://202.65.157.253:4044/";
+//    public static final String SERVER_URL_SBA = "http://r:4044/";
 
     //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";

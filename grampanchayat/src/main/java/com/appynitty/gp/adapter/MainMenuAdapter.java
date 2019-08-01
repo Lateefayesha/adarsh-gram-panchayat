@@ -30,6 +30,16 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
     private View view;
     private ViewHolder holder;
 
+    private MenuItemClickListner mListner;
+
+    public void setMenuItemClickListner(MenuItemClickListner listner){
+        this.mListner = listner;
+    }
+
+    public MenuItemClickListner getMenuItemClickListner(){
+        return this.mListner;
+    }
+
     public MainMenuAdapter(Context context, List<MenuPojo> menuList) {
         super(context, android.R.layout.simple_list_item_1, menuList);
         this.context = context;
@@ -37,15 +47,18 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 //            view = inflater.inflate(R.layout.menu_adapter, null);
             view = inflater.inflate(R.layout.layout_local_menu, null);
+
             final ViewHolder viewHolder = new ViewHolder();
             viewHolder.menuNameTextView = view.findViewById(R.id.menuNameTV);
             viewHolder.menuCardView = view.findViewById(R.id.menu_cv);
+
             viewHolder.imageMenuIV = view.findViewById(R.id.imageMenuIV);
             viewHolder.title_background = view.findViewById(R.id.title_background);
 
@@ -57,8 +70,9 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
 
         if (!AUtils.isNull(menuList) && !menuList.isEmpty()) {
 
-            MenuPojo menuPojo = menuList.get(position);
+            final MenuPojo menuPojo = menuList.get(position);
             holder.menuNameTextView.setText(menuPojo.getMenuName());
+//            holder.menuCardView.setCardBackgroundColor(Color.parseColor(menuPojo.getColor()));
 
             holder.title_background.setBackgroundColor(Color.parseColor(menuPojo.getColor()));
             Drawable background = AppCompatResources.getDrawable(context, R.drawable.round_background_white);
@@ -66,9 +80,13 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
             DrawableCompat.setTint(customBackground, Color.parseColor(menuPojo.getColor()));
             holder.imageMenuIV.setBackground(customBackground);
             holder.imageMenuIV.setImageDrawable(menuPojo.getMenuIcon());
-//            holder.imageView.setImageDrawable(menuPojo.getMenuIcon());
 
-//            holder.menuCardView.setCardBackgroundColor(Color.parseColor(menuPojo.getColor()));
+            holder.menuCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getMenuItemClickListner().onItemClick(menuPojo.getMenuId(), position);
+                }
+            });
         }
 
         return view;
@@ -78,8 +96,13 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
 
         private TextView menuNameTextView;
         private CardView menuCardView;
+
         private ImageView imageMenuIV;
         private LinearLayout title_background;
+    }
+
+    public interface MenuItemClickListner{
+        void onItemClick(String menuId, int position);
     }
 
     public String getMenuId(int position){

@@ -35,6 +35,8 @@ import quickutils.core.QuickUtils;
 
 public class TankerBookingFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Tanker_Booking;
+
     private static final String TAG = "TankerBookingFragment";
     private View view;
     private Context context;
@@ -47,7 +49,6 @@ public class TankerBookingFragment extends MyFragemtV4 {
     private Button saveButton;
     private TankerBookingPojo tankerBookingPojo;
 
-    private String mPreviousLanguage = "";
     private static TankerBookingFragment fragment = null;
 
     public static TankerBookingFragment newInstance() {
@@ -67,15 +68,6 @@ public class TankerBookingFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
-
-        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragment);
-            fragmentTransaction.attach(fragment);
-            fragmentTransaction.commit();
-            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
-        }
 
         genrateId();
         registerEvents();
@@ -127,7 +119,6 @@ public class TankerBookingFragment extends MyFragemtV4 {
             }
         });
     }
-
 
     private void saveButtonOnClick() {
 
@@ -204,5 +195,25 @@ public class TankerBookingFragment extends MyFragemtV4 {
         tankerBookingPojo.setAddress(addressTextView.getText().toString());
         tankerBookingPojo.setCreatedDate(AUtils.getCurrentDateTime());
         tankerBookingPojo.setLanguageId("1");
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

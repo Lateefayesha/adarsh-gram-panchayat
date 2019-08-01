@@ -359,4 +359,12 @@ public class ClassificationActivity extends BaseActivity {
             }
         }).execute();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Classification_Classified);
+    }
 }

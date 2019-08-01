@@ -51,6 +51,7 @@ import quickutils.core.QuickUtils;
 
 public class YoungJobApplyFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Young_Jobs;
     private static final String TAG = "YoungBusinessApplyFragment";
     private static final int REQUEST_CAMERA = 22;
     private static final int SELECT_FILE = 33;
@@ -100,15 +101,6 @@ public class YoungJobApplyFragment extends MyFragemtV4 {
     }
 
     public void initComponents() {
-
-        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragment);
-            fragmentTransaction.attach(fragment);
-            fragmentTransaction.commit();
-            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
-        }
 
         genrateId();
         registerEvents();
@@ -654,5 +646,25 @@ public class YoungJobApplyFragment extends MyFragemtV4 {
             }
 
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

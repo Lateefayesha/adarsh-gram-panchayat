@@ -52,7 +52,7 @@ public class VedioGalleryAdapter extends ArrayAdapter<PhotoGalleryVideo> {
 
             if (!AUtils.isNull(photoGalleryVideo.getVideoUrl())) {
 
-                Glide.with(context).load("http://img.youtube.com/vi/" + AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl()) + "/0.jpg")
+                Glide.with(context).load("http://img.youtube.com/vi/" + AUtils.getYoutubeVideoId(photoGalleryVideo.getVideoUrl()) + "/0.jpg")
                         .placeholder(R.drawable.loading_image)
                         .error(R.drawable.no_image)
                         .into(holder.imageView);

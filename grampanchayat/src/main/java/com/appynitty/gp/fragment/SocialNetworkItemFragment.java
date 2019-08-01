@@ -36,7 +36,7 @@ public class SocialNetworkItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.social_fragment, container, false);
-        context = container.getContext();
+//        context = container.getContext();
         initComponents();
         return view;
     }

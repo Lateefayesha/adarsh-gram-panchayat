@@ -12,7 +12,9 @@
         android:layout_height="130dp"
         android:layout_margin="@dimen/padding_margin_layout"
         app:cardBackgroundColor="@color/card_view_background_color"
-        app:cardCornerRadius="@dimen/cardview_radius">
+        app:cardCornerRadius="@dimen/cardview_radius"
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"

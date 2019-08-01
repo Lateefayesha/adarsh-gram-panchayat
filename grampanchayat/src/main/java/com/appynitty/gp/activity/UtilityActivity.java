@@ -103,4 +103,12 @@ public class UtilityActivity extends BaseActivity {
         AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
         super.onDestroy();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Utility);
+    }
 }

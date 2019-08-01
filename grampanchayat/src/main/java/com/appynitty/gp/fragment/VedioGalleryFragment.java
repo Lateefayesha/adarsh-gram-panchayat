@@ -88,11 +88,11 @@ public class VedioGalleryFragment extends Fragment {
         PhotoGalleryVideo photoGalleryVideo = photoGalleryVideoList.get(position);
 
 //        Intent intent = new Intent(context, YouTubePlayerActivity.class);
-//        intent.putExtra("VIDEO_ID", AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl()));
+//        intent.putExtra("VIDEO_ID", AUtils.getYoutubeVideoId(photoGalleryVideo.getVideoUrl()));
 //        startActivity(intent);
 
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + AUtils.getYoutubeVedioId(photoGalleryVideo.getVideoUrl())));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + AUtils.getYoutubeVideoId(photoGalleryVideo.getVideoUrl())));
             context.startActivity(intent);
         } catch (ActivityNotFoundException ex) {
 

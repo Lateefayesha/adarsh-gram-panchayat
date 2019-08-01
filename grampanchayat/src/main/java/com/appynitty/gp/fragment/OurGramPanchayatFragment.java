@@ -3,6 +3,8 @@ package com.appynitty.gp.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,8 @@ import quickutils.core.QuickUtils;
  */
 
 public class OurGramPanchayatFragment extends MyFragemtV4 {
+
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Our_Gram_Panchayat;
 
     private View view;
     private Context context;
@@ -78,6 +82,9 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
         noDataView = view.findViewById(R.id.no_data_view);
 //        noDataView.setNoDataImage(R.drawable.defaut);
         noDataView.setMessage(getString(R.string.noData));
+
+        if(AUtils.isRecreate && !AUtils.menuNavigationListHasItem(fragmentMenuId))
+            AUtils.setMenuNavigationList(fragmentMenuId);
     }
 
     private void registerEvents() {
@@ -129,7 +136,6 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
         }
     }
 
-
     private void getDataFromServer(boolean isShowPrgressDialog) {
 
         new MyAsyncTask(context, isShowPrgressDialog, new MyAsyncTask.AsynTaskListener() {
@@ -166,5 +172,25 @@ public class OurGramPanchayatFragment extends MyFragemtV4 {
 
             }
         }).execute();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+            if(getFragmentManager() != null)
+                getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

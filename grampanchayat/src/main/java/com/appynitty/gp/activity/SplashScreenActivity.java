@@ -59,6 +59,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
                 startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
+                finish();
             }
         }, 4000);
     }
@@ -94,10 +95,4 @@ public class SplashScreenActivity extends AppCompatActivity {
         }).execute();
     }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
 }

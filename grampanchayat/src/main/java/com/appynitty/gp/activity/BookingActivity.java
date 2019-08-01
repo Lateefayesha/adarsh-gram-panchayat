@@ -54,7 +54,6 @@ public class BookingActivity extends BaseActivity {
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
     }
 
-
     @Override
     protected void initData() {
 
@@ -66,14 +65,14 @@ public class BookingActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
 
             webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
 
-//        } else {
+        } else {
 
-//            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
-//        }
+            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+        }
     }
 
     @Override
@@ -86,7 +85,6 @@ public class BookingActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -104,5 +102,13 @@ public class BookingActivity extends BaseActivity {
     protected void onDestroy() {
         AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Online_Booking);
     }
 }

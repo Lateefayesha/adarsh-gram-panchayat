@@ -42,10 +42,10 @@ public class StatePojo implements Serializable {
     @Override
     public String toString() {
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
             return stateName;
-//        } else {
-//            return stateNameMar;
-//        }
+        } else {
+            return stateNameMar;
+        }
     }
 }

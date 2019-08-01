@@ -1,5 +1,6 @@
 package com.appynitty.gp.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -70,6 +72,8 @@ public class HomeActivity extends AppCompatActivity {
     private void ganrateId() {
 
         mFragmentManager = getSupportFragmentManager();
+        Log.e(TAG,this.getResources().getString(R.string.our_gram_panchayat));
+        Log.e(TAG,QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, ""));
         loadMenuFragment();
     }
 
@@ -152,14 +156,15 @@ public class HomeActivity extends AppCompatActivity {
     private void changeLanguageOnClick() {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Choose Language / भाषा निवडा");
+//        alert.setTitle("Choose Language / भाषा निवडा");
+        alert.setTitle("Choose Language / भाषा का चयन करें");
 
         alert.setPositiveButton("English", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "1");
                 changeLanguage(1);
+                ((Activity)HomeActivity.this).recreate();
             }
         });
 
@@ -168,8 +173,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "2");
                 changeLanguage(2);
+                ((Activity)HomeActivity.this).recreate();
             }
         });
         alert.show();
@@ -179,11 +184,10 @@ public class HomeActivity extends AppCompatActivity {
 
         AUtils.changeLanguage(this, type);
 
-
         initActionBar();
 
-        MyFragemtV4 myFragemtV4 = (MyFragemtV4) mFragmentManager.findFragmentById(R.id.content_frame);
-        myFragemtV4.updateDataForLanguage();
+//        MyFragemtV4 myFragemtV4 = (MyFragemtV4) mFragmentManager.findFragmentById(R.id.content_frame);
+//        myFragemtV4.updateDataForLanguage();
     }
 
     private void registerEvents() {
@@ -256,5 +260,18 @@ public class HomeActivity extends AppCompatActivity {
         //Ends................................................
 
         super.onDestroy();
+    }
+
+    @Override
+    public void recreate() {
+        super.recreate();
+        AUtils.isRecreate = true;
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if(AUtils.isRecreate)
+            AUtils.isRecreate = false;
     }
 }

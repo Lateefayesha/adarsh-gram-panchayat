@@ -33,12 +33,14 @@ import java.util.List;
 import quickutils.core.QuickUtils;
 
 public class PropertyTaxFragment extends MyFragemtV4 {
+
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Property_Tax;
+
     private View view;
     private Context context;
     private Button getPropertyTaxes;
     private EditText propertyNo;
 
-    private String mPreviousLanguage = "";
     private static PropertyTaxFragment fragment = null;
 
     public static PropertyTaxFragment newInstance() {
@@ -57,15 +59,6 @@ public class PropertyTaxFragment extends MyFragemtV4 {
 
     @Override
     public void initComponents() {
-
-        if (!mPreviousLanguage.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID))) {
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragment);
-            fragmentTransaction.attach(fragment);
-            fragmentTransaction.commit();
-            mPreviousLanguage = QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID);
-        }
 
         genrateId();
         registerEvents();
@@ -125,5 +118,25 @@ public class PropertyTaxFragment extends MyFragemtV4 {
         }
 
         return true;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
     }
 }

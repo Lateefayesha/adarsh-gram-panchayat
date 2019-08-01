@@ -356,5 +356,13 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
             }
         }).execute();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!AUtils.isRecreate)
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    AUtils.MenuIdConstants.Ghanta_Gadi_Tracker);
+    }
 }
 

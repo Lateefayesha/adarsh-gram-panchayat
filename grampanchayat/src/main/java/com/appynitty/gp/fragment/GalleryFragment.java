@@ -24,6 +24,8 @@ import quickutils.core.QuickUtils;
 
 public class GalleryFragment extends MyFragemtV4 {
 
+    private final static String fragmentMenuId = AUtils.MenuIdConstants.Photo_Video_Gallery;
+
     private static final String TAG = "GalleryFragment";
     private View view;
     private Context context;
@@ -89,5 +91,23 @@ public class GalleryFragment extends MyFragemtV4 {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){
+            AUtils.setMenuNavigationList(fragmentMenuId);
+        }else
+        if(getFragmentManager() != null)
+            getFragmentManager().popBackStack();
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(!AUtils.isRecreate){
+            AUtils.removeMenuNavigationValue(AUtils.MenuIdConstants.Main_Menu_Dashboard,
+                    fragmentMenuId);
+        }
+        AUtils.removeMenuNavigationListValue(fragmentMenuId);
+    }
 }

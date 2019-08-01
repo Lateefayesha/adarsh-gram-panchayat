@@ -12,7 +12,9 @@
         android:layout_margin="@dimen/padding_margin_layout"
         app:cardBackgroundColor="@color/card_view_background_color"
         app:cardCornerRadius="@dimen/padding_margin_layout"
-        app:cardElevation="@dimen/cardview_radius">
+        app:cardElevation="@dimen/cardview_radius"
+        android:clickable="true"
+        android:focusable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
