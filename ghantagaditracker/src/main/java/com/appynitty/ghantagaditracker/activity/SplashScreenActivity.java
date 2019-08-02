@@ -36,12 +36,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        QuickUtils.prefs.save(AUtils.APP_ID, "1");
-        QuickUtils.prefs.save(AUtils.APP_ID_GG, "1");
-
-        QuickUtils.prefs.save(AUtils.LOCATION, "20.709423,80.469527");
-//        QuickUtils.prefs.save(AUtils.LOCATION, "20.386781,78.12306");
-        QuickUtils.prefs.save(AUtils.VERSION_CODE, 10);
+//        QuickUtils.prefs.save(AUtils.APP_ID, "1");
+//        QuickUtils.prefs.save(AUtils.APP_ID_GG, "1");
+//
+//        QuickUtils.prefs.save(AUtils.LOCATION, "20.709423,80.469527");
+////        QuickUtils.prefs.save(AUtils.LOCATION, "20.386781,78.12306");
+//        QuickUtils.prefs.save(AUtils.VERSION_CODE, 10);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         AUtils.changeLanguage(this, QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME));
