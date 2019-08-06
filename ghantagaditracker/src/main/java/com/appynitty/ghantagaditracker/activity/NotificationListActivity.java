@@ -69,6 +69,7 @@ public class NotificationListActivity extends AppCompatActivity {
         mContext = NotificationListActivity.this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_notification_list);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 

@@ -74,6 +74,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         mContext = LeagueQuestionsActivity.this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_league_questions);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
