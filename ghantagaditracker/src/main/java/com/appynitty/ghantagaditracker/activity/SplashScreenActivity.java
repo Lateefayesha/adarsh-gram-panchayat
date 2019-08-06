@@ -57,11 +57,15 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(QuickUtils.prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false))
+                if(QuickUtils.prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false)){
                     startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
 //                    startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
-                else
+                    SplashScreenActivity.this.finish();
+                }
+                else{
                     startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
+                    SplashScreenActivity.this.finish();
+                }
 
             }
         }, 4000);
@@ -96,11 +100,5 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             }
         }).execute();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
     }
 }
