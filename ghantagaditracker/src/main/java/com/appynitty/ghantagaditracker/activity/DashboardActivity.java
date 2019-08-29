@@ -178,9 +178,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 getResources().getString(R.string.title_activity_league_questions),
                 AUtils.Colour.Red, ContextCompat.getDrawable(mContext, R.drawable.ic_ss_league)));
 
-        pojoList.add(new LocalMenuPojo(R.id.nav_city_pee,
-                getResources().getString(R.string.title_activity_city_pee),
-                AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
+//        pojoList.add(new LocalMenuPojo(R.id.nav_city_pee,
+//                getResources().getString(R.string.title_activity_city_pee),
+//                AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
         pojoList.add(new LocalMenuPojo(R.id.nav_notification,
                 getResources().getString(R.string.title_activity_notification_list),
                 AUtils.Colour.SkyBlue, ContextCompat.getDrawable(mContext, R.drawable.ic_notification_svg)));
