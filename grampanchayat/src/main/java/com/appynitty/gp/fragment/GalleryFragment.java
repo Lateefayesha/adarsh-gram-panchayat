@@ -2,21 +2,19 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.mithsoft.lib.adapter.TabViewPagerAdapter;
-
-import quickutils.core.QuickUtils;
-
+import com.google.android.material.tabs.TabLayout;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.TabViewPagerAdapter;
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -59,7 +57,7 @@ public class GalleryFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.gallery));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager = view.findViewById(R.id.viewPagerTab);

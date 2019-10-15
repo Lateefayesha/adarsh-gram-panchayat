@@ -3,11 +3,6 @@ package com.appynitty.ghantagaditracker.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.LocalMenuPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

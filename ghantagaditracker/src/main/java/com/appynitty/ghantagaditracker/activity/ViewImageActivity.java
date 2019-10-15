@@ -3,23 +3,22 @@ package com.appynitty.ghantagaditracker.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.ViewImagePagerAdapter;
 import com.appynitty.ghantagaditracker.pojo.PhotoGalleryImages;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
-import com.mithsoft.lib.viewpager.ViewPagerTransformer;
+import com.riaylibrary.custom_component.ViewPagerTransformer;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.List;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by Ayan Dey on 14/4/19.

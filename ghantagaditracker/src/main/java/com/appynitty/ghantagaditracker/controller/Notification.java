@@ -1,7 +1,5 @@
 package com.appynitty.ghantagaditracker.controller;
 
-import android.database.sqlite.SQLiteDatabase;
-
 /**
  * Created by Ayan Dey on 28/6/19.
  */

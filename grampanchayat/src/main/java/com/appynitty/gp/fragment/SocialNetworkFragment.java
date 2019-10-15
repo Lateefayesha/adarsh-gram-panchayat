@@ -2,29 +2,28 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+
 import com.appynitty.gp.R;
-import com.appynitty.gp.adapter.CustomTabViewPagerAdapter;
 import com.appynitty.gp.activity.HomeActivity;
+import com.appynitty.gp.adapter.CustomTabViewPagerAdapter;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.SocialNetworkPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.lang.reflect.Type;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -69,7 +68,7 @@ public class SocialNetworkFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.social_media));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         customTabLayout = view.findViewById(R.id.custom_tab_layout);
         tabViewPager = view.findViewById(R.id.custom_tab_view_pager);
@@ -88,7 +87,7 @@ public class SocialNetworkFragment extends MyFragemtV4 {
         }.getType();
 
         socialNetworkPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, null), type);
+                Prefs.getString(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, null), type);
 
         if (!AUtils.isNull(socialNetworkPojoList) && !socialNetworkPojoList.isEmpty()) {
 
@@ -120,7 +119,7 @@ public class SocialNetworkFragment extends MyFragemtV4 {
                     }.getType();
 
                     socialNetworkPojoList = new Gson().fromJson(
-                            QuickUtils.prefs.getString(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, null), type);
+                            Prefs.getString(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, null), type);
 
                     if (!AUtils.isNull(socialNetworkPojoList) && !socialNetworkPojoList.isEmpty()) {
 
@@ -147,7 +146,7 @@ public class SocialNetworkFragment extends MyFragemtV4 {
 
     @Override
     public void onDestroy() {
-        AUtils.changeLanguage(getActivity(), Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(getActivity(), Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 

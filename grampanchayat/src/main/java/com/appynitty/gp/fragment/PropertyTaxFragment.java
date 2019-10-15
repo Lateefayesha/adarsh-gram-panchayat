@@ -2,11 +2,7 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.appynitty.gp.R;
-import com.appynitty.gp.activity.BookingActivity;
 import com.appynitty.gp.activity.HomeActivity;
-import com.appynitty.gp.activity.MyComlaintDetailsActivity;
 import com.appynitty.gp.activity.PropertTaxDetailsActivity;
 import com.appynitty.gp.controller.SyncServer;
-import com.appynitty.gp.pojo.PropertyTaxPojo;
-import com.appynitty.gp.pojo.ResultPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.google.gson.Gson;
-import com.mithsoft.lib.componants.Toasty;
-
-import java.util.List;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 public class PropertyTaxFragment extends MyFragemtV4 {
 
@@ -69,7 +58,7 @@ public class PropertyTaxFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.property_tax));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         getPropertyTaxes = view.findViewById(R.id.getPropertyTaxes);
         propertyNo = view.findViewById(R.id.propertyNumber);
@@ -104,7 +93,7 @@ public class PropertyTaxFragment extends MyFragemtV4 {
                         startActivity(new Intent(context, PropertTaxDetailsActivity.class));
 
                     }else{
-                        Toasty.info(context, getString(R.string.noData), Toast.LENGTH_SHORT).show();
+                        AUtils.info(context, getString(R.string.noData), Toast.LENGTH_SHORT);
                     }
                 }
             }).execute();
@@ -113,7 +102,7 @@ public class PropertyTaxFragment extends MyFragemtV4 {
 
     private Boolean checkValid(){
         if(AUtils.isNullString(propertyNo.getText().toString())){
-            Toasty.warning(context, getString(R.string.plz_ent_property_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_property_no), Toast.LENGTH_SHORT);
             return false;
         }
 

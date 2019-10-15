@@ -1,10 +1,9 @@
 package com.appynitty.ghantagaditracker.pojo;
 
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.Serializable;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 5/7/18.
@@ -42,7 +41,7 @@ public class StatePojo implements Serializable {
     @Override
     public String toString() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
+        if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals(AUtils.LanguageConstants.ENGLISH)) {
             return stateName;
         } else {
             return stateNameMar;

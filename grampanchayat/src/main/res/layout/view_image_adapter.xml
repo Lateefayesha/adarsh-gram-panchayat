@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <com.mithsoft.lib.zoomimageview.MyZoomageView
+    <com.riaylibrary.custom_component.MyZoomageView
         android:id="@+id/view_photo_adp_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

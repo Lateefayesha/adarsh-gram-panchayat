@@ -4,20 +4,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
-import com.mithsoft.lib.utils.MsUtils;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -36,18 +36,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        QuickUtils.prefs.save(AUtils.APP_ID, "1");
-//        QuickUtils.prefs.save(AUtils.APP_ID_GG, "1");
-//
-//        QuickUtils.prefs.save(AUtils.LOCATION, "20.709423,80.469527");
-////        QuickUtils.prefs.save(AUtils.LOCATION, "20.386781,78.12306");
-//        QuickUtils.prefs.save(AUtils.VERSION_CODE, 10);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        AUtils.changeLanguage(this, QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME));
 
-        QuickUtils.prefs.save(AUtils.USER_ID, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
-        Log.d("Refreshed token:", QuickUtils.prefs.getString(MsUtils.FCM_ID, "NOT FOUND"));
+        Prefs.putString(AUtils.USER_ID, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
+        Log.d("Refreshed token:", Prefs.getString(AUtils.FCM_ID, "NOT FOUND"));
         versionCheck();
     }
 
@@ -57,23 +50,24 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(QuickUtils.prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false)){
+                if(Prefs.getBoolean(AUtils.PREFS.SKIP_REGISTRATION_PERMANENT, false))
                     startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
-//                    startActivity(new Intent(SplashScreenActivity.this, TrackerActivity.class));
-                    SplashScreenActivity.this.finish();
-                }
-                else{
+                else if (Prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false)) {
+                    startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
+                } else {
                     startActivity(new Intent(SplashScreenActivity.this, RegistrationActivity.class));
-                    SplashScreenActivity.this.finish();
                 }
+
+                SplashScreenActivity.this.finish();
 
             }
         }, 4000);
     }
 
-    private void versionCheck(){
+    private void versionCheck() {
         new MyAsyncTask(SplashScreenActivity.this, false, new MyAsyncTask.AsynTaskListener() {
             Boolean doUpdate = false;
+
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
                 doUpdate = syncServer.checkVersionUpdate();
@@ -81,7 +75,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onFinished() {
-                if(doUpdate){
+                if (doUpdate) {
                     AUtils.showConfirmationDialog(SplashScreenActivity.this, AUtils.VERSION_CODE, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -95,7 +89,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             finish();
                         }
                     });
-                }else{
+                } else {
                     loadHomeScreen();
                 }
             }

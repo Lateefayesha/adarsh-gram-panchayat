@@ -90,6 +90,7 @@
     <string name="bifurcate_garbage">वर्गीकृत</string>
     <string name="mixed_garbage">मिश्र</string>
     <string name="no_garbage">किळाला नाही</string>
+    <string name="not_specified_garbage">वर्णन उपलब्ध नाही</string>
 
     <string name="vehicle_number_txt">वाहन नंबर :</string>
 

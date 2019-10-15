@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_margin_layout_double">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_margin_layout_double">
@@ -16,9 +16,9 @@
             android:hint="@string/name_comp"
             android:inputType="textCapWords" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_margin_layout_double"
@@ -31,7 +31,7 @@
             android:inputType="number"
             android:maxLength="10" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/ss_details_save_btn"

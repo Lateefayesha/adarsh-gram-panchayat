@@ -6,15 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
 import com.appynitty.gp.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 5/3/18.
@@ -52,7 +49,7 @@ public class GramPanchayatListAdapter extends ArrayAdapter<GramPanchayatPojo> {
         if (!AUtils.isNull(gramPanchayatPojoList) && !gramPanchayatPojoList.isEmpty()) {
             GramPanchayatPojo gramPanchayatPojo = gramPanchayatPojoList.get(position);
 
-            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.ENGLISH)) {
 
                 if (!AUtils.isNullString(gramPanchayatPojo.getAppName())) {
                     holder.titleTextView.setText(gramPanchayatPojo.getAppName());

@@ -2,14 +2,14 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
@@ -19,10 +19,7 @@ import com.appynitty.gp.pojo.SuggestionPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.mithsoft.lib.componants.Toasty;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -71,7 +68,7 @@ public class SuggestionFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.suggestion_tab));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         nameTextView = view.findViewById(R.id.fb_name_et);
         mobileNoTextView = view.findViewById(R.id.fb_number_et);
@@ -113,13 +110,13 @@ public class SuggestionFragment extends MyFragemtV4 {
                 if (!AUtils.isNull(resultPojo)) {
 
                     if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
-                        Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                        AUtils.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT);
                         getFragmentManager().popBackStack();
                     } else {
-                        Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
+                        AUtils.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT);
                     }
                 } else {
-                    Toasty.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT).show();
+                    AUtils.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT);
                 }
 
             }
@@ -135,7 +132,7 @@ public class SuggestionFragment extends MyFragemtV4 {
                 && AUtils.isNullString(emailTextView.getText().toString())
                 && AUtils.isNullString(addressTextView.getText().toString())
                 && AUtils.isNullString(suggestionTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_something), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_something), Toast.LENGTH_SHORT);
             return false;
         }
 

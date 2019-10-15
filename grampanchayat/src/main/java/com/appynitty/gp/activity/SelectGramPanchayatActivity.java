@@ -1,13 +1,9 @@
 package com.appynitty.gp.activity;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,22 +11,23 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.GramPanchayatListAdapter;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.MyNoDataView;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyNoDataView;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 public class SelectGramPanchayatActivity extends BaseActivity {
 
@@ -94,11 +91,11 @@ public class SelectGramPanchayatActivity extends BaseActivity {
 
         if (!AUtils.isNullString(gramPanchayatPojo.getAppId())) {
 
-            QuickUtils.prefs.save(AUtils.APP_ID, gramPanchayatPojo.getAppId());
-            QuickUtils.prefs.save(AUtils.GP_NAME, gramPanchayatPojo.getAppName());
-            QuickUtils.prefs.save(AUtils.GP_NAME_MAR, gramPanchayatPojo.getAppNamemar());
-            QuickUtils.prefs.save(AUtils.APP_LOCATION, "21.065566,77.332243");
-            QuickUtils.prefs.save(AUtils.YOCC_NO, "");
+            Prefs.putString(AUtils.APP_ID, gramPanchayatPojo.getAppId());
+            Prefs.putString(AUtils.GP_NAME, gramPanchayatPojo.getAppName());
+            Prefs.putString(AUtils.GP_NAME_MAR, gramPanchayatPojo.getAppNamemar());
+            Prefs.putString(AUtils.APP_LOCATION, "21.065566,77.332243");
+            Prefs.putString(AUtils.YOCC_NO, "");
 
             String details = "";
             if (!AUtils.isNullString(gramPanchayatPojo.getDistrictMar())) {
@@ -111,7 +108,7 @@ public class SelectGramPanchayatActivity extends BaseActivity {
                 details = details + " | तहसील : " + gramPanchayatPojo.getTehsilMar();
             }
 
-            QuickUtils.prefs.save(AUtils.GP_DETAILS, details);
+            Prefs.putString(AUtils.GP_DETAILS, details);
             startActivity(new Intent(SelectGramPanchayatActivity.this, HomeActivity.class));
 
         } else {
@@ -132,7 +129,7 @@ public class SelectGramPanchayatActivity extends BaseActivity {
         }.getType();
 
         gramPanchayatPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null), type);
+                Prefs.getString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null), type);
 
         if (!AUtils.isNull(gramPanchayatPojoList) && !gramPanchayatPojoList.isEmpty()) {
 
@@ -218,7 +215,7 @@ public class SelectGramPanchayatActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         if (android.R.id.home == item.getItemId()) {
-            if (QuickUtils.prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
+            if (Prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
                 onBackPressed();
             }
             return true;
@@ -252,23 +249,19 @@ public class SelectGramPanchayatActivity extends BaseActivity {
         alert.setPositiveButton("English", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "1");
-                changeLanguage(1);
+                changeLanguage(AUtils.LanguageConstants.ENGLISH);
             }
         });
         alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "2");
-                changeLanguage(2);
+                changeLanguage(AUtils.LanguageConstants.MARATHI);
             }
         });
         alert.show();
     }
 
-    public void changeLanguage(int type) {
+    public void changeLanguage(String type) {
 
         AUtils.changeLanguage(this, type);
         onResume();

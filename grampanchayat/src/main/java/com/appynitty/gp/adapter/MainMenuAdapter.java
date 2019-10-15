@@ -3,9 +3,6 @@ package com.appynitty.gp.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +11,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.MenuPojo;
 import com.appynitty.gp.utils.AUtils;
 
 import java.util.List;
-
 /**
  * Created by MiTHUN on 8/2/18.
  */

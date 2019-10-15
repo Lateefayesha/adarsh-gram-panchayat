@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:elevation="500dp"
         android:focusableInTouchMode="true">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <android.support.v7.widget.SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/search_area"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40dp"
@@ -32,7 +32,7 @@
             android:layout_marginBottom="@dimen/dimen_20dp"
             android:layout_marginTop="@dimen/dimen_0dp" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_tracker"/>
 

@@ -2,16 +2,11 @@ package com.appynitty.gp.utils;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
+import android.content.ContextWrapper;
 import android.os.Build;
-import android.preference.PreferenceManager;
-
 import com.google.firebase.FirebaseApp;
-
-import java.util.Locale;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 
 /**
@@ -24,8 +19,15 @@ public class MyApplicationConstants extends Application {
     public void onCreate() {
         super.onCreate();
 
-//        init QuickUtils lib
-        QuickUtils.init(getApplicationContext());
+        AUtils.mApplicationConstant = this;
+//        init Easy Prefs lib
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
+//
         FirebaseApp.initializeApp(getApplicationContext());
 
 //        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "MYRIADPRO-REGULAR.OTF"); // font from assets: "assets/fonts/Roboto-Regular.ttf

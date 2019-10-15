@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,26 +14,25 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.DistrictPojo;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
 import com.appynitty.gp.pojo.StatePojo;
 import com.appynitty.gp.pojo.TahsilPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 public class SelectPlaceActivity extends BaseActivity {
 
@@ -162,7 +159,7 @@ public class SelectPlaceActivity extends BaseActivity {
     private boolean isFormValid() {
 
         if (stateNameSpinner.getSelectedItemPosition() == 0) {
-            Toasty.warning(this, "" + getString(R.string.plz_select_state), Toast.LENGTH_SHORT).show();
+            AUtils.warning(this, "" + getString(R.string.plz_select_state), Toast.LENGTH_SHORT);
             return false;
         }
         return true;
@@ -265,7 +262,6 @@ public class SelectPlaceActivity extends BaseActivity {
         }
     }
 
-
     private void getDistrictList(boolean isShowPrgressDialog) {
 
         new MyAsyncTask(this, isShowPrgressDialog, new MyAsyncTask.AsynTaskListener() {
@@ -285,7 +281,7 @@ public class SelectPlaceActivity extends BaseActivity {
                 }.getType();
 
                 districtPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.DISTRICT_POJO_LIST, null), type);
+                        Prefs.getString(AUtils.PREFS.DISTRICT_POJO_LIST, null), type);
 
                 if (!AUtils.isNull(districtPojoList) && !districtPojoList.isEmpty()) {
 
@@ -335,7 +331,7 @@ public class SelectPlaceActivity extends BaseActivity {
                 }.getType();
 
                 tahsilPojoArrayList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.TAHSIL_POJO_LIST, null), type);
+                        Prefs.getString(AUtils.PREFS.TAHSIL_POJO_LIST, null), type);
 
                 if (!AUtils.isNull(tahsilPojoArrayList) && !tahsilPojoArrayList.isEmpty()) {
 
@@ -367,7 +363,6 @@ public class SelectPlaceActivity extends BaseActivity {
         }).execute();
     }
 
-
     private void districtSpinnerOnItemSelected(DistrictPojo districtPojo) {
 
         if (districtPojo.getId().equals("0")) {
@@ -378,7 +373,6 @@ public class SelectPlaceActivity extends BaseActivity {
         }
         initTahsilSpinner();
     }
-
 
     @Override
     protected void initData() {
@@ -406,7 +400,7 @@ public class SelectPlaceActivity extends BaseActivity {
                 }.getType();
 
                 statePojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.STATE_POJO_LIST, null), type);
+                        Prefs.getString(AUtils.PREFS.STATE_POJO_LIST, null), type);
 
                 initStateNameSpinner();
 
@@ -433,7 +427,7 @@ public class SelectPlaceActivity extends BaseActivity {
                 }.getType();
 
                 List<GramPanchayatPojo> gramPanchayatPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null), type);
+                        Prefs.getString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null), type);
 
                 if (!AUtils.isNull(gramPanchayatPojoList) && !gramPanchayatPojoList.isEmpty()) {
 
@@ -442,7 +436,7 @@ public class SelectPlaceActivity extends BaseActivity {
                 } else {
 
 //                    Toasty.warning(SelectPlaceActivity.this, "No gram panchayat found", Toast.LENGTH_SHORT).show();
-                    Toasty.warning(SelectPlaceActivity.this, getString(R.string.noData), Toast.LENGTH_SHORT).show();
+                    AUtils.warning(SelectPlaceActivity.this, getString(R.string.noData), Toast.LENGTH_SHORT);
                 }
             }
         }).execute();
@@ -473,7 +467,7 @@ public class SelectPlaceActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         if (android.R.id.home == item.getItemId()) {
-            if (QuickUtils.prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
+            if (Prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
                 onBackPressed();
             }
             return true;
@@ -507,24 +501,20 @@ public class SelectPlaceActivity extends BaseActivity {
         alert.setPositiveButton("English", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "1");
-                changeLanguage(1);
+                changeLanguage(AUtils.LanguageConstants.ENGLISH);
             }
         });
         alert.setNegativeButton("मराठी", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                QuickUtils.prefs.save(AUtils.LANGUAGE_ID, "2");
-                changeLanguage(2);
+                changeLanguage(AUtils.LanguageConstants.MARATHI);
             }
         });
         alert.show();
     }
 
-    public void changeLanguage(int type) {
-
+    public void changeLanguage(String type) {
         AUtils.changeLanguage(this, type);
         onResume();
     }

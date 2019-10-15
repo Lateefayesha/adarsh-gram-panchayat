@@ -1,24 +1,26 @@
 package com.appynitty.ghantagaditracker.adapter;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.PhotoGalleryImages;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.bumptech.glide.Glide;
-import com.mithsoft.lib.zoomimageview.MyZoomageView;
+import com.riaylibrary.custom_component.MyZoomageView;
 
 import java.util.List;
-
 
 /**
  * Created by Ayan Dey on 12/4/19.
  */
-public class ViewImagePagerAdapter extends android.support.v4.view.PagerAdapter {
+public class ViewImagePagerAdapter extends PagerAdapter {
 
     private List<PhotoGalleryImages> imagesGalleryPojoList;
     private LayoutInflater mLayoutInflater;

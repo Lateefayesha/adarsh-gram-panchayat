@@ -4,29 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.PropertyTaxPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.activity.BaseActivity;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import quickutils.core.QuickUtils;
 
 public class PropertTaxDetailsActivity extends AppCompatActivity {
 
@@ -175,7 +172,7 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
         }.getType();
 
         propertyTaxPojo = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, null), type);
+                Prefs.getString(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, null), type);
 
         if(!AUtils.isNull(propertyTaxPojo)){
             populateData(propertyTaxPojo);

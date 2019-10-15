@@ -2,20 +2,19 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyFragemtV4;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -63,7 +62,7 @@ public class CleaningCompleantDetailsFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.cleaning_info));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         complentDetailsTextView = view.findViewById(R.id.complent_details);
         complentDetailsTextView.setText(R.string.clening_complent_details);

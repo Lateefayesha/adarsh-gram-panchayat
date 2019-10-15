@@ -2,14 +2,14 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.adapter.ContactUsListAdapter;
@@ -21,13 +21,11 @@ import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.MyNoDataView;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyNoDataView;
 
 import java.lang.reflect.Type;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -74,7 +72,7 @@ public class ContactUsFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.contact_us));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         listView = view.findViewById(R.id.content_lv);
         officeAddressTextView = view.findViewById(R.id.office_address_tv);
@@ -111,7 +109,7 @@ public class ContactUsFragment extends MyFragemtV4 {
 
     private void initListData() {
 
-        ContactUs contactUs = new Gson().fromJson(QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_POJO + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), ContactUs.class);
+        ContactUs contactUs = new Gson().fromJson(Prefs.getString(AUtils.PREFS.CONTACT_US_POJO + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), ContactUs.class);
 
         if (!AUtils.isNull(contactUs) && !AUtils.isNullString(contactUs.getAddress())) {
 
@@ -128,7 +126,7 @@ public class ContactUsFragment extends MyFragemtV4 {
         }.getType();
 
         contactUsPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                Prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
         if (!AUtils.isNull(contactUsPojoList) && !contactUsPojoList.isEmpty()) {
 
@@ -161,7 +159,7 @@ public class ContactUsFragment extends MyFragemtV4 {
             public void onFinished() {
 
 
-                ContactUs contactUs = new Gson().fromJson(QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_POJO + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), ContactUs.class);
+                ContactUs contactUs = new Gson().fromJson(Prefs.getString(AUtils.PREFS.CONTACT_US_POJO + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), ContactUs.class);
 
                 if (!AUtils.isNull(contactUs) && !AUtils.isNullString(contactUs.getAddress())) {
 
@@ -178,7 +176,7 @@ public class ContactUsFragment extends MyFragemtV4 {
                 }.getType();
 
                 contactUsPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        Prefs.getString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
                 if (!AUtils.isNull(contactUsPojoList) && !contactUsPojoList.isEmpty()) {
 

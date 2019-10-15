@@ -2,14 +2,14 @@ package com.appynitty.gp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.adapter.SechemesListAdapter;
@@ -20,17 +20,14 @@ import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.MyNoDataView;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyNoDataView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -75,7 +72,7 @@ public class SchemesFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.schemes));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         listView = view.findViewById(R.id.content_lv);
         swipeRefreshLayout = view.findViewById(R.id.content_refresh);
@@ -114,7 +111,7 @@ public class SchemesFragment extends MyFragemtV4 {
         }.getType();
 
         schemesPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                Prefs.getString(AUtils.PREFS.SCHEMES_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
 
         if (!AUtils.isNull(schemesPojoList) && !schemesPojoList.isEmpty()) {
@@ -161,7 +158,7 @@ public class SchemesFragment extends MyFragemtV4 {
                 }.getType();
 
                 schemesPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        Prefs.getString(AUtils.PREFS.SCHEMES_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
                 if (!AUtils.isNull(schemesPojoList) && !schemesPojoList.isEmpty()) {
 
@@ -182,7 +179,7 @@ public class SchemesFragment extends MyFragemtV4 {
 
                 if (swipeRefreshLayout.isRefreshing()) {
 
-                    Toasty.success(context, "Updated", Toast.LENGTH_SHORT).show();
+                    AUtils.success(context, "Updated", Toast.LENGTH_SHORT);
                     swipeRefreshLayout.setRefreshing(false);
                 }
 

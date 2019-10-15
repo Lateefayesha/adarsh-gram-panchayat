@@ -63,7 +63,7 @@
             android:padding="@dimen/padding_margin_layout">
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -73,10 +73,10 @@
                     android:hint="@string/name_comp"
                     android:inputType="textCapWords" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -87,9 +87,9 @@
                     android:inputType="number"
                     android:maxLength="10" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -99,9 +99,9 @@
                     android:hint="@string/ward_no_comp"
                     android:inputType="textEmailAddress" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -110,7 +110,7 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/address_comp"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </LinearLayout>

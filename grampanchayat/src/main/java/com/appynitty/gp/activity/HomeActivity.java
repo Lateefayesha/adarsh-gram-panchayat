@@ -7,28 +7,24 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.appynitty.gp.R;
+import com.appynitty.gp.dialogs.LanguageChangeAlertDialog;
 import com.appynitty.gp.fragment.MenuFragment;
 import com.appynitty.gp.services.LocationMonitoringService;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.appynitty.gp.utils.MyFragemtV4;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by MiTHUN on 5/2/18.
@@ -73,13 +69,13 @@ public class HomeActivity extends AppCompatActivity {
 
         mFragmentManager = getSupportFragmentManager();
         Log.e(TAG,this.getResources().getString(R.string.our_gram_panchayat));
-        Log.e(TAG,QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, ""));
+        Log.e(TAG,Prefs.getString(AUtils.LANGUAGE_ID, ""));
         loadMenuFragment();
     }
 
     private void loadMenuFragment() {
 
-        QuickUtils.prefs.save(AUtils.FCM_NOTI, getIntent().getBooleanExtra(AUtils.FCM_NOTI, false));
+        Prefs.putBoolean(AUtils.FCM_NOTI, getIntent().getBooleanExtra(AUtils.FCM_NOTI, false));
 
         mFragment = new MenuFragment();
 
@@ -128,13 +124,14 @@ public class HomeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         if (android.R.id.home == item.getItemId()) {
-            if (QuickUtils.prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
+            if (Prefs.getInt(AUtils.FRAGMENT_COUNT, 1) == 0) {
                 onBackPressed();
             }
             return true;
         } else if (R.id.action_language == item.getItemId()) {
 
-            changeLanguageOnClick();
+            changeLanguage();
+//            changeLanguageOnClick();
             return true;
 
         } else if (R.id.action_rate == item.getItemId()) {
@@ -153,6 +150,18 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void changeLanguage(){
+        LanguageChangeAlertDialog adapter = new LanguageChangeAlertDialog(this);
+        adapter.create();
+        adapter.setLanguageSelectListener(new LanguageChangeAlertDialog.LanguageSelectListener() {
+            @Override
+            public void onLanguageSelect(String selectedLanguage) {
+                changeLanguage(selectedLanguage);
+                ((Activity)HomeActivity.this).recreate();
+            }
+        });
+    }
+
     private void changeLanguageOnClick() {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -163,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                changeLanguage(1);
+                changeLanguage(AUtils.LanguageConstants.ENGLISH);
                 ((Activity)HomeActivity.this).recreate();
             }
         });
@@ -173,14 +182,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                changeLanguage(2);
+                changeLanguage(AUtils.LanguageConstants.MARATHI);
                 ((Activity)HomeActivity.this).recreate();
             }
         });
         alert.show();
     }
 
-    public void changeLanguage(int type) {
+    public void changeLanguage(String type) {
 
         AUtils.changeLanguage(this, type);
 
@@ -225,23 +234,23 @@ public class HomeActivity extends AppCompatActivity {
 //        stopLocationUpdates();
     }
 
-    private void doubleClickBackPressToExit() {
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        // Does the user really want to exit?
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, getString(R.string.press_back_again), Toast.LENGTH_LONG).show();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
-    }
+//    private void doubleClickBackPressToExit() {
+//
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed();
+//            return;
+//        }
+//
+//        // Does the user really want to exit?
+//        this.doubleBackToExitPressedOnce = true;
+//        Toast.makeText(this, getString(R.string.press_back_again), Toast.LENGTH_LONG).show();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                doubleBackToExitPressedOnce = false;
+//            }
+//        }, 2000);
+//    }
 
     @Override
     protected void onResume() {

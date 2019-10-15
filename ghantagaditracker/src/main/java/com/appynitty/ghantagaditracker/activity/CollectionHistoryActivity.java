@@ -1,18 +1,18 @@
 package com.appynitty.ghantagaditracker.activity;
 
+
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateCollectionHistoryUI;
@@ -20,8 +20,7 @@ import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.CollectionHistoryPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
-import com.mithsoft.lib.componants.MyNoDataView;
-import com.mithsoft.lib.componants.Toasty;
+import com.riaylibrary.custom_component.MyNoDataView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,7 +80,7 @@ public class CollectionHistoryActivity extends AppCompatActivity {
                 if(position > 0 && yearSpinner.getSelectedItemPosition() > 0){
                     setHistoryFetchFilter(position, Integer.valueOf((String)yearSpinner.getSelectedItem()));
                 }else{
-                    Toasty.info(mContext, getResources().getString(R.string.select_month_year_warn)).show();
+                    AUtils.info(mContext, getResources().getString(R.string.select_month_year_warn));
                 }
             }
 
@@ -98,7 +97,7 @@ public class CollectionHistoryActivity extends AppCompatActivity {
                     setHistoryFetchFilter(monthSpinner.getSelectedItemPosition(), Integer.valueOf((String)yearSpinner.getSelectedItem()));
 
                 }else{
-                    Toasty.info(mContext, getResources().getString(R.string.select_month_year_warn)).show();
+                    AUtils.info(mContext, getResources().getString(R.string.select_month_year_warn));
                 }
             }
 
@@ -138,7 +137,7 @@ public class CollectionHistoryActivity extends AppCompatActivity {
         }else {
             recyclerView.setVisibility(View.GONE);
             noDataView.setVisibility(View.VISIBLE);
-            Toasty.warning(mContext, getResources().getString(R.string.noData)).show();
+            AUtils.warning(mContext, getResources().getString(R.string.noData));
         }
     }
 
@@ -172,7 +171,7 @@ public class CollectionHistoryActivity extends AppCompatActivity {
                 if(!AUtils.isNull(pojoList)){
                     inflateHistoryAdapter(pojoList);
                 }else
-                    Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+                    AUtils.error(mContext, getResources().getString(R.string.something_error));
             }
         }).execute();
     }

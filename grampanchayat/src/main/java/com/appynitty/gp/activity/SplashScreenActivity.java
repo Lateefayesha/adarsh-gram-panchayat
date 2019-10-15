@@ -7,18 +7,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.appynitty.gp.R;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.SaveFcmIdAsyncTask;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by MiTHUN on 5/2/18.
@@ -39,9 +37,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen_activity);
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, "1")));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
 
-        QuickUtils.prefs.save(AUtils.USER_ID, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
+        Prefs.putString(AUtils.USER_ID, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
 
         new SaveFcmIdAsyncTask(this).execute();
 

@@ -6,8 +6,7 @@ import android.widget.Toast;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
-import com.mithsoft.lib.componants.MyProgressDialog;
-import com.mithsoft.lib.componants.Toasty;
+import com.riaylibrary.custom_component.MyProgressDialog;
 
 /**
  * Created by Ayan on 24/1/18.
@@ -43,7 +42,7 @@ public class MyAsyncTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
 
-        if (AUtils.isNetWorkAvailable(context)) {
+        if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
             try {
 
                 isNetworkAvail = true;
@@ -67,7 +66,7 @@ public class MyAsyncTask extends AsyncTask {
         } else {
 
             if (isShowPrgressDialog) {
-                Toasty.warning(context, context.getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                AUtils.warning(context, context.getString(R.string.noInternet), Toast.LENGTH_SHORT);
             }
         }
     }

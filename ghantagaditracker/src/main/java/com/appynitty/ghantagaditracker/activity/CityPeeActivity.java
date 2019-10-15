@@ -1,29 +1,26 @@
 package com.appynitty.ghantagaditracker.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.ghantagaditracker.R;
-import com.appynitty.ghantagaditracker.customComponents.WebviewInitialize;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.mithsoft.lib.componants.Toasty;
+import com.riaylibrary.custom_component.WebviewInitialize;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -70,7 +67,7 @@ public class CityPeeActivity extends AppCompatActivity {
 
         WebView webView = findViewById(R.id.web_view);
         webviewInitialize = new WebviewInitialize(mContext, webView);
-        qrscan = new IntentIntegrator((Activity)mContext);
+        qrscan = new IntentIntegrator((Activity) mContext);
     }
 
     private void initData() {
@@ -80,7 +77,7 @@ public class CityPeeActivity extends AppCompatActivity {
         qrscan.initiateScan();
     }
 
-    private void openWebView(String url){
+    private void openWebView(String url) {
         try {
             URL murl = new URL(url);
             String path = murl.getPath();
@@ -90,23 +87,23 @@ public class CityPeeActivity extends AppCompatActivity {
             String newUrl = protocol + "://" + authority + "/FeedbackForm?" + query;
 
 //            if(path.equals("/FeedbackForm"))
-            if(path.equals("/PlayStoreLink"))
+            if (path.equals("/PlayStoreLink"))
                 webviewInitialize.InitiateDefaultWebview(newUrl);
-            else{
-                Toasty.error(mContext, getResources().getString(R.string.invalid_url_error)).show();
-                ((Activity)mContext).finish();
+            else {
+                AUtils.error(mContext, getResources().getString(R.string.invalid_url_error));
+                ((Activity) mContext).finish();
             }
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
-            ((Activity)mContext).finish();
+            AUtils.error(mContext, getResources().getString(R.string.something_error));
+            ((Activity) mContext).finish();
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return true;
     }
@@ -116,22 +113,22 @@ public class CityPeeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if(!AUtils.isNull(result)){
-            String  str = result.getContents();
-            if(!AUtils.isNull(str) && !str.isEmpty()){
-                if(Patterns.WEB_URL.matcher(str).matches())
+        if (!AUtils.isNull(result)) {
+            String str = result.getContents();
+            if (!AUtils.isNull(str) && !str.isEmpty()) {
+                if (Patterns.WEB_URL.matcher(str).matches())
                     openWebView(str);
                 else {
-                    Toasty.error(mContext, getResources().getString(R.string.invalid_qr_error)).show();
-                    ((Activity)mContext).finish();
+                    AUtils.error(mContext, getResources().getString(R.string.invalid_qr_error));
+                    ((Activity) mContext).finish();
 //                    showPopup(str);
                 }
-            }else{
-                ((Activity)mContext).finish();
+            } else {
+                ((Activity) mContext).finish();
             }
-        }else{
-            Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
-            ((Activity)mContext).finish();
+        } else {
+            AUtils.error(mContext, getResources().getString(R.string.something_error));
+            ((Activity) mContext).finish();
         }
     }
 
@@ -141,11 +138,11 @@ public class CityPeeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
         builder.setMessage(str)
-        .setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                ((Activity)mContext).finish();
-            }
-        }).show();
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        ((Activity) mContext).finish();
+                    }
+                }).show();
     }
 }

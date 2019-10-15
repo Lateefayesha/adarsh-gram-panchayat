@@ -6,9 +6,8 @@ import android.util.Log;
 
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.FcmIdPojo;
-import com.mithsoft.lib.componants.MyProgressDialog;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyProgressDialog;
 
 /**
  * Created by Ayan on 04/06/19.
@@ -30,14 +29,14 @@ public class SaveFcmIdAsyncTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
 
-        if (AUtils.isNetWorkAvailable(context)) {
+        if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
             try {
 
-                Log.e(SaveFcmIdAsyncTask.class.getName(),"FCM ID :" + QuickUtils.prefs.getString(AUtils.FCM_ID, ""));
-                Log.e(SaveFcmIdAsyncTask.class.getName(),"Device ID : " + QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+                Log.e(SaveFcmIdAsyncTask.class.getName(),"FCM ID :" + Prefs.getString(AUtils.FCM_ID, ""));
+                Log.e(SaveFcmIdAsyncTask.class.getName(),"Device ID : " + Prefs.getString(AUtils.USER_ID, ""));
                 FcmIdPojo fcmIdPojo = new FcmIdPojo();
-                fcmIdPojo.setFcmid(QuickUtils.prefs.getString(AUtils.FCM_ID, ""));
-                fcmIdPojo.setUserid(QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+                fcmIdPojo.setFcmid(Prefs.getString(AUtils.FCM_ID, ""));
+                fcmIdPojo.setUserid(Prefs.getString(AUtils.USER_ID, ""));
 
                 syncServer.saveFcmIdOnServer(fcmIdPojo);
 

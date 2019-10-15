@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.LeagueQuestionUIAdapter;
@@ -22,16 +23,14 @@ import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import quickutils.core.QuickUtils;
 
 public class LeagueQuestionsActivity extends AppCompatActivity {
 
@@ -63,13 +62,13 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         initComponents();
     }
 
-    private void initComponents(){
+    private void initComponents() {
         generateId();
         registerEvents();
         initData();
     }
 
-    private void generateId(){
+    private void generateId() {
         setContentView(R.layout.activity_league_questions);
         mContext = LeagueQuestionsActivity.this;
 
@@ -86,14 +85,14 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         bulderAdapter = new UserDetailsBulderAdapter(mContext);
     }
 
-    private void registerEvents(){
+    private void registerEvents() {
         submitAnswersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validateAns()){
+                if (validateAns()) {
                     setAnswerPojo();
-                }else
-                    Toasty.warning(mContext, getResources().getString(R.string.answer_all_question)).show();
+                } else
+                    AUtils.warning(mContext, getResources().getString(R.string.answer_all_question));
             }
         });
 
@@ -111,14 +110,14 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         return answerMap.size() == questionPojoList.size();
     }
 
-    private void initData(){
+    private void initData() {
         questionRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         fetchQuestion();
     }
 
     private void setAnswerPojo() {
         List<LeagueAnswerPojo> answerPojoList = new ArrayList<>();
-        for (LeagueQuestionPojo mPojo: questionPojoList){
+        for (LeagueQuestionPojo mPojo : questionPojoList) {
             LeagueAnswerPojo pojo = new LeagueAnswerPojo();
             String qid = mPojo.getQuestionId();
             pojo.setQuestion(mPojo.getQuestion());
@@ -129,12 +128,12 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         userDetailsList(answerPojoList);
     }
 
-    private void userDetailsList(List<LeagueAnswerPojo> pojo){
+    private void userDetailsList(List<LeagueAnswerPojo> pojo) {
         leageaAnswerDetailsPojo.setAns(pojo);
 
-        if(QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").equals("")){
+        if (Prefs.getString(AUtils.PREFS.REFERENCE_ID, "").equals("")) {
             bulderAdapter.openUserDetailsDialog(true);
-        }else {
+        } else {
             LeageaAnswerDetailsPojo.AnswersDetails details = new LeageaAnswerDetailsPojo.AnswersDetails();
             details.setName("");
             details.setMobile("");
@@ -145,17 +144,17 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return true;
     }
 
-    private void inflateQuestions(){
+    private void inflateQuestions() {
         questionUIAdapter.setQuestionPojos(questionPojoList);
         questionRecyclerView.setAdapter(questionUIAdapter);
     }
 
-    private void fetchQuestion(){
+    private void fetchQuestion() {
         new MyAsyncTask(mContext, true, new MyAsyncTask.AsynTaskListener() {
 
             @Override
@@ -165,15 +164,15 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onFinished() {
-                if(!AUtils.isNull(questionPojoList) && questionPojoList.size() > 0)
+                if (!AUtils.isNull(questionPojoList) && questionPojoList.size() > 0)
                     inflateQuestions();
                 else
-                    Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+                    AUtils.error(mContext, getResources().getString(R.string.something_error));
             }
         }).execute();
     }
 
-    private void submitAnswers(){
+    private void submitAnswers() {
         new MyAsyncTask(mContext, true, new MyAsyncTask.AsynTaskListener() {
 
             ResultPojo resultPojo = null;
@@ -185,11 +184,11 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onFinished() {
-                if(!AUtils.isNull(resultPojo)) {
-                    Toasty.success(mContext, resultPojo.getMessage(), Toast.LENGTH_LONG).show();
-                    ((Activity)mContext).finish();
-                }else {
-                    Toasty.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG).show();
+                if (!AUtils.isNull(resultPojo)) {
+                    AUtils.success(mContext, resultPojo.getMessage(), Toast.LENGTH_LONG);
+                    ((Activity) mContext).finish();
+                } else {
+                    AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
                 }
             }
         }).execute();

@@ -4,19 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
 import com.appynitty.ghantagaditracker.pojo.PhotoGalleryImages;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.bumptech.glide.Glide;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -82,7 +83,6 @@ public class CleaningStatusDetailsActivity extends AppCompatActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-
 
         if (!AUtils.isNull(complentStatusPojo.getComplaintType())) {
 

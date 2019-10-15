@@ -2,14 +2,14 @@ package com.appynitty.gp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.ViewImageActivity;

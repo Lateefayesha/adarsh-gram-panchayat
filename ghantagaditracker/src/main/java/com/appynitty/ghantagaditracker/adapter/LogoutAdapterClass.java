@@ -1,14 +1,14 @@
 package com.appynitty.ghantagaditracker.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.webservices.RegistrationWebservice;
+import com.pixplicity.easyprefs.library.Prefs;
 
-import quickutils.core.QuickUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,8 +31,8 @@ public class LogoutAdapterClass {
 
     public void callLogoutApi(){
         RegistrationWebservice webservice = AUtils.createService(RegistrationWebservice.class, AUtils.SERVER_URL_SBA);
-        webservice.logoutDevice(QuickUtils.prefs.getString(AUtils.APP_ID_GG, ""),
-                QuickUtils.prefs.getString(AUtils.USER_ID, ""))
+        webservice.logoutDevice(Prefs.getString(AUtils.APP_ID_GG, ""),
+                Prefs.getString(AUtils.USER_ID, ""))
                 .enqueue(new Callback<RegistrationDetailsPojo>() {
                     @Override
                     public void onResponse(@NonNull Call<RegistrationDetailsPojo> call, @NonNull Response<RegistrationDetailsPojo> response) {

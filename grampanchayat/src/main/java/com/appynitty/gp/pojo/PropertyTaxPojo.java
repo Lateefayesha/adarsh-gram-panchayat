@@ -1,6 +1,7 @@
 package com.appynitty.gp.pojo;
 
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Ayan Dey on 22/10/18.

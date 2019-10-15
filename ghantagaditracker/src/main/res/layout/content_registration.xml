@@ -17,7 +17,7 @@
         android:layout_weight="3"
         android:layout_margin="@dimen/fab_margin">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyTextInputLayoutStyle"
@@ -29,7 +29,7 @@
                 android:hint="@string/house_number_hint"
                 android:inputType="text"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

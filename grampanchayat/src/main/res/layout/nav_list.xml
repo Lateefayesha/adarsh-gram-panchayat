@@ -13,8 +13,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:visibility="gone"
-        app:theme="@style/MyNavigationDrawerStyle" />
+        android:visibility="gone"/>
     <!--app:menu="@menu/drawer_list"-->
 
 </android.support.v4.widget.DrawerLayout>

@@ -3,17 +3,17 @@ package com.appynitty.gp.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.BookingActivity;
@@ -30,12 +30,11 @@ import com.appynitty.gp.adapter.MainMenuAdapter;
 import com.appynitty.gp.pojo.MenuPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyFragemtV4;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -78,26 +77,26 @@ public class MenuFragment extends MyFragemtV4 {
 
     private void loadFragment() {
 
-        if (QuickUtils.prefs.getBoolean(AUtils.FCM_NOTI, false)) {
+        if (Prefs.getBoolean(AUtils.FCM_NOTI, false)) {
 
             mFragment = MyComplentStatusFragment.newInstance();
             mFragmentManager.beginTransaction().addToBackStack(null)
                     .replace(R.id.content_frame, mFragment).commit();
 
-            QuickUtils.prefs.save(AUtils.FCM_NOTI, false);
+            Prefs.putBoolean(AUtils.FCM_NOTI, false);
         }
     }
 
     private void initToolbar() {
 
-        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME, "")) &&
-                !AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))) {
+        if (!AUtils.isNullString(Prefs.getString(AUtils.GP_NAME, "")) &&
+                !AUtils.isNullString(Prefs.getString(AUtils.GP_NAME_MAR, ""))) {
 
-//            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-            if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, "1").equals("1")) {
-                ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME, ""));
+//            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.ENGLISH)) {
+                ((HomeActivity) getActivity()).setTitleActionBar(Prefs.getString(AUtils.GP_NAME, ""));
             } else {
-                ((HomeActivity) getActivity()).setTitleActionBar(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""));
+                ((HomeActivity) getActivity()).setTitleActionBar(Prefs.getString(AUtils.GP_NAME_MAR, ""));
             }
         } else {
 
@@ -108,7 +107,7 @@ public class MenuFragment extends MyFragemtV4 {
     private void genrateId() {
 
         ((HomeActivity) getActivity()).setTitleIcon(R.mipmap.ic_launcher);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 1);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 1);
         mFragmentManager = getFragmentManager();
         menuGridView = view.findViewById(R.id.menuGV);
     }
@@ -202,14 +201,14 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = GalleryFragment.newInstance();
                 break;
             case AUtils.MenuIdConstants.Online_EPayment:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, EPaymentActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Online_Booking:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, BookingActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
@@ -219,35 +218,35 @@ public class MenuFragment extends MyFragemtV4 {
                 mFragment = SocialNetworkFragment.newInstance();
                 break;
             case AUtils.MenuIdConstants.Online_Website:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, WebsiteActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Online_MAP:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, MapsMarkerActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Ghanta_Gadi_Tracker:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, GhantaGadiTrackerActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Utility:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     startActivity(new Intent(context, UtilityActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case AUtils.MenuIdConstants.Weather:
-                if (AUtils.isNetWorkAvailable(context)) {
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
                     context.startActivity(new Intent(context, WeatherActivity.class));
                 } else {
                     Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();

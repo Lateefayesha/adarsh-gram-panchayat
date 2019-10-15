@@ -2,10 +2,9 @@ package com.appynitty.ghantagaditracker.pojo;
 
 
 import com.appynitty.ghantagaditracker.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.Serializable;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 10/8/18.
@@ -89,7 +88,7 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getComplaintType() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
+        if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals(AUtils.LanguageConstants.ENGLISH)) {
             return complaintType;
         } else {
             return complaintTypeMar;
@@ -159,7 +158,7 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getType() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals("en")) {
+        if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals(AUtils.LanguageConstants.ENGLISH)) {
             return type;
         } else {
             return typeMar;

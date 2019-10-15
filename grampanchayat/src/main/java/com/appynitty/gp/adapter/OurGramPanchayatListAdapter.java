@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-
 /**
  * Created by MiTHUN on 5/3/18.
  */

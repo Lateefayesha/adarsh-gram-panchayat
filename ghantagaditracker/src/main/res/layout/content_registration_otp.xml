@@ -18,7 +18,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyTextInputLayoutStyle"
@@ -34,7 +34,7 @@
                 android:textSize="30sp"
                 android:gravity="center_horizontal"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_resend_otp"

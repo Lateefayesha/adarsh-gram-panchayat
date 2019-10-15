@@ -4,35 +4,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.MyComplentStatusListAdapter;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.ComplentStatusPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.MyNoDataView;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyNoDataView;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Objects;
-
-import quickutils.core.QuickUtils;
-import quickutils.core.categories.view;
 
 public class ComplaintStatusActivity extends AppCompatActivity {
 
@@ -120,7 +116,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
         }.getType();
 
         complentStatusPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
+                Prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
 
 
         if (!AUtils.isNull(complentStatusPojoList) && !complentStatusPojoList.isEmpty()) {
@@ -157,7 +153,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
                 }.getType();
 
                 complentStatusPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
+                        Prefs.getString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME), null), type);
 
                 if (!AUtils.isNull(complentStatusPojoList) && !complentStatusPojoList.isEmpty()) {
 
@@ -168,7 +164,7 @@ public class ComplaintStatusActivity extends AppCompatActivity {
 
                 if (swipeRefreshLayout.isRefreshing()) {
 
-                    Toasty.success(context, "Updated", Toast.LENGTH_SHORT).show();
+                    AUtils.success(context, "Updated", Toast.LENGTH_SHORT);
                     swipeRefreshLayout.setRefreshing(false);
                 }
 

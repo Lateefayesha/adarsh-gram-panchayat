@@ -3,9 +3,6 @@ package com.appynitty.gp.activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,31 +12,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.MandiListAdapter;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
-import com.appynitty.gp.utils.MyFragemtV4;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.MyNoDataView;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyNoDataView;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by Richali Pradhan Gupte on 02-10-2018.
@@ -135,7 +130,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
                 calendar.setTime(currentDate);
 
 
-                AUtils.changeLanguage(MandiDetailsActivity.this,1);
+                AUtils.changeLanguage(MandiDetailsActivity.this,AUtils.LanguageConstants.ENGLISH);
 
                 datePickerDialog = new DatePickerDialog(MandiDetailsActivity.this,
                         MandiDetailsActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -168,7 +163,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
         }.getType();
 
         mandiPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                Prefs.getString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
         if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
 
@@ -217,7 +212,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
                 }.getType();
 
                 mandiPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        Prefs.getString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
                 if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
 
@@ -248,7 +243,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
 
                 if (swipeRefreshLayout.isRefreshing()) {
 
-                    Toasty.success(MandiDetailsActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                    AUtils.success(MandiDetailsActivity.this, "Updated", Toast.LENGTH_SHORT);
                     swipeRefreshLayout.setRefreshing(false);
                 }
 
@@ -260,8 +255,8 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
         try {
-            int languageId = Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID,AUtils.DEFAULT_LANGUAGE_ID));
-            AUtils.changeLanguage(MandiDetailsActivity.this,languageId);
+            String languageId = Prefs.getString(AUtils.LANGUAGE_ID,AUtils.DEFAULT_LANGUAGE_ID);
+            AUtils.changeLanguage(MandiDetailsActivity.this, languageId);
             Calendar mCalendar = new GregorianCalendar(year,month,day);
             Date date = mCalendar.getTime();
             Date currentDate = currentCalender.getTime();

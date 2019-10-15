@@ -5,32 +5,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
-
-import quickutils.core.QuickUtils;
 
 public class SettingActivity extends AppCompatActivity {
 
     private Context mContext;
     private Spinner languageSpinner;
     private HashMap<String, String> languageStringHash;
-    private ArrayList<String> languageList;
+    private List<String> languageList;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -63,7 +63,7 @@ public class SettingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        languageStringHash = new HashMap<>();
+        languageStringHash = AUtils.getLanguageHashMapList();
 
         languageSpinner = findViewById(R.id.spinner_language);
 
@@ -75,7 +75,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String lang = languageStringHash.get(languageList.get(position));
                 try {
-                    if(!lang.equals(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME))){
+                    if(!lang.equals(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME))){
                         AUtils.changeLanguage((Activity) mContext, lang);
                         ((Activity)mContext).recreate();
                     }
@@ -97,14 +97,19 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void initlanguageSpinner(){
-        languageList = new ArrayList<String>();
-        languageList.add("English");
-        languageList.add("मराठी");
+        languageList = AUtils.getLanguageList();
+
+        if(AUtils.isNull(languageList)){
+            languageList = new ArrayList<String>();
+            languageList.add(AUtils.LanguageNameConstants.ENGLISH);
+            languageList.add(AUtils.LanguageNameConstants.MARATHI);
+            languageList.add(AUtils.LanguageNameConstants.HINDI);
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_expandable_list_item_1, languageList);
         languageSpinner.setAdapter(adapter);
 
-        String language = QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME);
+        String language = Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME);
         int position = languageList.indexOf(languageStringHash.get(language));
         if(position > 0){
             languageSpinner.setSelection(position);
@@ -113,16 +118,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void initLanguageStringHash(){
-        languageStringHash.put("English","en");
-        languageStringHash.put("en","English");
-        languageStringHash.put("मराठी","mr");
-        languageStringHash.put("mr","मराठी");
-        languageStringHash.put("हिंदी","hi");
-        languageStringHash.put("hi","हिंदी");
-        languageStringHash.put("ગુજરાતી","gu");
-        languageStringHash.put("gu","ગુજરાતી");
-        languageStringHash.put("ਪੰਜਾਬੀ","pa");
-        languageStringHash.put("pa","ਪੰਜਾਬੀ");
+
     }
 
     @Override

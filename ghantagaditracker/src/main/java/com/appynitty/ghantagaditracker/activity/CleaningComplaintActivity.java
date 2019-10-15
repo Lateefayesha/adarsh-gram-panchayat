@@ -2,25 +2,17 @@ package com.appynitty.ghantagaditracker.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +24,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.CleaningCompleantPojo;
@@ -39,11 +35,11 @@ import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
 import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.pojo.StatePojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -51,8 +47,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import quickutils.core.QuickUtils;
 
 public class CleaningComplaintActivity extends AppCompatActivity {
 
@@ -99,7 +93,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
         initData();
     }
 
-    private void generateId(){
+    private void generateId() {
 
         setContentView(R.layout.activity_cleaning_complaint);
         context = CleaningComplaintActivity.this;
@@ -122,7 +116,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
         typeSpinner = findViewById(R.id.cc_type_sp);
     }
 
-    private void registerEvents(){
+    private void registerEvents() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,7 +171,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.CAMERA, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.CAMERA, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -197,7 +191,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.CAMERA, true);
+            Prefs.putBoolean(Manifest.permission.CAMERA, true);
         } else {
             //You already have the permission, just go ahead.
             isStoragePermissionGiven();
@@ -214,8 +208,8 @@ public class CleaningComplaintActivity extends AppCompatActivity {
         }
     }
 
-    private void initData(){
-        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + "1", null))) {
+    private void initData() {
+        if (!AUtils.isNullString(Prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + "1", null))) {
 
             initTypeSpinner();
             getTypeList(false, "1");
@@ -243,7 +237,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                 }.getType();
 
                 complaintTypePojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, null), type);
+                        Prefs.getString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, null), type);
 
                 initTypeSpinner();
             }
@@ -283,7 +277,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -303,7 +297,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
+            Prefs.putBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
         } else {
             //You already have the permission, just go ahead.
             isLocationPermissionGiven();
@@ -328,7 +322,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
             if (allgranted) {
                 isStoragePermissionGiven();
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)context, Manifest.permission.CAMERA)) {
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.CAMERA)) {
 
                 AUtils.showPermissionDialog(context, "CAMERA", new DialogInterface.OnClickListener() {
                     @Override
@@ -339,7 +333,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                         }
                     }
                 });
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 AUtils.showPermissionDialog(context, "EXTERNAL STORAGE", new DialogInterface.OnClickListener() {
                     @Override
@@ -367,7 +361,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
             if (allgranted) {
                 isLocationPermissionGiven();
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 AUtils.showPermissionDialog(context, "EXTERNAL STORAGE", new DialogInterface.OnClickListener() {
                     @Override
@@ -396,7 +390,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
             if (allgranted) {
                 CheckGpsStatus();
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)context, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
                 AUtils.showPermissionDialog(context, "LOCATION", new DialogInterface.OnClickListener() {
                     @Override
@@ -416,7 +410,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
     private void isLocationPermissionGiven() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity)context, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 //Show Information about why you need the permission
 
                 AUtils.showPermissionDialog(context, "LOCATION", new DialogInterface.OnClickListener() {
@@ -430,7 +424,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.ACCESS_FINE_LOCATION, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.ACCESS_FINE_LOCATION, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -450,7 +444,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.ACCESS_FINE_LOCATION, true);
+            Prefs.putBoolean(Manifest.permission.ACCESS_FINE_LOCATION, true);
         } else {
             //You already have the permission, just go ahead.
             CheckGpsStatus();
@@ -517,7 +511,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
         } catch (Exception e) {
 
             e.printStackTrace();
-            Toasty.error(context, "Unable to add image", Toast.LENGTH_SHORT).show();
+            AUtils.error(context, "Unable to add image", Toast.LENGTH_SHORT);
         }
 
         captureImageView.setImageBitmap(thumbnail);
@@ -526,41 +520,41 @@ public class CleaningComplaintActivity extends AppCompatActivity {
     private boolean validateForm() {
 
         if (AUtils.isNullString(imageFilePath)) {
-            Toasty.warning(context, context.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(wardNoTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_ward_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_ward_no), Toast.LENGTH_SHORT);
             return false;
         }
         if (AUtils.isNullString(locationTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_location), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_location), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (typeSpinner.getSelectedItemPosition() == 0) {
-            Toasty.warning(context, context.getString(R.string.plz_select_complaint_type), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_select_complaint_type), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(compleantDetailsTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_complent_dtl), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_complent_dtl), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(nameTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_name), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(mobileNoTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (mobileNoTextView.getText().toString().length() < 10) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
@@ -570,7 +564,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 //        }
 
         if (!AUtils.isNullString(emailTextView.getText().toString()) && !AUtils.isEmailValid(emailTextView.getText().toString())) {
-            Toasty.warning(context, context.getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, context.getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT);
             return false;
         }
 
@@ -624,14 +618,14 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
 
-                            Toasty.success(context, "" + context.getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.success(context, "" + context.getString(R.string.submit_done), Toast.LENGTH_SHORT);
                             AUtils.deleteAllImagesInTheFolder();
                             CleaningComplaintActivity.this.finish();
                         } else {
-                            Toasty.error(context, "" + context.getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
+                            AUtils.error(context, "" + context.getString(R.string.submit_error), Toast.LENGTH_SHORT);
                         }
                     } else {
-                        Toasty.error(context, "" + context.getString(R.string.serverError), Toast.LENGTH_SHORT).show();
+                        AUtils.error(context, "" + context.getString(R.string.serverError), Toast.LENGTH_SHORT);
                     }
 
                 }
@@ -642,7 +636,7 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);

@@ -1,17 +1,19 @@
 package com.appynitty.ghantagaditracker.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

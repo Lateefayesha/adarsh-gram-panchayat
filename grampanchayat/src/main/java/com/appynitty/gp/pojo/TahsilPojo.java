@@ -1,10 +1,9 @@
 package com.appynitty.gp.pojo;
 
 import com.appynitty.gp.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.Serializable;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 5/7/18.
@@ -42,7 +41,7 @@ public class TahsilPojo implements Serializable {
     @Override
     public String toString() {
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.ENGLISH)) {
             return name;
         } else {
             return nameMar;

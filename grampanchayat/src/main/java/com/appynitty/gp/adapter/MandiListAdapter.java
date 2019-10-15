@@ -1,16 +1,16 @@
 package com.appynitty.gp.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.MandiPojo;
-import com.appynitty.gp.pojo.WorkCheckOutPojo;
 import com.appynitty.gp.utils.AUtils;
 
 import java.util.List;

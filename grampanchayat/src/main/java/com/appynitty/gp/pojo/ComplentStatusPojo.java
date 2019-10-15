@@ -4,8 +4,6 @@ import com.appynitty.gp.utils.AUtils;
 
 import java.io.Serializable;
 
-import quickutils.core.QuickUtils;
-
 /**
  * Created by MiTHUN on 10/8/18.
  */

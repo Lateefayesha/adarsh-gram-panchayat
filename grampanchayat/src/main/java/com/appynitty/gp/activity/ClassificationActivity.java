@@ -2,41 +2,34 @@ package com.appynitty.gp.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.ClassificationAdapter;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.ClassificationPojo;
-import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.MyNoDataView;
-import com.mithsoft.lib.componants.Toasty;
-import com.mithsoft.lib.viewpager.AutoScrollViewPager;
-import com.mithsoft.lib.viewpager.ViewPagerTransformer;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.AutoScrollViewPager;
+import com.riaylibrary.custom_component.MyNoDataView;
+import com.riaylibrary.custom_component.ViewPagerTransformer;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by Richali Pradhan Gupte on 13-10-2018.
@@ -57,7 +50,7 @@ public class ClassificationActivity extends BaseActivity {
 
     private LinearLayout recordDataView = null;
 
-    private HashMap<String,List<String>> mRecordHashMap = null;
+    private HashMap<String, List<String>> mRecordHashMap = null;
 
     private SwipeRefreshLayout swipeRefreshLayout = null;
 
@@ -114,8 +107,8 @@ public class ClassificationActivity extends BaseActivity {
         }.getType();
 
         classificationPojoList = new Gson().fromJson(
-                QuickUtils.prefs.getString(AUtils.PREFS.CLASSIFICATION_POJO_LIST +
-                        QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null),
+                Prefs.getString(AUtils.PREFS.CLASSIFICATION_POJO_LIST +
+                        Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null),
                 type);
 
         if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
@@ -163,7 +156,7 @@ public class ClassificationActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 
@@ -331,7 +324,7 @@ public class ClassificationActivity extends BaseActivity {
                 }.getType();
 
                 classificationPojoList = new Gson().fromJson(
-                        QuickUtils.prefs.getString(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
+                        Prefs.getString(AUtils.PREFS.CLASSIFICATION_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null), type);
 
                 if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
 
@@ -352,7 +345,7 @@ public class ClassificationActivity extends BaseActivity {
 
                 if (swipeRefreshLayout.isRefreshing()) {
 
-                    Toasty.success(ClassificationActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                    AUtils.success(ClassificationActivity.this, "Updated", Toast.LENGTH_SHORT);
                     swipeRefreshLayout.setRefreshing(false);
                 }
 

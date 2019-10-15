@@ -4,20 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
@@ -27,15 +27,14 @@ import com.appynitty.ghantagaditracker.pojo.LocalMenuPojo;
 import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
-import com.mithsoft.lib.componants.MyProgressDialog;
-import com.mithsoft.lib.componants.Toasty;
+import com.google.android.material.navigation.NavigationView;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.MyProgressDialog;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import quickutils.core.QuickUtils;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -109,29 +108,28 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             @Override
             public void onSuccessCallback(RegistrationDetailsPojo pojo) {
                 progressDialog.dismiss();
-                if(!AUtils.isNull(pojo)){
-                    if(pojo.getStatus().equals(AUtils.STATUS_SUCCESS)){
+                if (!AUtils.isNull(pojo)) {
+                    if (pojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
                         logoutRequestComplete();
-                    }else
-                        if(QuickUtils.prefs.getString(AUtils.LANGUAGE_NAME, "en").equals("en"))
-                            Toasty.info(mContext, pojo.getMessage()).show();
-                        else
-                            Toasty.info(mContext, pojo.getMessageMar()).show();
+                    } else if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals(AUtils.LanguageConstants.ENGLISH))
+                        AUtils.info(mContext, pojo.getMessage());
+                    else
+                        AUtils.info(mContext, pojo.getMessageMar());
 
-                }else
-                    Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+                } else
+                    AUtils.error(mContext, getResources().getString(R.string.something_error));
             }
 
             @Override
             public void onFailureCallback() {
                 progressDialog.dismiss();
-                Toasty.error(mContext, getResources().getString(R.string.something_error)).show();
+                AUtils.error(mContext, getResources().getString(R.string.something_error));
             }
 
             @Override
             public void onErrorCallback() {
                 progressDialog.dismiss();
-                Toasty.error(mContext, getResources().getString(R.string.serverError)).show();
+                AUtils.error(mContext, getResources().getString(R.string.serverError));
             }
         });
     }
@@ -140,7 +138,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         createMenuItem();
 
         Intent intent = getIntent();
-        if(intent.hasExtra(AUtils.FCM_NOTI) && intent.getBooleanExtra(AUtils.FCM_NOTI, false) ){
+        if (intent.hasExtra(AUtils.FCM_NOTI) && intent.getBooleanExtra(AUtils.FCM_NOTI, false)) {
             String notiType = intent.getStringExtra(AUtils.FCM_NOTI_TYPE);
             intent.removeExtra(AUtils.FCM_NOTI);
             intent.removeExtra(AUtils.FCM_NOTI_TYPE);
@@ -151,39 +149,57 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void createMenuItem() {
+
+        Menu menu = navigationView.getMenu();
+        MenuItem menuItem = null;
+
         List<LocalMenuPojo> pojoList = new ArrayList<>();
 
-        pojoList.add(new LocalMenuPojo(R.id.nav_ghanta_gadi_tracker,
-                getResources().getString(R.string.title_activity_ghanta_gadi_tracker),
-                AUtils.Colour.Green, ContextCompat.getDrawable(mContext, R.drawable.ic_tracker)));
+        if (menu.findItem(R.id.nav_ghanta_gadi_tracker).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_ghanta_gadi_tracker,
+                    getResources().getString(R.string.title_activity_ghanta_gadi_tracker),
+                    AUtils.Colour.Green, ContextCompat.getDrawable(mContext, R.drawable.ic_tracker)));
+        }
 
-        pojoList.add(new LocalMenuPojo(R.id.nav_complaint_cleaning,
-                getResources().getString(R.string.title_activity_cleaning_complaint),
-                AUtils.Colour.Yellow, ContextCompat.getDrawable(mContext, R.drawable.ic_cleaning_complaint)));
+        if (menu.findItem(R.id.nav_complaint_cleaning).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_complaint_cleaning,
+                    getResources().getString(R.string.title_activity_cleaning_complaint),
+                    AUtils.Colour.Yellow, ContextCompat.getDrawable(mContext, R.drawable.ic_cleaning_complaint)));
+        }
 
-        pojoList.add(new LocalMenuPojo(R.id.nav_complaint_status,
-                getResources().getString(R.string.title_activity_complaint_status),
-                AUtils.Colour.DarkGray, ContextCompat.getDrawable(mContext, R.drawable.ic_my_grievance)));
+        if (menu.findItem(R.id.nav_complaint_status).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_complaint_status,
+                    getResources().getString(R.string.title_activity_complaint_status),
+                    AUtils.Colour.DarkGray, ContextCompat.getDrawable(mContext, R.drawable.ic_my_grievance)));
+        }
 
-        if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty()){
-            Menu navMenu = navigationView.getMenu();
-            MenuItem item = navMenu.findItem(R.id.nav_collection_history);
-            item.setVisible(true);
+        menuItem = menu.findItem(R.id.nav_collection_history);
+        if (!Prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty() && menuItem.isVisible()) {
+            menuItem.setVisible(true);
             pojoList.add(new LocalMenuPojo(R.id.nav_collection_history,
                     getResources().getString(R.string.title_activity_collection_history),
                     AUtils.Colour.Blue, ContextCompat.getDrawable(mContext, R.drawable.ic_history)));
         }
+        menuItem = null;
 
-        pojoList.add(new LocalMenuPojo(R.id.nav_league,
-                getResources().getString(R.string.title_activity_league_questions),
-                AUtils.Colour.Red, ContextCompat.getDrawable(mContext, R.drawable.ic_ss_league)));
+        if (menu.findItem(R.id.nav_league).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_league,
+                    getResources().getString(R.string.title_activity_league_questions),
+                    AUtils.Colour.Red, ContextCompat.getDrawable(mContext, R.drawable.ic_ss_league)));
+        }
 
-//        pojoList.add(new LocalMenuPojo(R.id.nav_city_pee,
-//                getResources().getString(R.string.title_activity_city_pee),
-//                AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
-        pojoList.add(new LocalMenuPojo(R.id.nav_notification,
-                getResources().getString(R.string.title_activity_notification_list),
-                AUtils.Colour.SkyBlue, ContextCompat.getDrawable(mContext, R.drawable.ic_notification_svg)));
+        if (menu.findItem(R.id.nav_city_pee).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_city_pee,
+                    getResources().getString(R.string.title_activity_city_pee),
+                    AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
+        }
+
+
+        if (menu.findItem(R.id.nav_notification).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_notification,
+                    getResources().getString(R.string.title_activity_notification_list),
+                    AUtils.Colour.SkyBlue, ContextCompat.getDrawable(mContext, R.drawable.ic_notification_svg)));
+        }
 
 
         inflateMenuGrid(pojoList);
@@ -194,11 +210,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         localMenuRecycler.setAdapter(localMenu);
     }
 
-    private void openNotificationActivity(@Nullable String type){
-        if(type != null){
-            switch (type){
+    private void openNotificationActivity(@Nullable String type) {
+        if (type != null) {
+            switch (type) {
                 case Notification.TYPE_GG:
-                    if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty())
+                    if (!Prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty())
                         startActivity(new Intent(mContext, CollectionHistoryActivity.class));
                     else
                         startNotificationActivity();
@@ -210,11 +226,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     startNotificationActivity();
                     break;
             }
-        }else
+        } else
             startNotificationActivity();
     }
 
-    private void startNotificationActivity(){
+    private void startNotificationActivity() {
         startActivity(new Intent(mContext, NotificationListActivity.class));
     }
 
@@ -227,40 +243,40 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    private void openMenuPages(int itemId){
-        if(itemId == R.id.nav_ghanta_gadi_tracker)
+    private void openMenuPages(int itemId) {
+        if (itemId == R.id.nav_ghanta_gadi_tracker)
             startActivity(new Intent(mContext, TrackerActivity.class));
-        else if(itemId == R.id.nav_complaint_cleaning){
+        else if (itemId == R.id.nav_complaint_cleaning) {
             startActivity(new Intent(mContext, CleaningComplaintActivity.class));
-        }else if(itemId == R.id.nav_complaint_status){
+        } else if (itemId == R.id.nav_complaint_status) {
             startActivity(new Intent(mContext, ComplaintStatusActivity.class));
-        }else if(itemId == R.id.nav_logout){
+        } else if (itemId == R.id.nav_logout) {
             performLogout();
-        }else if(itemId == R.id.nav_setting){
+        } else if (itemId == R.id.nav_setting) {
             Intent intent = new Intent(mContext, SettingActivity.class);
             startActivityForResult(intent, REQUEST_CODE_SETTING);
-        }else if(itemId == R.id.nav_notification)
+        } else if (itemId == R.id.nav_notification)
             openNotificationActivity(null);
-        else if(itemId == R.id.nav_league)
+        else if (itemId == R.id.nav_league)
             startActivity(new Intent(mContext, LeagueQuestionsActivity.class));
-        else if(itemId == R.id.nav_city_pee)
+        else if (itemId == R.id.nav_city_pee)
             startActivity(new Intent(mContext, CityPeeActivity.class));
-        else if(itemId == R.id.nav_collection_history)
+        else if (itemId == R.id.nav_collection_history)
             startActivity(new Intent(mContext, CollectionHistoryActivity.class));
 
     }
 
     private void performLogout() {
-        if(!QuickUtils.prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty()){
+        if (!Prefs.getString(AUtils.PREFS.REFERENCE_ID, "").isEmpty()) {
             progressDialog.show();
             logoutAdapter.callLogoutApi();
-        }else
+        } else
             logoutRequestComplete();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return true;
     }
@@ -268,18 +284,18 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_SETTING && resultCode == RESULT_OK){
-            ((Activity)mContext).recreate();
+        if (requestCode == REQUEST_CODE_SETTING && resultCode == RESULT_OK) {
+            ((Activity) mContext).recreate();
         }
     }
 
-    private void logoutRequestComplete(){
-        QuickUtils.prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
-        QuickUtils.prefs.remove(AUtils.PREFS.REFERENCE_ID);
+    private void logoutRequestComplete() {
+        Prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
+        Prefs.remove(AUtils.PREFS.REFERENCE_ID);
         DatabaseHelper db = new DatabaseHelper(mContext);
         db.deleteAllNotification();
         startActivity(new Intent(mContext, RegistrationActivity.class));
-        ((Activity)mContext).finish();
+        ((Activity) mContext).finish();
     }
 
     private void saveFCM() {
@@ -290,7 +306,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public void recreate() {
         super.recreate();
         startActivity(new Intent(mContext, mContext.getClass()));
-        ((Activity)mContext).finish();
+        ((Activity) mContext).finish();
     }
 
 }

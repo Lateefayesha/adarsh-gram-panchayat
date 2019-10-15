@@ -1,17 +1,16 @@
 package com.appynitty.gp.utils;
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import com.appynitty.gp.R;
 import com.google.gson.Gson;
-import com.mithsoft.lib.utils.MsUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -21,23 +20,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import quickutils.core.QuickUtils;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 /**
  * Created by MiTHUN on 5/2/18.
 // */
 
-public class AUtils extends MsUtils {
+public class AUtils extends CommonUtils {
 
     //    Local URL
 //    public static final String SERVER_URL = "http://192.168.200.3:8077/";
@@ -58,11 +54,12 @@ public class AUtils extends MsUtils {
 //    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4088/";
 
     //   SBA Relese URL
-    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4044/";
+    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
     //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://202.65.157.253:4044/";
 
+    public static Application mApplicationConstant;
 
     //    Genral Constant
     public static final String STATUS_SUCCESS = "Success";
@@ -81,8 +78,10 @@ public class AUtils extends MsUtils {
     public static final String GALLERY_IMG_PATH = "GalleryImagePath";
     public static final String APP_ID = "AppId";
     public static final String VERSION_CODE = "AppVersion";
-    public static final String DEFAULT_LANGUAGE_ID = "2";
+
+    public static final String DEFAULT_LANGUAGE_ID = LanguageConstants.MARATHI;
     public static final String LANGUAGE_ID = "LanguageId";
+
     public static final String GALLERY_IMG_POSITION = "GalleryImagePosition";
     public static final String GALLERY_IMG_POJO_LIST = "GalleryImagePojo";
     public static final String SOCIAL_NETWORK_POJO = "SocialneworkPojo";
@@ -120,6 +119,8 @@ public class AUtils extends MsUtils {
     public static final String TYPE = "TypeOfApplication";
 
     public static final String LANGUAGE_NAME = "LanguageName";
+
+    public static final String FCM_ID = "FirebaseCloudMessageId";
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
     public static boolean isRecreate = false;
@@ -216,7 +217,7 @@ public class AUtils extends MsUtils {
     //app setting for permissions dialog
     public static void showPermissionDialog(Context context, String message, DialogInterface.OnClickListener okListener) {
 
-        new android.support.v7.app.AlertDialog.Builder(context)
+        new AlertDialog.Builder(context)
                 .setTitle("Need Permission")
                 .setMessage("App needs a permission to access " + message)
                 .setPositiveButton("Grant", okListener)
@@ -250,51 +251,51 @@ public class AUtils extends MsUtils {
     }
 
     // Language Change of an application
-    public static void changeLanguage(Activity context, int languageId) {
-
-        if(languageId > 0){
-            QuickUtils.prefs.save(AUtils.LANGUAGE_ID, String.valueOf(languageId));
-        }
-
-        String languageStr = "";
-        switch (languageId) {
-            case 1:
-                languageStr = "en";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 2:
-//                languageStr = "mr";
-                languageStr = "hi";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 3:
-                languageStr = "hi";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 4:
-                languageStr = "gu";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-            case 5:
-                languageStr = "pa";
-                QuickUtils.prefs.save(AUtils.LANGUAGE_NAME,languageStr);
-                break;
-        }
-
-        LocaleHelper.setLocale(context, languageStr);
-
-//        Locale locale = new Locale(languageStr);
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            Locale.setDefault(Locale.Category.DISPLAY, locale);
-//        } else {
-//            Locale.setDefault(locale);
+//    public static void changeLanguage(Activity context, int languageId) {
+//
+//        if(languageId > 0){
+//            Prefs.putString(AUtils.LANGUAGE_ID, String.valueOf(languageId));
 //        }
-//        Configuration config = new Configuration();
-//        config.locale = locale;
-//        context.getApplicationContext().getResources().updateConfiguration(config, null);
-//        context.onConfigurationChanged(config);
-
-    }
+//
+//        String languageStr = "";
+//        switch (languageId) {
+//            case 1:
+//                languageStr = "en";
+//                Prefs.putString(AUtils.LANGUAGE_NAME,languageStr);
+//                break;
+//            case 2:
+////                languageStr = "mr";
+//                languageStr = "hi";
+//                Prefs.putString(AUtils.LANGUAGE_NAME,languageStr);
+//                break;
+//            case 3:
+//                languageStr = "hi";
+//                Prefs.putString(AUtils.LANGUAGE_NAME,languageStr);
+//                break;
+//            case 4:
+//                languageStr = "gu";
+//                Prefs.putString(AUtils.LANGUAGE_NAME,languageStr);
+//                break;
+//            case 5:
+//                languageStr = "pa";
+//                Prefs.putString(AUtils.LANGUAGE_NAME,languageStr);
+//                break;
+//        }
+//
+//        LocaleHelper.setLocale(context, languageStr);
+//
+////        Locale locale = new Locale(languageStr);
+////        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+////            Locale.setDefault(Locale.Category.DISPLAY, locale);
+////        } else {
+////            Locale.setDefault(locale);
+////        }
+////        Configuration config = new Configuration();
+////        config.locale = locale;
+////        context.getApplicationContext().getResources().updateConfiguration(config, null);
+////        context.onConfigurationChanged(config);
+//
+//    }
 
     public static void deleteAllImagesInTheFolder() {
 
@@ -311,30 +312,7 @@ public class AUtils extends MsUtils {
 
     public static void saveFcmId(String fcmId) {
 
-        QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
-    }
-
-    public static void setQuickUtilsValue(String key, Object value){
-
-        if(value instanceof String){
-            QuickUtils.prefs.save(key, (String) value);
-        }
-
-        if(value instanceof Integer){
-            QuickUtils.prefs.save(key, (int) value);
-        }
-
-        if(value instanceof Boolean){
-            QuickUtils.prefs.save(key, (boolean) value);
-        }
-
-        if(value instanceof Float){
-            QuickUtils.prefs.save(key, (float) value);
-        }
-
-        if(value instanceof Long){
-            QuickUtils.prefs.save(key, (long) value);
-        }
+        Prefs.putString(FCM_ID, fcmId);
     }
 
     public static void showConfirmationDialog(Context context, String type, DialogInterface.OnClickListener

@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/navigation_image_height"
-    android:background="@drawable/navigation_title_image"
+    android:background="@color/colorPrimaryDark"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -15,11 +15,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp">
 
-        <com.mithsoft.lib.componants.CircleImageView
+        <com.appynitty.common_utils.custom_component.CircleImageView
             android:id="@+id/navigationUserImageView"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/unknown_person" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/initialWordNavTextView"

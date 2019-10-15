@@ -27,8 +27,9 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import com.appynitty.adarshgrampanchayat.R;
 import com.appynitty.ghantagaditracker.activity.DashboardActivity;
@@ -78,6 +79,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
+
     private void sendNotification(String title, String messageBody, String type) {
 
         Intent intent = new Intent(this, DashboardActivity.class);
@@ -119,4 +121,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.notify(0, notificationBuilder.build());
         }
     }
+
 }

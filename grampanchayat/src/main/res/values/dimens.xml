@@ -10,4 +10,5 @@
     <dimen name="dimen_40dp">40dp</dimen>
     <dimen name="dimen_20dp">20dp</dimen>
     <dimen name="dimen_0dp">0dp</dimen>
+    <dimen name="navigation_image_height">175dp</dimen>
 </resources>

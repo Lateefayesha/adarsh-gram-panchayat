@@ -2,13 +2,11 @@ package com.appynitty.ghantagaditracker.utils;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Build;
-import android.util.Log;
-
 import com.google.firebase.FirebaseApp;
-import com.mithsoft.lib.utils.MsUtils;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by Ayan on 16/3/18.
@@ -20,9 +18,15 @@ public class MyApplicationConstants extends Application {
     public void onCreate() {
         super.onCreate();
 
+        AUtils.mApplicationConstant = this;
 
-//        init QuickUtils lib
-        QuickUtils.init(getApplicationContext());
+//        init Easy Prefs lib
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
 
 //          init Firebase
         FirebaseApp.initializeApp(getApplicationContext());

@@ -17,7 +17,7 @@
             android:padding="@dimen/padding_margin_layout">
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -27,10 +27,10 @@
                     android:hint="@string/name_comp"
                     android:inputType="textCapWords" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -41,9 +41,9 @@
                     android:inputType="number"
                     android:maxLength="10" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -53,9 +53,9 @@
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -64,9 +64,9 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/address_comp"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -75,9 +75,9 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/education_qulification_comp"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -87,9 +87,9 @@
                     android:hint="@string/aadhar_card_no"
                     android:inputType="number"
                     android:maxLength="12" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -98,9 +98,9 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/other_skill"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -109,9 +109,9 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/interested_field_in_job"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -120,7 +120,7 @@
                     style="@style/MyEditTextStyle"
                     android:hint="@string/about_yourself"
                     android:inputType="textCapSentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -136,7 +136,7 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_margin_layout"
@@ -150,9 +150,9 @@
                         android:layout_height="90dp"
                         android:src="@drawable/ic_camera" />
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_margin_layout"
@@ -166,7 +166,7 @@
                         android:layout_height="90dp"
                         android:src="@drawable/ic_camera" />
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
             <LinearLayout
@@ -175,7 +175,7 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_margin_layout"
@@ -189,9 +189,9 @@
                         android:layout_height="90dp"
                         android:src="@drawable/ic_camera" />
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/padding_margin_layout"
@@ -205,7 +205,7 @@
                         android:layout_height="90dp"
                         android:src="@drawable/ic_camera" />
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

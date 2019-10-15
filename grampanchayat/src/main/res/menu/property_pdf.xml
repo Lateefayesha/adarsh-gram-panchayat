@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_property_pdf"
-        android:icon="@drawable/pdf"
+        android:icon="@drawable/ic_pdf"
         android:title="Pdf"
         app:showAsAction="always"
         android:visible="false"/>

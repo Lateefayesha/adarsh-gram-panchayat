@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.pojo.LeageaAnswerDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.mithsoft.lib.componants.Toasty;
 
 /**
  * Created by Ayan Dey on 16/7/19.
@@ -67,19 +66,19 @@ public class UserDetailsBulderAdapter {
 
         if (AUtils.isNullString(name)) {
             userName.setError(mContext.getString(R.string.plz_ent_name));
-            Toasty.warning(mContext, mContext.getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+            AUtils.warning(mContext, mContext.getString(R.string.plz_ent_name), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(mobile)) {
             userContact.setError(mContext.getString(R.string.plz_ent_mobile_no));
-            Toasty.warning(mContext, mContext.getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(mContext, mContext.getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (mobile.length() < 10) {
             userContact.setError(mContext.getString(R.string.plz_ent_valid_mobile_no));
-            Toasty.warning(mContext, mContext.getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(mContext, mContext.getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
         return true;

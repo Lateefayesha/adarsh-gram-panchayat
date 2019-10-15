@@ -1,18 +1,16 @@
 package com.appynitty.ghantagaditracker.utils;
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import com.appynitty.ghantagaditracker.R;
-import com.appynitty.ghantagaditracker.controller.Notification;
 import com.google.gson.Gson;
-import com.mithsoft.lib.utils.MsUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -21,21 +19,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import quickutils.core.QuickUtils;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 /**
  * Created by MiTHUN on 5/2/18.
 // */
 
-public class AUtils extends MsUtils {
+public class AUtils extends CommonUtils {
 
     /*  GP - NP - NPP */
 
@@ -63,10 +60,9 @@ public class AUtils extends MsUtils {
     public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
     //   SBA Relese BACKUP URL
-//    public static final String SERVER_URL_SBA = "http://r:4044/";
-
-    //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";
+
+    public static Application mApplicationConstant;
 
     //    Genral Constant
     public static final String STATUS_SUCCESS = "Success";
@@ -107,7 +103,7 @@ public class AUtils extends MsUtils {
     public static final String CONTENT_TYPE = "application/json";
 
     public static final String LANGUAGE_NAME = "LanguageName";
-    public static final String DEFAULT_LANGUAGE_NAME = "en";
+    public static final String DEFAULT_LANGUAGE_NAME = AUtils.LanguageConstants.ENGLISH;
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
 
@@ -117,7 +113,11 @@ public class AUtils extends MsUtils {
     public static final String MONTH_START_DATE = "monthStartDate";
     public static final String MONTH_END_DATE = "monthEndDate";
 
+    public static final String FCM_ID = "FirebaseCloudMessageId";
+
     public static boolean isChangeLang = false;
+
+    private static List<String> languageList;
 
     private AUtils() {
     }
@@ -213,18 +213,8 @@ public class AUtils extends MsUtils {
                 .show();
     }
 
-
-    // Language Change of an application
-    public static void changeLanguage(Activity context, String languageId) {
-
-        QuickUtils.prefs.save(AUtils.LANGUAGE_NAME, languageId);
-
-        LocaleHelper.setLocale(context, languageId);
-    }
-
     public static void saveFcmId(String fcmId) {
-
-        QuickUtils.prefs.save(MsUtils.FCM_ID, fcmId);
+        Prefs.putString(FCM_ID, fcmId);
     }
 
     public static void deleteAllImagesInTheFolder() {
@@ -345,6 +335,7 @@ public class AUtils extends MsUtils {
 
         //    Save Data Constant
         String IS_USER_LOGIN = "UserLoginStatus";
+        String SKIP_REGISTRATION_PERMANENT = "UserSkipRegistrationPermanent";
         String USER_MASTER = "UserMasterPojo";
         String USER_ID = "UserIdORCreatedBy";
         //    pull list from server dates
@@ -389,6 +380,14 @@ public class AUtils extends MsUtils {
         String garbageNotReceived = "2";
         String garbageNotSpecified = "3";
         String garbageNotCollected = "-1";
+    }
+
+    public static void setLanguageList(List<String> list){
+        languageList = list;
+    }
+
+    public static List<String> getLanguageList(){
+        return languageList;
     }
 
 }

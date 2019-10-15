@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.PropertyTaxFragment">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         style="@style/MyCardView"
         app:cardBackgroundColor="@color/event_date_background_color"
         app:cardCornerRadius="@dimen/cardview_radius">
@@ -41,7 +41,7 @@
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/MyTextInputLayoutStyle"
@@ -31,7 +31,7 @@
                 android:inputType="number"
                 android:maxLength="10"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_edit_contact"

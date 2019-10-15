@@ -4,17 +4,15 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.NotificationUIAdapter;
@@ -22,7 +20,7 @@ import com.appynitty.ghantagaditracker.controller.Notification;
 import com.appynitty.ghantagaditracker.customComponents.RecyclerViewDecorator;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.List;
 import java.util.Objects;

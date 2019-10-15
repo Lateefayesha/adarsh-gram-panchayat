@@ -2,19 +2,16 @@ package com.appynitty.gp.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.InternalWebviewClient;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.mithsoft.lib.activity.BaseActivity;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.InternalWebviewClient;
+import com.riaylibrary.utils.LocaleHelper;
 
 public class PaymentGatewayWebpageActivity extends BaseActivity {
 
@@ -91,7 +88,7 @@ public class PaymentGatewayWebpageActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 }

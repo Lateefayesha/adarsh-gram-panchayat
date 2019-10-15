@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
 import com.appynitty.gp.controller.SyncServer;
@@ -24,10 +24,7 @@ import com.appynitty.gp.pojo.TankerBookingPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.mithsoft.lib.componants.Toasty;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -77,7 +74,7 @@ public class TankerBookingFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.tanker_booking));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         nameTextView = view.findViewById(R.id.tb_name_et);
         mobileNoTextView = view.findViewById(R.id.tb_number_et);
@@ -87,9 +84,9 @@ public class TankerBookingFragment extends MyFragemtV4 {
         yoccLinearLayout = view.findViewById(R.id.tb_yocc_no_ll);
         yoccNoTextView = view.findViewById(R.id.tb_yocc_no);
 
-        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.YOCC_NO, ""))) {
+        if (!AUtils.isNullString(Prefs.getString(AUtils.YOCC_NO, ""))) {
 
-            yoccNoTextView.setText(QuickUtils.prefs.getString(AUtils.YOCC_NO, ""));
+            yoccNoTextView.setText(Prefs.getString(AUtils.YOCC_NO, ""));
 
         } else {
             yoccLinearLayout.setVisibility(View.GONE);
@@ -111,7 +108,7 @@ public class TankerBookingFragment extends MyFragemtV4 {
             public void onClick(View v) {
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + QuickUtils.prefs.getString(AUtils.YOCC_NO, "")));
+                    callIntent.setData(Uri.parse("tel:" + Prefs.getString(AUtils.YOCC_NO, "")));
                     context.startActivity(callIntent);
                 } catch (ActivityNotFoundException activityException) {
                     Toast.makeText(context, "Call has failed", Toast.LENGTH_LONG).show();
@@ -140,13 +137,13 @@ public class TankerBookingFragment extends MyFragemtV4 {
                     if (!AUtils.isNull(resultPojo)) {
 
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
-                            Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT);
                             getFragmentManager().popBackStack();
                         } else {
-                            Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
+                            AUtils.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT);
                         }
                     } else {
-                        Toasty.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT).show();
+                        AUtils.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT);
                     }
 
                 }
@@ -158,27 +155,27 @@ public class TankerBookingFragment extends MyFragemtV4 {
     private boolean validateForm() {
 
         if (AUtils.isNullString(nameTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(mobileNoTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (mobileNoTextView.getText().toString().length() < 10) {
-            Toasty.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(wardNoTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_ward_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_ward_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(addressTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT);
             return false;
         }
 

@@ -1,14 +1,12 @@
 
 package com.appynitty.gp.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.appynitty.gp.R;
-
 import com.appynitty.gp.pojo.ActiveUserListPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.google.android.gms.maps.GoogleMap;

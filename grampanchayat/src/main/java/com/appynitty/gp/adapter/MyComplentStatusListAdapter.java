@@ -13,7 +13,6 @@ import com.appynitty.gp.utils.AUtils;
 
 import java.util.List;
 
-
 /**
  * Created by MiTHUN on 5/3/18.
  */

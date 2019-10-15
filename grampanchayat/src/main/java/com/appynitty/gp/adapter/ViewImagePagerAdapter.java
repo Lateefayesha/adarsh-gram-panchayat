@@ -6,19 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.viewpager.widget.PagerAdapter;
 import com.appynitty.gp.R;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.utils.AUtils;
 import com.bumptech.glide.Glide;
-import com.mithsoft.lib.zoomimageview.MyZoomageView;
+import com.riaylibrary.custom_component.MyZoomageView;
 
 import java.util.List;
-
 
 /**
  * Created by MiTHUN on 11/5/18.
  */
-public class ViewImagePagerAdapter extends android.support.v4.view.PagerAdapter {
+public class ViewImagePagerAdapter extends PagerAdapter {
 
     private List<PhotoGalleryImages> imagesGalleryPojoList;
     private LayoutInflater mLayoutInflater;

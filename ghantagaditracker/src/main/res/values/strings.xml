@@ -101,6 +101,7 @@
     <string name="bifurcate_garbage">Bifurcated</string>
     <string name="mixed_garbage">Mixed</string>
     <string name="no_garbage">Not Received</string>
+    <string name="not_specified_garbage">Not Specified</string>
 
     <string name="vehicle_number_txt">Vehicle No :</string>
 

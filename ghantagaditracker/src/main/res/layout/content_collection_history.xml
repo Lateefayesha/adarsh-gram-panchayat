@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/month_txt"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:textSize="25sp"/>
 
         <Spinner
@@ -37,7 +37,7 @@
             android:textAlignment="gravity"
             android:layout_height="wrap_content"
             android:popupBackground="@color/colorPrimary"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/colorWhite"/>
 
         <Spinner
             android:id="@+id/spinner_year"
@@ -46,20 +46,20 @@
             android:gravity="center_vertical"
             android:layout_height="wrap_content"
             android:popupBackground="@color/colorPrimary"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/colorWhite"/>
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_detail_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.mithsoft.lib.componants.MyNoDataView
+    <com.riaylibrary.custom_component.MyNoDataView
         android:id="@+id/no_data_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 </LinearLayout>

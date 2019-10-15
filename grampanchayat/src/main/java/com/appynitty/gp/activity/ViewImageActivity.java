@@ -3,22 +3,22 @@ package com.appynitty.gp.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.viewpager.widget.ViewPager;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.ViewImagePagerAdapter;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.viewpager.ViewPagerTransformer;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.ViewPagerTransformer;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.List;
-
-import quickutils.core.QuickUtils;
 
 /**
  * Created by MiTHUN on 7/5/18.
@@ -77,7 +77,7 @@ public class ViewImageActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 }

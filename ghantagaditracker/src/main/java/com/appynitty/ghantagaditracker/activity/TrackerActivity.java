@@ -6,10 +6,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +17,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.MapInfoWindowAdapter;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
 import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.LocaleHelper;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,17 +41,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import quickutils.core.QuickUtils;
-
 public class TrackerActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener{
+        GoogleMap.OnMapLoadedCallback, GoogleMap.OnInfoWindowClickListener {
 
     private LatLngBounds bounds;
     private GoogleMap mGmap;
@@ -103,25 +102,25 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         return true;
     }
 
-    private void initComponents(){
+    private void initComponents() {
         generateId();
         registerEvents();
         initData();
     }
 
-    private void generateId(){
+    private void generateId() {
         //    private Spinner areaListSpinner;
         SearchView searchView = findViewById(R.id.search_area);
-        ImageView imageViewSearchMag = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        ImageView imageViewSearchMag = (ImageView) searchView.findViewById(R.id.search_mag_icon);
         imageViewSearchMag.setImageResource(R.drawable.icn_search_ghanta_gadi);
-        searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchViewAutoComplete.setDropDownBackgroundResource(R.color.white);
+        searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(R.id.search_src_text);
+        searchViewAutoComplete.setDropDownBackgroundResource(R.color.colorWhite);
         searchViewAutoComplete.setThreshold(0);
         ghataGadiCount = 0;
         currlatLng = null;
     }
 
-    private void registerEvents(){
+    private void registerEvents() {
 
         searchViewAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,8 +136,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
         searchViewAutoComplete.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                    if(searchViewAutoComplete.getText().length() == 0)
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    if (searchViewAutoComplete.getText().length() == 0)
                         fetchActiveUserList(null);
                     else
                         fetchActiveUserList(searchViewAutoComplete.getText().toString().trim());
@@ -152,9 +151,9 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
     }
 
-    private void initData(){
-        String LatLng = QuickUtils.prefs.getString(AUtils.LOCATION, "");
-        if(!LatLng.equals("")) {
+    private void initData() {
+        String LatLng = Prefs.getString(AUtils.LOCATION, "");
+        if (!LatLng.equals("")) {
             String[] split = LatLng.split(",");
             String lat = split[0];
             String lng = split[1];
@@ -169,20 +168,20 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mGmap = googleMap;
 
-        if(!AUtils.isNull(mGmap)){
+        if (!AUtils.isNull(mGmap)) {
             fetchActiveUserList(null);
-        }else{
-            Toasty.error(context, "Fatal Error, Unable to load Map").show();
+        } else {
+            AUtils.error(context, "Fatal Error, Unable to load Map");
         }
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.refresh_map){
+        if (item.getItemId() == R.id.refresh_map) {
             fetchActiveUserList(null);
             fetchAreaList(false);
-        }else if(item.getItemId() == android.R.id.home){
+        } else if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
@@ -190,25 +189,25 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onMapLoaded() {
-        if(!AUtils.isNull(bounds)){
-            CameraUpdate update = (ghataGadiCount == 1)? CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 18f) : CameraUpdateFactory.newLatLngBounds(bounds, 150);
+        if (!AUtils.isNull(bounds)) {
+            CameraUpdate update = (ghataGadiCount == 1) ? CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 18f) : CameraUpdateFactory.newLatLngBounds(bounds, 150);
 //        mGmap.moveCamera(update);// LatLag,Zoom value
             mGmap.animateCamera(update);
-        }else{
-            Toasty.error(context, "Fatal Error, Unable to load Map").show();
+        } else {
+            AUtils.error(context, "Fatal Error, Unable to load Map");
         }
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
         ActiveUserListPojo pojo = (ActiveUserListPojo) marker.getTag();
-        String mobileNo = "tel:"+Objects.requireNonNull(pojo).getUserMobile();
+        String mobileNo = "tel:" + Objects.requireNonNull(pojo).getUserMobile();
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(mobileNo)));
     }
 
-    private void plotOnmap(){
+    private void plotOnmap() {
 
-        try{
+        try {
             mGmap.setOnMapLoadedCallback(this);
             mGmap.setOnInfoWindowClickListener(this);
             mGmap.setInfoWindowAdapter(new MapInfoWindowAdapter(this));
@@ -223,8 +222,8 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
             LatLng latLng = null;
             mGmap.clear();
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            for (ActiveUserListPojo pojo : activeUserListPojos){
-                if(!AUtils.isNull(pojo)){
+            for (ActiveUserListPojo pojo : activeUserListPojos) {
+                if (!AUtils.isNull(pojo)) {
 
                     latLng = new LatLng(Double.parseDouble(pojo.getLatitude()), Double.parseDouble(pojo.getLongitude()));
                 }
@@ -233,7 +232,7 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
                         .position(Objects.requireNonNull(latLng))
                         .icon(
                                 BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                                        .decodeResource(getResources(),R.drawable.ic_marker))
+                                        .decodeResource(getResources(), R.drawable.ic_marker))
                         )
                         .title(pojo.getVehcileNumber())
                         .snippet(pojo.getAddress()));
@@ -250,31 +249,31 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
             mGmap.getUiSettings().setZoomControlsEnabled(true);
             mGmap.getUiSettings().setMapToolbarEnabled(false);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void noMarkerView(){
+    private void noMarkerView() {
         mGmap.clear();
-        if(!AUtils.isNull(currlatLng)){
+        if (!AUtils.isNull(currlatLng)) {
             mGmap.animateCamera(CameraUpdateFactory.newLatLngZoom(currlatLng, 16f));
-        }else
+        } else
             mGmap.animateCamera(CameraUpdateFactory.zoomTo(15f));
     }
 
     private void initSpinner() {
         ArrayList<String> spinnerList = new ArrayList<>();
 
-        if(!AUtils.isNull(areaListPojos)){
-            Type type = new TypeToken<List<AreaListPojo>>(){
+        if (!AUtils.isNull(areaListPojos)) {
+            Type type = new TypeToken<List<AreaListPojo>>() {
             }.getType();
             areaListPojos = new Gson().fromJson(
-                    QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                    Prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
                     type);
 
-            for(AreaListPojo pojo: areaListPojos){
+            for (AreaListPojo pojo : areaListPojos) {
                 spinnerList.add(pojo.getArea());
             }
 
@@ -282,22 +281,23 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
             searchViewAutoComplete.setAdapter(adapter);
 
-        }else{
+        } else {
             fetchAreaList(true);
         }
     }
 
-    private void fetchActiveUserList(@Nullable final String areaName){
+    private void fetchActiveUserList(@Nullable final String areaName) {
 
         new MyAsyncTask(context, true, new MyAsyncTask.AsynTaskListener() {
             String fetchPref = null;
             Boolean haveData = false;
+
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
-                if(!AUtils.isNull(areaName)){
+                if (!AUtils.isNull(areaName)) {
                     haveData = syncServer.getActiveUserAreaWise(areaName);
                     fetchPref = AUtils.PREFS.SBA_USER_LIST;
-                }else{
+                } else {
                     haveData = syncServer.getAllActiveUsers();
                     fetchPref = AUtils.PREFS.SBA_ALL_USER_LIST;
                 }
@@ -305,32 +305,33 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public void onFinished() {
-                if(haveData){
-                    Type type = new TypeToken<List<ActiveUserListPojo>>(){
+                if (haveData) {
+                    Type type = new TypeToken<List<ActiveUserListPojo>>() {
                     }.getType();
                     activeUserListPojos = new Gson().fromJson(
-                            QuickUtils.prefs.getString(fetchPref, null),
+                            Prefs.getString(fetchPref, null),
                             type);
 
-                    if(!AUtils.isNull(activeUserListPojos) && !activeUserListPojos.isEmpty()){
+                    if (!AUtils.isNull(activeUserListPojos) && !activeUserListPojos.isEmpty()) {
                         ghataGadiCount = activeUserListPojos.size();
                         plotOnmap();
-                    }else{
+                    } else {
                         noMarkerView();
-                        Toasty.info(context, getString(R.string.no_ghanta_gadi)).show();
+                        AUtils.info(context, getString(R.string.no_ghanta_gadi));
                     }
 
-                }else{
-                    Toasty.error(context, getString(R.string.something_error)).show();
+                } else {
+                    AUtils.error(context, getString(R.string.something_error));
                 }
             }
         }).execute();
     }
 
-    private void fetchAreaList(Boolean isProgress){
+    private void fetchAreaList(Boolean isProgress) {
 
         new MyAsyncTask(context, isProgress, new MyAsyncTask.AsynTaskListener() {
             boolean haveData = false;
+
             @Override
             public void doInBackgroundOpration(SyncServer syncServer) {
                 haveData = syncServer.getAreaList();
@@ -338,23 +339,23 @@ public class TrackerActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public void onFinished() {
-                if(haveData){
+                if (haveData) {
 
-                    Type type = new TypeToken<List<AreaListPojo>>(){
+                    Type type = new TypeToken<List<AreaListPojo>>() {
                     }.getType();
                     areaListPojos = new Gson().fromJson(
-                            QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                            Prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
                             type);
 
-                    if(!AUtils.isNull(areaListPojos) && !areaListPojos.isEmpty()){
+                    if (!AUtils.isNull(areaListPojos) && !areaListPojos.isEmpty()) {
                         initSpinner();
                     }
 //                    else{
 //                        Toasty.error(context, getString(R.string.serverError)).show();
 //                    }
 
-                }else{
-                    Toasty.error(context, getString(R.string.something_error)).show();
+                } else {
+                    AUtils.error(context, getString(R.string.something_error));
                 }
             }
         }).execute();

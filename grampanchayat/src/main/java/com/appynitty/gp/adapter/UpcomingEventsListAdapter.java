@@ -15,8 +15,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import quickutils.core.QuickUtils;
-
 /**
  * Created by Richali Pradhan Gupte on 05-10-2018.
  */

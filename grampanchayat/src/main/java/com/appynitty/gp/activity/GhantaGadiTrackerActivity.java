@@ -7,10 +7,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +17,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.MapInfoWindowAdapter;
 import com.appynitty.gp.controller.SyncServer;
 import com.appynitty.gp.pojo.ActiveUserListPojo;
 import com.appynitty.gp.pojo.AreaListPojo;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,14 +41,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import quickutils.core.QuickUtils;
 
 /**
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
@@ -106,9 +105,9 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
     private void generateId(){
         //    private Spinner areaListSpinner;
         SearchView searchView = findViewById(R.id.search_area);
-        ImageView imageViewSearchMag = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        ImageView imageViewSearchMag = (ImageView) searchView.findViewById(R.id.search_mag_icon);
         imageViewSearchMag.setImageResource(R.drawable.icn_search_ghanta_gadi);
-        searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchViewAutoComplete = (AutoCompleteTextView) searchView.findViewById(R.id.search_src_text);
         searchViewAutoComplete.setDropDownBackgroundResource(R.color.white);
         searchViewAutoComplete.setThreshold(0);
         ghataGadiCount = 0;
@@ -148,7 +147,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
 
     private void initData(){
 
-        String LatLng = QuickUtils.prefs.getString(AUtils.LOCATION, "");
+        String LatLng = Prefs.getString(AUtils.LOCATION, "");
         if(!LatLng.equals("")) {
             String[] split = LatLng.split(",");
             String lat = split[0];
@@ -167,7 +166,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
         if(!AUtils.isNull(mGmap)){
             fetchActiveUserList(null);
         }else{
-            Toasty.error(context, "Fatal Error, Unable to load Map").show();
+            AUtils.error(context, "Fatal Error, Unable to load Map");
         }
 
     }
@@ -182,7 +181,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 
@@ -193,7 +192,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
 //        mGmap.moveCamera(update);// LatLag,Zoom value
             mGmap.animateCamera(update);
         }else{
-            Toasty.error(context, "Fatal Error, Unable to load Map").show();
+            AUtils.error(context, "Fatal Error, Unable to load Map");
         }
     }
 
@@ -269,7 +268,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
             Type type = new TypeToken<List<AreaListPojo>>(){
             }.getType();
             areaListPojos = new Gson().fromJson(
-                    QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                    Prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
                     type);
 
             for(AreaListPojo pojo: areaListPojos){
@@ -307,7 +306,7 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
                     Type type = new TypeToken<List<ActiveUserListPojo>>(){
                     }.getType();
                     activeUserListPojos = new Gson().fromJson(
-                            QuickUtils.prefs.getString(fetchPref, null),
+                            Prefs.getString(fetchPref, null),
                             type);
 
                     if(!AUtils.isNull(activeUserListPojos) && !activeUserListPojos.isEmpty()){
@@ -315,11 +314,11 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
                         plotOnmap();
                     }else{
                         noMarkerView();
-                        Toasty.info(context, getString(R.string.no_ghanta_gadi)).show();
+                        AUtils.info(context, getString(R.string.no_ghanta_gadi));
                     }
 
                 }else{
-                    Toasty.error(context, getString(R.string.something_error)).show();
+                    AUtils.error(context, getString(R.string.something_error));
                 }
             }
         }).execute();
@@ -341,17 +340,17 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
                     Type type = new TypeToken<List<AreaListPojo>>(){
                     }.getType();
                     areaListPojos = new Gson().fromJson(
-                            QuickUtils.prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
+                            Prefs.getString(AUtils.PREFS.SBA_AREA_LIST, null),
                             type);
 
                     if(!AUtils.isNull(areaListPojos) && !areaListPojos.isEmpty()){
                         initSpinner();
                     }else{
-                        Toasty.error(context, getString(R.string.serverError)).show();
+                        AUtils.error(context, getString(R.string.serverError));
                     }
 
                 }else{
-                    Toasty.error(context, getString(R.string.something_error)).show();
+                    AUtils.error(context, getString(R.string.something_error));
                 }
             }
         }).execute();

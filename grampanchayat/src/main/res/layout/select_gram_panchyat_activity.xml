@@ -15,7 +15,7 @@
         android:divider="@color/layout_background_color" />
 
 
-    <com.mithsoft.lib.componants.MyNoDataView
+    <com.riaylibrary.custom_component.MyNoDataView
         android:id="@+id/no_data_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

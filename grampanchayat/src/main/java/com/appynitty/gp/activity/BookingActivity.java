@@ -2,19 +2,17 @@ package com.appynitty.gp.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.InternalWebviewClient;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.MyProgressDialog;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.InternalWebviewClient;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by MiTHUN on 2/7/18.
@@ -65,13 +63,13 @@ public class BookingActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.ENGLISH)) {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index.html?appid=" + Prefs.getString(AUtils.APP_ID, ""));
 
         } else {
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
+            webView.loadUrl(AUtils.SERVER_URL + "Images/Booking/index_Marathi.html?appid=" + Prefs.getString(AUtils.APP_ID, ""));
         }
     }
 
@@ -100,7 +98,7 @@ public class BookingActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 

@@ -14,7 +14,6 @@ import com.appynitty.ghantagaditracker.utils.AUtils;
 
 import java.util.List;
 
-
 /**
  * Created by Ayan Dey.
  */

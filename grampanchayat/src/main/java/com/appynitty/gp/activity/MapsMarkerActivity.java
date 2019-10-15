@@ -3,19 +3,18 @@ package com.appynitty.gp.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.appynitty.gp.R;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
@@ -59,9 +58,9 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
         LatLng latLng = null;
 
         try{
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.APP_LOCATION, ""))) {
+            if (!AUtils.isNullString(Prefs.getString(AUtils.APP_LOCATION, ""))) {
 
-                String[] split = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "").split(",");
+                String[] split = Prefs.getString(AUtils.APP_LOCATION, "").split(",");
                 String lat = split[0];
                 String log = split[1];
 
@@ -77,8 +76,8 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
 
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng)
-                    .title(QuickUtils.prefs.getString(AUtils.GP_NAME_MAR, ""))
-                    .snippet(QuickUtils.prefs.getString(AUtils.GP_DETAILS, "")));
+                    .title(Prefs.getString(AUtils.GP_NAME_MAR, ""))
+                    .snippet(Prefs.getString(AUtils.GP_DETAILS, "")));
 //                .icon(icon));//title to the marker
 
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));// LatLag,Zoom value
@@ -94,7 +93,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 

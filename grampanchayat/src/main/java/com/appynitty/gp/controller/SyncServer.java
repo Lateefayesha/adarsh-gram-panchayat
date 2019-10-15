@@ -60,7 +60,7 @@ import com.appynitty.gp.webservices.YoungBusinessWebservice;
 import com.appynitty.gp.webservices.YoungJobWebservice;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -69,8 +69,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 7/2/18.
@@ -95,20 +93,20 @@ public class SyncServer {
         try {
 
             WorkCheckOutWebservice service = AUtils.createService(WorkCheckOutWebservice.class, AUtils.SERVER_URL);
-            workCheckOutPojoList = service.pullWorkCheckOutList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            workCheckOutPojoList = service.pullWorkCheckOutList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(workCheckOutPojoList) && !workCheckOutPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<WorkCheckOutPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(workCheckOutPojoList, type));
+                Prefs.putString(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(workCheckOutPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.WORK_CHECK_OUT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -124,20 +122,20 @@ public class SyncServer {
         try {
 
             YoungBusinessWebservice service = AUtils.createService(YoungBusinessWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullYoungBusinessList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            youngBusinessPojoList = service.pullYoungBusinessList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<YoungBusinessPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
+                Prefs.putString(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.YOUNG_BUSINESS_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -153,20 +151,20 @@ public class SyncServer {
         try {
 
             SchemesWebservice service = AUtils.createService(SchemesWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullSchemesList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            youngBusinessPojoList = service.pullSchemesList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<YoungBusinessPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
+                Prefs.putString(AUtils.PREFS.SCHEMES_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.SCHEMES_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.SCHEMES_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -183,20 +181,20 @@ public class SyncServer {
         try {
 
             OurGramPanchayatWebservice service = AUtils.createService(OurGramPanchayatWebservice.class, AUtils.SERVER_URL);
-            youngBusinessPojoList = service.pullOurGramPanchayatList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            youngBusinessPojoList = service.pullOurGramPanchayatList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<YoungBusinessPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
+                Prefs.putString(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(youngBusinessPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.OUR_GRAM_PANCHAYT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -212,8 +210,8 @@ public class SyncServer {
         try {
 
             GalleryWebservice service = AUtils.createService(GalleryWebservice.class, AUtils.SERVER_URL);
-            galleryPojo = service.pullGalleryList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            galleryPojo = service.pullGalleryList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(galleryPojo)) {
@@ -224,11 +222,11 @@ public class SyncServer {
 
                 Type typeImages = new TypeToken<List<PhotoGalleryImages>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.IMAGES_GALLERY_POJO_LIST, gson.toJson(photoGalleryImages, typeImages));
+                Prefs.putString(AUtils.PREFS.IMAGES_GALLERY_POJO_LIST, gson.toJson(photoGalleryImages, typeImages));
 
                 Type typeVedio = new TypeToken<List<PhotoGalleryVideo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.VEDIO_GALLERY_POJO_LIST, gson.toJson(photoGalleryVideo, typeVedio));
+                Prefs.putString(AUtils.PREFS.VEDIO_GALLERY_POJO_LIST, gson.toJson(photoGalleryVideo, typeVedio));
 
                 return true;
             }
@@ -246,7 +244,7 @@ public class SyncServer {
         try {
 
             SocialNetworkWebservice service = AUtils.createService(SocialNetworkWebservice.class, AUtils.SERVER_URL);
-            socialNetworkPojoList = service.pullSocialNetworkList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            socialNetworkPojoList = service.pullSocialNetworkList(Prefs.getString(AUtils.APP_ID, ""),
                     "1",
                     "").execute().body();
 
@@ -254,7 +252,7 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<SocialNetworkPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, gson.toJson(socialNetworkPojoList, type));
+                Prefs.putString(AUtils.PREFS.SOCIAL_NETWORK_POJO_LIST, gson.toJson(socialNetworkPojoList, type));
 
                 return true;
             }
@@ -272,8 +270,8 @@ public class SyncServer {
         try {
 
             ContactUsWebservice service = AUtils.createService(ContactUsWebservice.class, AUtils.SERVER_URL);
-            contactUsPojo = service.pullContactUsList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            contactUsPojo = service.pullContactUsList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(contactUsPojo)) {
@@ -284,9 +282,9 @@ public class SyncServer {
 
                 Type typeImages = new TypeToken<List<ContactUsTeamMember>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(contactUsTeamMember, typeImages));
+                Prefs.putString(AUtils.PREFS.CONTACT_US_MEMBER_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(contactUsTeamMember, typeImages));
 
-                QuickUtils.prefs.save(AUtils.PREFS.CONTACT_US_POJO + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(contactUs, ContactUs.class));
+                Prefs.putString(AUtils.PREFS.CONTACT_US_POJO + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(contactUs, ContactUs.class));
 
                 return true;
             }
@@ -305,7 +303,7 @@ public class SyncServer {
 
             RequestBody requestBody1 = null;
             MultipartBody.Part imageFileMultiBody1 = null;
-            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath1())) {
@@ -316,7 +314,7 @@ public class SyncServer {
 
             RequestBody requestBody2 = null;
             MultipartBody.Part imageFileMultiBody2 = null;
-            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath2())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath2());
@@ -326,7 +324,7 @@ public class SyncServer {
 
             RequestBody requestBody3 = null;
             MultipartBody.Part imageFileMultiBody3 = null;
-            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath3())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath3());
@@ -336,7 +334,7 @@ public class SyncServer {
 
             RequestBody requestBody4 = null;
             MultipartBody.Part imageFileMultiBody4 = null;
-            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyBusinessPojo.getImageFilePath4())) {
                 File startImageFile = new File(applyBusinessPojo.getImageFilePath4());
@@ -390,7 +388,7 @@ public class SyncServer {
 
             YoungBusinessWebservice service = AUtils.createService(YoungBusinessWebservice.class, AUtils.SERVER_URL);
 
-            resultPojo = service.saveBusinessApplication(QuickUtils.prefs.getString(AUtils.APP_ID, ""), yBId,
+            resultPojo = service.saveBusinessApplication(Prefs.getString(AUtils.APP_ID, ""), yBId,
                     name, number, address, education, email, adharCardNo, otherSkill,
                     interestedBusiness, aboutYourself, languageId, createdDate,
                     resourceAvailable, helpRequired,
@@ -410,7 +408,7 @@ public class SyncServer {
         try {
 
             TankerBookingWebservice service = AUtils.createService(TankerBookingWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveTankerBooking(QuickUtils.prefs.getString(AUtils.APP_ID, ""), tankerBookingPojo).execute().body();
+            resultPojo = service.saveTankerBooking(Prefs.getString(AUtils.APP_ID, ""), tankerBookingPojo).execute().body();
 
         } catch (Exception e) {
 
@@ -434,7 +432,7 @@ public class SyncServer {
 
             requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
             imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
 
             RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getName());
@@ -456,9 +454,9 @@ public class SyncServer {
             }
 
             RequestBody userId = null;
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
-                Log.e(TAG, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
-                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            if (!AUtils.isNullString(Prefs.getString(AUtils.USER_ID, ""))) {
+                Log.e(TAG, Prefs.getString(AUtils.USER_ID, ""));
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.USER_ID, ""));
             }
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
@@ -469,7 +467,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveCleaningCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveCleaningCompleant(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
@@ -495,7 +493,7 @@ public class SyncServer {
 
             requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
             imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getName());
             RequestBody number = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getNumber());
@@ -516,8 +514,8 @@ public class SyncServer {
             }
 
             RequestBody userId = null;
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
-                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            if (!AUtils.isNullString(Prefs.getString(AUtils.USER_ID, ""))) {
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.USER_ID, ""));
             }
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
@@ -528,7 +526,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveDrinkingWaterCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveDrinkingWaterCompleant(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
@@ -554,7 +552,7 @@ public class SyncServer {
 
             requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
             imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getName());
             RequestBody number = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getNumber());
@@ -575,8 +573,8 @@ public class SyncServer {
             }
 
             RequestBody userId = null;
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
-                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            if (!AUtils.isNullString(Prefs.getString(AUtils.USER_ID, ""))) {
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.USER_ID, ""));
             }
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
@@ -587,7 +585,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveLightCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveLightCompleant(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, userId, typeId,
                     imageFileMultiBody1).execute().body();
@@ -614,7 +612,7 @@ public class SyncServer {
 
             requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
             imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getName());
             RequestBody number = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getNumber());
@@ -635,8 +633,8 @@ public class SyncServer {
             }
 
             RequestBody userId = null;
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
-                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            if (!AUtils.isNullString(Prefs.getString(AUtils.USER_ID, ""))) {
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.USER_ID, ""));
             }
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, cleaningCompleantPojo.getWardNo());
@@ -647,7 +645,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveMaintenanceCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveMaintenanceCompleant(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
@@ -667,7 +665,7 @@ public class SyncServer {
 
             RequestBody requestBody1 = null;
             MultipartBody.Part imageFileMultiBody1 = null;
-            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog1 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath1())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath1());
@@ -677,7 +675,7 @@ public class SyncServer {
 
             RequestBody requestBody2 = null;
             MultipartBody.Part imageFileMultiBody2 = null;
-            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog2 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath2())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath2());
@@ -687,7 +685,7 @@ public class SyncServer {
 
             RequestBody requestBody3 = null;
             MultipartBody.Part imageFileMultiBody3 = null;
-            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog3 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath3())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath3());
@@ -697,7 +695,7 @@ public class SyncServer {
 
             RequestBody requestBody4 = null;
             MultipartBody.Part imageFileMultiBody4 = null;
-            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            RequestBody latLog4 = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             if (!AUtils.isNull(applyJobPojo.getImageFilePath4())) {
                 File startImageFile = new File(applyJobPojo.getImageFilePath4());
@@ -764,7 +762,7 @@ public class SyncServer {
 
             YoungJobWebservice service = AUtils.createService(YoungJobWebservice.class, AUtils.SERVER_URL);
 
-            resultPojo = service.saveYoungJobApplication(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveYoungJobApplication(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, education, email, adharCardNo, otherSkill,
                     interestedJob, aboutYourself, languageId, createdDate,
                     specialization,
@@ -786,15 +784,15 @@ public class SyncServer {
         try {
 
             CertificateWebservice service = AUtils.createService(CertificateWebservice.class, AUtils.SERVER_URL);
-            certificatePojoList = service.pullCertificateList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
+            certificatePojoList = service.pullCertificateList(Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
                     "").execute().body();
 
             if (!AUtils.isNull(certificatePojoList) && !certificatePojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<CertificatePojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.CERTIFICATE_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(certificatePojoList, type));
+                Prefs.putString(AUtils.PREFS.CERTIFICATE_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(certificatePojoList, type));
 
                 return true;
             }
@@ -818,10 +816,10 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<StatePojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.STATE_POJO_LIST, gson.toJson(statePojoList, type));
+                Prefs.putString(AUtils.PREFS.STATE_POJO_LIST, gson.toJson(statePojoList, type));
 
             } else {
-                QuickUtils.prefs.save(AUtils.PREFS.STATE_POJO_LIST, null);
+                Prefs.putString(AUtils.PREFS.STATE_POJO_LIST, null);
             }
             return true;
         } catch (Exception e) {
@@ -844,11 +842,11 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<DistrictPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.DISTRICT_POJO_LIST, gson.toJson(districtPojoList, type));
+                Prefs.putString(AUtils.PREFS.DISTRICT_POJO_LIST, gson.toJson(districtPojoList, type));
 
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.DISTRICT_POJO_LIST, null);
+                Prefs.putString(AUtils.PREFS.DISTRICT_POJO_LIST, null);
             }
             return true;
         } catch (Exception e) {
@@ -871,11 +869,11 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<TahsilPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.TAHSIL_POJO_LIST, gson.toJson(tahsilPojoList, type));
+                Prefs.putString(AUtils.PREFS.TAHSIL_POJO_LIST, gson.toJson(tahsilPojoList, type));
 
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.TAHSIL_POJO_LIST, null);
+                Prefs.putString(AUtils.PREFS.TAHSIL_POJO_LIST, null);
             }
             return true;
         } catch (Exception e) {
@@ -898,11 +896,11 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<GramPanchayatPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.GRAM_PANCHAYAT_LIST, gson.toJson(gramPanchayatPojoList, type));
+                Prefs.putString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, gson.toJson(gramPanchayatPojoList, type));
 
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null);
+                Prefs.putString(AUtils.PREFS.GRAM_PANCHAYAT_LIST, null);
             }
             return true;
         } catch (Exception e) {
@@ -919,7 +917,7 @@ public class SyncServer {
         try {
 
             FcmIdWebservice service = AUtils.createService(FcmIdWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveFcmId(QuickUtils.prefs.getString(AUtils.APP_ID, ""), fcmIdPojo).execute().body();
+            resultPojo = service.saveFcmId(Prefs.getString(AUtils.APP_ID, ""), fcmIdPojo).execute().body();
 
             if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
                 return true;
@@ -938,7 +936,7 @@ public class SyncServer {
         try {
 
             SuggestionWebservice service = AUtils.createService(SuggestionWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveSuggestion(QuickUtils.prefs.getString(AUtils.APP_ID, ""), suggestionPojo).execute().body();
+            resultPojo = service.saveSuggestion(Prefs.getString(AUtils.APP_ID, ""), suggestionPojo).execute().body();
 
         } catch (Exception e) {
 
@@ -955,14 +953,14 @@ public class SyncServer {
         try {
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            complentStatusPojoList = service.pullMyStatusList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
-                    QuickUtils.prefs.getString(AUtils.USER_ID, "")).execute().body();
+            complentStatusPojoList = service.pullMyStatusList(Prefs.getString(AUtils.APP_ID, ""),
+                    Prefs.getString(AUtils.USER_ID, "")).execute().body();
 
             if (!AUtils.isNull(complentStatusPojoList) && !complentStatusPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<ComplentStatusPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(complentStatusPojoList, type));
+                Prefs.putString(AUtils.PREFS.MY_COMPLENT_STATUS_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(complentStatusPojoList, type));
 
                 return true;
             }
@@ -979,7 +977,7 @@ public class SyncServer {
         try {
 
             SamajBavanBookingWebservice service = AUtils.createService(SamajBavanBookingWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveSamajBavanBooking(QuickUtils.prefs.getString(AUtils.APP_ID, ""), samajBavanBookingPojo).execute().body();
+            resultPojo = service.saveSamajBavanBooking(Prefs.getString(AUtils.APP_ID, ""), samajBavanBookingPojo).execute().body();
 
         } catch (Exception e) {
 
@@ -1003,7 +1001,7 @@ public class SyncServer {
 
             requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), startImageFile);
             imageFileMultiBody1 = MultipartBody.Part.createFormData("vmImage1", startImageFile.getName(), requestBody1);
-            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.LOCATION, ""));
+            latLog = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.LOCATION, ""));
 
             RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getName());
             RequestBody number = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getNumber());
@@ -1024,8 +1022,8 @@ public class SyncServer {
             }
 
             RequestBody userId = null;
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.USER_ID, ""))) {
-                userId = RequestBody.create(okhttp3.MultipartBody.FORM, QuickUtils.prefs.getString(AUtils.USER_ID, ""));
+            if (!AUtils.isNullString(Prefs.getString(AUtils.USER_ID, ""))) {
+                userId = RequestBody.create(okhttp3.MultipartBody.FORM, Prefs.getString(AUtils.USER_ID, ""));
             }
 
             RequestBody wardNo = RequestBody.create(okhttp3.MultipartBody.FORM, contructionCompleantPojo.getWardNo());
@@ -1036,7 +1034,7 @@ public class SyncServer {
             RequestBody createdDate = RequestBody.create(okhttp3.MultipartBody.FORM, AUtils.getCurrentDateTime());
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            resultPojo = service.saveConstructionCompleant(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            resultPojo = service.saveConstructionCompleant(Prefs.getString(AUtils.APP_ID, ""),
                     name, number, address, tip, email, wardNo, location, details, languageId, createdDate,
                     latLog, userId, typeId, imageFileMultiBody1).execute().body();
 
@@ -1055,14 +1053,14 @@ public class SyncServer {
         try {
 
             CompleantWebservice service = AUtils.createService(CompleantWebservice.class, AUtils.SERVER_URL);
-            complaintTypePojoList = service.pullTypeList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            complaintTypePojoList = service.pullTypeList(Prefs.getString(AUtils.APP_ID, ""),
                     typeId).execute().body();
 
             if (!AUtils.isNull(complaintTypePojoList) && !complaintTypePojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<ComplaintTypePojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, gson.toJson(complaintTypePojoList, type));
+                Prefs.putString(AUtils.PREFS.COMPLENT_TYPE_POJO_LIST + typeId, gson.toJson(complaintTypePojoList, type));
             }
             return true;
         } catch (Exception e) {
@@ -1079,7 +1077,7 @@ public class SyncServer {
         try {
 
             MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
-            mandiPojoList = service.pullMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, ""),
+            mandiPojoList = service.pullMandiList(Prefs.getString(AUtils.APP_ID, ""),
                     selectedDate
             ).execute().body();
 
@@ -1087,12 +1085,12 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<MandiPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+                Prefs.putString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -1108,18 +1106,18 @@ public class SyncServer {
         try {
 
             MandiWebservice service = AUtils.createService(MandiWebservice.class, AUtils.SERVER_URL);
-            mandiPojoList = service.pullDefaultMandiList(QuickUtils.prefs.getString(AUtils.APP_ID, "")).execute().body();
+            mandiPojoList = service.pullDefaultMandiList(Prefs.getString(AUtils.APP_ID, "")).execute().body();
 
             if (!AUtils.isNull(mandiPojoList) && !mandiPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<MandiPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
+                Prefs.putString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(mandiPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.MANDI_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.MANDI_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -1135,19 +1133,19 @@ public class SyncServer {
         try {
 
             UpcomingEventWebservice service = AUtils.createService(UpcomingEventWebservice.class, AUtils.SERVER_URL);
-            upcomingEventsPojoList = service.pullUpcomingEventList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            upcomingEventsPojoList = service.pullUpcomingEventList(Prefs.getString(AUtils.APP_ID, "")
             ).execute().body();
 
             if (!AUtils.isNull(upcomingEventsPojoList) && !upcomingEventsPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<UpcomingEventsPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(upcomingEventsPojoList, type));
+                Prefs.putString(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(upcomingEventsPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.UPCOMING_EVENT_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -1163,19 +1161,19 @@ public class SyncServer {
         try {
 
             ClassificationWebservice service = AUtils.createService(ClassificationWebservice.class, AUtils.SERVER_URL);
-            classificationPojoList = service.pullClassificationList(QuickUtils.prefs.getString(AUtils.APP_ID, "")
+            classificationPojoList = service.pullClassificationList(Prefs.getString(AUtils.APP_ID, "")
             ).execute().body();
 
             if (!AUtils.isNull(classificationPojoList) && !classificationPojoList.isEmpty()) {
 
                 Type type = new TypeToken<List<MandiPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(classificationPojoList, type));
+                Prefs.putString(AUtils.PREFS.CLASSIFICATION_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), gson.toJson(classificationPojoList, type));
 
                 return true;
             } else {
 
-                QuickUtils.prefs.save(AUtils.PREFS.CLASSIFICATION_POJO_LIST + QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
+                Prefs.putString(AUtils.PREFS.CLASSIFICATION_POJO_LIST + Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID), null);
             }
         } catch (Exception e) {
 
@@ -1192,13 +1190,13 @@ public class SyncServer {
 
             PropertyTaxDetailsWebservice service = AUtils.createService(PropertyTaxDetailsWebservice.class, AUtils.SERVER_URL);
 
-            propertyTaxPojo = service.fetchPropertyDetails(QuickUtils.prefs.getString(AUtils.APP_ID, "1"), propertyNumber)
+            propertyTaxPojo = service.fetchPropertyDetails(Prefs.getString(AUtils.APP_ID, "1"), propertyNumber)
                 .execute().body();
 
             if(!AUtils.isNull(propertyTaxPojo)){
 
                 Type type = new TypeToken<PropertyTaxPojo>() {}.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, gson.toJson(propertyTaxPojo, type));
+                Prefs.putString(AUtils.PREFS.PROPERTY_TAX_DETAILS_POJO_LIST, gson.toJson(propertyTaxPojo, type));
                 return true;
 
             }else{
@@ -1225,7 +1223,7 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<AreaListPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.SBA_AREA_LIST , gson.toJson(areaListPojos, type));
+                Prefs.putString(AUtils.PREFS.SBA_AREA_LIST , gson.toJson(areaListPojos, type));
 
                 return true;
             }
@@ -1250,7 +1248,7 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<ActiveUserListPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.SBA_ALL_USER_LIST , gson.toJson(userListPojos, type));
+                Prefs.putString(AUtils.PREFS.SBA_ALL_USER_LIST , gson.toJson(userListPojos, type));
 
                 return true;
             }
@@ -1275,7 +1273,7 @@ public class SyncServer {
 
                 Type type = new TypeToken<List<ActiveUserListPojo>>() {
                 }.getType();
-                QuickUtils.prefs.save(AUtils.PREFS.SBA_USER_LIST , gson.toJson(areaListPojos, type));
+                Prefs.putString(AUtils.PREFS.SBA_USER_LIST , gson.toJson(areaListPojos, type));
 
                 return true;
             }
@@ -1294,8 +1292,8 @@ public class SyncServer {
         VersionCheckWebService checkService = AUtils.createService(VersionCheckWebService.class, AUtils.SERVER_URL);
 
         try {
-            ResultPojo resultPojo = checkService.checkVersion(QuickUtils.prefs.getString(AUtils.APP_ID, "1"),
-                    QuickUtils.prefs.getInt(AUtils.VERSION_CODE, 0)).execute().body();
+            ResultPojo resultPojo = checkService.checkVersion(Prefs.getString(AUtils.APP_ID, "1"),
+                    Prefs.getInt(AUtils.VERSION_CODE, 0)).execute().body();
 
             if (resultPojo != null) {
                 doUpdate = Boolean.parseBoolean(resultPojo.getStatus());

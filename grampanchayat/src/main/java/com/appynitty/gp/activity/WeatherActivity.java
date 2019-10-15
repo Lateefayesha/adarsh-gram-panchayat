@@ -2,17 +2,16 @@ package com.appynitty.gp.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.InternalWebviewClient;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.mithsoft.lib.activity.BaseActivity;
-
-import quickutils.core.QuickUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.custom_component.InternalWebviewClient;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by MiTHUN on 2/7/18.
@@ -66,16 +65,16 @@ public class WeatherActivity extends BaseActivity {
 
 //        webView.loadUrl("http://bigv.in/shreyansh_development/weath_web/index.html?lat=21.009502&log=79.464432");
 
-        if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.APP_LOCATION, ""))) {
+        if (!AUtils.isNullString(Prefs.getString(AUtils.APP_LOCATION, ""))) {
 
-            String[] split = QuickUtils.prefs.getString(AUtils.APP_LOCATION, "").split(",");
+            String[] split = Prefs.getString(AUtils.APP_LOCATION, "").split(",");
             String lat = split[0];
             String log = split[1];
 
             String name = "";
-            if (!AUtils.isNullString(QuickUtils.prefs.getString(AUtils.GP_WEATHER_NAME, ""))) {
+            if (!AUtils.isNullString(Prefs.getString(AUtils.GP_WEATHER_NAME, ""))) {
 
-                name = QuickUtils.prefs.getString(AUtils.GP_WEATHER_NAME, "");
+                name = Prefs.getString(AUtils.GP_WEATHER_NAME, "");
             }
 
             webView.loadUrl(AUtils.SERVER_URL + "Images/weather_web/index.html?lat=" + lat + "&log=" + log + "&name=" + name);
@@ -108,7 +107,7 @@ public class WeatherActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 

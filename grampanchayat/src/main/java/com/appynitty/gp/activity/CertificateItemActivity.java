@@ -8,9 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
@@ -19,14 +16,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import com.appynitty.gp.R;
+import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.utils.AUtils;
-import com.appynitty.gp.utils.LocaleHelper;
-import com.mithsoft.lib.activity.BaseActivity;
-import com.mithsoft.lib.componants.Toasty;
-
-import quickutils.core.QuickUtils;
-
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 /**
  * Created by MiTHUN on 2/7/18.
@@ -62,7 +59,7 @@ public class CertificateItemActivity extends BaseActivity {
 
         initToolbar();
 
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         WebView webView = findViewById(R.id.aa_ww);
 
@@ -121,7 +118,7 @@ public class CertificateItemActivity extends BaseActivity {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -141,7 +138,7 @@ public class CertificateItemActivity extends BaseActivity {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
+            Prefs.putBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
         } else {
             //You already have the permission, just go ahead.
             downloadFile();
@@ -166,7 +163,7 @@ public class CertificateItemActivity extends BaseActivity {
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(url1, contentDisposition1, mimeType1));
         DownloadManager dm = (DownloadManager) CertificateItemActivity.this.getSystemService(CertificateItemActivity.this.DOWNLOAD_SERVICE);
         dm.enqueue(request);
-        Toasty.success(getApplicationContext(), "Downloading File...", Toast.LENGTH_LONG).show();
+        AUtils.success(getApplicationContext(), "Downloading File...", Toast.LENGTH_LONG);
     }
 
 
@@ -219,7 +216,7 @@ public class CertificateItemActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AUtils.changeLanguage(this, Integer.parseInt(QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
         super.onDestroy();
     }
 }

@@ -13,10 +13,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +20,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.activity.HomeActivity;
@@ -33,13 +33,10 @@ import com.appynitty.gp.pojo.ResultPojo;
 import com.appynitty.gp.utils.AUtils;
 import com.appynitty.gp.utils.MyAsyncTask;
 import com.appynitty.gp.utils.MyFragemtV4;
-import com.mithsoft.lib.componants.Toasty;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.File;
 import java.io.FileOutputStream;
-
-import quickutils.core.QuickUtils;
-
 
 /**
  * Created by MiTHUN on 8/2/18.
@@ -108,7 +105,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.young_business_apply));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
-        QuickUtils.prefs.save(AUtils.FRAGMENT_COUNT, 0);
+        Prefs.putInt(AUtils.FRAGMENT_COUNT, 0);
 
         captureImageView1 = view.findViewById(R.id.yb_cature_img1);
         captureImageView2 = view.findViewById(R.id.yb_cature_img2);
@@ -220,14 +217,14 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
 
                         if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
 
-                            Toasty.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT).show();
+                            AUtils.success(context, "" + getString(R.string.submit_done), Toast.LENGTH_SHORT);
                             AUtils.deleteAllImagesInTheFolder();
                             getFragmentManager().popBackStack();
                         } else {
-                            Toasty.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT).show();
+                            AUtils.error(context, "" + getString(R.string.submit_error), Toast.LENGTH_SHORT);
                         }
                     } else {
-                        Toasty.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT).show();
+                        AUtils.error(context, "" + getString(R.string.serverError), Toast.LENGTH_SHORT);
                     }
 
                 }
@@ -238,31 +235,31 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
     private boolean validateForm() {
 
         if (AUtils.isNullString(nameTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_name), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(mobileNoTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (mobileNoTextView.getText().toString().length() < 10) {
-            Toasty.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_valid_mobile_no), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (!AUtils.isNullString(emailTextView.getText().toString()) && !AUtils.isEmailValid(emailTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_valid_email), Toast.LENGTH_SHORT);
             return false;
         }
 
         if (AUtils.isNullString(addressTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_address), Toast.LENGTH_SHORT);
             return false;
         }
         if (AUtils.isNullString(educationQulificationTextView.getText().toString())) {
-            Toasty.warning(context, getString(R.string.plz_ent_edu_quli), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_edu_quli), Toast.LENGTH_SHORT);
             return false;
         }
 
@@ -273,7 +270,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
 
         if (!AUtils.isNullString(adharCardNoTextView.getText().toString()) && adharCardNoTextView.getText().toString().length() < 12) {
 
-            Toasty.warning(context, getString(R.string.plz_ent_valid_aadhar_no), Toast.LENGTH_SHORT).show();
+            AUtils.warning(context, getString(R.string.plz_ent_valid_aadhar_no), Toast.LENGTH_SHORT);
             return false;
         }
 
@@ -343,7 +340,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.CAMERA, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.CAMERA, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -363,7 +360,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.CAMERA, true);
+            Prefs.putBoolean(Manifest.permission.CAMERA, true);
         } else {
             //You already have the permission, just go ahead.
             isStoragePermissionGiven();
@@ -386,7 +383,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -406,7 +403,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
+            Prefs.putBoolean(Manifest.permission.WRITE_EXTERNAL_STORAGE, true);
         } else {
             //You already have the permission, just go ahead.
             isLocationPermissionGiven();
@@ -429,7 +426,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                     }
                 });
 
-            } else if (QuickUtils.prefs.getBoolean(Manifest.permission.ACCESS_FINE_LOCATION, false)) {
+            } else if (Prefs.getBoolean(Manifest.permission.ACCESS_FINE_LOCATION, false)) {
                 //Previously Permission Request was cancelled with 'Dont Ask Again',
                 // Redirect to Settings after showing Information about why you need the permission
 
@@ -449,7 +446,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
                 }
             }
 
-            QuickUtils.prefs.save(Manifest.permission.ACCESS_FINE_LOCATION, true);
+            Prefs.putBoolean(Manifest.permission.ACCESS_FINE_LOCATION, true);
         } else {
             //You already have the permission, just go ahead.
             CheckGpsStatus();
@@ -514,7 +511,7 @@ public class YoungBusinessApplyFragment extends MyFragemtV4 {
         } catch (Exception e) {
 
             e.printStackTrace();
-            Toasty.error(context, "Unable to add image", Toast.LENGTH_SHORT).show();
+            AUtils.error(context, "Unable to add image", Toast.LENGTH_SHORT);
         }
 
 
