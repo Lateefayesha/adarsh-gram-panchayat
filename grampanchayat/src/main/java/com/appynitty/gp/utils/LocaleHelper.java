@@ -11,8 +11,6 @@ import android.preference.PreferenceManager;
 
 import java.util.Locale;
 
-import quickutils.core.QuickUtils;
-
 /**
  * Created by Richali Pradhan Gupte on 17-10-2018.
  */

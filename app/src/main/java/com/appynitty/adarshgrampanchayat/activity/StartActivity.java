@@ -17,7 +17,7 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
 
-        Prefs.putString(AUtils.LANGUAGE_NAME, "mr");
+        Prefs.putString(AUtils.LANGUAGE_NAME, AUtils.LanguageConstants.MARATHI);
 
         Prefs.putString(AUtils.APP_ID, "1");
         Prefs.putString(AUtils.APP_ID_GG, "1");
