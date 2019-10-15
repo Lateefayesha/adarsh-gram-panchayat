@@ -7,7 +7,10 @@ import android.os.Environment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+
 import com.appynitty.gp.R;
+import com.appynitty.gp.pojo.MenuPojo;
 import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.utils.CommonUtils;
@@ -19,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -77,6 +81,7 @@ public class AUtils extends CommonUtils {
     public static final String GALLERY_POJO = "GalleryPhotoPojo";
     public static final String GALLERY_IMG_PATH = "GalleryImagePath";
     public static final String APP_ID = "AppId";
+    public static final String APP_ID_GG = "AppIdGg";
     public static final String VERSION_CODE = "AppVersion";
 
     public static final String DEFAULT_LANGUAGE_ID = LanguageConstants.MARATHI;
@@ -124,6 +129,8 @@ public class AUtils extends CommonUtils {
 
     public static final String CURRENT_FRAGMENT_TAG = "CurrentFregmentTag";
     public static boolean isRecreate = false;
+
+    private static List<MenuPojo> menuPojoList;
 
     private static HashMap<String, String> menuNavigation = null;
     private static ArrayList<String> menuNavigationList = null;
@@ -389,6 +396,94 @@ public class AUtils extends CommonUtils {
     public static void removeMenuNavigationValue(String parent, String value){
         if(menuNavigation.containsValue(value))
             menuNavigation.remove(parent);
+    }
+
+    public static void setMenuPojoList(List<MenuPojo> list) {
+        AUtils.menuPojoList = list;
+    }
+
+    public static List<MenuPojo> getMenuPojoList(Context context) {
+
+        if(AUtils.isNull(menuPojoList)){
+
+            menuPojoList = new ArrayList<MenuPojo>();
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.our_gram_panchayat), AUtils.Colour.Green,
+                    AUtils.MenuIdConstants.Our_Gram_Panchayat, ContextCompat.getDrawable(context, R.drawable.ic_our_gp)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.work_check_out), AUtils.Colour.Yellow,
+                    AUtils.MenuIdConstants.Work_Check_Out, ContextCompat.getDrawable(context, R.drawable.ic_works_of_grampanchayat)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.young_business), AUtils.Colour.Blue,
+                    AUtils.MenuIdConstants.Young_Bussiness, ContextCompat.getDrawable(context, R.drawable.ic_self_employment)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.young_jobs), AUtils.Colour.Red,
+                    AUtils.MenuIdConstants.Young_Jobs, ContextCompat.getDrawable(context, R.drawable.ic_rojgar)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.cleaning_compleant), AUtils.Colour.Pink,
+                    AUtils.MenuIdConstants.Cleaning_Complaints, ContextCompat.getDrawable(context, R.drawable.ic_1_cleaning_complaint)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.water_compleant), AUtils.Colour.SkyBlue,
+                    AUtils.MenuIdConstants.Water_Complaints, ContextCompat.getDrawable(context, R.drawable.ic_dirnking_water)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.light_compleant), AUtils.Colour.Gray,
+                    AUtils.MenuIdConstants.Light_Complaints, ContextCompat.getDrawable(context, R.drawable.ic_light_solar)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.maintenance_compleant), AUtils.Colour.Khakhi,
+                    AUtils.MenuIdConstants.Maintenance_Complaints, ContextCompat.getDrawable(context, R.drawable.ic_maintenance)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.construction_compleant), AUtils.Colour.Orange,
+                    AUtils.MenuIdConstants.Construction_Complaints, ContextCompat.getDrawable(context, R.drawable.ic_construction)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.complent_status_tab), AUtils.Colour.DarkGray,
+                    AUtils.MenuIdConstants.Complent_Status_Tab, ContextCompat.getDrawable(context, R.drawable.ic_my_grivvance)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.samaj_bavan_booking), AUtils.Colour.Green,
+                    AUtils.MenuIdConstants.Samaj_Bhawan_Booking, ContextCompat.getDrawable(context, R.drawable.ic_samaj_bhavan)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.tanker_booking), AUtils.Colour.SkyBlue,
+                    AUtils.MenuIdConstants.Tanker_Booking, ContextCompat.getDrawable(context, R.drawable.ic_water_tank)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.property_tax), AUtils.Colour.DarkGray,
+                    AUtils.MenuIdConstants.Property_Tax, ContextCompat.getDrawable(context, R.drawable.ic_property_tax)));
+
+        menuPojoList.add(new MenuPojo(context.getString(R.string.mandi), AUtils.Colour.Yellow,
+                AUtils.MenuIdConstants.Mandi_Details, ContextCompat.getDrawable(context, R.drawable.ic_mandi)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.upcoming_programs),AUtils.Colour.Pink,
+                    AUtils.MenuIdConstants.Upcoming_Events, ContextCompat.getDrawable(context, R.drawable.ic_upcoming_program)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.classified), AUtils.Colour.Blue,
+                    AUtils.MenuIdConstants.Classification_Classified, ContextCompat.getDrawable(context, R.drawable.ic_classified)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.schemes), AUtils.Colour.Red,
+                    AUtils.MenuIdConstants.Government_Schemes, ContextCompat.getDrawable(context, R.drawable.ic_goverment_scheme)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.certificate), AUtils.Colour.Gray,
+                    AUtils.MenuIdConstants.Certificate, ContextCompat.getDrawable(context, R.drawable.ic_important_certificates)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.suggestion_tab), AUtils.Colour.Khakhi,
+                    AUtils.MenuIdConstants.Smart_Suggestion, ContextCompat.getDrawable(context, R.drawable.ic_smart_suggestion)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.gallery), AUtils.Colour.Orange,
+                    AUtils.MenuIdConstants.Photo_Video_Gallery, ContextCompat.getDrawable(context, R.drawable.ic_gallery)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.e_payment), AUtils.Colour.DarkGray,
+                    AUtils.MenuIdConstants.Online_EPayment, ContextCompat.getDrawable(context, R.drawable.ic_epayment)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.booking), AUtils.Colour.Green,
+                    AUtils.MenuIdConstants.Online_Booking, ContextCompat.getDrawable(context, R.drawable.ic_booking)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.social_media), AUtils.Colour.Yellow,
+                    AUtils.MenuIdConstants.Social_Network_Media, ContextCompat.getDrawable(context, R.drawable.ic_social_media)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.website), AUtils.Colour.Blue,
+                    AUtils.MenuIdConstants.Online_Website, ContextCompat.getDrawable(context, R.drawable.ic_website)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.map), AUtils.Colour.Red,
+                    AUtils.MenuIdConstants.Online_MAP, ContextCompat.getDrawable(context, R.drawable.ic_map)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.title_activity_ghanta_gadi_tracker), AUtils.Colour.Khakhi,
+                    AUtils.MenuIdConstants.Ghanta_Gadi_Tracker, ContextCompat.getDrawable(context, R.drawable.ic_truck_location)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.utility), AUtils.Colour.Pink,
+                    AUtils.MenuIdConstants.Utility, ContextCompat.getDrawable(context, R.drawable.ic_utility)));
+            menuPojoList.add(new MenuPojo(context.getString(R.string.weather), AUtils.Colour.SkyBlue,
+                    AUtils.MenuIdConstants.Weather, ContextCompat.getDrawable(context, R.drawable.ic_weather)));
+
+            menuPojoList.add(new MenuPojo(context.getString(R.string.contact_us), AUtils.Colour.Gray,
+                    AUtils.MenuIdConstants.Contact_Us, ContextCompat.getDrawable(context, R.drawable.ic_contact_us)));
+        }
+
+        return menuPojoList;
     }
 
     // SharedPreferences Constant

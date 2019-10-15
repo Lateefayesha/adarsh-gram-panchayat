@@ -1242,7 +1242,7 @@ public class SyncServer {
 
         try{
             GhantaGadiTrackerWebservice webservice = AUtils.createService(GhantaGadiTrackerWebservice.class, AUtils.SERVER_URL_SBA);
-            userListPojos = webservice.fetchAllActiveUserList("1").execute().body();
+            userListPojos = webservice.fetchAllActiveUserList(Prefs.getString(AUtils.APP_ID_GG, "")).execute().body();
 
             if(!AUtils.isNull(userListPojos)){
 
@@ -1267,7 +1267,7 @@ public class SyncServer {
         try{
 
             GhantaGadiTrackerWebservice webservice = AUtils.createService(GhantaGadiTrackerWebservice.class, AUtils.SERVER_URL_SBA);
-            areaListPojos = webservice.fetchAreawiseUserList("1", area).execute().body();
+            areaListPojos = webservice.fetchAreawiseUserList(Prefs.getString(AUtils.APP_ID_GG, ""), area).execute().body();
 
             if(!AUtils.isNull(areaListPojos)){
 
