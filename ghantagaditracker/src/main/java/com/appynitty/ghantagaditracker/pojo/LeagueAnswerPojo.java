@@ -5,8 +5,17 @@ package com.appynitty.ghantagaditracker.pojo;
  */
 public class LeagueAnswerPojo {
 
+    private String QuestionID;
     private String Question;
     private String Answer;
+
+    public String getQuestionID() {
+        return QuestionID;
+    }
+
+    public void setQuestionID(String questionID) {
+        QuestionID = questionID;
+    }
 
     public String getQuestion() {
         return Question;
@@ -27,7 +36,8 @@ public class LeagueAnswerPojo {
     @Override
     public String toString() {
         return "LeagueAnswerPojo{" +
-                "Question='" + Question + '\'' +
+                "QuestionID='" + QuestionID + '\'' +
+                ", Question='" + Question + '\'' +
                 ", Answer='" + Answer + '\'' +
                 '}';
     }

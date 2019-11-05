@@ -75,12 +75,13 @@ public class RegistrationAdapterClass {
                 });
     }
 
-    public void callSaveDeviceDetails(String refId) {
+    public void callSaveDeviceDetails(String refId, String mobNo) {
         RegistrationWebservice webservice = AUtils.createService(RegistrationWebservice.class, AUtils.SERVER_URL_SBA);
         webservice.deviceDetails(
                 Prefs.getString(AUtils.APP_ID_GG, ""),
                 Prefs.getString(AUtils.FCM_ID, ""),
-                refId, Prefs.getString(AUtils.USER_ID, ""))
+                refId, Prefs.getString(AUtils.USER_ID, ""),
+                mobNo)
                 .enqueue(new Callback<RegistrationDetailsPojo>() {
                     @Override
                     public void onResponse(@NonNull Call<RegistrationDetailsPojo> call, @NonNull Response<RegistrationDetailsPojo> response) {

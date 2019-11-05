@@ -17,10 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.riaylibrary.utils.CommonUtils;
 import com.riaylibrary.utils.LocaleHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -56,7 +54,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void generateId(){
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_tracker_setting);
         mContext = SettingActivity.this;
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.action_settings);
@@ -68,6 +66,7 @@ public class SettingActivity extends AppCompatActivity {
         languageSpinner = findViewById(R.id.spinner_language);
 
     }
+
     private void registerEvents(){
 
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -98,13 +97,6 @@ public class SettingActivity extends AppCompatActivity {
 
     private void initlanguageSpinner(){
         languageList = AUtils.getLanguageList();
-
-        if(AUtils.isNull(languageList)){
-            languageList = new ArrayList<String>();
-            languageList.add(AUtils.LanguageNameConstants.ENGLISH);
-            languageList.add(AUtils.LanguageNameConstants.MARATHI);
-            languageList.add(AUtils.LanguageNameConstants.HINDI);
-        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_expandable_list_item_1, languageList);
         languageSpinner.setAdapter(adapter);

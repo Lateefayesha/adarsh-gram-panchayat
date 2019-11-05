@@ -76,4 +76,6 @@
     <string name="ward_no">वार्ड क्र</string>
     <string name="ward_no_comp">प्रभाग संख्या *</string>
     <string name="yes_txt">हां</string>
+
+    <string name="sba_game_infotainment">इंफोटेनमेंट</string>
 </resources>

@@ -39,6 +39,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME));
 
+        Prefs.putBoolean(AUtils.PREFS.IS_TRACKER_INTEGRATED, true);
+
         Prefs.putString(AUtils.USER_ID, Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
         Log.d("Refreshed token:", Prefs.getString(AUtils.FCM_ID, "NOT FOUND"));
         versionCheck();

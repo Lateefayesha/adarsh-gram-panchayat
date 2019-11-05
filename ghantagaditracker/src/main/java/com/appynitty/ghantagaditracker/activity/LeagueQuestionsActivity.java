@@ -122,6 +122,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
             String qid = mPojo.getQuestionId();
             pojo.setQuestion(mPojo.getQuestion());
             pojo.setAnswer(answerMap.get(qid));
+            pojo.setQuestionID(qid);
             answerPojoList.add(pojo);
         }
 

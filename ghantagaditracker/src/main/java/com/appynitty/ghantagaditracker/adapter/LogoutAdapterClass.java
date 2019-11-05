@@ -32,7 +32,8 @@ public class LogoutAdapterClass {
     public void callLogoutApi(){
         RegistrationWebservice webservice = AUtils.createService(RegistrationWebservice.class, AUtils.SERVER_URL_SBA);
         webservice.logoutDevice(Prefs.getString(AUtils.APP_ID_GG, ""),
-                Prefs.getString(AUtils.USER_ID, ""))
+                Prefs.getString(AUtils.USER_ID, ""),
+                Prefs.getString(AUtils.PREFS.REFERENCE_ID, ""))
                 .enqueue(new Callback<RegistrationDetailsPojo>() {
                     @Override
                     public void onResponse(@NonNull Call<RegistrationDetailsPojo> call, @NonNull Response<RegistrationDetailsPojo> response) {

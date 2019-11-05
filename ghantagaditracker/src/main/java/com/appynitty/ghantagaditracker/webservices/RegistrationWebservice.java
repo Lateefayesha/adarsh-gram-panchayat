@@ -28,9 +28,11 @@ public interface RegistrationWebservice {
     Call<RegistrationDetailsPojo> deviceDetails(@Header("appId")String appId,
                                                 @Header("FCMID")String fcmId,
                                                 @Header("ReferanceId")String refId,
-                                                @Header("DeviceID")String deviceId);
+                                                @Header("DeviceID")String deviceId,
+                                                @Header("Mobile")String mobile);
 
     @POST("api/Save/DeviceDetailsClear")
     Call<RegistrationDetailsPojo> logoutDevice(@Header("appId")String appId,
-                                               @Header("DeviceID")String deviceId);
+                                               @Header("DeviceID")String deviceId,
+                                               @Header("ReferenceID")String refId);
 }

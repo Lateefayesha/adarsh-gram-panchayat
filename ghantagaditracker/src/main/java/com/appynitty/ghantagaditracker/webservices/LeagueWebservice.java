@@ -19,7 +19,7 @@ import retrofit2.http.POST;
 public interface LeagueWebservice {
 
     @GET("api/Get/Questions")
-    Call<List<LeagueQuestionPojo>> getLeagueQuestions(@Header("appId")String appId);
+    Call<List<LeagueQuestionPojo>> getLeagueQuestions(@Header("appId")String appId, @Header("LangId")String LangId);
 
     @POST("api/Save/AnswerDetails")
     Call<ResultPojo> submitLeagueAnswer(@Header("appId")String appId,

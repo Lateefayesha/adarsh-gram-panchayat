@@ -336,10 +336,6 @@ public class AUtils extends CommonUtils {
         //    Save Data Constant
         String IS_USER_LOGIN = "UserLoginStatus";
         String SKIP_REGISTRATION_PERMANENT = "UserSkipRegistrationPermanent";
-        String USER_MASTER = "UserMasterPojo";
-        String USER_ID = "UserIdORCreatedBy";
-        //    pull list from server dates
-        String WORK_CHECK_OUT_PULL_DATE = "WorkCheckOutPullDate";
 
         String SBA_AREA_LIST = "SbaAreaList";
         String SBA_USER_LIST = "SbaUserList";
@@ -348,6 +344,8 @@ public class AUtils extends CommonUtils {
         String COMPLENT_TYPE_POJO_LIST = "ComplaientTypeList";
         String MY_COMPLENT_STATUS_POJO_LIST = "MyComplentStatusPojoList";
         String REFERENCE_ID = "SBA_REFERENCE_ID";
+        String IS_TRACKER_INTEGRATED = "IsTrackerIntegrated";
+        String USER_MOBILE_NUMBER = "MOBILE_NO";
     }
 
     // Color Constant
@@ -387,6 +385,14 @@ public class AUtils extends CommonUtils {
     }
 
     public static List<String> getLanguageList(){
+
+        if(AUtils.isNull(languageList)){
+            languageList = new ArrayList<String>();
+            languageList.add(AUtils.LanguageNameConstants.ENGLISH);
+            languageList.add(AUtils.LanguageNameConstants.MARATHI);
+            languageList.add(AUtils.LanguageNameConstants.HINDI);
+        }
+
         return languageList;
     }
 

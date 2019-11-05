@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,7 @@ dependencies {
     // manual added libs
 //    implementation files('libs/CommonUtils.jar')
     implementation (name: 'riaylibrary-release', ext: 'aar')
+    implementation(name: 'retrofitconnectionlibrary-release', ext: 'aar')
 
     // Library for Toast Messages
     implementation 'com.valdesekamdem.library:md-toast:0.9.0'
@@ -62,6 +63,14 @@ dependencies {
 
     // Zxing Zebra Crossing QR scanner
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+
+    //    Infotainment
+    implementation (name: 'gamemenulibrary-release', ext: 'aar')
+    implementation(name: 'recyclelibrary-release', ext: 'aar')
+    implementation(name: 'drywetlibrary-release', ext: 'aar')
+    implementation(name: 'hazardlibrary-release', ext: 'aar')
+
+    implementation 'com.airbnb.android:lottie:2.8.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

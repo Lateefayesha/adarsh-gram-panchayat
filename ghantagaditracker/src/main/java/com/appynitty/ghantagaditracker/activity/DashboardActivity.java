@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.appynitty.gamemenulibrary.activities.MenuActivity;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
 import com.appynitty.ghantagaditracker.adapter.LogoutAdapterClass;
@@ -194,13 +195,19 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
         }
 
+        MenuItem infotainment = menu.findItem(R.id.nav_infotainment);
+        if (infotainment.isVisible()) {
+            pojoList.add(new LocalMenuPojo(infotainment.getItemId(),
+                    (String) infotainment.getTitle(),
+                    AUtils.Colour.Orange, ContextCompat.getDrawable(mContext, R.drawable.ic_infotainment)));
+        }
+
 
         if (menu.findItem(R.id.nav_notification).isVisible()) {
             pojoList.add(new LocalMenuPojo(R.id.nav_notification,
                     getResources().getString(R.string.title_activity_notification_list),
                     AUtils.Colour.SkyBlue, ContextCompat.getDrawable(mContext, R.drawable.ic_notification_svg)));
         }
-
 
         inflateMenuGrid(pojoList);
     }
@@ -263,6 +270,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             startActivity(new Intent(mContext, CityPeeActivity.class));
         else if (itemId == R.id.nav_collection_history)
             startActivity(new Intent(mContext, CollectionHistoryActivity.class));
+        else if (itemId == R.id.nav_infotainment)
+            startActivity(new Intent(mContext, MenuActivity.class));
 
     }
 
@@ -292,6 +301,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private void logoutRequestComplete() {
         Prefs.remove(AUtils.PREFS.IS_USER_LOGIN);
         Prefs.remove(AUtils.PREFS.REFERENCE_ID);
+        Prefs.remove(AUtils.PREFS.USER_MOBILE_NUMBER);
         DatabaseHelper db = new DatabaseHelper(mContext);
         db.deleteAllNotification();
         startActivity(new Intent(mContext, RegistrationActivity.class));

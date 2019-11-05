@@ -110,7 +110,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                 break;
                             case RegistrationAdapterClass.RESPONSE_REGISTRATION_VERIFIED:
                                 Prefs.putBoolean(AUtils.PREFS.IS_USER_LOGIN, true);
-                                Prefs.putString(AUtils.PREFS.REFERENCE_ID, refId);
+                                Prefs.putString(AUtils.PREFS.REFERENCE_ID, refId.toUpperCase());
+                                Prefs.putString(AUtils.PREFS.USER_MOBILE_NUMBER, mobNo);
                                 startDashboard();
                                 break;
                         }
@@ -185,7 +186,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     txtOtp.setError(getResources().getString(R.string.otp_hint));
                 else if (userOtp.equals(otp)) {
                     progressDialog.show();
-                    registrationAdapterClass.callSaveDeviceDetails(refId);
+                    registrationAdapterClass.callSaveDeviceDetails(refId, mobNo);
                 } else
                     AUtils.error(mContext, getResources().getString(R.string.otp_hint_valid));
             }

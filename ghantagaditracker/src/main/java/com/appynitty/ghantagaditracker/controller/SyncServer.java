@@ -285,7 +285,9 @@ public class SyncServer {
 
             LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL);
             questionPojos = webservice.getLeagueQuestions(
-                    Prefs.getString(AUtils.APP_ID, "")).execute().body();
+                    Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME)))
+                    .execute().body();
 
         } catch (Exception e) {
             e.printStackTrace();
