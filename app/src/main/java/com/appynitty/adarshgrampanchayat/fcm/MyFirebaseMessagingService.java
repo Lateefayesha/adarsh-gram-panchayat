@@ -32,10 +32,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.appynitty.adarshgrampanchayat.R;
-import com.appynitty.ghantagaditracker.activity.DashboardActivity;
-import com.appynitty.ghantagaditracker.controller.Notification;
-import com.appynitty.ghantagaditracker.utils.AUtils;
-import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
+import com.appynitty.gp.utils.AUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -68,8 +65,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "MESSAGE : " + remoteMessage.getData().get("message"));
         Log.d(TAG, "BODY : " + remoteMessage.getData().get("body"));
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
+//        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+//        databaseHelper.insertNotification(remoteMessage.getData().get("message"), AUtils.getNotificationDateTime(), Notification.STATUS_UNREAD);
 
         sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"), remoteMessage.getData().get("body"));
     }
@@ -82,44 +79,44 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(String title, String messageBody, String type) {
 
-        Intent intent = new Intent(this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(AUtils.FCM_NOTI, true);
-        intent.putExtra(AUtils.FCM_NOTI_TYPE, type);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT);
-
-
-        Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(),
-                R.drawable.notify);
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        String channelId = "mChannel_DEMO";
-        CharSequence channelName = getResources().getString(R.string.app_name);
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getPackageName())
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(title)
-//                .setContentText(messageBody)// single line message
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody)) // Multi line message
-                .setTicker(getString(R.string.app_name))
-                .setColor(Color.parseColor("#FFA726"))
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setLargeIcon(Bitmap.createScaledBitmap(largeIconBitmap, 128, 128, false))
-                .setContentIntent(pendingIntent)
-                .setChannelId(channelId);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT));
-
-        if (notificationManager != null) {
-            notificationManager.notify(0, notificationBuilder.build());
-        }
+//        Intent intent = new Intent(this, DashboardActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra(AUtils.FCM_NOTI, true);
+//        intent.putExtra(AUtils.FCM_NOTI_TYPE, type);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+//                PendingIntent.FLAG_ONE_SHOT);
+//
+//
+//        Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(),
+//                R.drawable.notify);
+//
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//
+//        String channelId = "mChannel_DEMO";
+//        CharSequence channelName = getResources().getString(R.string.app_name);
+//
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getPackageName())
+//                .setSmallIcon(R.drawable.ic_notification)
+//                .setContentTitle(title)
+////                .setContentText(messageBody)// single line message
+//                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody)) // Multi line message
+//                .setTicker(getString(R.string.app_name))
+//                .setColor(Color.parseColor("#FFA726"))
+//                .setAutoCancel(true)
+//                .setSound(defaultSoundUri)
+//                .setLargeIcon(Bitmap.createScaledBitmap(largeIconBitmap, 128, 128, false))
+//                .setContentIntent(pendingIntent)
+//                .setChannelId(channelId);
+//
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT));
+//
+//        if (notificationManager != null) {
+//            notificationManager.notify(0, notificationBuilder.build());
+//        }
     }
 
 }

@@ -14,124 +14,116 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name="com.appynitty.gp.utils.MyApplicationConstants"
-        android:allowBackup="true"
-        tools:replace="android:allowBackup"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_config">
 
         <activity
-            android:name="com.appynitty.gp.activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.appynitty.gp.activity.SmartSplashScreenActivity"
+            android:name=".activity.SmartSplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.SplashScreenActivity"
+            android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.SelectPlaceActivity"
+            android:name=".activity.SelectPlaceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.SelectGramPanchayatActivity"
+            android:name=".activity.SelectGramPanchayatActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.SocialNetworkActivity"
+            android:name=".activity.SocialNetworkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.ViewImageActivity"
+            android:name=".activity.ViewImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.mithsoft.lib.filepicker.FileChooserActivity"
+            android:name="com.riaylibrary.custom_component.FileChooserActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.appynitty.gp.activity.CertificateItemActivity"
+            android:name=".activity.CertificateItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.UtilityActivity"
+            android:name=".activity.UtilityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.WeatherActivity"
+            android:name=".activity.WeatherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.AboutAppynittyActivity"
+            android:name=".activity.AboutAppynittyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.MapsMarkerActivity"
+            android:name=".activity.MapsMarkerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.GhantaGadiTrackerActivity"
+            android:name=".activity.GhantaGadiTrackerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.WebsiteActivity"
+            android:name=".activity.WebsiteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.EPaymentActivity"
+            android:name=".activity.EPaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.BookingActivity"
+            android:name=".activity.BookingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.MyComlaintDetailsActivity"
+            android:name=".activity.MyComlaintDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.MandiDetailsActivity"
+            android:name=".activity.MandiDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name="com.appynitty.gp.activity.ClassificationActivity"
+            android:name=".activity.ClassificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name="com.appynitty.gp.activity.PropertTaxDetailsActivity"
+        <activity android:name=".activity.PropertTaxDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name="com.appynitty.gp.activity.PaymentGatewayWebpageActivity"
+        <activity android:name=".activity.PaymentGatewayWebpageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <service android:name="com.appynitty.gp.services.LocationMonitoringService" />
+        <service android:name=".services.LocationMonitoringService" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

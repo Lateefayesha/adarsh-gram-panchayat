@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">खिरगव्हाण ग्राम पंचायत</string>
+    <string name="app_name" translatable="false">खिरगव्हाण ग्राम पंचायत</string>
     <string name="smart_gram_panchayat">Smart Gram Panchayat</string>
 
     <string name="noInternet">Please check your internet connection and try again</string>

@@ -50,7 +50,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // manual added libs
-//    implementation files('libs/CommonUtils.jar')
     implementation (name: 'riaylibrary-release', ext: 'aar')
 
     // Library for Toast Messages

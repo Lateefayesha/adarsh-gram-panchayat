@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appynitty.gp.R;
 import com.appynitty.gp.dialogs.LanguageChangeAlertDialog;
+import com.appynitty.gp.pojo.LanguagePojo;
 import com.appynitty.gp.utils.AUtils;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class LanguageChangeListAdapter extends RecyclerView.Adapter<LanguageChangeListAdapter.LanguageChangeViewHolder> {
 
     private Context mContext;
-    private ArrayList<LanguageChangeAlertDialog.LanguagePojo> pojoList;
+    private ArrayList<LanguagePojo> pojoList;
     private LanguageAdapterListner languageAdapterListner;
 
     public LanguageChangeListAdapter(Context context) {
@@ -32,11 +33,11 @@ public class LanguageChangeListAdapter extends RecyclerView.Adapter<LanguageChan
         this.languageAdapterListner = languageAdapterListner;
     }
 
-    public ArrayList<LanguageChangeAlertDialog.LanguagePojo> getPojoList() {
+    public ArrayList<LanguagePojo> getPojoList() {
         return pojoList;
     }
 
-    public void setPojoList(ArrayList<LanguageChangeAlertDialog.LanguagePojo> pojoList) {
+    public void setPojoList(ArrayList<LanguagePojo> pojoList) {
         this.pojoList = pojoList;
     }
 
@@ -56,7 +57,7 @@ public class LanguageChangeListAdapter extends RecyclerView.Adapter<LanguageChan
     @Override
     public void onBindViewHolder(LanguageChangeViewHolder holder, int position) {
         if(!AUtils.isNull(getPojoList()) && getPojoList().size()>0){
-            final LanguageChangeAlertDialog.LanguagePojo pojo = getPojoList().get(position);
+            final LanguagePojo pojo = getPojoList().get(position);
             holder.textView.setText(pojo.getName());
             holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

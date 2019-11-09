@@ -71,7 +71,7 @@ public class MainMenuAdapter extends ArrayAdapter<MenuPojo> {
         if (!AUtils.isNull(menuList) && !menuList.isEmpty()) {
 
             final MenuPojo menuPojo = menuList.get(position);
-            holder.menuNameTextView.setText(menuPojo.getMenuName());
+            holder.menuNameTextView.setText(context.getString(menuPojo.getMenuName()));
 //            holder.menuCardView.setCardBackgroundColor(Color.parseColor(menuPojo.getColor()));
 
             holder.title_background.setBackgroundColor(Color.parseColor(menuPojo.getColor()));

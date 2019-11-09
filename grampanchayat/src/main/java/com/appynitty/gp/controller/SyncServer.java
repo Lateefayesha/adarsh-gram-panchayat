@@ -94,7 +94,7 @@ public class SyncServer {
 
             WorkCheckOutWebservice service = AUtils.createService(WorkCheckOutWebservice.class, AUtils.SERVER_URL);
             workCheckOutPojoList = service.pullWorkCheckOutList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(workCheckOutPojoList) && !workCheckOutPojoList.isEmpty()) {
@@ -123,7 +123,7 @@ public class SyncServer {
 
             YoungBusinessWebservice service = AUtils.createService(YoungBusinessWebservice.class, AUtils.SERVER_URL);
             youngBusinessPojoList = service.pullYoungBusinessList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
@@ -152,7 +152,7 @@ public class SyncServer {
 
             SchemesWebservice service = AUtils.createService(SchemesWebservice.class, AUtils.SERVER_URL);
             youngBusinessPojoList = service.pullSchemesList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
@@ -182,7 +182,7 @@ public class SyncServer {
 
             OurGramPanchayatWebservice service = AUtils.createService(OurGramPanchayatWebservice.class, AUtils.SERVER_URL);
             youngBusinessPojoList = service.pullOurGramPanchayatList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(youngBusinessPojoList) && !youngBusinessPojoList.isEmpty()) {
@@ -211,7 +211,7 @@ public class SyncServer {
 
             GalleryWebservice service = AUtils.createService(GalleryWebservice.class, AUtils.SERVER_URL);
             galleryPojo = service.pullGalleryList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(galleryPojo)) {
@@ -271,7 +271,7 @@ public class SyncServer {
 
             ContactUsWebservice service = AUtils.createService(ContactUsWebservice.class, AUtils.SERVER_URL);
             contactUsPojo = service.pullContactUsList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(contactUsPojo)) {
@@ -785,7 +785,7 @@ public class SyncServer {
 
             CertificateWebservice service = AUtils.createService(CertificateWebservice.class, AUtils.SERVER_URL);
             certificatePojoList = service.pullCertificateList(Prefs.getString(AUtils.APP_ID, ""),
-                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)),
+                    Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID),
                     "").execute().body();
 
             if (!AUtils.isNull(certificatePojoList) && !certificatePojoList.isEmpty()) {

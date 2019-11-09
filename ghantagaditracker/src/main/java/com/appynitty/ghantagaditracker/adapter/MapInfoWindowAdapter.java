@@ -33,7 +33,7 @@ public class MapInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     @Override
     public View getInfoContents(Marker marker) {
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_info_window_details, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_info_window_details_tracker, null);
         ViewElements elements = new ViewElements();
 
         elements.userName = view.findViewById(R.id.user_name);

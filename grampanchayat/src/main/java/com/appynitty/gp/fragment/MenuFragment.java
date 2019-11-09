@@ -93,7 +93,7 @@ public class MenuFragment extends MyFragemtV4 {
                 !AUtils.isNullString(Prefs.getString(AUtils.GP_NAME_MAR, ""))) {
 
 //            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.ENGLISH)) {
+            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageIDConstants.ENGLISH)) {
                 ((HomeActivity) getActivity()).setTitleActionBar(Prefs.getString(AUtils.GP_NAME, ""));
             } else {
                 ((HomeActivity) getActivity()).setTitleActionBar(Prefs.getString(AUtils.GP_NAME_MAR, ""));

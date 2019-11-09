@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appynitty.gp.R;
 import com.appynitty.gp.adapter.LanguageChangeListAdapter;
 import com.appynitty.gp.customComponents.RecyclerViewDecorator;
+import com.appynitty.gp.pojo.LanguagePojo;
 import com.appynitty.gp.utils.AUtils;
 import com.riaylibrary.utils.CommonUtils;
 
@@ -54,7 +55,6 @@ public class LanguageChangeAlertDialog extends AlertDialog {
 
     private void generateId() {
         builder = new AlertDialog.Builder(mContext);
-        pojoList = new ArrayList<>();
         dialogView = LayoutInflater.from(mContext).inflate(R.layout.layout_language_list, null);
 
         languageRecyclerView = dialogView.findViewById(R.id.language_recycler);
@@ -75,9 +75,13 @@ public class LanguageChangeAlertDialog extends AlertDialog {
     }
 
     private void initData() {
-        pojoList.add(new LanguagePojo("English", AUtils.LanguageConstants.ENGLISH));
-        pojoList.add(new LanguagePojo("मराठी", AUtils.LanguageConstants.MARATHI));
-        pojoList.add(new LanguagePojo("हिंदी", AUtils.LanguageConstants.HINDI));
+        pojoList = AUtils.getLanguagePojoList();
+        if(AUtils.isNull(pojoList)){
+            pojoList = new ArrayList<>();
+            pojoList.add(new LanguagePojo("English", AUtils.LanguageConstants.ENGLISH));
+            pojoList.add(new LanguagePojo(AUtils.LanguageNameConstants.MARATHI, AUtils.LanguageConstants.MARATHI));
+            pojoList.add(new LanguagePojo(AUtils.LanguageNameConstants.HINDI, AUtils.LanguageConstants.HINDI));
+        }
         initView();
     }
 
@@ -92,31 +96,5 @@ public class LanguageChangeAlertDialog extends AlertDialog {
 
     public interface LanguageSelectListener{
         void onLanguageSelect(String selectedLanguage);
-    }
-
-    public class LanguagePojo{
-        private String name;
-        private String id;
-
-        LanguagePojo(String name, String id) {
-            this.name = name;
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
     }
 }

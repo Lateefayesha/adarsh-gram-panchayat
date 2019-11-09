@@ -144,7 +144,7 @@ public class SelectGramPanchayatActivity extends BaseActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.serch_menu, menu);
+        getMenuInflater().inflate(R.menu.search_menu, menu);
 
         final MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) myActionMenuItem.getActionView();

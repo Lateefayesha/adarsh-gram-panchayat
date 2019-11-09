@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">खिरगव्हाण ग्राम पंचायत</string>
     <string name="aadhar_card_no">आधार कार्ड नं</string>
     <string name="about_yourself">अपने बारे में</string>
     <string name="action_about_appynitty">आत्मीयता के बारे में</string>

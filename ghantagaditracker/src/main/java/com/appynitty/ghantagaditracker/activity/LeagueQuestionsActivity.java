@@ -25,6 +25,7 @@ import com.appynitty.ghantagaditracker.pojo.ResultPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.ArrayList;
@@ -120,7 +121,7 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
         for (LeagueQuestionPojo mPojo : questionPojoList) {
             LeagueAnswerPojo pojo = new LeagueAnswerPojo();
             String qid = mPojo.getQuestionId();
-            pojo.setQuestion(mPojo.getQuestion());
+//            pojo.setQuestion(mPojo.getQuestion());
             pojo.setAnswer(answerMap.get(qid));
             pojo.setQuestionID(qid);
             answerPojoList.add(pojo);
@@ -186,7 +187,15 @@ public class LeagueQuestionsActivity extends AppCompatActivity {
             @Override
             public void onFinished() {
                 if (!AUtils.isNull(resultPojo)) {
-                    AUtils.success(mContext, resultPojo.getMessage(), Toast.LENGTH_LONG);
+                    switch(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME)){
+                        case AUtils.LanguageConstants.MARATHI:
+                            AUtils.success(mContext, resultPojo.getMessageMar(), Toast.LENGTH_LONG);
+                            break;
+                        case AUtils.LanguageConstants.HINDI:
+                            AUtils.success(mContext, resultPojo.getMessageHindi(), Toast.LENGTH_LONG);
+                            break;
+                        default: AUtils.success(mContext, resultPojo.getMessage(), Toast.LENGTH_LONG);
+                    }
                     ((Activity) mContext).finish();
                 } else {
                     AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG);

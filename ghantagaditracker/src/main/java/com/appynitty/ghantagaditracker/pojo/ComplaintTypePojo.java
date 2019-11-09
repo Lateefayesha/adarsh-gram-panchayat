@@ -13,6 +13,7 @@ public class ComplaintTypePojo implements Serializable {
     private String id;
     private String description;
     private String descriptionMar;
+    private String descriptionHindi;
 
     public String getId() {
         return id;
@@ -38,13 +39,23 @@ public class ComplaintTypePojo implements Serializable {
         this.descriptionMar = descriptionMar;
     }
 
+    public String getDescriptionHindi() {
+        return descriptionHindi;
+    }
+
+    public void setDescriptionHindi(String descriptionHindi) {
+        this.descriptionHindi = descriptionHindi;
+    }
+
     @Override
     public String toString() {
 
-        if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME).equals(AUtils.LanguageConstants.ENGLISH)) {
-            return description;
-        } else {
-            return descriptionMar;
+        switch (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME)){
+            case AUtils.LanguageConstants.MARATHI:
+                return descriptionMar;
+            case AUtils.LanguageConstants.HINDI:
+                return descriptionHindi;
+            default: return description;
         }
     }
 }

@@ -261,46 +261,46 @@ public class MenuFragmentLess extends MyFragemtV4 {
 
         Log.e(TAG,getResources().getString(R.string.our_gram_panchayat));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.our_gram_panchayat), AUtils.Colour.Green));
-        menuPojoList.add(new MenuPojo(getString(R.string.work_check_out), AUtils.Colour.Yellow));
+        menuPojoList.add(new MenuPojo(R.string.our_gram_panchayat, AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(R.string.work_check_out, AUtils.Colour.Yellow));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.young_business), AUtils.Colour.Blue));
-        menuPojoList.add(new MenuPojo(getString(R.string.young_jobs), AUtils.Colour.Red));
+        menuPojoList.add(new MenuPojo(R.string.young_business, AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(R.string.young_jobs, AUtils.Colour.Red));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.cleaning_compleant), AUtils.Colour.Pink));
-        menuPojoList.add(new MenuPojo(getString(R.string.water_compleant), AUtils.Colour.SkyBlue));
+        menuPojoList.add(new MenuPojo(R.string.cleaning_compleant, AUtils.Colour.Pink));
+        menuPojoList.add(new MenuPojo(R.string.water_compleant, AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.light_compleant), AUtils.Colour.Gray));
-        menuPojoList.add(new MenuPojo(getString(R.string.maintenance_compleant), AUtils.Colour.Khakhi));
+        menuPojoList.add(new MenuPojo(R.string.light_compleant, AUtils.Colour.Gray));
+        menuPojoList.add(new MenuPojo(R.string.maintenance_compleant, AUtils.Colour.Khakhi));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.construction_compleant), AUtils.Colour.Orange));
-        menuPojoList.add(new MenuPojo(getString(R.string.complent_status_tab), AUtils.Colour.DarkGray));
+        menuPojoList.add(new MenuPojo(R.string.construction_compleant, AUtils.Colour.Orange));
+        menuPojoList.add(new MenuPojo(R.string.complent_status_tab, AUtils.Colour.DarkGray));
 
-//        menuPojoList.add(new MenuPojo(getString(R.string.samaj_bavan_booking), AUtils.Colour.Green));
-//        menuPojoList.add(new MenuPojo(getString(R.string.tanker_booking), AUtils.Colour.SkyBlue));
+        menuPojoList.add(new MenuPojo(R.string.samaj_bavan_booking, AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(R.string.tanker_booking, AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.mandi), AUtils.Colour.Yellow));
-        menuPojoList.add(new MenuPojo(getString(R.string.upcoming_programs),AUtils.Colour.Pink));
+        menuPojoList.add(new MenuPojo(R.string.mandi, AUtils.Colour.Yellow));
+        menuPojoList.add(new MenuPojo(R.string.upcoming_programs,AUtils.Colour.Pink));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.classified), AUtils.Colour.Blue));
-        menuPojoList.add(new MenuPojo(getString(R.string.schemes), AUtils.Colour.Red));
+        menuPojoList.add(new MenuPojo(R.string.classified, AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(R.string.schemes, AUtils.Colour.Red));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.certificate), AUtils.Colour.Gray));
-        menuPojoList.add(new MenuPojo(getString(R.string.suggestion_tab), AUtils.Colour.Khakhi));
+        menuPojoList.add(new MenuPojo(R.string.certificate, AUtils.Colour.Gray));
+        menuPojoList.add(new MenuPojo(R.string.suggestion_tab, AUtils.Colour.Khakhi));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.gallery), AUtils.Colour.Orange));
-        menuPojoList.add(new MenuPojo(getString(R.string.e_payment), AUtils.Colour.DarkGray));
+        menuPojoList.add(new MenuPojo(R.string.gallery, AUtils.Colour.Orange));
+        menuPojoList.add(new MenuPojo(R.string.e_payment, AUtils.Colour.DarkGray));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.booking), AUtils.Colour.Green));
-        menuPojoList.add(new MenuPojo(getString(R.string.social_media), AUtils.Colour.Yellow));
+        menuPojoList.add(new MenuPojo(R.string.booking, AUtils.Colour.Green));
+        menuPojoList.add(new MenuPojo(R.string.social_media, AUtils.Colour.Yellow));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.website), AUtils.Colour.Blue));
-        menuPojoList.add(new MenuPojo(getString(R.string.map), AUtils.Colour.Red));
+        menuPojoList.add(new MenuPojo(R.string.website, AUtils.Colour.Blue));
+        menuPojoList.add(new MenuPojo(R.string.map, AUtils.Colour.Red));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.utility), AUtils.Colour.Pink));
-        menuPojoList.add(new MenuPojo(getString(R.string.weather), AUtils.Colour.SkyBlue));
+        menuPojoList.add(new MenuPojo(R.string.utility, AUtils.Colour.Pink));
+        menuPojoList.add(new MenuPojo(R.string.weather, AUtils.Colour.SkyBlue));
 
-        menuPojoList.add(new MenuPojo(getString(R.string.contact_us), AUtils.Colour.Gray));
+        menuPojoList.add(new MenuPojo(R.string.contact_us, AUtils.Colour.Gray));
 
         MainMenuAdapter mainMenuAdaptor = new MainMenuAdapter(context, menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);

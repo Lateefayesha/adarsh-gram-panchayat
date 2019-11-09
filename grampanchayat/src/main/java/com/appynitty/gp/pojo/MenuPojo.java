@@ -8,29 +8,29 @@ import android.graphics.drawable.Drawable;
 
 public class MenuPojo {
 
-    private String menuName;
+    private int menuName;
     private Integer image;
     private String color;
     private String menuId;
     private Drawable menuIcon;
 
-    public MenuPojo(String menuName, String color) {
+    public MenuPojo(int menuName, String color) {
         this.menuName = menuName;
         this.color = color;
     }
 
-    public MenuPojo(String menuName, String color, String id, Drawable icon) {
+    public MenuPojo(int menuName, String color, String id, Drawable icon) {
         this.menuName = menuName;
         this.color = color;
         this.menuId = id;
         this.menuIcon = icon;
     }
 
-    public String getMenuName() {
+    public int getMenuName() {
         return menuName;
     }
 
-    public void setMenuName(String menuName) {
+    public void setMenuName(int menuName) {
         this.menuName = menuName;
     }
 
