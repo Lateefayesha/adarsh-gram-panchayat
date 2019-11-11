@@ -9,9 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.appynitty.gp.R;
 import com.appynitty.gp.controller.BaseActivity;
 import com.appynitty.gp.utils.AUtils;
+import com.appynitty.gp.utils.LocaleHelper;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.InternalWebviewClient;
-import com.riaylibrary.utils.LocaleHelper;
+
+import java.util.Objects;
 
 /**
  * Created by MiTHUN on 2/7/18.
@@ -46,11 +48,12 @@ public class UtilityActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.utility));
+        toolbar.setTitle(getResources().getString(R.string.utility));
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
-
 
     @Override
     protected void initData() {
@@ -63,13 +66,20 @@ public class UtilityActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-//        if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        String mURL = null;
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + Prefs.getString(AUtils.TYPE, "gp") + "/index.html?appid=" + Prefs.getString(AUtils.APP_ID, ""));
-//        } else {
+        switch (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)){
+            case AUtils.LanguageIDConstants.MARATHI:
+                mURL = AUtils.SERVER_URL + "Images/utilities/" + Prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+                break;
+            case AUtils.LanguageIDConstants.HINDI:
+                mURL = AUtils.SERVER_URL + "Images/utilities/" + Prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+                break;
+            default:
+                mURL = AUtils.SERVER_URL + "Images/utilities/" + Prefs.getString(AUtils.TYPE, "gp") + "/index.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+        }
 
-//            webView.loadUrl(AUtils.SERVER_URL + "Images/utilities/" + Prefs.getString(AUtils.TYPE, "gp") + "/index_marathi.html?appid=" + Prefs.getString(AUtils.APP_ID, ""));
-//        }
+        webView.loadUrl(mURL);
     }
 
     @Override
@@ -83,7 +93,6 @@ public class UtilityActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onBackPressed() {
 
@@ -94,12 +103,6 @@ public class UtilityActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 
     @Override

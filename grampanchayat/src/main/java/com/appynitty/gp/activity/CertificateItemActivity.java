@@ -25,6 +25,8 @@ import com.appynitty.gp.utils.AUtils;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 /**
  * Created by MiTHUN on 2/7/18.
  */
@@ -93,9 +95,9 @@ public class CertificateItemActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
-
 
     @Override
     protected void initData() {
@@ -214,9 +216,4 @@ public class CertificateItemActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
 }

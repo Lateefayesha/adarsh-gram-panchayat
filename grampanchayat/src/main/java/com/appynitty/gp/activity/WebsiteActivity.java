@@ -15,6 +15,8 @@ import com.riaylibrary.custom_component.InternalWebviewClient;
 import com.riaylibrary.custom_component.MyNoDataView;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 /**
  * Created by MiTHUN on 2/7/18.
  */
@@ -52,9 +54,11 @@ public class WebsiteActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.website));
+        toolbar.setTitle(getResources().getString(R.string.website));
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -72,14 +76,21 @@ public class WebsiteActivity extends BaseActivity {
         if (!AUtils.isNullString(Prefs.getString(AUtils.WEBSITE_ENG, ""))
                 && !AUtils.isNullString(Prefs.getString(AUtils.WEBSITE_ENG, ""))) {
 
-//            if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+            String mURL = null;
 
-                webView.loadUrl(Prefs.getString(AUtils.WEBSITE_ENG, ""));
+            switch (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)){
+                case AUtils.LanguageIDConstants.MARATHI:
+                    mURL = Prefs.getString(AUtils.WEBSITE_MAR, "");
+                    break;
+                case AUtils.LanguageIDConstants.HINDI:
+                    mURL = Prefs.getString(AUtils.WEBSITE_HI, "");
+                    break;
+                default:
+                    mURL = Prefs.getString(AUtils.WEBSITE_ENG, "");
+            }
 
-//            } else {
+            webView.loadUrl(mURL);
 
-//                webView.loadUrl(Prefs.getString(AUtils.WEBSITE_MAR, ""));
-//            }
         } else {
 
             webView.setVisibility(View.GONE);
@@ -110,12 +121,6 @@ public class WebsiteActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 
     @Override

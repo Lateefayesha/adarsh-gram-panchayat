@@ -13,6 +13,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.InternalWebviewClient;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 public class PaymentGatewayWebpageActivity extends BaseActivity {
 
     private WebView webView;
@@ -42,9 +44,9 @@ public class PaymentGatewayWebpageActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.property_online_payment));
+        toolbar.setTitle(getResources().getString(R.string.property_online_payment));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -84,11 +86,5 @@ public class PaymentGatewayWebpageActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 }

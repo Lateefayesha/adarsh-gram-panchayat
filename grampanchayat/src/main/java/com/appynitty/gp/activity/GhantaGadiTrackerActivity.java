@@ -180,12 +180,6 @@ public class GhantaGadiTrackerActivity extends AppCompatActivity implements OnMa
     }
 
     @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
-
-    @Override
     public void onMapLoaded() {
         if(!AUtils.isNull(bounds)){
             CameraUpdate update = (ghataGadiCount == 1)? CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 18f) : CameraUpdateFactory.newLatLngBounds(bounds, 150);

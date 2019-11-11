@@ -23,8 +23,17 @@ public class StartActivity extends Activity {
         Prefs.putString(AUtils.APP_ID, "1");
         Prefs.putString(AUtils.APP_ID_GG, "1");
 
+        Prefs.putString(AUtils.GP_NAME, "Khirgavhan Gram Panchayat");
+        Prefs.putString(AUtils.GP_NAME_MAR, "खिरगव्हाण ग्राम पंचायत");
+        Prefs.putString(AUtils.GP_NAME_HINDI, "खिरगव्हाण ग्राम पंचायत");
+        Prefs.putString(AUtils.GP_WEATHER_NAME, "Khirgavhan");
+        Prefs.putString(AUtils.TYPE, "gp");
+
         Prefs.putString(AUtils.LOCATION, "20.709423,80.469527");
-//        Prefs.putString(AUtils.LOCATION, "20.386781,78.12306");
+        Prefs.putString(AUtils.APP_LOCATION, "20.709423,80.469527");
+
+        Prefs.putString(AUtils.YOCC_NO, "8806750750");
+        Prefs.putString(AUtils.GP_DETAILS, "जिल्हा : अमरावती | तहसील : अंजनगाव सुरजी");
         Prefs.putInt(AUtils.VERSION_CODE, 20);
 
 //        Prefs.putBoolean(AUtils.PREFS.SKIP_REGISTRATION_PERMANENT, false);

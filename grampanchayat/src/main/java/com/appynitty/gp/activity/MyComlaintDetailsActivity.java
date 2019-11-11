@@ -21,6 +21,7 @@ import com.riaylibrary.utils.LocaleHelper;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by MiTHUN on 17/8/18.
@@ -74,13 +75,13 @@ public class MyComlaintDetailsActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         if (!AUtils.isNull(complentStatusPojo.getComplaintType())) {
-
-            toolbar.setTitle(complentStatusPojo.getComplaintType() + " " + getString(R.string.details));
+            toolbar.setTitle(complentStatusPojo.getComplaintType() + " " + getResources().getString(R.string.details));
         } else {
-            toolbar.setTitle(getString(R.string.details));
+            toolbar.setTitle(getResources().getString(R.string.details));
         }
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

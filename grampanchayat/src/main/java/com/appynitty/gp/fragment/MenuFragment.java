@@ -79,9 +79,10 @@ public class MenuFragment extends MyFragemtV4 {
 
         if (Prefs.getBoolean(AUtils.FCM_NOTI, false)) {
 
-            mFragment = MyComplentStatusFragment.newInstance();
-            mFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.content_frame, mFragment).commit();
+//            mFragment = MyComplentStatusFragment.newInstance();
+//            mFragmentManager.beginTransaction().addToBackStack(null)
+//                    .replace(R.id.content_frame, mFragment).commit();
+            menuOnClick(AUtils.MenuIdConstants.Complent_Status_Tab);
 
             Prefs.putBoolean(AUtils.FCM_NOTI, false);
         }

@@ -23,6 +23,7 @@ import com.riaylibrary.utils.LocaleHelper;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by mithun on 16/10/17.
@@ -58,8 +59,9 @@ public class SocialNetworkActivity extends BaseActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(getResources().getString(R.string.social_media));
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -145,9 +147,4 @@ public class SocialNetworkActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
 }

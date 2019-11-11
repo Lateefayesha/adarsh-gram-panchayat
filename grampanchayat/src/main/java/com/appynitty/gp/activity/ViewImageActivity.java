@@ -74,10 +74,4 @@ public class ViewImageActivity extends BaseActivity {
         viewImgViewPager.setCurrentItem(imagePosition, true);
         viewImgViewPager.setPageTransformer(false, new ViewPagerTransformer(ViewPagerTransformer.TransformType.ZOOM));
     }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
 }

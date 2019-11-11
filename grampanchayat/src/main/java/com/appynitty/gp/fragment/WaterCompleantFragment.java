@@ -146,6 +146,7 @@ public class WaterCompleantFragment extends MyFragemtV4 {
         complaintTypePojo.setId("0");
         complaintTypePojo.setDescription(context.getString(R.string.select_type));
         complaintTypePojo.setDescriptionMar(context.getString(R.string.select_type));
+        complaintTypePojo.setDescriptionHindi(context.getString(R.string.select_type));
         complaintTypePojoList.add(0, complaintTypePojo);
 
         ArrayAdapter<StatePojo> statePojoArrayAdapter = new ArrayAdapter(

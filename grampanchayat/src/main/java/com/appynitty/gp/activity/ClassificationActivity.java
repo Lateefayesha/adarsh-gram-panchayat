@@ -30,6 +30,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Richali Pradhan Gupte on 13-10-2018.
@@ -154,12 +155,6 @@ public class ClassificationActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
-
     private void initLargeScroll(HashMap<String,List<String>> Data)
     {
         List<String> LargeData = Data.get("Large1");
@@ -238,9 +233,10 @@ public class ClassificationActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.classified));
+        toolbar.setTitle(getResources().getString(R.string.classified));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     private void makeViewVisible(boolean isRecord)

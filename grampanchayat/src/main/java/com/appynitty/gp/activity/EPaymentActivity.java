@@ -14,6 +14,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.InternalWebviewClient;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 /**
  * Created by MiTHUN on 2/7/18.
  */
@@ -47,9 +49,10 @@ public class EPaymentActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.e_payment));
+        toolbar.setTitle(getResources().getString(R.string.e_payment));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -64,14 +67,21 @@ public class EPaymentActivity extends BaseActivity {
         webView.getSettings().setBuiltInZoomControls(true);
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        String mURL = null;
 
-            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + Prefs.getString(AUtils.APP_ID, ""));
+        switch (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)){
+            case AUtils.LanguageIDConstants.MARATHI:
+                mURL = AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+                break;
+            case AUtils.LanguageIDConstants.HINDI:
+                mURL = AUtils.SERVER_URL + "Images/E_payment/index_Hindi.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+                break;
+            default:
+                mURL = AUtils.SERVER_URL + "Images/E_payment/index.html?appid=" + Prefs.getString(AUtils.APP_ID, "");
+        }
 
-//        } else {
+        webView.loadUrl(mURL);
 
-//            webView.loadUrl(AUtils.SERVER_URL + "Images/E_payment/index_Marathi.html?appid=" + QuickUtils.prefs.getString(AUtils.APP_ID, ""));
-//        }
     }
 
     @Override
@@ -96,12 +106,6 @@ public class EPaymentActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 
     @Override

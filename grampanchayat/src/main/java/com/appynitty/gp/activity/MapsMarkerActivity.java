@@ -92,12 +92,6 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         if(!AUtils.isRecreate)

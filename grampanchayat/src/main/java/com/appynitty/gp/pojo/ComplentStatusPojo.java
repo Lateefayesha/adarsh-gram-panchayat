@@ -1,6 +1,8 @@
 package com.appynitty.gp.pojo;
 
 import com.appynitty.gp.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 
 import java.io.Serializable;
 
@@ -86,11 +88,11 @@ public class ComplentStatusPojo implements Serializable {
 
     public String getComplaintType() {
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
+        if (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageIDConstants.ENGLISH)) {
             return complaintType;
-//        } else {
-//            return complaintTypeMar;
-//        }
+        } else {
+            return complaintTypeMar;
+        }
     }
 
     public void setComplaintType(String complaintType) {

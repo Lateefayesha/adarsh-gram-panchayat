@@ -1,6 +1,8 @@
 package com.appynitty.gp.pojo;
 
 import com.appynitty.gp.utils.AUtils;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.CommonUtils;
 
 import java.io.Serializable;
 
@@ -12,6 +14,7 @@ public class ComplaintTypePojo implements Serializable {
     private String id;
     private String description;
     private String descriptionMar;
+    private String descriptionHindi;
 
     public String getId() {
         return id;
@@ -37,13 +40,23 @@ public class ComplaintTypePojo implements Serializable {
         this.descriptionMar = descriptionMar;
     }
 
+    public String getDescriptionHindi() {
+        return descriptionHindi;
+    }
+
+    public void setDescriptionHindi(String descriptionHindi) {
+        this.descriptionHindi = descriptionHindi;
+    }
+
     @Override
     public String toString() {
 
-//        if (QuickUtils.prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID).equals("1")) {
-            return description;
-//        } else {
-//            return descriptionMar;
-//        }
+        switch (Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID)){
+            case AUtils.LanguageIDConstants.MARATHI:
+                return descriptionMar;
+            case AUtils.LanguageIDConstants.HINDI:
+                return descriptionHindi;
+            default: return description;
+        }
     }
 }

@@ -102,14 +102,16 @@ public class AUtils extends CommonUtils {
     public static final String YOCC_NO = "YoccNoForOrg";
     public static final String GP_NAME = "GramPanchayatName";
     public static final String GP_NAME_MAR = "GramPanchayatNameInMarathi";
-    public static final String GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
+    public static final String GP_NAME_HINDI = "GramPanchayatNameInHindi";
+    public static final String  GP_DETAILS = "GramPanchayatDetailDistrictTaluka";
     public static final String USER_ID = "UserId";
     public static final String FCM_NOTI = "IsFcmNotification";
     public static final String COMPLAINT_STATUS_POJO = "ComplaintStatusPojo";
     public static final String GP_WEATHER_NAME = "GPWeatherScreenName";
     public static final String WEBSITE_ENG = "Website";
     public static final String WEBSITE_MAR = "WebsiteMarathi";
-    public static final String DEFAULT_LANGUAGE_NAME = "mi";
+    public static final String WEBSITE_HI = "WebsiteHindi";
+    public static final String DEFAULT_LANGUAGE_NAME = LanguageConstants.MARATHI;
     //    date formate
     private static final String SERVER_DATE_TIME_FORMATE = "MM-dd-yyyy HH:mm:ss";
     private static final String SERVER_DATE_FORMATE = "MM-dd-yyyy";

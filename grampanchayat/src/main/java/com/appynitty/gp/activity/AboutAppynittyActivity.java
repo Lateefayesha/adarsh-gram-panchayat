@@ -14,6 +14,8 @@ import com.appynitty.gp.utils.AUtils;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 /**
  * Created by MiTHUN on 2/7/18.
  */
@@ -47,9 +49,10 @@ public class AboutAppynittyActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.action_about_appynitty));
+        toolbar.setTitle(getResources().getString(R.string.action_about_appynitty));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -88,11 +91,5 @@ public class AboutAppynittyActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 }

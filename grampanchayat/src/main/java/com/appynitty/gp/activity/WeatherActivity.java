@@ -13,6 +13,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.InternalWebviewClient;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.util.Objects;
+
 /**
  * Created by MiTHUN on 2/7/18.
  */
@@ -46,9 +48,11 @@ public class WeatherActivity extends BaseActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.weather));
+        toolbar.setTitle(getResources().getString(R.string.weather));
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -103,12 +107,6 @@ public class WeatherActivity extends BaseActivity {
 
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
     }
 
     @Override

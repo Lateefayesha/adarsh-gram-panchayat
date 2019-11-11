@@ -24,6 +24,7 @@ import com.riaylibrary.utils.LocaleHelper;
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 public class PropertTaxDetailsActivity extends AppCompatActivity {
 
@@ -215,9 +216,10 @@ public class PropertTaxDetailsActivity extends AppCompatActivity {
     private void initToolbar() {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.property_details));
+        toolbar.setTitle(getResources().getString(R.string.property_details));
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
