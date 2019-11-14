@@ -250,10 +250,4 @@ public class MyComlaintDetailsActivity extends BaseActivity {
 
         super.onBackPressed();
     }
-
-    @Override
-    protected void onDestroy() {
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
 }

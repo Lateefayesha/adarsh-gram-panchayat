@@ -60,12 +60,12 @@ public class CertificateFragment extends MyFragemtV4 {
 
     public void initComponents() {
 
-        genrateId();
+        generateId();
         registerEvents();
-        ininData();
+        initData();
     }
 
-    private void genrateId() {
+    private void generateId() {
 
         ((HomeActivity) getActivity()).setTitleActionBar(getString(R.string.certificate));
         ((HomeActivity) getActivity()).setTitleIcon(R.drawable.ic_arrow_back);
@@ -105,7 +105,7 @@ public class CertificateFragment extends MyFragemtV4 {
 
     }
 
-    private void ininData() {
+    private void initData() {
 
         initListData();
     }

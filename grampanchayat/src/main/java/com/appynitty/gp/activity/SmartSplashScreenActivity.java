@@ -39,7 +39,7 @@ public class SmartSplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen_activity);
 
-        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_ID, AUtils.LanguageConstants.ENGLISH));
+        AUtils.changeLanguage(this, Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.LanguageConstants.ENGLISH));
 
 //        loadHomeScreen();
 

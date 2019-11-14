@@ -32,15 +32,4 @@ public class MyApplicationConstants extends Application {
 
 //        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "MYRIADPRO-REGULAR.OTF"); // font from assets: "assets/fonts/Roboto-Regular.ttf
     }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
-        } else {
-            super.attachBaseContext(base);
-        }
-    }
-
 }

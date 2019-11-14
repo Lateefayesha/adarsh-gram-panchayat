@@ -145,12 +145,6 @@ public class SocialNetworkFragment extends MyFragemtV4 {
     }
 
     @Override
-    public void onDestroy() {
-        AUtils.changeLanguage(getActivity(), Prefs.getString(AUtils.LANGUAGE_ID, AUtils.DEFAULT_LANGUAGE_ID));
-        super.onDestroy();
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if(!AUtils.menuNavigationListHasItem(fragmentMenuId)){

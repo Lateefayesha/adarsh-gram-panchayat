@@ -1,14 +1,16 @@
 package com.appynitty.adarshgrampanchayat.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 import com.appynitty.adarshgrampanchayat.R;
-import com.appynitty.gp.activity.SmartSplashScreenActivity;
-import com.appynitty.gp.activity.SplashScreenActivity;
-import com.appynitty.gp.utils.AUtils;
+import com.appynitty.ghantagaditracker.activity.SplashScreenActivity;
+import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.riaylibrary.utils.LocaleHelper;
 
 
 public class StartActivity extends Activity {
@@ -23,24 +25,34 @@ public class StartActivity extends Activity {
         Prefs.putString(AUtils.APP_ID, "1");
         Prefs.putString(AUtils.APP_ID_GG, "1");
 
-        Prefs.putString(AUtils.GP_NAME, "Khirgavhan Gram Panchayat");
-        Prefs.putString(AUtils.GP_NAME_MAR, "खिरगव्हाण ग्राम पंचायत");
-        Prefs.putString(AUtils.GP_NAME_HINDI, "खिरगव्हाण ग्राम पंचायत");
-        Prefs.putString(AUtils.GP_WEATHER_NAME, "Khirgavhan");
+//        Prefs.putString(AUtils.GP_NAME, "Khirgavhan Gram Panchayat");
+//        Prefs.putString(AUtils.GP_NAME_MAR, "खिरगव्हाण ग्राम पंचायत");
+//        Prefs.putString(AUtils.GP_NAME_HINDI, "खिरगव्हाण ग्राम पंचायत");
+//        Prefs.putString(AUtils.GP_WEATHER_NAME, "Khirgavhan");
         Prefs.putString(AUtils.TYPE, "gp");
 
         Prefs.putString(AUtils.LOCATION, "20.709423,80.469527");
-        Prefs.putString(AUtils.APP_LOCATION, "20.709423,80.469527");
+//        Prefs.putString(AUtils.APP_LOCATION, "20.709423,80.469527");
 
-        Prefs.putString(AUtils.YOCC_NO, "8806750750");
-        Prefs.putString(AUtils.GP_DETAILS, "जिल्हा : अमरावती | तहसील : अंजनगाव सुरजी");
+//        Prefs.putString(AUtils.YOCC_NO, "8806750750");
+//        Prefs.putString(AUtils.GP_DETAILS, "जिल्हा : अमरावती | तहसील : अंजनगाव सुरजी");
         Prefs.putInt(AUtils.VERSION_CODE, 20);
 
-//        Prefs.putBoolean(AUtils.PREFS.SKIP_REGISTRATION_PERMANENT, false);
+        Prefs.putBoolean(AUtils.PREFS.SKIP_REGISTRATION_PERMANENT, false);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 //        startActivity(new Intent(StartActivity.this, SmartSplashScreenActivity.class));
         startActivity(new Intent(StartActivity.this, SplashScreenActivity.class));
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            super.attachBaseContext(LocaleHelper.onAttach(base, AUtils.DEFAULT_LANGUAGE_NAME));
+        } else {
+            super.attachBaseContext(base);
+        }
     }
 
     @Override

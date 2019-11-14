@@ -131,7 +131,7 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
                 calendar.setTime(currentDate);
 
 
-                AUtils.changeLanguage(MandiDetailsActivity.this,AUtils.LanguageConstants.ENGLISH);
+//                AUtils.changeLanguage(MandiDetailsActivity.this, AUtils.LanguageConstants.ENGLISH);
 
                 datePickerDialog = new DatePickerDialog(MandiDetailsActivity.this,
                         MandiDetailsActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -256,8 +256,8 @@ public class MandiDetailsActivity extends BaseActivity implements DatePickerDial
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
         try {
-            String languageId = Prefs.getString(AUtils.LANGUAGE_ID,AUtils.DEFAULT_LANGUAGE_ID);
-            AUtils.changeLanguage(MandiDetailsActivity.this, languageId);
+//            String languageId = Prefs.getString(AUtils.LANGUAGE_ID,AUtils.DEFAULT_LANGUAGE_ID);
+//            AUtils.changeLanguage(MandiDetailsActivity.this, languageId);
             Calendar mCalendar = new GregorianCalendar(year,month,day);
             Date date = mCalendar.getTime();
             Date currentDate = currentCalender.getTime();

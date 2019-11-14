@@ -17,7 +17,8 @@
 package com.appynitty.adarshgrampanchayat.fcm;
 
 import android.util.Log;
-import com.appynitty.gp.utils.AUtils;
+
+import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
