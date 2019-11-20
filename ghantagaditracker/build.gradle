@@ -64,10 +64,7 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
 
     //    Infotainment
-    implementation (name: 'gamemenulibrary-release', ext: 'aar')
-    implementation(name: 'recyclelibrary-release', ext: 'aar')
-    implementation(name: 'drywetlibrary-release', ext: 'aar')
-    implementation(name: 'hazardlibrary-release', ext: 'aar')
+    implementation (name: 'mygamelibrary-release', ext: 'aar')
 
     implementation 'com.airbnb.android:lottie:2.8.0'
 

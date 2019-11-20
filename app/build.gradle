@@ -55,10 +55,7 @@ dependencies {
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
 
     //    Infotainment
-    implementation (name: 'gamemenulibrary-release', ext: 'aar')
-    implementation(name: 'recyclelibrary-release', ext: 'aar')
-    implementation(name: 'drywetlibrary-release', ext: 'aar')
-    implementation(name: 'hazardlibrary-release', ext: 'aar')
+    implementation (name: 'mygamelibrary-release', ext: 'aar')
 
     implementation 'com.airbnb.android:lottie:2.8.0'
 }

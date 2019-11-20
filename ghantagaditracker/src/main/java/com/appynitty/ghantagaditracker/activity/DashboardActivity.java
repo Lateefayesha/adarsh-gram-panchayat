@@ -18,8 +18,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.appynitty.gamemenulibrary.activities.MenuActivity;
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
 import com.appynitty.ghantagaditracker.adapter.LogoutAdapterClass;
@@ -29,6 +27,7 @@ import com.appynitty.ghantagaditracker.pojo.RegistrationDetailsPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.DatabaseHelper;
 import com.appynitty.ghantagaditracker.utils.SaveFcmIdAsyncTask;
+import com.appynitty.mygamelibrary.activities.MenuActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.MyProgressDialog;

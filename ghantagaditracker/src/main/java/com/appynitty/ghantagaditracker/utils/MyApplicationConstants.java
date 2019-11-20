@@ -20,7 +20,8 @@ public class MyApplicationConstants extends Application {
 
         AUtils.mApplicationConstant = this;
 
-//        init Easy Prefs lib
+//        init Easy Prefs libskartStudent
+
         new Prefs.Builder()
                 .setContext(this)
                 .setMode(ContextWrapper.MODE_PRIVATE)
