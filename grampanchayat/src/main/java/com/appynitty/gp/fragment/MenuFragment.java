@@ -21,6 +21,7 @@ import com.appynitty.gp.activity.ClassificationActivity;
 import com.appynitty.gp.activity.EPaymentActivity;
 import com.appynitty.gp.activity.GhantaGadiTrackerActivity;
 import com.appynitty.gp.activity.HomeActivity;
+import com.appynitty.gp.activity.LeagueQuestionsActivity;
 import com.appynitty.gp.activity.MandiDetailsActivity;
 import com.appynitty.gp.activity.MapsMarkerActivity;
 import com.appynitty.gp.activity.UtilityActivity;
@@ -255,6 +256,13 @@ public class MenuFragment extends MyFragemtV4 {
                 break;
             case AUtils.MenuIdConstants.Contact_Us:
                 mFragment = ContactUsFragment.newInstance();
+                break;
+            case AUtils.MenuIdConstants.SS_League_2020:
+                if (AUtils.isInternetAvailable(AUtils.mApplicationConstant)) {
+                    startActivity(new Intent(context, LeagueQuestionsActivity.class));
+                } else {
+                    Toast.makeText(context, "" + getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
 

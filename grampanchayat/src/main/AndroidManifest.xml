@@ -123,6 +123,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity
+            android:name=".activity.LeagueQuestionsActivity"
+            android:label="@string/title_activity_league_questions"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service android:name=".services.LocationMonitoringService" />
 
         <meta-data

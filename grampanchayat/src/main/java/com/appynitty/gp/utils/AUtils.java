@@ -88,7 +88,7 @@ public class AUtils extends CommonUtils {
 
     public static final String DEFAULT_LANGUAGE_ID = LanguageConstants.MARATHI;
     public static final String LANGUAGE_ID = "LanguageId";
-
+    public static final String CONTENT_TYPE = "application/json";
     public static final String GALLERY_IMG_POSITION = "GalleryImagePosition";
     public static final String GALLERY_IMG_POJO_LIST = "GalleryImagePojo";
     public static final String SOCIAL_NETWORK_POJO = "SocialneworkPojo";
@@ -466,6 +466,9 @@ public class AUtils extends CommonUtils {
             menuPojoList.add(new MenuPojo(R.string.suggestion_tab, AUtils.Colour.Khakhi,
                     AUtils.MenuIdConstants.Smart_Suggestion, ContextCompat.getDrawable(context, R.drawable.ic_smart_suggestion)));
 
+            menuPojoList.add(new MenuPojo(R.string.title_activity_league_questions, Colour.SkyBlue,
+                    MenuIdConstants.SS_League_2020, ContextCompat.getDrawable(context, R.drawable.ic_ss_league)));
+
             menuPojoList.add(new MenuPojo(R.string.gallery, AUtils.Colour.Orange,
                     AUtils.MenuIdConstants.Photo_Video_Gallery, ContextCompat.getDrawable(context, R.drawable.ic_gallery)));
             menuPojoList.add(new MenuPojo(R.string.e_payment, AUtils.Colour.DarkGray,
@@ -545,6 +548,7 @@ public class AUtils extends CommonUtils {
         String SBA_AREA_LIST = "SbaAreaList";
         String SBA_USER_LIST = "SbaUserList";
         String SBA_ALL_USER_LIST = "SbaAllUserList";
+        String REFERENCE_ID = "SBA_REFERENCE_ID";
     }
 
     // Color Constant
@@ -608,5 +612,6 @@ public class AUtils extends CommonUtils {
         String Utility = "Utility";
         String Weather = "Weather";
         String Contact_Us = "Contact_Us";
+        String SS_League_2020 = "SSLeague2020";
     }
 }

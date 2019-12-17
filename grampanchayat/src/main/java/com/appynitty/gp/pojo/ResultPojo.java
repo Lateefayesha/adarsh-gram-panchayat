@@ -10,6 +10,8 @@ public class ResultPojo implements Serializable {
 
     private String status;
     private String message;
+    private String messageMar;
+    private String messageHindi;
 
     public String getStatus() {
         return status;
@@ -27,11 +29,29 @@ public class ResultPojo implements Serializable {
         this.message = message;
     }
 
+    public String getMessageMar() {
+        return messageMar;
+    }
+
+    public void setMessageMar(String messageMar) {
+        this.messageMar = messageMar;
+    }
+
+    public String getMessageHindi() {
+        return messageHindi;
+    }
+
+    public void setMessageHindi(String messageHindi) {
+        this.messageHindi = messageHindi;
+    }
+
     @Override
     public String toString() {
         return "ResultPojo{" +
                 "status='" + status + '\'' +
                 ", message='" + message + '\'' +
+                ", messageMar='" + messageMar + '\'' +
+                ", messageHindi='" + messageHindi + '\'' +
                 '}';
     }
 }

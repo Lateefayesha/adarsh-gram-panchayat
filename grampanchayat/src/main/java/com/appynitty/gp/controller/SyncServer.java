@@ -20,6 +20,8 @@ import com.appynitty.gp.pojo.DistrictPojo;
 import com.appynitty.gp.pojo.FcmIdPojo;
 import com.appynitty.gp.pojo.GalleryPojo;
 import com.appynitty.gp.pojo.GramPanchayatPojo;
+import com.appynitty.gp.pojo.LeageaAnswerDetailsPojo;
+import com.appynitty.gp.pojo.LeagueQuestionPojo;
 import com.appynitty.gp.pojo.MandiPojo;
 import com.appynitty.gp.pojo.OurGramPanchayatPojo;
 import com.appynitty.gp.pojo.PhotoGalleryImages;
@@ -44,6 +46,7 @@ import com.appynitty.gp.webservices.ContactUsWebservice;
 import com.appynitty.gp.webservices.FcmIdWebservice;
 import com.appynitty.gp.webservices.GalleryWebservice;
 import com.appynitty.gp.webservices.GhantaGadiTrackerWebservice;
+import com.appynitty.gp.webservices.LeagueWebservice;
 import com.appynitty.gp.webservices.MandiWebservice;
 import com.appynitty.gp.webservices.OurGramPanchayatWebservice;
 import com.appynitty.gp.webservices.PropertyTaxDetailsWebservice;
@@ -1305,6 +1308,44 @@ public class SyncServer {
         }
 
         return doUpdate;
+    }
+
+    public List<LeagueQuestionPojo> fetchLeagueQuestion() {
+
+        List<LeagueQuestionPojo> questionPojos = null;
+
+        try {
+
+            LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL);
+            questionPojos = webservice.getLeagueQuestions(
+                    Prefs.getString(AUtils.APP_ID, ""),
+                    AUtils.getLanguageId(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_NAME)))
+                    .execute().body();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return questionPojos;
+    }
+
+    public ResultPojo submitLeagueAnswer(LeageaAnswerDetailsPojo pojo) {
+
+        ResultPojo resultPojo = null;
+
+        try {
+
+            LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL);
+            resultPojo = webservice.submitLeagueAnswer(Prefs.getString(AUtils.APP_ID, ""),
+                    Prefs.getString(AUtils.PREFS.REFERENCE_ID, ""),
+                    Prefs.getString(AUtils.APP_ID_GG, ""),
+                    AUtils.CONTENT_TYPE, pojo).execute().body();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultPojo;
     }
 
 }
