@@ -194,6 +194,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
         }
 
+        if (menu.findItem(R.id.nav_city_pee_map).isVisible()) {
+            pojoList.add(new LocalMenuPojo(R.id.nav_city_pee_map,
+                    getResources().getString(R.string.title_activity_city_pee_map),
+                    AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
+        }
+
         MenuItem infotainment = menu.findItem(R.id.nav_infotainment);
         if (infotainment.isVisible()) {
             pojoList.add(new LocalMenuPojo(infotainment.getItemId(),
@@ -267,6 +273,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             startActivity(new Intent(mContext, LeagueQuestionsActivity.class));
         else if (itemId == R.id.nav_city_pee)
             startActivity(new Intent(mContext, CityPeeActivity.class));
+        else if (itemId == R.id.nav_city_pee_map)
+            startActivity(new Intent(mContext, CityPeeOnMapActivity.class));
         else if (itemId == R.id.nav_collection_history)
             startActivity(new Intent(mContext, CollectionHistoryActivity.class));
         else if (itemId == R.id.nav_infotainment)

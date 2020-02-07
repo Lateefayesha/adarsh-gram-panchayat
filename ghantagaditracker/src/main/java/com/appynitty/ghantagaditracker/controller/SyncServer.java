@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.AreaListPojo;
+import com.appynitty.ghantagaditracker.pojo.CityPeeListPojo;
 import com.appynitty.ghantagaditracker.pojo.CleaningCompleantPojo;
 import com.appynitty.ghantagaditracker.pojo.CollectionHistoryPojo;
 import com.appynitty.ghantagaditracker.pojo.ComplaintTypePojo;
@@ -328,6 +329,30 @@ public class SyncServer {
         }
 
         return collectionHistoryList;
+    }
+
+    public Boolean getAllCityPee() {
+
+        List<CityPeeListPojo> cityPeeListPojos = null;
+
+        try {
+            LeagueWebservice webservice = AUtils.createService(LeagueWebservice.class, AUtils.SERVER_URL_SBA);
+            cityPeeListPojos = webservice.fetchCityPeeLocation(Prefs.getString(AUtils.APP_ID_GG, "")).execute().body();
+
+            if (!AUtils.isNull(cityPeeListPojos)) {
+
+                Type type = new TypeToken<List<CityPeeListPojo>>() {
+                }.getType();
+                Prefs.putString(AUtils.PREFS.SBA_ALL_USER_LIST, gson.toJson(cityPeeListPojos, type));
+
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 }

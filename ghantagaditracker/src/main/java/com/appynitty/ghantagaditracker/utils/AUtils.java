@@ -51,13 +51,13 @@ public class AUtils extends CommonUtils {
     /*  Swachh Bharat Abhiyan*/
 
     //   SBA Local URL
-//    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
+    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
 
     //   SBA Staging URL
 //    public static final String SERVER_URL_SBA = "http://sbaappynitty.co.in:4088/";
 
     //   SBA Relese URL
-    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
+//    public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
     //   SBA Relese BACKUP URL
 //    public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";

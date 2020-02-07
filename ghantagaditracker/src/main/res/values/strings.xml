@@ -90,6 +90,7 @@
 
     <string name="answer_all_question">Please answer all the questions</string>
     <string name="title_activity_city_pee">CT/PT Scanify</string>
+    <string name="title_activity_city_pee_map">CT/PT on Map</string>
     <string name="skip_text">Skip</string>
     <string name="prompt_qr">Kindly Scan Scanify Code</string>
 

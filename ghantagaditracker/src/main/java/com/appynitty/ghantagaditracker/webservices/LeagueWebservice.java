@@ -1,5 +1,6 @@
 package com.appynitty.ghantagaditracker.webservices;
 
+import com.appynitty.ghantagaditracker.pojo.CityPeeListPojo;
 import com.appynitty.ghantagaditracker.pojo.LeageaAnswerDetailsPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueAnswerPojo;
 import com.appynitty.ghantagaditracker.pojo.LeagueQuestionPojo;
@@ -27,4 +28,7 @@ public interface LeagueWebservice {
                                         @Header("GGAppId") String GGAppId,
                                         @Header("Content-Type")String contentType,
                                         @Body LeageaAnswerDetailsPojo leageaAnswerDetailsPojo);
+
+    @GET("api/Get/CTPTAddress")
+    Call<List<CityPeeListPojo>> fetchCityPeeLocation(@Header("appId") String appId);
 }

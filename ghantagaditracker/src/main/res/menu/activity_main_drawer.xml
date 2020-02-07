@@ -50,6 +50,12 @@
             android:icon="@drawable/ic_ct_pt"/>
 
         <item
+            android:id="@+id/nav_city_pee_map"
+            android:title="@string/title_activity_city_pee_map"
+            android:checkable="false"
+            android:icon="@drawable/ic_ct_pt"/>
+
+        <item
             android:id="@+id/nav_infotainment"
             android:title="@string/sba_game_infotainment"
             android:checkable="false"

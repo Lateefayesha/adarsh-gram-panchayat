@@ -62,7 +62,7 @@
     <string name="submit_error">प्रस्तुत करने में असमर्थ। बाद में पुन: प्रयास करें</string>
     <string name="text_edit_contact">संपर्क विवरण अपडेट करें</string>
     <string name="tip">सुझाव</string>
-    <string name="title_activity_city_pee">सीटी / पीटी स्कैन</string>
+    <string name="title_activity_city_pee">सीटी/पीटी स्कैन</string>
     <string name="title_activity_cleaning_complaint">स्वच्छता के बारे में शिकायत</string>
     <string name="title_activity_collection_history">घर के कचरे के संग्रह का इतिहास</string>
     <string name="title_activity_complaint_status">मेरी शिकायत की स्थिति</string>
@@ -78,4 +78,5 @@
     <string name="yes_txt">हां</string>
 
     <string name="sba_game_infotainment">इंफोटेनमेंट</string>
+    <string name="title_activity_city_pee_map">मानचित्र पर सीटी/पीटी</string>
 </resources>
