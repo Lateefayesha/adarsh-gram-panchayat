@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="@dimen/dim_5_dp"
+        android:padding="5dp"
         android:textSize="@dimen/primery_text_size"/>
 
 </LinearLayout>

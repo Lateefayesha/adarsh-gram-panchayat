@@ -48,10 +48,10 @@ public class AUtils extends CommonUtils {
 //    public static final String SERVER_URL = "http://sbaappynitty.co.in:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+//    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
     //    Relese BACKUP URL
-//    public static final String SERVER_URL = "http://202.65.157.253:7055/";
+    public static final String SERVER_URL = "http://202.65.157.253:7055/";
 
     //   SBA Local URL
 //    public static final String SERVER_URL_SBA = "http://192.168.200.4:6077/";
@@ -467,7 +467,7 @@ public class AUtils extends CommonUtils {
                     AUtils.MenuIdConstants.Smart_Suggestion, ContextCompat.getDrawable(context, R.drawable.ic_smart_suggestion)));
 
             menuPojoList.add(new MenuPojo(R.string.title_activity_league_questions, Colour.SkyBlue,
-                    MenuIdConstants.SS_League_2020, ContextCompat.getDrawable(context, R.drawable.ic_ss_league)));
+                    MenuIdConstants.SS_League_2020, ContextCompat.getDrawable(context, R.drawable.ic_ssl_league)));
 
             menuPojoList.add(new MenuPojo(R.string.gallery, AUtils.Colour.Orange,
                     AUtils.MenuIdConstants.Photo_Video_Gallery, ContextCompat.getDrawable(context, R.drawable.ic_gallery)));
@@ -612,6 +612,6 @@ public class AUtils extends CommonUtils {
         String Utility = "Utility";
         String Weather = "Weather";
         String Contact_Us = "Contact_Us";
-        String SS_League_2020 = "SSLeague2020";
+        String SS_League_2020 = "SSLeague2021";
     }
 }

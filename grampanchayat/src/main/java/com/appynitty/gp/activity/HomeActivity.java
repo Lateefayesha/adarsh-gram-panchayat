@@ -51,7 +51,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             super.attachBaseContext(LocaleHelper.onAttach(base));
         }else{
@@ -66,19 +65,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void ganrateId() {
-
         mFragmentManager = getSupportFragmentManager();
         Log.e(TAG,this.getResources().getString(R.string.our_gram_panchayat));
         Log.e(TAG,Prefs.getString(AUtils.LANGUAGE_ID, ""));
         loadMenuFragment();
+
+
     }
 
     private void loadMenuFragment() {
 
         Prefs.putBoolean(AUtils.FCM_NOTI, getIntent().getBooleanExtra(AUtils.FCM_NOTI, false));
-
         mFragment = new MenuFragment();
-
         mFragmentManager.popBackStack(null,
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
         mFragmentManager.beginTransaction()

@@ -277,6 +277,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationAdapterClass.callRegistrationOtp(refId, mobNo);
     }
 
+
     private void startDashboard() {
         startActivity(new Intent(mContext, DashboardActivity.class));
         ((Activity) mContext).finish();

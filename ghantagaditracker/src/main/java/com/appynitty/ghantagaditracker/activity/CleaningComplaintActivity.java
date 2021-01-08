@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -484,7 +485,6 @@ public class CleaningComplaintActivity extends AppCompatActivity {
 //                onSelectFromGalleryResult(data);
 
             } else if (requestCode == REQUEST_CAMERA) {
-
                 onCaptureImageResult(data);
             }
         }
@@ -501,18 +501,23 @@ public class CleaningComplaintActivity extends AppCompatActivity {
             if (!dir.exists()) {
                 dir.mkdirs();
             }
+            Log.d("CleaningComplaint", "onCaptureImageResult:  dir.mkdirs()  "+ dir.mkdirs());
 
             destination = new File(dir, System.currentTimeMillis() + ".jpg");
+//            destination = new File(dir, System.currentTimeMillis() + ".png");
 
             FileOutputStream fOut = new FileOutputStream(destination);
+            assert thumbnail != null;
             thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
 
             imageFilePath = destination.getAbsolutePath();
+            Log.d("CleaningComplaint", "onCaptureImageResult: imageFilePath  "+ imageFilePath);
 
         } catch (Exception e) {
 
             e.printStackTrace();
             AUtils.error(context, "Unable to add image", Toast.LENGTH_SHORT);
+
         }
 
         captureImageView.setImageBitmap(thumbnail);

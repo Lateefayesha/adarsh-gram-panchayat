@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -47,13 +45,15 @@
             android:id="@+id/nav_city_pee"
             android:title="@string/title_activity_city_pee"
             android:checkable="false"
+            android:visible="false"
             android:icon="@drawable/ic_ct_pt"/>
 
         <item
             android:id="@+id/nav_city_pee_map"
             android:title="@string/title_activity_city_pee_map"
             android:checkable="false"
-            android:icon="@drawable/ic_ct_pt"/>
+            android:visible="false"
+            android:icon="@drawable/ic_ctpt_marker"/>
 
         <item
             android:id="@+id/nav_infotainment"

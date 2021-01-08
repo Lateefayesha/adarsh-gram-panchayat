@@ -11,6 +11,9 @@
     <string name="title_activity_complaint_status">माझी तक्रार स्थिती</string>
     <string name="title_activity_registration">नोंदणी</string>
 
+    <string name="title_infotainment">इन्फोटेनमेंट</string>
+
+
     <string name="contact_no_txt">संपर्क क्रमांक. : </string>
     <string name="search_area_txt">क्षेत्र शोधा</string>
     <string name="logout_txt">लॉगआउट</string>
@@ -72,7 +75,7 @@
 
     <string name="action_change_language">भाषा बदला</string>
 
-    <string name="title_activity_league_questions">SS लीग 2020</string>
+    <string name="title_activity_league_questions">SS लीग 2021</string>
     <string name="title_activity_notification_list">नोटिफ़िकेशन</string>
     <string name="no_notifications_text">नोटिफ़िकेशन आढळली नाही</string>
 

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -89,7 +90,7 @@ public class LocationMonitoringService extends Service implements
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mLocationClient, mLocationRequest, this);
 
-//        Log.d(TAG, "Connected to Google API");
+        Log.d(TAG, "Connected to Google API");
     }
 
     /*
@@ -98,7 +99,7 @@ public class LocationMonitoringService extends Service implements
      */
     @Override
     public void onConnectionSuspended(int i) {
-//        Log.d(TAG, "Connection suspended");
+        Log.d(TAG, "Connection suspended");
     }
 
 

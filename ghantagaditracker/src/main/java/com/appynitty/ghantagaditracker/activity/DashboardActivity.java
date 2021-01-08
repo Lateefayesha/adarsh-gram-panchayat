@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.InflateLocalMenu;
 import com.appynitty.ghantagaditracker.adapter.LogoutAdapterClass;
@@ -36,6 +38,8 @@ import com.riaylibrary.utils.LocaleHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.appynitty.ghantagaditracker.R.string.title_activity_league_questions;
+
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_CODE_SETTING = 1023;
@@ -46,6 +50,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private NavigationView navigationView;
     private LogoutAdapterClass logoutAdapter;
     private MyProgressDialog progressDialog;
+    private static final String TAG = "DashboardActivity";
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -194,16 +199,25 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
         }
 
+
         if (menu.findItem(R.id.nav_city_pee_map).isVisible()) {
             pojoList.add(new LocalMenuPojo(R.id.nav_city_pee_map,
                     getResources().getString(R.string.title_activity_city_pee_map),
-                    AUtils.Colour.Pink, ContextCompat.getDrawable(mContext, R.drawable.ic_ct_pt)));
+                    AUtils.Colour.Blue, ContextCompat.getDrawable(mContext, R.drawable.ic_ctpt_marker)));
         }
 
-        MenuItem infotainment = menu.findItem(R.id.nav_infotainment);
-        if (infotainment.isVisible()) {
-            pojoList.add(new LocalMenuPojo(infotainment.getItemId(),
-                    (String) infotainment.getTitle(),
+
+//        MenuItem infotainment = menu.findItem(R.id.nav_infotainment);
+//        if (infotainment.isVisible()) {
+//            pojoList.add(new LocalMenuPojo(infotainment.getItemId(),
+//                    (String) infotainment.getTitle(),
+//                    AUtils.Colour.Orange, ContextCompat.getDrawable(mContext, R.drawable.ic_infotainment)));
+//        }
+
+
+        if(menu.findItem(R.id.nav_infotainment).isVisible()){
+            pojoList.add(new LocalMenuPojo(R.id.nav_infotainment,
+                    getResources().getString(R.string.title_infotainment),
                     AUtils.Colour.Orange, ContextCompat.getDrawable(mContext, R.drawable.ic_infotainment)));
         }
 
@@ -256,6 +270,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void openMenuPages(int itemId) {
+        Log.d(TAG, "openMenuPages: itemId" + itemId);
+
         if (itemId == R.id.nav_ghanta_gadi_tracker)
             startActivity(new Intent(mContext, TrackerActivity.class));
         else if (itemId == R.id.nav_complaint_cleaning) {
@@ -271,12 +287,16 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             openNotificationActivity(null);
         else if (itemId == R.id.nav_league)
             startActivity(new Intent(mContext, LeagueQuestionsActivity.class));
+
         else if (itemId == R.id.nav_city_pee)
-            startActivity(new Intent(mContext, CityPeeActivity.class));
+             startActivity(new Intent(mContext, CityPeeActivity.class));
+
         else if (itemId == R.id.nav_city_pee_map)
-            startActivity(new Intent(mContext, CityPeeOnMapActivity.class));
+             startActivity(new Intent(mContext, CityPeeOnMapActivity.class));
+
         else if (itemId == R.id.nav_collection_history)
             startActivity(new Intent(mContext, CollectionHistoryActivity.class));
+
         else if (itemId == R.id.nav_infotainment)
             startActivity(new Intent(mContext, MenuActivity.class));
 
@@ -313,11 +333,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         db.deleteAllNotification();
         startActivity(new Intent(mContext, RegistrationActivity.class));
         ((Activity) mContext).finish();
+
     }
+
 
     private void saveFCM() {
         new SaveFcmIdAsyncTask(mContext).execute();
     }
+
 
     @Override
     public void recreate() {

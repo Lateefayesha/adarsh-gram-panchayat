@@ -1,9 +1,7 @@
 package com.appynitty.ghantagaditracker.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,9 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.appynitty.ghantagaditracker.R;
 import com.appynitty.ghantagaditracker.adapter.MapInfoCityPeeWindowAdapter;
-import com.appynitty.ghantagaditracker.adapter.MapInfoWindowAdapter;
 import com.appynitty.ghantagaditracker.controller.SyncServer;
-import com.appynitty.ghantagaditracker.pojo.ActiveUserListPojo;
 import com.appynitty.ghantagaditracker.pojo.CityPeeListPojo;
 import com.appynitty.ghantagaditracker.utils.AUtils;
 import com.appynitty.ghantagaditracker.utils.MyAsyncTask;
@@ -171,7 +167,7 @@ public class CityPeeOnMapActivity extends AppCompatActivity implements OnMapRead
                         .position(Objects.requireNonNull(latLng))
                         .icon(
                                 BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                                        .decodeResource(getResources(), R.drawable.ic_marker))
+                                        .decodeResource(getResources(), R.drawable.icn_house))
                         )
                         .title(pojo.getSauchalayID())
                         .snippet(pojo.getAddress()));

@@ -83,7 +83,9 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="title_activity_league_questions">SS League 2020</string>
+    <string name="title_activity_league_questions">SS League 2021</string>
+
+    <string name="title_infotainment">Infotainment</string>
     <string name="title_activity_notification_list">Notifications</string>
     <string name="no_notifications_text">No Notifications</string>
     <string name="clear_all" translatable="false">Clear All</string>

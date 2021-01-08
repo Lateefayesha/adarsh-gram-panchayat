@@ -37,8 +37,9 @@ public class SaveFcmIdAsyncTask extends AsyncTask {
                 FcmIdPojo fcmIdPojo = new FcmIdPojo();
                 fcmIdPojo.setFcmid(Prefs.getString(AUtils.FCM_ID, ""));
                 fcmIdPojo.setUserid(Prefs.getString(AUtils.USER_ID, ""));
-
                 syncServer.saveFcmIdOnServer(fcmIdPojo);
+
+
 
             } catch (Exception e) {
                 e.printStackTrace();

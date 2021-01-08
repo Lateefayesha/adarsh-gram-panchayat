@@ -6,6 +6,8 @@
     <!--android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"-->
     <!--android:name="com.appynitty.gp.utils.MyApplicationConstants"-->
     <!--tools:replace="android:allowBackup,android:name"-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.appynitty.ghantagaditracker.utils.MyApplicationConstants"
         android:allowBackup="true"
@@ -14,7 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+
         android:networkSecurityConfig="@xml/network_config">
 
         <activity

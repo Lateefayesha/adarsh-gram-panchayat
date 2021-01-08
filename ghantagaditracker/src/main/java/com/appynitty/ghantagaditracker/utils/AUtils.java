@@ -43,10 +43,10 @@ public class AUtils extends CommonUtils {
 //    public static final String SERVER_URL = "http://115.115.153.117:6088/";
 
     //    Relese URL
-    public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
+//      public static final String SERVER_URL = "http://sbaappynitty.co.in:7055/";
 
     //    Relese BACKUP URL
-//    public static final String SERVER_URL = "http://202.65.157.253:7055/";
+    public static final String SERVER_URL = "http://202.65.157.253:7055/";
 
     /*  Swachh Bharat Abhiyan*/
 
@@ -59,8 +59,16 @@ public class AUtils extends CommonUtils {
     //   SBA Relese URL
     public static final String SERVER_URL_SBA = "https://ghantagadi.in:444/";
 
+
     //   SBA Relese BACKUP URL
-//    public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";
+    //public static final String SERVER_URL_SBA = "http://115.115.153.117:4044/";
+
+
+
+
+
+
+
 
     public static Application mApplicationConstant;
 

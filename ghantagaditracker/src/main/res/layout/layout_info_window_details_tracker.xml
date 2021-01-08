@@ -41,7 +41,8 @@
         android:paddingTop="@dimen/padding_margin_layout"
         android:paddingBottom="@dimen/padding_margin_layout"
         android:paddingEnd="@dimen/padding_margin_layout_double"
-        android:paddingStart="@dimen/dimen_0dp"/>
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/location_date_time"
@@ -85,7 +86,8 @@
         android:paddingTop="@dimen/padding_margin_layout"
         android:paddingBottom="@dimen/padding_margin_layout"
         android:paddingEnd="@dimen/padding_margin_layout_double"
-        android:paddingStart="@dimen/dimen_0dp" />
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/vehicle_address"

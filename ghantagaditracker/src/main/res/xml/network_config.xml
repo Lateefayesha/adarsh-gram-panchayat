@@ -6,5 +6,12 @@
         <domain includeSubdomains="true">192.168.200.3</domain>
         <domain includeSubdomains="true">192.168.200.4</domain>
         <domain includeSubdomains="true">115.115.153.117</domain>
+        <domain includeSubdomains="true">202.65.157.253:7055</domain>
+
     </domain-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
 </network-security-config>
