@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.SettingActivity"
+    tools:showIn="@layout/activity_tracker_setting"
+    android:paddingStart="@dimen/componant_layout_padding"
+    android:paddingEnd="@dimen/componant_layout_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:weightSum="2"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/text_change_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_change_language"/>
+
+        <Spinner
+            android:layout_weight="1"
+            android:id="@+id/spinner_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_0dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

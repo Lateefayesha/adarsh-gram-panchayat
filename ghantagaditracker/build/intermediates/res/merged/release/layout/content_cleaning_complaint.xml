@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.CleaningComplaintActivity"
+    tools:showIn="@layout/activity_cleaning_complaint">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cc_save_btn"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                style="@style/MyCardView"
+                app:cardBackgroundColor="@color/card_view_background_color"
+                app:cardCornerRadius="@dimen/cardview_radius">
+
+                <ImageView
+                    android:id="@+id/cc_cature_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_camera" />
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_margin_layout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_ward_no_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/ward_no_comp"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_place_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/place_comp"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/type_sp_title_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/padding_margin_layout"
+                    android:paddingEnd="0dp"
+                    android:text="@string/select_type"
+                    android:textColor="@color/title_hint_text_color"
+                    android:textSize="10sp"
+                    android:visibility="invisible" />
+
+                <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="@dimen/padding_margin_layout_double"-->
+                <!--android:layout_marginLeft="1dp"-->
+                <!--android:layout_marginRight="1dp"-->
+                <!--android:layout_marginTop="@dimen/padding_margin_layout">-->
+
+                <Spinner
+                    android:id="@+id/cc_type_sp"
+                    style="@style/MySpinnerStyle" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/padding_margin_layout"
+                    android:layout_marginRight="@dimen/padding_margin_layout"
+                    android:background="@color/text_view_bottom_line_color" />
+
+                <!--</android.support.v7.widget.CardView>-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_details_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/compleant_details"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_tip_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/tip"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_margin_layout"
+                    android:paddingBottom="@dimen/padding_margin_layout"
+                    android:paddingTop="@dimen/padding_margin_layout"
+                    android:text="@string/personal_information"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="@dimen/primery_text_size"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_name_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/name_comp"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_number_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/mobile_no_comp"
+                        android:inputType="number"
+                        android:maxLength="10" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_email_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/cc_address_et"
+                        style="@style/MyEditTextStyle"
+                        android:hint="@string/address"
+                        android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/cc_save_btn"
+        style="@style/MyButtonStyle"
+        android:text="@string/submit" />
+
+</RelativeLayout>

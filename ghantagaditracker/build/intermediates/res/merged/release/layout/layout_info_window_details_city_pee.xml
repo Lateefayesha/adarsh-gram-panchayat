@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/padding_margin_layout_double"
+    android:padding="@dimen/padding_margin_layout">
+
+    <ImageView
+        android:id="@+id/location_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_0_dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/pee_name_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_person_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/location_img"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/pee_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/primery_text_size"
+        app:layout_constraintTop_toBottomOf="@id/location_img"
+        app:layout_constraintLeft_toRightOf="@id/pee_name_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout" />
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/pee_id_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_call_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/pee_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp" />
+
+    <TextView
+        android:id="@+id/pee_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pee_name"
+        app:layout_constraintLeft_toRightOf="@id/pee_address_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"/>
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/pee_address_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_location_on_primary_dark"
+        app:layout_constraintTop_toBottomOf="@id/pee_id"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"
+        android:paddingEnd="@dimen/padding_margin_layout_double"
+        android:paddingStart="@dimen/dimen_0dp" />
+
+    <TextView
+        android:id="@+id/pee_address"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pee_id"
+        app:layout_constraintLeft_toRightOf="@id/pee_address_icon"
+        android:paddingTop="@dimen/padding_margin_layout"
+        android:paddingBottom="@dimen/padding_margin_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.StartUpActivity">
+
+    <ImageView
+        android:id="@+id/game_icon"
+        android:layout_width="@dimen/dim_200_dp"
+        android:layout_height="@dimen/dim_200_dp"
+        android:adjustViewBounds="false"
+        android:src="@drawable/ic_recycle"
+        android:layout_marginTop="@dimen/dim_30_dp"/>
+
+    <com.riaylibrary.custom_component.GradientTextView
+        android:id="@+id/game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play"
+        android:textSize="@dimen/dim_20_sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        app:gt_color_list="@array/play"
+        app:gt_gradient_direction="bottom"
+        android:focusable="false"
+        android:background="@android:color/transparent"
+        android:textCursorDrawable="@drawable/cursor_transperent"
+        android:layout_marginTop="@dimen/dim_30_dp"/>
+
+    <com.riaylibrary.custom_component.GradientTextView
+        android:id="@+id/play"
+        android:layout_width="@dimen/dim_150_dp"
+        android:layout_height="@dimen/dim_150_dp"
+        android:text="@string/play"
+        android:textSize="@dimen/play_font_size"
+        android:layout_marginBottom="@dimen/play_bottom_margin"
+        android:background="@drawable/click_drawable_oval"
+        android:clickable="true"
+        android:gravity="center"
+        app:gt_color_list="@array/play"
+        app:gt_gradient_direction="bottom"
+        android:focusable="false"
+        android:textCursorDrawable="@drawable/cursor_transperent"
+        android:layout_marginTop="@dimen/dim_30_dp"/>
+
+</LinearLayout>

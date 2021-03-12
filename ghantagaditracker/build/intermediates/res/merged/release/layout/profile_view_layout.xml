@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/score_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/txt_moblie_no"
+    android:layout_centerHorizontal="true"
+    android:layout_marginStart="@dimen/dim_5_dp"
+    android:layout_marginTop="@dimen/dim_5_dp"
+    android:layout_marginEnd="@dimen/dim_5_dp"
+    app:cardCornerRadius="@dimen/dim_5_dp"
+    app:cardElevation="@dimen/dim_3_dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dim_10_dp">
+
+        <ImageView
+            android:id="@+id/game_icon"
+            android:layout_width="@dimen/dim_100_dp"
+            android:layout_height="@dimen/dim_100_dp"
+            android:src="@drawable/ic_recycle"/>
+
+        <TextView
+            android:id="@+id/total_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/total_score"
+            android:layout_toEndOf="@id/game_icon"/>
+
+        <TextView
+            android:id="@+id/txt_total_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/game_icon"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/_0"
+            android:textSize="@dimen/back_btn_size_large" />
+        <TextView
+            android:id="@+id/txt_game_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/game_icon"
+            android:layout_below="@id/txt_total_score"
+            android:gravity="center"
+            android:text="ngbdfg"
+            android:layout_marginTop="@dimen/dim_40_dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

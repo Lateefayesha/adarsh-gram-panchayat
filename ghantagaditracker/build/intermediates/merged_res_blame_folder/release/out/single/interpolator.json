@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/interpolator/mtrl_linear.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/162eae9e3b95502533b1d58f9f927687/material-1.0.0/res/interpolator/mtrl_linear.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/interpolator/mr_fast_out_slow_in.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/2c4ecf3f61c0f72e2a82df2c8ad8a033/mediarouter-1.0.0-alpha5/res/interpolator/mr_fast_out_slow_in.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/interpolator/mr_linear_out_slow_in.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/2c4ecf3f61c0f72e2a82df2c8ad8a033/mediarouter-1.0.0-alpha5/res/interpolator/mr_linear_out_slow_in.xml"
+    }
+]

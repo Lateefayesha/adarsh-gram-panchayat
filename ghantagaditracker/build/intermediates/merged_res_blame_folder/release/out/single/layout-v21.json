@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/4f07f31d77ba7c06aeb20804a295be3c/core-1.0.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/layout-v21/place_autocomplete_fragment.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/48bf4e5c7804d46865d40f7701499f62/jetified-play-services-places-12.0.1/res/layout-v21/place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/4f07f31d77ba7c06aeb20804a295be3c/core-1.0.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/4f07f31d77ba7c06aeb20804a295be3c/core-1.0.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/4f07f31d77ba7c06aeb20804a295be3c/core-1.0.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

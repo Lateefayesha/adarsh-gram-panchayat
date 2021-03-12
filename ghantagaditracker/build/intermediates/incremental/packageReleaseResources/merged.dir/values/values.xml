@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accepeted">#9CCC65</color>
+    <color name="black_alpfa_50">#32000000</color>
+    <color name="button_color">#FFA726</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="card_view_background_color">#FAFAFA</color>
+    <color name="colorAccent">#FFA726</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="event_date_background_color">#f7941d</color>
+    <color name="garbage_mixed">#d1655e</color>
+    <color name="garbage_not_received">#e89f5f</color>
+    <color name="garbage_not_specified">#0086c3</color>
+    <color name="garbage_segregated">#6fa570</color>
+    <color name="gray">#BDBDBD</color>
+    <color name="layout_background_color">#E6E6E6</color>
+    <color name="pending">#D3B12B</color>
+    <color name="processing">#2196F3</color>
+    <color name="rejeceted">#FF8A80</color>
+    <color name="tab_disabled_text_color">#80CBC4</color>
+    <color name="text_blue_dark">#335bdf</color>
+    <color name="text_color_dividers">#dbdbdb</color>
+    <color name="text_color_hint_disabled">#b9b9b9</color>
+    <color name="text_color_no_data">#6A6A6A</color>
+    <color name="text_color_primary">#171221</color>
+    <color name="text_color_secondary">#363636</color>
+    <color name="text_color_tertiary">#616161</color>
+    <color name="text_view_bottom_line_color">#E6E6E6</color>
+    <color name="title_hint_text_color">#9D9D9D</color>
+    <color name="view_button_color">#64B5F6</color>
+    <dimen name="dim_registration_actionbar">150dp</dimen>
+    <dimen name="dimen_0dp">0dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
+    <dimen name="event_image_height">250dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="floating_button_spacing">25dp</dimen>
+    <dimen name="margin_top_registration_input">55dp</dimen>
+    <dimen name="news_img_hight_width">135dp</dimen>
+    <dimen name="padding_margin_layout_double">10dp</dimen>
+    <dimen name="spacing_between_line_and_text">18dp</dimen>
+    <dimen name="spinner_text_size">20sp</dimen>
+    <string name="action_change_language">Change Language</string>
+    <string name="action_settings">Setting</string>
+    <string name="address">Address</string>
+    <string name="after">After</string>
+    <string name="answer_all_question">Please answer all the questions</string>
+    <string name="app_name" translatable="false">खिरगव्हाण ग्राम पंचायत</string>
+    <string name="before">Before</string>
+    <string name="bifurcate_garbage">Bifurcated</string>
+    <string name="clear_all" translatable="false">Clear All</string>
+    <string name="comments">Comments</string>
+    <string name="compleant_details">Grievance / Feedback Info *</string>
+    <string name="confirm_contact_hint">Confirm Contact Number</string>
+    <string name="contact_no_txt">"Contact No. : "</string>
+    <string name="date">Date</string>
+    <string name="details">Details</string>
+    <string name="email">Email</string>
+    <string name="google_maps_key" translatable="false">AIzaSyDzBuys0gKQmHewrgLlJYbEhD1nLWvIYX8</string>
+    <string name="grievance">Grievance</string>
+    <string name="grievance_id">Grievance ID</string>
+    <string name="house_number_hint">Enter house number</string>
+    <string name="house_number_hint_valid">Enter valid house number</string>
+    <string name="invalid_qr_error">Invalid Scaniffy</string>
+    <string name="invalid_url_error">Invalid URL</string>
+    <string name="logout_txt">Logout</string>
+    <string name="mixed_garbage">Mixed</string>
+    <string name="mobile_no_comp">Mobile No *</string>
+    <string name="month_txt">Month</string>
+    <string name="name_comp">Name *</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="noData">No data found</string>
+    <string name="noInternet">Please check your internet connection and try again</string>
+    <string name="no_garbage">Not Received</string>
+    <string name="no_ghanta_gadi">No garbage van available</string>
+    <string name="no_notifications_text">No Notifications</string>
+    <string name="no_thanks_txt" translatable="false">NO, THANKS</string>
+    <string name="no_txt">No</string>
+    <string name="not_specified_garbage">Not Specified</string>
+    <string name="otp_hint">Enter OTP</string>
+    <string name="otp_hint_valid">Enter valid OTP</string>
+    <string name="pending">Pending</string>
+    <string name="personal_information">Personal Information :</string>
+    <string name="place">Location</string>
+    <string name="place_comp">Location *</string>
+    <string name="plz_capture_img">Please capture image</string>
+    <string name="plz_ent_complent_dtl">Please enter grievance details</string>
+    <string name="plz_ent_location">Please enter location</string>
+    <string name="plz_ent_mobile_no">Please enter mobile number</string>
+    <string name="plz_ent_name">Please enter name</string>
+    <string name="plz_ent_valid_email">Please enter valid email</string>
+    <string name="plz_ent_valid_mobile_no">Please enter valid mobile number</string>
+    <string name="plz_ent_ward_no">Please enter ward no</string>
+    <string name="plz_select_complaint_type">Please select grievance type</string>
+    <string name="processing">Processing</string>
+    <string name="prompt_qr">Kindly Scan Scanify Code</string>
+    <string name="rejected">Rejected</string>
+    <string name="resolved">Resolved</string>
+    <string name="sba_game_infotainment">Infotainment</string>
+    <string name="search_area_txt">Search Area</string>
+    <string name="select_month_year_warn">Please Select Proper Month / Year</string>
+    <string name="select_type">Select Grievance Type *</string>
+    <string name="serverError">Oops! We\\\'re having technical problems. Please try again later.</string>
+    <string name="skip_text">Skip</string>
+    <string name="something_error">Something went wrong!! Please try again later.</string>
+    <string name="submit">Submit</string>
+    <string name="submit_done">Submited</string>
+    <string name="submit_error">Unable to submit. Please try again later</string>
+    <string name="text_edit_contact">Update contact details</string>
+    <string name="tip">tips</string>
+    <string name="title_activity_city_pee">CT/PT Scanify</string>
+    <string name="title_activity_city_pee_map">CT/PT on Map</string>
+    <string name="title_activity_cleaning_complaint">Cleanliness Grievance</string>
+    <string name="title_activity_collection_history">Garbage Collection History</string>
+    <string name="title_activity_complaint_status">My Grievance Status</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_ghanta_gadi_tracker">Tracker for Garbage Collection Van</string>
+    <string name="title_activity_league_questions">SS League 2021</string>
+    <string name="title_activity_notification_list">Notifications</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_infotainment">Infotainment</string>
+    <string name="txt_resend_otp">Resend OTP</string>
+    <string name="update_message" translatable="false">Please, update app to new version.</string>
+    <string name="update_title" translatable="false">New Version Available</string>
+    <string name="update_txt" translatable="false">UPDATE</string>
+    <string name="vehicle_number_txt">Vehicle No :</string>
+    <string name="ward_no">Ward No.</string>
+    <string name="ward_no_comp">Ward No *</string>
+    <string name="yes_txt">Yes</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/button_color</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/padding_margin_layout_double</item>
+        <item name="android:paddingRight">@dimen/padding_margin_layout_double</item>
+        <item name="android:paddingTop">@dimen/padding_margin_layout</item>
+        <item name="android:paddingBottom">@dimen/padding_margin_layout</item>
+        <item name="android:layout_margin">@dimen/padding_margin_layout</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+    <style name="MyCardView" parent="CardView.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/padding_margin_layout</item>
+        <!--<item name="app:cardCornerRadius">@dimen/cardview_radius</item>-->
+    </style>
+    <style name="MyEditTextStyle" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/primery_text_size</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+        <item name="android:layout_marginTop">@dimen/padding_margin_layout</item>
+        <item name="android:backgroundTint">@color/text_view_bottom_line_color</item>
+        <item name="android:paddingBottom">@dimen/spacing_between_line_and_text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+    <style name="MySpinnerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+    </style>
+    <style name="MyTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:textSize">@dimen/primery_text_size</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="back_btn_size">24dp</dimen>
+    <dimen name="back_btn_size_large">28dp</dimen>
+    <dimen name="btn_font_size">12sp</dimen>
+    <dimen name="btn_height">40dp</dimen>
+    <dimen name="btn_height_small">30dp</dimen>
+    <dimen name="btn_padding_large">10dp</dimen>
+    <dimen name="btn_width">120dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="font_size">18sp</dimen>
+    <dimen name="img_size">200dp</dimen>
+    <dimen name="play_bottom_margin">100dp</dimen>
+    <dimen name="play_font_size">45sp</dimen>
+    <dimen name="progress_size">50dp</dimen>
+    <dimen name="setting_profile_size">50dp</dimen>
+    <dimen name="timer_font_size">22sp</dimen>
+</resources>

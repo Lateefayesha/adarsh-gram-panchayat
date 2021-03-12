@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RegrastrationActivity"
+    android:background="@drawable/splash">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Widget.AppCompat.ActionBar.Solid"
+        android:background="@android:color/transparent"
+        android:elevation="@dimen/dim_0_dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            android:elevation="@dimen/dim_0_dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/contect_regrastration_game" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

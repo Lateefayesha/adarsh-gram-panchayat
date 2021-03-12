@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.SettingActivity">
+
+    <Switch
+        android:id="@+id/sound_switch"
+        style="@style/SwitchCompatTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_title"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/sound"
+        android:textSize="@dimen/dim_20_sp"
+        android:checked="true"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/btn_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sound_switch"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/language"/>
+
+    <Button
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_language"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/about"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_change_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_about"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/change_mobile_no"/>
+
+</RelativeLayout>

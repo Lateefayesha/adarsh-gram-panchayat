@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/dim_5_dp"
+    app:cardElevation="@dimen/dim_3_dp"
+    android:layout_margin="@dimen/dim_10_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/dim_10_dp">
+
+        <ImageView
+            android:id="@+id/lottie_emoji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/missing"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question_missed_txt"
+            android:textSize="@dimen/font_size"
+            android:textColor="@color/yellow_skip"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/txt_slogan"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_size"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btn_height_small"
+            android:text="@string/next_question_txt"
+            android:textSize="@dimen/btn_font_size"
+            android:textColor="@android:color/white"
+            android:background="@drawable/click_drawable_rect_blue"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

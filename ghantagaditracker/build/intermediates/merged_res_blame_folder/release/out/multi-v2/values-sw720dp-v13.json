@@ -1,0 +1,82 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/values-sw720dp-v13/values-sw720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/2c4ecf3f61c0f72e2a82df2c8ad8a033/mediarouter-1.0.0-alpha5/res/values-sw720dp-v13/values-sw720dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,124",
+                        "endColumns": "68,68",
+                        "endOffsets": "119,188"
+                    },
+                    "to": {
+                        "startLines": "11,12",
+                        "startColumns": "4,4",
+                        "startOffsets": "538,607",
+                        "endColumns": "68,68",
+                        "endOffsets": "602,671"
+                    }
+                },
+                {
+                    "source": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/src/main/res/values-sw720dp/dimens.xml",
+                    "from": {
+                        "startLines": "16,3,2,10,11,20,4,5,22,12,6,9,17,8,18,19,7,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "731,73,17,461,512,929,119,178,977,567,238,401,779,343,828,879,290,621,682",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48",
+                        "endOffsets": "774,114,68,507,562,971,173,233,1033,615,285,456,823,396,874,924,338,677,726"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,149,205,256,311,358,417,477,676,729,781,841,890,948,999,1049,1102,1163",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48",
+                        "endOffsets": "98,144,200,251,306,353,412,472,533,724,776,836,885,943,994,1044,1097,1158,1207"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw720dp-v13/values-sw720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/ayesha/.gradle/caches/transforms-2/files-2.1/2c4ecf3f61c0f72e2a82df2c8ad8a033/mediarouter-1.0.0-alpha5/res/values-sw720dp-v13/values-sw720dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,124",
+                        "endColumns": "68,68",
+                        "endOffsets": "119,188"
+                    },
+                    "to": {
+                        "startLines": "11,12",
+                        "startColumns": "4,4",
+                        "startOffsets": "538,607",
+                        "endColumns": "68,68",
+                        "endOffsets": "602,671"
+                    }
+                },
+                {
+                    "source": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/src/main/res/values-sw720dp/dimens.xml",
+                    "from": {
+                        "startLines": "16,3,2,10,11,20,4,5,22,12,6,9,17,8,18,19,7,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "731,73,17,461,512,929,119,178,977,567,238,401,779,343,828,879,290,621,682",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48",
+                        "endOffsets": "774,114,68,507,562,971,173,233,1033,615,285,456,823,396,874,924,338,677,726"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,149,205,256,311,358,417,477,676,729,781,841,890,948,999,1049,1102,1163",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48",
+                        "endOffsets": "98,144,200,251,306,353,412,472,533,724,776,836,885,943,994,1044,1097,1158,1207"
+                    }
+                }
+            ]
+        }
+    ]
+}

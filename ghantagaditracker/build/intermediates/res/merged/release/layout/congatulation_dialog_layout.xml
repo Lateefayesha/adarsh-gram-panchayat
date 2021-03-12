@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/dim_10_dp"
+    android:background="@color/green_background">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_emoji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="celebration_superclean.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
+
+    <com.riaylibrary.custom_component.GradientTextView
+        android:id="@+id/txt_congratulation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/congratulations"
+        android:textSize="35sp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        app:gt_color_list="@array/congratulation"
+        app:gt_gradient_direction="bottom"
+        android:focusable="false"
+        android:background="@android:color/transparent"
+        android:textCursorDrawable="@drawable/cursor_transperent"/>
+
+    <TextView
+        android:id="@+id/txt_slogan"
+        android:layout_marginTop="@dimen/dim_10_dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size"
+        android:layout_below="@id/txt_congratulation"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textColor="@android:color/white"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="@dimen/back_btn_size_large"
+        android:layout_height="@dimen/back_btn_size_large"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_close"/>
+
+    <TextView
+        android:id="@+id/lbl_slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_congratulation"
+        android:text="@string/slash"
+        android:textSize="60sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/dim_10_dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/dim_5_dp"
+        android:layout_marginEnd="@dimen/dim_5_dp"/>
+
+    <TextView
+        android:id="@+id/opted_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_congratulation"
+        android:text=""
+        android:textSize="60sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/dim_10_dp"
+        android:layout_toStartOf="@id/lbl_slash"/>
+    <TextView
+        android:id="@+id/total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_congratulation"
+        android:text=""
+        android:textSize="60sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/dim_10_dp"
+        android:layout_toEndOf="@id/lbl_slash"/>
+
+    <ImageView
+        android:layout_width="@dimen/dim_200_dp"
+        android:layout_height="@dimen/dim_200_dp"
+        android:src="@drawable/swachh_bharat"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/lbl_slash"
+        android:layout_marginBottom="@dimen/dim_10_dp"/>
+
+</RelativeLayout>

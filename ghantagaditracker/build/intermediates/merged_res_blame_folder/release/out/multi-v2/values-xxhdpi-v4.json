@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/res/merged/release/values-xxhdpi-v4/values-xxhdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/src/main/res/values-xxhdpi/dimens.xml",
+                    "from": {
+                        "startLines": "20,3,2,10,11,17,4,5,22,12,6,9,14,8,15,16,7,18,19,23",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "928,73,17,461,512,771,119,178,977,567,238,401,621,343,670,721,290,818,879,1038",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48,52",
+                        "endOffsets": "971,114,68,507,562,813,173,233,1033,615,285,456,665,396,716,766,338,874,923,1086"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,149,205,256,311,358,417,477,538,591,643,703,752,810,861,911,964,1025,1074",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48,52",
+                        "endOffsets": "98,144,200,251,306,353,412,472,533,586,638,698,747,805,856,906,959,1020,1069,1122"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-xxhdpi-v4/values-xxhdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/ayesha/BACKUP_OLD_DRIVE/Ayan/AppyNittyProjects/Grampanchayat/adarsh-gram-panchayat/ghantagaditracker/src/main/res/values-xxhdpi/dimens.xml",
+                    "from": {
+                        "startLines": "20,3,2,10,11,17,4,5,22,12,6,9,14,8,15,16,7,18,19,23",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "928,73,17,461,512,771,119,178,977,567,238,401,621,343,670,721,290,818,879,1038",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48,52",
+                        "endOffsets": "971,114,68,507,562,813,173,233,1033,615,285,456,665,396,716,766,338,874,923,1086"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,149,205,256,311,358,417,477,538,591,643,703,752,810,861,911,964,1025,1074",
+                        "endColumns": "47,45,55,50,54,46,58,59,60,52,51,59,48,57,50,49,52,60,48,52",
+                        "endOffsets": "98,144,200,251,306,353,412,472,533,586,638,698,747,805,856,906,959,1020,1069,1122"
+                    }
+                }
+            ]
+        }
+    ]
+}

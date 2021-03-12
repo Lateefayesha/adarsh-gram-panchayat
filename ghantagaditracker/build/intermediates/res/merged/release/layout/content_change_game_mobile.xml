@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.ChangeGameMobileActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_title"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:textColorHint="@color/white">
+
+        <EditText
+            android:id="@+id/txt_mobile_old"
+            style="@style/MyEditTextStyleDark"
+            android:hint="@string/old_mobile_txt"
+            android:layout_marginStart="@dimen/dim_10_dp"
+            android:layout_marginEnd="@dimen/dim_10_dp"
+            android:maxLength="10"
+            android:inputType="number"
+            android:textColor="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tiv1"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:textColorHint="@color/white">
+
+        <EditText
+            android:id="@+id/txt_moblie_new"
+            style="@style/MyEditTextStyleDark"
+            android:hint="@string/new_mobile_txt"
+            android:layout_marginStart="@dimen/dim_10_dp"
+            android:layout_marginEnd="@dimen/dim_10_dp"
+            android:maxLength="10"
+            android:inputType="number"
+            android:textColor="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tiv2"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:textColorHint="@color/white"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/txt_otp"
+            style="@style/MyEditTextStyleDark"
+            android:hint="@string/otp"
+            android:layout_marginStart="@dimen/dim_10_dp"
+            android:layout_marginEnd="@dimen/dim_10_dp"
+            android:maxLength="4"
+            android:inputType="number"
+            android:textColor="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_sumbit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tiv3"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/submit"/>
+
+    <Button
+        android:id="@+id/btn_sumbit_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tiv3"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/submit_game_otp"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_resend_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tiv3"
+        android:layout_marginTop="@dimen/dim_30_dp"
+        android:layout_marginStart="@dimen/dim_10_dp"
+        android:layout_marginEnd="@dimen/dim_10_dp"
+        android:text="@string/resend_game_otp"
+        android:visibility="gone"/>
+
+</RelativeLayout>
